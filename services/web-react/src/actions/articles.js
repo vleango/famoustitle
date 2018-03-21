@@ -9,13 +9,29 @@ export const fetchList = () => {
       dispatch(list({articles: response.data.articles}));
     }
     catch (error) {
-      debugger;
       console.log(error);
     }
   }
 };
 
+export const fetchItem = (id) => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.get(`${ROOT_API_URL}/articles/${id}`);
+      dispatch(item({article: response.data}));
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+}
+
 export const list = (data) => ({
   type: 'ARTICLE_LIST',
-  articles: data.articles
+  data: { articles: data.articles }
+});
+
+export const item = (data) => ({
+  type: 'ARTICLE_ITEM',
+  data: data
 });

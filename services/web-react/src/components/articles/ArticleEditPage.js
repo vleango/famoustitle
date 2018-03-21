@@ -9,6 +9,7 @@ export class ArticleEditPage extends Component {
 
   constructor(props) {
     super(props);
+    debugger;
     this.state = {
       title: props.article.title,
       body: props.article.body

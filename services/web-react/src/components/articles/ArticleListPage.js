@@ -10,7 +10,7 @@ import Header from '../shared/headers/Header';
 
 export class ArticleListPage extends Component {
 
-  async componentDidMount() {
+  componentDidMount() {
     this.props.fetchList && this.props.fetchList();
   }
 
@@ -51,7 +51,7 @@ export class ArticleListPage extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		articles: state.articles.index
+		articles: state.articles.index.articles
 	};
 };
 
