@@ -1,0 +1,32 @@
+service: tech-writer
+
+provider:
+  name: aws
+  runtime: go1.x
+  region: us-west-2
+  stage: dev
+
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**
+
+plugins:
+  - serverless-sam
+
+functions:
+  articles_index:
+    handler: bin/articles_get_index
+    events:
+      - http:
+          path: /articles
+          method: get
+          cors: true
+  articles_show:
+    handler: bin/articles_get_show
+    events:
+      - http:
+          path: /articles/{id}
+          method: get
+          cors: true

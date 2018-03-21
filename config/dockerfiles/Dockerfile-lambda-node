@@ -1,0 +1,23 @@
+FROM node:6.10
+
+# required to be passed in
+ARG APP_PATH
+
+ARG INSTALL_PATH=/app
+ARG LOCAL_USER=node
+
+# Create a directory where our app will be placed
+RUN mkdir -p $INSTALL_PATH
+
+# Change directory so that our commands run inside this new directory
+WORKDIR $INSTALL_PATH
+
+RUN npm install -g serverless@1.26.1
+
+# Get all the code needed to run the app
+COPY $APP_PATH/. $INSTALL_PATH
+
+# Install global packages with local user
+USER $LOCAL_USER
+
+CMD ["npm", "start"]

@@ -1,0 +1,34 @@
+FROM node:8.9.1
+
+# required to be passed in
+ARG APP_PATH
+
+ARG INSTALL_PATH=/app
+ARG LOCAL_USER=node
+
+# Create a directory where our app will be placed
+RUN mkdir -p $INSTALL_PATH
+
+# Change directory so that our commands run inside this new directory
+WORKDIR $INSTALL_PATH
+
+# Copy dependency definitions
+# IMPORTANT:: Need to turn off if starting new app
+COPY $APP_PATH/package.json $APP_PATH/yarn.lock ./
+
+# Switch from npm to yarn
+RUN npm i -g yarn@1.5.1
+
+# Install dependencies
+RUN yarn install
+
+# Get all the code needed to run the app
+COPY $APP_PATH/. $INSTALL_PATH
+
+# Install global packages with local user
+USER $LOCAL_USER
+
+# Add yarn path
+ENV PATH="/home/${LOCAL_USER}/.yarn/bin:${PATH}"
+
+CMD ["yarn", "run", "start"]

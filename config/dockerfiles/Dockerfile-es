@@ -1,0 +1,8 @@
+FROM docker.elastic.co/elasticsearch/elasticsearch:6.0.0
+
+# required to be passed in
+ARG APP_PATH
+
+RUN bin/elasticsearch-plugin install analysis-kuromoji
+
+COPY --chown=elasticsearch:elasticsearch $APP_PATH/elasticsearch.yml /usr/share/elasticsearch/config/

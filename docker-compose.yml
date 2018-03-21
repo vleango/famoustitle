@@ -1,0 +1,62 @@
+version: "3.4"
+
+services:
+  web-react:
+    build:
+      context: .
+      dockerfile: ./config/dockerfiles/Dockerfile-node
+      args:
+        APP_PATH: ./services/web-react
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./services/web-react:/app
+    command: "npm start"
+    depends_on:
+      - lambda-go
+  lambda-go:
+    build:
+      context: .
+      dockerfile: ./config/dockerfiles/Dockerfile-lambda-go
+      args:
+        APP_PATH: ./services/lambda-go
+    command: sam local start-api --docker-network techwriter_default --docker-volume-basedir "$PWD/services/lambda-go/" --host 0.0.0.0
+    ports:
+      - '4000:3000'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config/aws:/root/.aws
+      - ./services/lambda-go:/go
+      - ./services/web-react/build:/go/client/dist
+    env_file:
+      - config/environments/.aws.env
+    depends_on:
+      - db-dynamo
+  db-dynamo:
+    image: cnadiminti/dynamodb-local
+    ports:
+      - 8000:8000
+    volumes:
+      - ./services/db-dynamo:/dynamodb_local_db
+  # datastore-es:
+  #   build:
+  #     context: .
+  #     dockerfile: ./config/dockerfiles/Dockerfile-es
+  #     args:
+  #       APP_PATH: ./services/datastore-es
+  #   environment:
+  #     - cluster.name=article
+  #   ports:
+  #     - 9200:9200
+  #   volumes:
+  #     - article-esdata:/usr/share/elasticsearch/data
+  # datastore-kibana:
+  #   image: docker.elastic.co/kibana/kibana:6.0.0
+  #   environment:
+  #     - "ELASTICSEARCH_URL=http://datastore-es:9200"
+  #   ports:
+  #     - 5601:5601
+  #   depends_on:
+  #     - datastore-es
+# volumes:
+#   article-esdata: {}

@@ -1,0 +1,36 @@
+.idea/
+
+# Lambda
+#############################
+**/pkg/
+**/bin/
+
+# Node
+#############################
+**/node_modules/
+**/public/dist/
+**/build/
+yarn-error.log
+.DS_Store
+jspm_packages
+.serverless
+*.env
+*.log
+
+# Rails
+#############################
+*.rbc
+capybara-*.html
+.rspec
+**/log
+**/tmp
+**/public/system
+**/coverage/
+**/spec/tmp
+*.orig
+rerun.txt
+pickle-email-*.html
+**/.bundle
+**/vendor/bundle
+.byebug_history
+**/public/packs

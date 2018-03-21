@@ -1,0 +1,38 @@
+FROM lambci/lambda:go1.x
+FROM golang:1.10.0
+
+# required to be passed in
+ARG APP_PATH
+ARG INSTALL_PATH=/go
+ARG LOCAL_USER=go
+ENV GOBIN /go/bin
+ENV SAM_VERSION=0.2.8
+
+# Install Nodejs
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get install -y nodejs
+
+# Create a directory where our app will be placed
+RUN mkdir -p $INSTALL_PATH
+
+# Change directory so that our commands run inside this new directory
+WORKDIR $INSTALL_PATH
+
+RUN apt-get install -y -qq curl && \
+    curl -sSLO https://github.com/awslabs/aws-sam-local/releases/download/v${SAM_VERSION}/sam_${SAM_VERSION}_linux_386.tar.gz && \
+    tar -C /usr/local/bin -zxvf ./sam_${SAM_VERSION}_linux_386.tar.gz
+
+RUN npm i -g serverless
+
+COPY $APP_PATH/package.json $INSTALL_PATH/package.json
+RUN npm install
+
+# Get all the code needed to run the app
+COPY $APP_PATH/. $INSTALL_PATH
+
+# Install global packages with local user
+RUN useradd -ms /bin/bash $LOCAL_USER
+RUN usermod -aG sudo $LOCAL_USER
+#USER $LOCAL_USER
+
+CMD ["npm", "start"]
