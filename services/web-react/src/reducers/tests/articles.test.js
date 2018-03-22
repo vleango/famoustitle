@@ -10,8 +10,12 @@ describe('Reducers', () => {
         };
         const state = articleReducer(undefined, action);
         expect(state).toEqual({
-          index: [],
-          show: null
+          index: {
+            articles: []
+          },
+          show: {
+            resource: null
+          }
         });
 
       });
