@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "devDependencies": {
-    "serverless-sam": "0.0.5"
+    "serverless-sam": "^0.0.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -26,6 +26,18 @@ export const fetchItem = (id) => {
   }
 }
 
+export const updateItem = (id, data) => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.post(`${ROOT_API_URL}/articles/${id}`, data);
+      dispatch(item({})); // if success don't need to return anything since the page has already been updated
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+}
+
 export const list = (data) => ({
   type: 'ARTICLE_LIST',
   data: { articles: data.articles }
@@ -33,5 +45,10 @@ export const list = (data) => ({
 
 export const item = (data) => ({
   type: 'ARTICLE_ITEM',
-  data: data
+  data
+});
+
+export const update = (data) => ({
+  type: 'ARTICLE_UPDATE',
+  data
 });

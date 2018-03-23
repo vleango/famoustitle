@@ -6,7 +6,7 @@ import { Form, FormGroup, Input } from 'reactstrap';
 import moment from 'moment';
 import { includes, pull, uniq } from 'lodash';
 
-import { fetchItem } from '../../actions/articles';
+import { fetchItem, updateItem } from '../../actions/articles';
 import Header from '../shared/headers/Header';
 
 export class ArticleItemPage extends Component {
@@ -70,10 +70,14 @@ export class ArticleItemPage extends Component {
     const article = this.state.article;
     article[field] = this.state[field];
 
+    // save to backend
+    this.props.updateItem(this.props.match.params.id, { article: { [field]: article[field] }})
+
     this.setState({
       editMode: inputs,
       article: article
     });
+
   }
 
   onInputChange = (e) => {
@@ -159,7 +163,8 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchItem: (data) => dispatch(fetchItem(data))
+  fetchItem: (data) => dispatch(fetchItem(data)),
+  updateItem: (id, data) => dispatch(updateItem(id, data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleItemPage);

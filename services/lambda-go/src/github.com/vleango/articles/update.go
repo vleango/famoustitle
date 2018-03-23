@@ -17,6 +17,17 @@ var tableName = "articles"
 
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
+  if request.HTTPMethod == "OPTIONS" {
+    return events.APIGatewayProxyResponse{
+      Body: "",
+      StatusCode: 200,
+      Headers: map[string]string{
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
+    }, nil
+  }
+
   str := "http://db-dynamo:8000"
 
   sess, err := session.NewSession(&aws.Config{
@@ -33,7 +44,14 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 
   // TODO need error message
   if requestArticle.Article.Title == "" && requestArticle.Article.Body == "" {
-    return events.APIGatewayProxyResponse{}, nil
+    return events.APIGatewayProxyResponse{
+      Body: "title and/or body is blank",
+      StatusCode: 401,
+      Headers: map[string]string{
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
+    }, nil
   }
 
 	svc := dynamodb.New(sess)

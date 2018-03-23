@@ -16,6 +16,10 @@ export default (state = articlesReducerDefaultState, action) => {
         ...state,
         show: { resource: action.data.article }
       }
+    case 'ARTICLE_UPDATE':
+      return {
+        ...state
+      }
     default:
       return state;
   }
