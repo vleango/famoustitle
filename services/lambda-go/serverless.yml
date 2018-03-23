@@ -17,16 +17,23 @@ plugins:
 
 functions:
   articles_index:
-    handler: bin/articles_get_index
+    handler: bin/articles_index
     events:
       - http:
           path: /articles
           method: get
           cors: true
   articles_show:
-    handler: bin/articles_get_show
+    handler: bin/articles_show
     events:
       - http:
           path: /articles/{id}
           method: get
+          cors: true
+  articles_update:
+    handler: bin/articles_update
+    events:
+      - http:
+          path: /articles/{id}
+          method: post
           cors: true

@@ -5,7 +5,7 @@ Resources:
   Articles_index:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: bin/articles_get_index
+      Handler: bin/articles_index
       Runtime: go1.x
       CodeUri: /go/.serverless/tech-writer.zip
       MemorySize: 128
@@ -88,7 +88,7 @@ Resources:
                     statusCode: 200
                     responseParameters:
                       method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
-                      method.response.header.Access-Control-Allow-Methods: '''get'''
+                      method.response.header.Access-Control-Allow-Methods: '''options,get,post'''
                       method.response.header.Access-Control-Allow-Origin: '''*'''
                     responseTemplates:
                       application/json: '{}'
@@ -126,6 +126,31 @@ Resources:
                       type: string
                     Access-Control-Allow-Origin:
                       type: string
+            post:
+              x-amazon-apigateway-integration:
+                httpMethod: POST
+                type: aws_proxy
+                uri:
+                  'Fn::Sub': >-
+                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Articles_update.Arn}/invocations
+                responses:
+                  default:
+                    statusCode: 200
+                    responseParameters:
+                      method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+                      method.response.header.Access-Control-Allow-Methods: '''options,get,post'''
+                      method.response.header.Access-Control-Allow-Origin: '''*'''
+                    responseTemplates:
+                      application/json: '{}'
+              responses:
+                '200':
+                  headers:
+                    Access-Control-Allow-Headers:
+                      type: string
+                    Access-Control-Allow-Methods:
+                      type: string
+                    Access-Control-Allow-Origin:
+                      type: string
   Articles_indexLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -138,7 +163,7 @@ Resources:
   Articles_show:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: bin/articles_get_show
+      Handler: bin/articles_show
       Runtime: go1.x
       CodeUri: /go/.serverless/tech-writer.zip
       MemorySize: 128
@@ -159,4 +184,29 @@ Resources:
       Action: 'lambda:InvokeFunction'
       FunctionName:
         Ref: Articles_show
+      Principal: apigateway.amazonaws.com
+  Articles_update:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: bin/articles_update
+      Runtime: go1.x
+      CodeUri: /go/.serverless/tech-writer.zip
+      MemorySize: 128
+      Timeout: 3
+      Events:
+        Event1:
+          Type: Api
+          Properties:
+            Path: '/articles/{id}'
+            Method: post
+            RestApiId:
+              Ref: TechWriter
+  Articles_updateLambdaPermission:
+    Type: 'AWS::Lambda::Permission'
+    DependsOn:
+      - Articles_update
+    Properties:
+      Action: 'lambda:InvokeFunction'
+      FunctionName:
+        Ref: Articles_update
       Principal: apigateway.amazonaws.com
