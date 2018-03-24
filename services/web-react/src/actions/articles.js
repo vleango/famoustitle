@@ -53,6 +53,21 @@ export const updateItem = (id, data) => {
   }
 }
 
+export const removeItem = (id) => {
+  return async (dispatch, getState) => {
+    return new Promise(async(resolve, reject) => {
+      try {
+        const response = await axios.delete(`${ROOT_API_URL}/articles/${id}`);
+        resolve(response.body);
+      }
+      catch (error) {
+        console.log(error);
+        reject(error);
+      }
+    });
+  }
+}
+
 export const list = (data) => ({
   type: 'ARTICLE_LIST',
   data: { articles: data.articles }

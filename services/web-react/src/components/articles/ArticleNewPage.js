@@ -38,7 +38,7 @@ export class ArticleNewPage extends Component {
       <Fragment>
         <Header resourceTitle="Create New Article" />
         <div className="container">
-          <Form onSubmit={this.onSubmitArticle} autocomplete="off">
+          <Form onSubmit={this.onSubmitArticle} autoComplete="off">
             <FormGroup>
               <Input type="text"
                 name="title"

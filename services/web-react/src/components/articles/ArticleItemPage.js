@@ -1,13 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { Form, FormGroup, Input } from 'reactstrap';
 import moment from 'moment';
 import { includes, pull, uniq } from 'lodash';
 import ReactMarkdown from 'react-markdown';
 
-import { fetchItem, updateItem } from '../../actions/articles';
+import { fetchItem, updateItem, removeItem } from '../../actions/articles';
 import Header from '../shared/headers/Header';
 
 export class ArticleItemPage extends Component {
@@ -88,6 +87,16 @@ export class ArticleItemPage extends Component {
 
   }
 
+  onRemoveClicked = async (e) => {
+    try {
+      await this.props.removeItem(this.props.match.params.id);
+      this.props.history.push('/');
+    }
+    catch (e) {
+      console.log('something went wrong with removing');
+    }
+  }
+
   onInputChange = (e) => {
     const field = e.target.name;
     const value = e.target.value;
@@ -102,7 +111,7 @@ export class ArticleItemPage extends Component {
           <Fragment>
             <div className="container">
               <div className="clearfix">
-                <Button tag={Link} to={`/`} className="float-right ml-3" color="danger">Delete</Button>{' '}
+                <Button onClick={this.onRemoveClicked} className="float-right ml-3" color="danger">Delete</Button>{' '}
               </div>
 
 
@@ -172,7 +181,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchItem: (data) => dispatch(fetchItem(data)),
-  updateItem: (id, data) => dispatch(updateItem(id, data))
+  updateItem: (id, data) => dispatch(updateItem(id, data)),
+  removeItem: async (id) => await dispatch(removeItem(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleItemPage);
