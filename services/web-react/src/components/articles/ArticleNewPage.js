@@ -12,17 +12,20 @@ export class ArticleNewPage extends Component {
     super(props);
     this.state = {
       title: '',
-      body: ''
+      body: '',
+      submitting: false
     };
   }
 
   onSubmitArticle = async (e) => {
     e.preventDefault();
     try {
+      this.setState({ submitting: true });
       await this.props.createItem({ article: { title: this.state.title, body: this.state.body }});
       this.props.history.push('/');
     }
     catch(error) {
+      this.setState({ submitting: false });
       console.log(error);
     }
   }
@@ -54,7 +57,7 @@ export class ArticleNewPage extends Component {
                 onChange={this.onInputChange} />
             </FormGroup>
             <div className="clearfix">
-              <Button color="primary float-right" size="lg">Save</Button>
+              <Button color="primary float-right" disabled={this.state.submitting} size="lg">Save</Button>
             </div>
           </Form>
         </div>

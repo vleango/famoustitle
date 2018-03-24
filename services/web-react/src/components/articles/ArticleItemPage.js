@@ -18,7 +18,8 @@ export class ArticleItemPage extends Component {
       title: '',
       body: '',
       editMode: [],
-      editModeClass: ''
+      editModeClass: '',
+      submitting: false
     };
   }
 
@@ -89,10 +90,12 @@ export class ArticleItemPage extends Component {
 
   onRemoveClicked = async (e) => {
     try {
+      this.setState({ submitting: true });
       await this.props.removeItem(this.props.match.params.id);
       this.props.history.push('/');
     }
     catch (e) {
+      this.setState({ submitting: false });
       console.log('something went wrong with removing');
     }
   }
@@ -103,6 +106,11 @@ export class ArticleItemPage extends Component {
     this.setState(() => ({ [field]: value }));
   }
 
+  onSubmitChanges = (e) => {
+    e.preventDefault();
+    // TODO need to be able to save after clicking enter
+  }
+
   render() {
     return (
       <div>
@@ -111,12 +119,12 @@ export class ArticleItemPage extends Component {
           <Fragment>
             <div className="container">
               <div className="clearfix">
-                <Button onClick={this.onRemoveClicked} className="float-right ml-3" color="danger">Delete</Button>{' '}
+                <Button onClick={this.onRemoveClicked} disabled={this.state.submitting} className="float-right ml-3" color="danger">Delete</Button>{' '}
               </div>
 
 
               { includes(this.state.editMode, 'title') ? (
-                <Form>
+                <Form onSubmit={this.onSubmitChanges} autoComplete="off">
                   <FormGroup>
                     <Input type="text"
                       name="title"
