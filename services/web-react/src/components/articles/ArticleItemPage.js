@@ -5,6 +5,7 @@ import { Button } from 'reactstrap';
 import { Form, FormGroup, Input } from 'reactstrap';
 import moment from 'moment';
 import { includes, pull, uniq } from 'lodash';
+import ReactMarkdown from 'react-markdown';
 
 import { fetchItem, updateItem } from '../../actions/articles';
 import Header from '../shared/headers/Header';
@@ -46,7 +47,7 @@ export class ArticleItemPage extends Component {
 
   onTextClicked = (e) => {
     let editMode = this.state.editMode;
-    editMode.push(e.target.dataset.name);
+    editMode.push(e.currentTarget.dataset.name);
     this.setState({ editMode: uniq(editMode) });
   }
 
@@ -64,11 +65,18 @@ export class ArticleItemPage extends Component {
   onSavedClicked = (e) => {
     const field = e.target.dataset.name;
     let inputs = this.state.editMode;
+
+    // check if empty (can't be empty)
+    const value = this.state[field];
+    if(value === "") {
+      return;
+    }
+
     pull(inputs, field); // remove cancel mode for input
 
     // saved the field to article
     const article = this.state.article;
-    article[field] = this.state[field];
+    article[field] = value;
 
     // save to backend
     this.props.updateItem(this.props.match.params.id, { article: { [field]: article[field] }})
@@ -138,14 +146,14 @@ export class ArticleItemPage extends Component {
                   <Button color="primary" size="sm" data-name="body" className="ml-1" onClick={this.onSavedClicked}>Save</Button>
                 </Form>
               ) : (
-                <p
+                <div
                   data-name="body"
                   className={this.state.editModeClass}
                   onMouseOver={this.onMouseOver}
                   onClick={this.onTextClicked}
                   onMouseLeave={this.onMouseLeave}>
-                  { this.state.article.body }
-                </p>
+                  <ReactMarkdown source={ this.state.article.body } />
+                </div>
               )}
 
             </div>
