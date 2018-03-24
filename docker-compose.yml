@@ -37,7 +37,7 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - ./services/db-dynamo:/dynamodb_local_db
+      - db-dynamo-data:/dynamodb_local_db
   # datastore-es:
   #   build:
   #     context: .
@@ -58,5 +58,5 @@ services:
   #     - 5601:5601
   #   depends_on:
   #     - datastore-es
-# volumes:
-#   article-esdata: {}
+volumes:
+  db-dynamo-data: {}
