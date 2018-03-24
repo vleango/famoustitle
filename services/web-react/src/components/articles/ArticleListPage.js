@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { ListGroup, ListGroupItem, Media } from 'reactstrap';
+import { Button, ListGroup, ListGroupItem, Media } from 'reactstrap';
 import { truncate } from 'lodash';
 import moment from 'moment';
 
@@ -18,6 +18,9 @@ export class ArticleListPage extends Component {
     return (
       <div>
         <Header />
+        <div className="clearfix p-3">
+          <Button tag={Link} to={`/articles/new`} className="float-right" color="primary">Add</Button>{' '}
+        </div>
         {
           this.props.articles.map((article) => {
             return (

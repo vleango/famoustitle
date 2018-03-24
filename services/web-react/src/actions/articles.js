@@ -14,6 +14,21 @@ export const fetchList = () => {
   }
 };
 
+export const createItem = (data) => {
+  return async (dispatch, getState) => {
+    return new Promise(async(resolve, reject) => {
+      try {
+        const response = await axios.post(`${ROOT_API_URL}/articles`, data);
+        resolve(response.body);
+      }
+      catch (error) {
+        console.log(error);
+        reject(error);
+      }
+    });
+  }
+}
+
 export const fetchItem = (id) => {
   return async (dispatch, getState) => {
     try {
@@ -29,7 +44,7 @@ export const fetchItem = (id) => {
 export const updateItem = (id, data) => {
   return async (dispatch, getState) => {
     try {
-      const response = await axios.post(`${ROOT_API_URL}/articles/${id}`, data);
+      await axios.post(`${ROOT_API_URL}/articles/${id}`, data);
       dispatch(item({})); // if success don't need to return anything since the page has already been updated
     }
     catch (error) {
