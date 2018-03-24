@@ -226,6 +226,13 @@ Resources:
             Method: post
             RestApiId:
               Ref: TechWriter
+        Event2:
+          Type: Api
+          Properties:
+            Path: /articles
+            Method: options
+            RestApiId:
+              Ref: TechWriter
   Articles_createLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:

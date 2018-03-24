@@ -17,13 +17,15 @@ var tableName = "articles"
 
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
+  // only needed in dev? since template.yml doesn't work??
   if request.HTTPMethod == "OPTIONS" {
     return events.APIGatewayProxyResponse{
       Body: "",
       StatusCode: 200,
       Headers: map[string]string{
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
       },
     }, nil
   }
