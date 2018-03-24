@@ -18,13 +18,6 @@ Resources:
             Method: get
             RestApiId:
               Ref: TechWriter
-        Event2:
-          Type: Api
-          Properties:
-            Path: /articles
-            Method: options
-            RestApiId:
-              Ref: TechWriter
   TechWriter:
     Type: 'AWS::Serverless::Api'
     Properties:
@@ -46,7 +39,7 @@ Resources:
                     statusCode: 200
                     responseParameters:
                       method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
-                      method.response.header.Access-Control-Allow-Methods: '''get'''
+                      method.response.header.Access-Control-Allow-Methods: '''options,get,post'''
                       method.response.header.Access-Control-Allow-Origin: '''*'''
                     responseTemplates:
                       application/json: '{}'
@@ -84,6 +77,31 @@ Resources:
                       type: string
                     Access-Control-Allow-Origin:
                       type: string
+            post:
+              x-amazon-apigateway-integration:
+                httpMethod: POST
+                type: aws_proxy
+                uri:
+                  'Fn::Sub': >-
+                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Articles_create.Arn}/invocations
+                responses:
+                  default:
+                    statusCode: 200
+                    responseParameters:
+                      method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+                      method.response.header.Access-Control-Allow-Methods: '''options,get,post'''
+                      method.response.header.Access-Control-Allow-Origin: '''*'''
+                    responseTemplates:
+                      application/json: '{}'
+              responses:
+                '200':
+                  headers:
+                    Access-Control-Allow-Headers:
+                      type: string
+                    Access-Control-Allow-Methods:
+                      type: string
+                    Access-Control-Allow-Origin:
+                      type: string
           '/articles/{id}':
             options:
               x-amazon-apigateway-integration:
@@ -95,7 +113,7 @@ Resources:
                     statusCode: 200
                     responseParameters:
                       method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
-                      method.response.header.Access-Control-Allow-Methods: '''options,get,post'''
+                      method.response.header.Access-Control-Allow-Methods: '''options,get,post,delete'''
                       method.response.header.Access-Control-Allow-Origin: '''*'''
                     responseTemplates:
                       application/json: '{}'
@@ -158,6 +176,31 @@ Resources:
                       type: string
                     Access-Control-Allow-Origin:
                       type: string
+            delete:
+              x-amazon-apigateway-integration:
+                httpMethod: POST
+                type: aws_proxy
+                uri:
+                  'Fn::Sub': >-
+                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Articles_destroy.Arn}/invocations
+                responses:
+                  default:
+                    statusCode: 200
+                    responseParameters:
+                      method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+                      method.response.header.Access-Control-Allow-Methods: '''options,get,post,delete'''
+                      method.response.header.Access-Control-Allow-Origin: '''*'''
+                    responseTemplates:
+                      application/json: '{}'
+              responses:
+                '200':
+                  headers:
+                    Access-Control-Allow-Headers:
+                      type: string
+                    Access-Control-Allow-Methods:
+                      type: string
+                    Access-Control-Allow-Origin:
+                      type: string
   Articles_indexLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -166,6 +209,31 @@ Resources:
       Action: 'lambda:InvokeFunction'
       FunctionName:
         Ref: Articles_index
+      Principal: apigateway.amazonaws.com
+  Articles_create:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: bin/articles_create
+      Runtime: go1.x
+      CodeUri: /go/.serverless/tech-writer.zip
+      MemorySize: 128
+      Timeout: 3
+      Events:
+        Event1:
+          Type: Api
+          Properties:
+            Path: /articles
+            Method: post
+            RestApiId:
+              Ref: TechWriter
+  Articles_createLambdaPermission:
+    Type: 'AWS::Lambda::Permission'
+    DependsOn:
+      - Articles_create
+    Properties:
+      Action: 'lambda:InvokeFunction'
+      FunctionName:
+        Ref: Articles_create
       Principal: apigateway.amazonaws.com
   Articles_show:
     Type: 'AWS::Serverless::Function'
@@ -211,7 +279,7 @@ Resources:
         Event2:
           Type: Api
           Properties:
-            Path: '/articles/{id}'
+            Path: /articles/{id}
             Method: options
             RestApiId:
               Ref: TechWriter
@@ -223,4 +291,29 @@ Resources:
       Action: 'lambda:InvokeFunction'
       FunctionName:
         Ref: Articles_update
+      Principal: apigateway.amazonaws.com
+  Articles_destroy:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: bin/articles_destroy
+      Runtime: go1.x
+      CodeUri: /go/.serverless/tech-writer.zip
+      MemorySize: 128
+      Timeout: 3
+      Events:
+        Event1:
+          Type: Api
+          Properties:
+            Path: '/articles/{id}'
+            Method: delete
+            RestApiId:
+              Ref: TechWriter
+  Articles_destroyLambdaPermission:
+    Type: 'AWS::Lambda::Permission'
+    DependsOn:
+      - Articles_destroy
+    Properties:
+      Action: 'lambda:InvokeFunction'
+      FunctionName:
+        Ref: Articles_destroy
       Principal: apigateway.amazonaws.com

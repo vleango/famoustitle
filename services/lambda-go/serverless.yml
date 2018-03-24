@@ -23,6 +23,13 @@ functions:
           path: /articles
           method: get
           cors: true
+  articles_create:
+    handler: bin/articles_create
+    events:
+      - http:
+          path: /articles
+          method: post
+          cors: true
   articles_show:
     handler: bin/articles_show
     events:
@@ -36,4 +43,11 @@ functions:
       - http:
           path: /articles/{id}
           method: post
+          cors: true
+  articles_destroy:
+    handler: bin/articles_destroy
+    events:
+      - http:
+          path: /articles/{id}
+          method: delete
           cors: true
