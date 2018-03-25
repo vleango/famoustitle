@@ -96,7 +96,6 @@ export class ArticleItemPage extends Component {
     }
     catch (e) {
       this.setState({ submitting: false });
-      console.log('something went wrong with removing');
     }
   }
 
