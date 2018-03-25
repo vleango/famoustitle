@@ -67,7 +67,7 @@ export class ArticleNewPage extends Component {
             { this.state.errorMsg && <p>{this.state.errorMsg}</p> }
 
             <div className="clearfix">
-              <Button id="create-article-btn" color="primary float-right" disabled={this.state.submitting} size="lg">Save</Button>
+              <Button color="primary float-right" disabled={this.state.submitting} size="lg">Save</Button>
             </div>
           </Form>
         </div>

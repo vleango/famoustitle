@@ -19,7 +19,7 @@ export class ArticleListPage extends Component {
       <div>
         <Header />
         <div className="clearfix p-3">
-          <Button id="add-article-btn" tag={Link} to={`/articles/new`} className="float-right" color="primary">Add</Button>{' '}
+          <Button tag={Link} to={`/articles/new`} className="float-right" color="primary">Add</Button>{' '}
         </div>
         {
           this.props.articles.map((article) => {

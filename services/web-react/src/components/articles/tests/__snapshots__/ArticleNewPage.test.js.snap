@@ -59,7 +59,6 @@ ShallowWrapper {
                               <Button
                                         color="primary float-right"
                                         disabled={false}
-                                        id="create-article-btn"
                                         size="lg"
                                         tag="button"
                               >
@@ -123,7 +122,6 @@ ShallowWrapper {
                         <Button
                                     color="primary float-right"
                                     disabled={false}
-                                    id="create-article-btn"
                                     size="lg"
                                     tag="button"
                         >
@@ -171,7 +169,6 @@ ShallowWrapper {
                 <Button
                                 color="primary float-right"
                                 disabled={false}
-                                id="create-article-btn"
                                 size="lg"
                                 tag="button"
                 >
@@ -259,7 +256,6 @@ ShallowWrapper {
                 "children": <Button
                   color="primary float-right"
                   disabled={false}
-                  id="create-article-btn"
                   size="lg"
                   tag="button"
 >
@@ -276,7 +272,6 @@ ShallowWrapper {
                   "children": "Save",
                   "color": "primary float-right",
                   "disabled": false,
-                  "id": "create-article-btn",
                   "size": "lg",
                   "tag": "button",
                 },
@@ -342,7 +337,6 @@ ShallowWrapper {
                                     <Button
                                                 color="primary float-right"
                                                 disabled={false}
-                                                id="create-article-btn"
                                                 size="lg"
                                                 tag="button"
                                     >
@@ -406,7 +400,6 @@ ShallowWrapper {
                             <Button
                                           color="primary float-right"
                                           disabled={false}
-                                          id="create-article-btn"
                                           size="lg"
                                           tag="button"
                             >
@@ -454,7 +447,6 @@ ShallowWrapper {
                   <Button
                                     color="primary float-right"
                                     disabled={false}
-                                    id="create-article-btn"
                                     size="lg"
                                     tag="button"
                   >
@@ -542,7 +534,6 @@ ShallowWrapper {
                   "children": <Button
                     color="primary float-right"
                     disabled={false}
-                    id="create-article-btn"
                     size="lg"
                     tag="button"
 >
@@ -559,7 +550,6 @@ ShallowWrapper {
                     "children": "Save",
                     "color": "primary float-right",
                     "disabled": false,
-                    "id": "create-article-btn",
                     "size": "lg",
                     "tag": "button",
                   },

@@ -61,7 +61,6 @@ ShallowWrapper {
           <Button
                     className="float-right"
                     color="primary"
-                    id="add-article-btn"
                     tag={[Function]}
                     to="/articles/new"
           >
@@ -170,7 +169,6 @@ ShallowWrapper {
             <Button
               className="float-right"
               color="primary"
-              id="add-article-btn"
               tag={[Function]}
               to="/articles/new"
 >
@@ -190,7 +188,6 @@ ShallowWrapper {
               "children": "Add",
               "className": "float-right",
               "color": "primary",
-              "id": "add-article-btn",
               "tag": [Function],
               "to": "/articles/new",
             },
@@ -646,7 +643,6 @@ ShallowWrapper {
             <Button
                         className="float-right"
                         color="primary"
-                        id="add-article-btn"
                         tag={[Function]}
                         to="/articles/new"
             >
@@ -755,7 +751,6 @@ ShallowWrapper {
               <Button
                 className="float-right"
                 color="primary"
-                id="add-article-btn"
                 tag={[Function]}
                 to="/articles/new"
 >
@@ -775,7 +770,6 @@ ShallowWrapper {
                 "children": "Add",
                 "className": "float-right",
                 "color": "primary",
-                "id": "add-article-btn",
                 "tag": [Function],
                 "to": "/articles/new",
               },
