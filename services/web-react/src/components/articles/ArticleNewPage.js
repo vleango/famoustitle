@@ -11,16 +11,23 @@ export class ArticleNewPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      body: '',
-      submitting: false
+      title: "",
+      body: "",
+      submitting: false,
+      errorMsg: ""
     };
   }
 
   onSubmitArticle = async (e) => {
-    e.preventDefault();
+    e && e.preventDefault();
+    const { title, body } = this.state;
+    if(title === "" || body === "") {
+      this.setState({ errorMsg: "title or body is blank" });
+      return;
+    }
+
     try {
-      this.setState({ submitting: true });
+      this.setState({ submitting: true, errorMsg: "" });
       await this.props.createItem({ article: { title: this.state.title, body: this.state.body }});
       this.props.history.push('/');
     }
@@ -56,8 +63,11 @@ export class ArticleNewPage extends Component {
                 placeholder="Add your article"
                 onChange={this.onInputChange} />
             </FormGroup>
+
+            { this.state.errorMsg && <p>{this.state.errorMsg}</p> }
+
             <div className="clearfix">
-              <Button color="primary float-right" disabled={this.state.submitting} size="lg">Save</Button>
+              <Button id="create-article-btn" color="primary float-right" disabled={this.state.submitting} size="lg">Save</Button>
             </div>
           </Form>
         </div>

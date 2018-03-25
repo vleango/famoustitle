@@ -55,6 +55,20 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Header />,
+        <div
+          className="clearfix p-3"
+>
+          <Button
+                    className="float-right"
+                    color="primary"
+                    id="add-article-btn"
+                    tag={[Function]}
+                    to="/articles/new"
+          >
+                    Add
+          </Button>
+           
+</div>,
         Array [
           <ListGroup
             tag="ul"
@@ -146,6 +160,47 @@ ShallowWrapper {
         "ref": null,
         "rendered": null,
         "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <Button
+              className="float-right"
+              color="primary"
+              id="add-article-btn"
+              tag={[Function]}
+              to="/articles/new"
+>
+              Add
+</Button>,
+            " ",
+          ],
+          "className": "clearfix p-3",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "Add",
+              "className": "float-right",
+              "color": "primary",
+              "id": "add-article-btn",
+              "tag": [Function],
+              "to": "/articles/new",
+            },
+            "ref": null,
+            "rendered": "Add",
+            "type": [Function],
+          },
+          " ",
+        ],
+        "type": "div",
       },
       Object {
         "instance": null,
@@ -585,6 +640,20 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Header />,
+          <div
+            className="clearfix p-3"
+>
+            <Button
+                        className="float-right"
+                        color="primary"
+                        id="add-article-btn"
+                        tag={[Function]}
+                        to="/articles/new"
+            >
+                        Add
+            </Button>
+             
+</div>,
           Array [
             <ListGroup
               tag="ul"
@@ -676,6 +745,47 @@ ShallowWrapper {
           "ref": null,
           "rendered": null,
           "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <Button
+                className="float-right"
+                color="primary"
+                id="add-article-btn"
+                tag={[Function]}
+                to="/articles/new"
+>
+                Add
+</Button>,
+              " ",
+            ],
+            "className": "clearfix p-3",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "Add",
+                "className": "float-right",
+                "color": "primary",
+                "id": "add-article-btn",
+                "tag": [Function],
+                "to": "/articles/new",
+              },
+              "ref": null,
+              "rendered": "Add",
+              "type": [Function],
+            },
+            " ",
+          ],
+          "type": "div",
         },
         Object {
           "instance": null,

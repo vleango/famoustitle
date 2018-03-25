@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Components ArticleItemPage should correctly render ArticleItemPage 1`] = `
+exports[`Components ArticleItemPage Snapshot should correctly render ArticleItemPage 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
