@@ -48,7 +48,7 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
   if requestArticle.Article.Title == "" || requestArticle.Article.Body == "" {
     return events.APIGatewayProxyResponse{
       Body: "title and/or body is blank",
-      StatusCode: 401,
+      StatusCode: 400,
       Headers: map[string]string{
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Content-Type",
