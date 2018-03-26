@@ -14,7 +14,8 @@ export class ArticleNewPage extends Component {
       title: "",
       body: "",
       submitting: false,
-      errorMsg: ""
+      errorMsg: "",
+      token: props.token
     };
   }
 
@@ -28,7 +29,7 @@ export class ArticleNewPage extends Component {
 
     try {
       this.setState({ submitting: true, errorMsg: "" });
-      await this.props.createItem({ article: { title: this.state.title, body: this.state.body }});
+      await this.props.createItem({ token: this.state.token, article: { title: this.state.title, body: this.state.body }});
       this.props.history.push('/');
     }
     catch(error) {
@@ -76,8 +77,14 @@ export class ArticleNewPage extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+	return {
+    token: state.auth.token
+	};
+};
+
 const mapDispatchToProps = (dispatch) => ({
   createItem: async (data) => await dispatch(createItem(data))
 });
 
-export default connect(null, mapDispatchToProps)(ArticleNewPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleNewPage);

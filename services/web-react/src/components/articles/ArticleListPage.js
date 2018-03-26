@@ -18,9 +18,12 @@ export class ArticleListPage extends Component {
     return (
       <div>
         <Header />
-        <div className="clearfix p-3">
-          <Button tag={Link} to={`/articles/new`} className="float-right" color="primary">Add</Button>{' '}
-        </div>
+        { this.props.isAuthenticated && (
+          <div className="clearfix p-3">
+            <Button tag={Link} to={`/articles/new`} className="float-right" color="primary">Add</Button>{' '}
+          </div>
+        ) }
+
         {
           this.props.articles.map((article) => {
             return (
@@ -54,7 +57,8 @@ export class ArticleListPage extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		articles: state.articles.index.articles
+		articles: state.articles.index.articles,
+    isAuthenticated: !!state.auth.token
 	};
 };
 

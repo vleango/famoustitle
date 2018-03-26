@@ -16,6 +16,7 @@
     "react-scripts": "1.1.1",
     "reactstrap": "5.0.0-beta",
     "redux": "^3.7.2",
+    "redux-persist": "^5.9.1",
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
