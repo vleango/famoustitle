@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import { Input } from 'reactstrap';
+import ReactMarkdown from 'react-markdown';
 
 import { ArticleItemPage } from '../ArticleItemPage';
 import { article } from './fixtures/articles';
@@ -154,6 +155,74 @@ describe('Components', () => {
         });
       });
 
+    });
+
+    describe('onPreviewClicked', () => {
+      it('sets previewMode for the element uniquely', () => {
+        wrapper.setState({ previewMode: ['body'] });
+        const e = { target: { dataset: { name: 'body' } } };
+        wrapper.instance().onPreviewClicked(e);
+        expect(wrapper.state('previewMode')).toEqual(['body']);
+      });
+    });
+
+    describe('onPreviewTextClicked', () => {
+      it('removes the element from previewMode', () => {
+        wrapper.setState({ previewMode: ['body'] });
+        const e = { currentTarget: { dataset: { name: 'body' } } };
+        wrapper.instance().onPreviewTextClicked(e);
+        expect(wrapper.state('previewMode')).toEqual([]);
+      });
+    });
+
+    describe('onPreviewExitClicked', () => {
+      it('removes the element from preview Mode', () => {
+        wrapper.setState({ previewMode: ['body'] });
+        const e = { currentTarget: { dataset: { name: 'body' } } };
+        wrapper.instance().onPreviewTextClicked(e);
+        expect(wrapper.state('previewMode')).toEqual([]);
+      });
+    });
+
+    describe('displayBody', () => {
+      describe('previewMode has body', () => {
+        it('displays body in previewMode', () => {
+          const displaySpy = jest.spyOn(wrapper.instance(), 'displayPreview');
+          const displayForm = jest.spyOn(wrapper.instance(), 'displayForm');
+          const displayMarkdown = jest.spyOn(wrapper.instance(), 'displayMarkdown');
+          wrapper.setState({ previewMode: ['body'], editMode: [] });
+          wrapper.instance().displayBody();
+          expect(displaySpy).toHaveBeenCalled();
+          expect(displayForm).not.toHaveBeenCalled();
+          expect(displayMarkdown).not.toHaveBeenCalled();
+        });
+      });
+
+      describe('previewMode does not have body but editMode does', () => {
+        it('displays body in the Form', () => {
+          const displaySpy = jest.spyOn(wrapper.instance(), 'displayPreview');
+          const displayForm = jest.spyOn(wrapper.instance(), 'displayForm');
+          const displayMarkdown = jest.spyOn(wrapper.instance(), 'displayMarkdown');
+          wrapper.setState({ previewMode: [], editMode: ['body'] });
+          wrapper.instance().displayBody();
+          expect(displaySpy).not.toHaveBeenCalled();
+          expect(displayForm).toHaveBeenCalled();
+          expect(displayMarkdown).not.toHaveBeenCalled();
+        });
+      });
+
+      describe('previewMode does not have body and editMode does not have body', () => {
+        it('displays body in markDown', () => {
+          const displaySpy = jest.spyOn(wrapper.instance(), 'displayPreview');
+          const displayForm = jest.spyOn(wrapper.instance(), 'displayForm');
+          const displayMarkdown = jest.spyOn(wrapper.instance(), 'displayMarkdown');
+          wrapper.setState({ article: {body: 'test'}, previewMode: [], editMode: [] });
+          wrapper.instance().displayBody();
+          expect(displaySpy).not.toHaveBeenCalled();
+          expect(displayForm).not.toHaveBeenCalled();
+          expect(displayMarkdown).toHaveBeenCalled();
+        });
+      });
     });
 
   });

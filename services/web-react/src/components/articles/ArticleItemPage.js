@@ -18,6 +18,7 @@ export class ArticleItemPage extends Component {
       title: '',
       body: '',
       editMode: [],
+      previewMode: [],
       editModeClass: '',
       submitting: false
     };
@@ -60,6 +61,22 @@ export class ArticleItemPage extends Component {
       editMode: inputs,
       [field]: value
     });
+  }
+
+  onPreviewClicked = (e) => {
+    let previewMode = this.state.previewMode;
+    previewMode.push(e.target.dataset.name);
+    this.setState({ previewMode: uniq(previewMode) });
+  }
+
+  onPreviewTextClicked = (e) => {
+    let previewMode = this.state.previewMode;
+    pull(previewMode, e.currentTarget.dataset.name);
+    this.setState({ previewMode: previewMode });
+  }
+
+  onPreviewExitClicked = (e) => {
+    this.onPreviewTextClicked(e);
   }
 
   onSavedClicked = (e) => {
@@ -110,6 +127,57 @@ export class ArticleItemPage extends Component {
     // TODO need to be able to save after clicking enter
   }
 
+  displayBody = () => {
+    if(includes(this.state.previewMode, 'body')) {
+      return this.displayPreview();
+    } else if (includes(this.state.editMode, 'body')) {
+      return this.displayForm();
+    } else {
+      return this.displayMarkdown();
+    }
+  }
+
+  displayPreview() {
+    return (
+      <Fragment>
+        <Button color="info" size="sm" data-name="body" onClick={this.onPreviewExitClicked}>Exit Preview</Button>
+        <div data-name="body" onClick={this.onPreviewTextClicked}><ReactMarkdown source={ this.state.body } /></div>
+        <Button color="info" size="sm" data-name="body" onClick={this.onPreviewExitClicked}>Exit Preview</Button>
+      </Fragment>
+    );
+  }
+
+  displayForm() {
+    return (
+      <Form>
+        <FormGroup>
+          <Input type="textarea"
+            rows="20"
+            name="body"
+            value={this.state.body}
+            placeholder="Add your article"
+            onChange={this.onInputChange} />
+        </FormGroup>
+        <Button color="info" size="sm" data-name="body" onClick={this.onCancelClicked}>Cancel</Button>
+        <Button color="info" size="sm" data-name="body" className="ml-1" onClick={this.onPreviewClicked}>Preview</Button>
+        <Button color="primary" size="sm" data-name="body" className="ml-1" onClick={this.onSavedClicked}>Save</Button>
+      </Form>
+    );
+  }
+
+  displayMarkdown() {
+    return (
+      <div
+        data-name="body"
+        className={this.state.editModeClass}
+        onMouseOver={this.onMouseOver}
+        onClick={this.onTextClicked}
+        onMouseLeave={this.onMouseLeave}>
+        <ReactMarkdown source={ this.state.article.body } />
+      </div>
+    )
+  }
+
   render() {
     return (
       <div>
@@ -120,7 +188,6 @@ export class ArticleItemPage extends Component {
               <div className="clearfix">
                 <Button onClick={this.onRemoveClicked} disabled={this.state.submitting} className="float-right ml-3" color="danger">Delete</Button>{' '}
               </div>
-
 
               { includes(this.state.editMode, 'title') ? (
                 <Form onSubmit={this.onSubmitChanges} autoComplete="off">
@@ -148,29 +215,7 @@ export class ArticleItemPage extends Component {
               <p>{this.state.article.author}</p>
               <p>{ moment(this.state.article.created_at).format('MM-DD-YYYY HH:mm') }</p>
 
-              { includes(this.state.editMode, 'body') ? (
-                <Form>
-                  <FormGroup>
-                    <Input type="textarea"
-                      rows="20"
-                      name="body"
-                      value={this.state.body}
-                      placeholder="Add your article"
-                      onChange={this.onInputChange} />
-                  </FormGroup>
-                  <Button color="info" size="sm" data-name="body" onClick={this.onCancelClicked}>Cancel</Button>
-                  <Button color="primary" size="sm" data-name="body" className="ml-1" onClick={this.onSavedClicked}>Save</Button>
-                </Form>
-              ) : (
-                <div
-                  data-name="body"
-                  className={this.state.editModeClass}
-                  onMouseOver={this.onMouseOver}
-                  onClick={this.onTextClicked}
-                  onMouseLeave={this.onMouseLeave}>
-                  <ReactMarkdown source={ this.state.article.body } />
-                </div>
-              )}
+              { this.displayBody() }
 
             </div>
           </Fragment>
