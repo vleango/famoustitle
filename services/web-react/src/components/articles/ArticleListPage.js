@@ -57,7 +57,7 @@ export class ArticleListPage extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		articles: state.articles.index.articles,
+		articles: state.articles.index.resources,
     isAuthenticated: !!state.auth.token
 	};
 };

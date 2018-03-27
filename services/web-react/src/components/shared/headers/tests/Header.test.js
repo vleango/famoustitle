@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Header from '../Header';
 
 describe('Shared', () => {
-  describe('Errors', () => {
+  describe('Headers', () => {
     describe('Header', () => {
       let wrapper = shallow(<Header />);
 

@@ -71,9 +71,6 @@ export class ProfileHeader extends React.Component {
                     <DropdownItem tag={Link} to={'/login'}>
                       Login
                     </DropdownItem>
-                    <DropdownItem>
-                      Register
-                    </DropdownItem>
                   </DropdownMenu>
                 </Fragment>
               ) }

@@ -11,7 +11,7 @@ describe('Reducers', () => {
         const state = articleReducer(undefined, action);
         expect(state).toEqual({
           index: {
-            articles: []
+            resources: []
           },
           show: {
             resource: null

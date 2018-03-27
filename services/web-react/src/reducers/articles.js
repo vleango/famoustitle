@@ -1,5 +1,5 @@
 const articlesReducerDefaultState = {
-	index: { articles: [] },
+	index: { resources: [] },
   show:  { resource: null }
 };
 
@@ -8,7 +8,7 @@ export default (state = articlesReducerDefaultState, action) => {
     case 'ARTICLE_LIST':
       return {
         ...state,
-        index: { articles: action.data.articles },
+        index: { resources: action.data.articles },
         show: { resource: null }
       };
     case 'ARTICLE_ITEM':
