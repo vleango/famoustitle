@@ -13,6 +13,8 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 
+import { startLogout } from '../../../actions/auth';
+
 export class ProfileHeader extends React.Component {
 
   constructor(props) {
@@ -26,6 +28,10 @@ export class ProfileHeader extends React.Component {
     this.setState({
       isOpen: !this.state.isOpen
     });
+  }
+
+  onLogout = (e) => {
+    this.props.startLogout()
   }
 
   render() {
@@ -50,7 +56,7 @@ export class ProfileHeader extends React.Component {
                       Articles
                     </DropdownItem>
                     <DropdownItem divider />
-                    <DropdownItem>
+                    <DropdownItem onClick={this.onLogout}>
                       Logout
                     </DropdownItem>
                   </DropdownMenu>
@@ -87,4 +93,8 @@ const mapStateToProps = (state) => ({
   lastName: state.auth.lastName
 });
 
-export default connect(mapStateToProps)(ProfileHeader);
+const mapDispatchToProps = (dispatch) => ({
+  startLogout: () => dispatch(startLogout())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileHeader);

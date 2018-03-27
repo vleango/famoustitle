@@ -1,6 +1,3 @@
-import axios from 'axios';
-
-import { ROOT_API_URL } from './Base';
 
 export const startLogin = (data) => {
   return async (dispatch, getState) => {
@@ -13,6 +10,17 @@ export const startLogin = (data) => {
   }
 };
 
+export const startLogout = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch(logout({}));
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+}
+
 export const login = (data) => ({
   type: 'AUTH_LOGIN',
   data: {
@@ -21,3 +29,7 @@ export const login = (data) => ({
     lastName: data.last_name
    }
 });
+
+export const logout = (data) => ({
+  type: 'AUTH_LOGOUT'
+})

@@ -39,14 +39,26 @@ export class ArticleItemPage extends Component {
   }
 
   onMouseOver = () => {
+    if(!this.props.isAuthenticated) {
+      return
+    }
+
     this.setState({ editModeClass: 'outline' })
   }
 
   onMouseLeave = () => {
+    if(!this.props.isAuthenticated) {
+      return
+    }
+
     this.setState({ editModeClass: '' })
   }
 
   onTextClicked = (e) => {
+    if(!this.props.isAuthenticated) {
+      return
+    }
+
     let editMode = this.state.editMode;
     editMode.push(e.currentTarget.dataset.name);
     this.setState({ editMode: uniq(editMode) });
@@ -185,9 +197,11 @@ export class ArticleItemPage extends Component {
         { this.state.article && (
           <Fragment>
             <div className="container">
-              <div className="clearfix">
-                <Button onClick={this.onRemoveClicked} disabled={this.state.submitting} className="float-right ml-3" color="danger">Delete</Button>{' '}
-              </div>
+              { this.props.isAuthenticated && (
+                <div className="clearfix">
+                  <Button onClick={this.onRemoveClicked} disabled={this.state.submitting} className="float-right ml-3" color="danger">Delete</Button>{' '}
+                </div>
+              ) }
 
               { includes(this.state.editMode, 'title') ? (
                 <Form onSubmit={this.onSubmitChanges} autoComplete="off">
@@ -227,6 +241,7 @@ export class ArticleItemPage extends Component {
 
 const mapStateToProps = (state, props) => {
 	return {
+    isAuthenticated: !!state.auth.token,
 		article: state.articles.show.resource
 	};
 };

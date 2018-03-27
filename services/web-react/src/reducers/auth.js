@@ -13,6 +13,8 @@ export default (state = loginReducerDefaultState, action) => {
         firstName: action.data.firstName,
         lastName: action.data.lastName
       };
+    case 'AUTH_LOGOUT':
+      return loginReducerDefaultState;
     default:
       return state;
   }
