@@ -1,5 +1,7 @@
 const loginReducerDefaultState = {
-	token: null
+	token: null,
+  firstName: "",
+  lastName: ""
 };
 
 export default (state = loginReducerDefaultState, action) => {
@@ -7,7 +9,9 @@ export default (state = loginReducerDefaultState, action) => {
     case 'AUTH_LOGIN':
       return {
         ...state,
-        token: action.data.token
+        token: action.data.token,
+        firstName: action.data.firstName,
+        lastName: action.data.lastName
       };
     default:
       return state;

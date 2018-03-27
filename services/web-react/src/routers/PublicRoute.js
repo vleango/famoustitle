@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import ProfileHeader from '../components/shared/headers/ProfileHeader';
 
@@ -10,14 +10,10 @@ export const PrivateRoute = ({
   ...rest
  }) => (
   <Route {...rest} component={(props) => (
-    isAuthenticated ? (
-      <Fragment>
-        <ProfileHeader />
-        <Component {...props} />
-      </Fragment>
-    ) : (
-      <Redirect to="/login" />
-    )
+    <Fragment>
+      <ProfileHeader />
+      <Component {...props} />
+    </Fragment>
   )} />
 );
 
