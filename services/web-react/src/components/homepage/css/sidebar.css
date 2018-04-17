@@ -1,0 +1,77 @@
+.search-form {
+  position: relative;
+}
+
+.search-button {
+  position: absolute;
+  top: 0;
+  right: 0.5rem;
+  height: 100%;
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.widget {
+  margin: 4rem 0 0 0;
+}
+
+.widget-title {
+  position: relative;
+  font-size: 1rem;
+  margin: 0 0 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.widget-title:before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+}
+
+.widget ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.widget ul li {
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.tagcloud > a {
+  border-radius: 2px;
+  border: 0.5px solid #ccc;
+  color: #303133;
+  font-weight: 700;
+  display: inline-block;
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+  margin: 5px 10px 5px 0;
+  padding: 7px 8px 5px 10px;
+  text-transform: uppercase;
+}
+
+.tagcloud > a:hover {
+  color: #007bff;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .widget {
+    display: none;
+  }
+}
+
+/* small and medium */
+@media (min-width: 575.98px) and (max-width: 1199.98px) {
+  .widget {
+    display: none;
+  }
+}

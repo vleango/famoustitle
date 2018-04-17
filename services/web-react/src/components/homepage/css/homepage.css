@@ -1,0 +1,38 @@
+.canvas {
+  margin: 2rem;
+  padding: 0rem 5rem;
+  background-color: white;
+}
+
+.canvas a {
+  text-decoration: none;
+}
+
+footer {
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .canvas {
+    margin: 1rem;
+    padding: 0.5rem;
+  }
+
+  .main--content {
+    padding-top: 3rem;
+  }
+}
+
+/* small and medium */
+@media (min-width: 575.98px) and (max-width: 1199.98px) {
+  .canvas {
+    margin: 1rem;
+    padding: 0.5rem;
+  }
+
+  .main--content {
+    padding-top: 3rem;
+  }
+}

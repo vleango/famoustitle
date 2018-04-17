@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.5",
+    "@fortawesome/fontawesome-free-brands": "^5.0.10",
+    "@fortawesome/fontawesome-free-solid": "^5.0.10",
+    "@fortawesome/react-fontawesome": "^0.0.18",
     "axios": "^0.18.0",
     "bootstrap": "^4.0.0",
     "history": "^4.7.2",
@@ -14,7 +18,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
-    "reactstrap": "5.0.0-beta",
+    "reactstrap": "5.0.0",
     "redux": "^3.7.2",
     "redux-persist": "^5.9.1",
     "redux-thunk": "^2.2.0"
