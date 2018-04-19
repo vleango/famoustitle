@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ArticleListPage } from '../ArticleListPage';
-import { articles } from './fixtures/articles';
+import { articles } from '../../../fixtures/articles';
 
 describe('Components', () => {
   describe('ArticleListPage', () => {

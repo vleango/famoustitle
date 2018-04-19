@@ -5,7 +5,7 @@ import { Input } from 'reactstrap';
 import ReactMarkdown from 'react-markdown';
 
 import { ArticleItemPage } from '../ArticleItemPage';
-import { article } from './fixtures/articles';
+import { article } from '../../../fixtures/articles';
 
 let wrapper;
 

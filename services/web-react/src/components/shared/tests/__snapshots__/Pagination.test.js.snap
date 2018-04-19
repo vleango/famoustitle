@@ -19,70 +19,24 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <PaginationItem
-          disabled={false}
+          hidden={false}
           tag="li"
 >
           <PaginationLink
-                    href="#"
                     previous={true}
-                    tag="a"
+                    tag={[Function]}
+                    to="/?currentPage=NaN"
           />
 </PaginationItem>,
-        Array [
-          <PaginationItem
-            active={false}
-            tag="li"
->
-            <PaginationLink
-                        href="#"
-                        tag="a"
-            />
-</PaginationItem>,
-          <PaginationItem
-            active={false}
-            tag="li"
->
-            <PaginationLink
-                        href="#"
-                        tag="a"
-            />
-</PaginationItem>,
-          <PaginationItem
-            active={false}
-            tag="li"
->
-            <PaginationLink
-                        href="#"
-                        tag="a"
-            />
-</PaginationItem>,
-          <PaginationItem
-            active={false}
-            tag="li"
->
-            <PaginationLink
-                        href="#"
-                        tag="a"
-            />
-</PaginationItem>,
-          <PaginationItem
-            active={false}
-            tag="li"
->
-            <PaginationLink
-                        href="#"
-                        tag="a"
-            />
-</PaginationItem>,
-        ],
+        Array [],
         <PaginationItem
-          disabled={true}
+          hidden={false}
           tag="li"
 >
           <PaginationLink
-                    href="#"
                     next={true}
-                    tag="a"
+                    tag={[Function]}
+                    to="/?currentPage=NaN"
           />
 </PaginationItem>,
       ],
@@ -96,11 +50,11 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": <PaginationLink
-            href="#"
             previous={true}
-            tag="a"
+            tag={[Function]}
+            to="/?currentPage=NaN"
 />,
-          "disabled": false,
+          "hidden": false,
           "tag": "li",
         },
         "ref": null,
@@ -109,152 +63,12 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "href": "#",
             "previous": true,
-            "tag": "a",
+            "tag": [Function],
+            "to": "/?currentPage=NaN",
           },
           "ref": null,
           "rendered": null,
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": "pagination-item-1",
-        "nodeType": "function",
-        "props": Object {
-          "active": false,
-          "children": <PaginationLink
-            href="#"
-            tag="a"
-/>,
-          "tag": "li",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": NaN,
-            "href": "#",
-            "tag": "a",
-          },
-          "ref": null,
-          "rendered": NaN,
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": "pagination-item-2",
-        "nodeType": "function",
-        "props": Object {
-          "active": false,
-          "children": <PaginationLink
-            href="#"
-            tag="a"
-/>,
-          "tag": "li",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": NaN,
-            "href": "#",
-            "tag": "a",
-          },
-          "ref": null,
-          "rendered": NaN,
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": "pagination-item-3",
-        "nodeType": "function",
-        "props": Object {
-          "active": false,
-          "children": <PaginationLink
-            href="#"
-            tag="a"
-/>,
-          "tag": "li",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": NaN,
-            "href": "#",
-            "tag": "a",
-          },
-          "ref": null,
-          "rendered": NaN,
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": "pagination-item-4",
-        "nodeType": "function",
-        "props": Object {
-          "active": false,
-          "children": <PaginationLink
-            href="#"
-            tag="a"
-/>,
-          "tag": "li",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": NaN,
-            "href": "#",
-            "tag": "a",
-          },
-          "ref": null,
-          "rendered": NaN,
-          "type": [Function],
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": "pagination-item-5",
-        "nodeType": "function",
-        "props": Object {
-          "active": false,
-          "children": <PaginationLink
-            href="#"
-            tag="a"
-/>,
-          "tag": "li",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": NaN,
-            "href": "#",
-            "tag": "a",
-          },
-          "ref": null,
-          "rendered": NaN,
           "type": [Function],
         },
         "type": [Function],
@@ -265,11 +79,11 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": <PaginationLink
-            href="#"
             next={true}
-            tag="a"
+            tag={[Function]}
+            to="/?currentPage=NaN"
 />,
-          "disabled": true,
+          "hidden": false,
           "tag": "li",
         },
         "ref": null,
@@ -278,9 +92,9 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "href": "#",
             "next": true,
-            "tag": "a",
+            "tag": [Function],
+            "to": "/?currentPage=NaN",
           },
           "ref": null,
           "rendered": null,
@@ -299,70 +113,24 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <PaginationItem
-            disabled={false}
+            hidden={false}
             tag="li"
 >
             <PaginationLink
-                        href="#"
                         previous={true}
-                        tag="a"
+                        tag={[Function]}
+                        to="/?currentPage=NaN"
             />
 </PaginationItem>,
-          Array [
-            <PaginationItem
-              active={false}
-              tag="li"
->
-              <PaginationLink
-                            href="#"
-                            tag="a"
-              />
-</PaginationItem>,
-            <PaginationItem
-              active={false}
-              tag="li"
->
-              <PaginationLink
-                            href="#"
-                            tag="a"
-              />
-</PaginationItem>,
-            <PaginationItem
-              active={false}
-              tag="li"
->
-              <PaginationLink
-                            href="#"
-                            tag="a"
-              />
-</PaginationItem>,
-            <PaginationItem
-              active={false}
-              tag="li"
->
-              <PaginationLink
-                            href="#"
-                            tag="a"
-              />
-</PaginationItem>,
-            <PaginationItem
-              active={false}
-              tag="li"
->
-              <PaginationLink
-                            href="#"
-                            tag="a"
-              />
-</PaginationItem>,
-          ],
+          Array [],
           <PaginationItem
-            disabled={true}
+            hidden={false}
             tag="li"
 >
             <PaginationLink
-                        href="#"
                         next={true}
-                        tag="a"
+                        tag={[Function]}
+                        to="/?currentPage=NaN"
             />
 </PaginationItem>,
         ],
@@ -376,11 +144,11 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "children": <PaginationLink
-              href="#"
               previous={true}
-              tag="a"
+              tag={[Function]}
+              to="/?currentPage=NaN"
 />,
-            "disabled": false,
+            "hidden": false,
             "tag": "li",
           },
           "ref": null,
@@ -389,152 +157,12 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "href": "#",
               "previous": true,
-              "tag": "a",
+              "tag": [Function],
+              "to": "/?currentPage=NaN",
             },
             "ref": null,
             "rendered": null,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": "pagination-item-1",
-          "nodeType": "function",
-          "props": Object {
-            "active": false,
-            "children": <PaginationLink
-              href="#"
-              tag="a"
-/>,
-            "tag": "li",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": NaN,
-              "href": "#",
-              "tag": "a",
-            },
-            "ref": null,
-            "rendered": NaN,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": "pagination-item-2",
-          "nodeType": "function",
-          "props": Object {
-            "active": false,
-            "children": <PaginationLink
-              href="#"
-              tag="a"
-/>,
-            "tag": "li",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": NaN,
-              "href": "#",
-              "tag": "a",
-            },
-            "ref": null,
-            "rendered": NaN,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": "pagination-item-3",
-          "nodeType": "function",
-          "props": Object {
-            "active": false,
-            "children": <PaginationLink
-              href="#"
-              tag="a"
-/>,
-            "tag": "li",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": NaN,
-              "href": "#",
-              "tag": "a",
-            },
-            "ref": null,
-            "rendered": NaN,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": "pagination-item-4",
-          "nodeType": "function",
-          "props": Object {
-            "active": false,
-            "children": <PaginationLink
-              href="#"
-              tag="a"
-/>,
-            "tag": "li",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": NaN,
-              "href": "#",
-              "tag": "a",
-            },
-            "ref": null,
-            "rendered": NaN,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": "pagination-item-5",
-          "nodeType": "function",
-          "props": Object {
-            "active": false,
-            "children": <PaginationLink
-              href="#"
-              tag="a"
-/>,
-            "tag": "li",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": NaN,
-              "href": "#",
-              "tag": "a",
-            },
-            "ref": null,
-            "rendered": NaN,
             "type": [Function],
           },
           "type": [Function],
@@ -545,11 +173,11 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "children": <PaginationLink
-              href="#"
               next={true}
-              tag="a"
+              tag={[Function]}
+              to="/?currentPage=NaN"
 />,
-            "disabled": true,
+            "hidden": false,
             "tag": "li",
           },
           "ref": null,
@@ -558,9 +186,9 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "href": "#",
               "next": true,
-              "tag": "a",
+              "tag": [Function],
+              "to": "/?currentPage=NaN",
             },
             "ref": null,
             "rendered": null,

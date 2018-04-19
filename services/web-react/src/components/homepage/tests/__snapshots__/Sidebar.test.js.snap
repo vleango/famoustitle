@@ -60,40 +60,7 @@ ShallowWrapper {
           >
                     Archives
           </div>
-          <ul>
-                    <li>
-                              <a
-                                        href="#"
-                              >
-                                        March 2017
-                              </a>
-                               (40)
-                    </li>
-                    <li>
-                              <a
-                                        href="#"
-                              >
-                                        April 2017
-                              </a>
-                               (08)
-                    </li>
-                    <li>
-                              <a
-                                        href="#"
-                              >
-                                        May 2017
-                              </a>
-                               (11)
-                    </li>
-                    <li>
-                              <a
-                                        href="#"
-                              >
-                                        Jun 2017
-                              </a>
-                               (21)
-                    </li>
-          </ul>
+          <ul />
 </aside>,
         <aside
           className="widget"
@@ -105,38 +72,7 @@ ShallowWrapper {
           </div>
           <div
                     className="tagcloud"
-          >
-                    <a
-                              href="#"
-                    >
-                              logo
-                    </a>
-                    <a
-                              href="#"
-                    >
-                              business
-                    </a>
-                    <a
-                              href="#"
-                    >
-                              corporate
-                    </a>
-                    <a
-                              href="#"
-                    >
-                              e-commerce
-                    </a>
-                    <a
-                              href="#"
-                    >
-                              agency
-                    </a>
-                    <a
-                              href="#"
-                    >
-                              responsive
-                    </a>
-          </div>
+          />
 </aside>,
       ],
       "className": "mr-5",
@@ -303,40 +239,7 @@ ShallowWrapper {
 >
               Archives
 </div>,
-            <ul>
-              <li>
-                            <a
-                                          href="#"
-                            >
-                                          March 2017
-                            </a>
-                             (40)
-              </li>
-              <li>
-                            <a
-                                          href="#"
-                            >
-                                          April 2017
-                            </a>
-                             (08)
-              </li>
-              <li>
-                            <a
-                                          href="#"
-                            >
-                                          May 2017
-                            </a>
-                             (11)
-              </li>
-              <li>
-                            <a
-                                          href="#"
-                            >
-                                          Jun 2017
-                            </a>
-                             (21)
-              </li>
-</ul>,
+            <ul />,
           ],
           "className": "widget",
         },
@@ -359,172 +262,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": Array [
-                <li>
-                  <a
-                                    href="#"
-                  >
-                                    March 2017
-                  </a>
-                   (40)
-</li>,
-                <li>
-                  <a
-                                    href="#"
-                  >
-                                    April 2017
-                  </a>
-                   (08)
-</li>,
-                <li>
-                  <a
-                                    href="#"
-                  >
-                                    May 2017
-                  </a>
-                   (11)
-</li>,
-                <li>
-                  <a
-                                    href="#"
-                  >
-                                    Jun 2017
-                  </a>
-                   (21)
-</li>,
-              ],
+              "children": undefined,
             },
             "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": Array [
-                    <a
-                      href="#"
->
-                      March 2017
-</a>,
-                    " (40)",
-                  ],
-                },
-                "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": "March 2017",
-                      "href": "#",
-                    },
-                    "ref": null,
-                    "rendered": "March 2017",
-                    "type": "a",
-                  },
-                  " (40)",
-                ],
-                "type": "li",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": Array [
-                    <a
-                      href="#"
->
-                      April 2017
-</a>,
-                    " (08)",
-                  ],
-                },
-                "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": "April 2017",
-                      "href": "#",
-                    },
-                    "ref": null,
-                    "rendered": "April 2017",
-                    "type": "a",
-                  },
-                  " (08)",
-                ],
-                "type": "li",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": Array [
-                    <a
-                      href="#"
->
-                      May 2017
-</a>,
-                    " (11)",
-                  ],
-                },
-                "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": "May 2017",
-                      "href": "#",
-                    },
-                    "ref": null,
-                    "rendered": "May 2017",
-                    "type": "a",
-                  },
-                  " (11)",
-                ],
-                "type": "li",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": Array [
-                    <a
-                      href="#"
->
-                      Jun 2017
-</a>,
-                    " (21)",
-                  ],
-                },
-                "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": "Jun 2017",
-                      "href": "#",
-                    },
-                    "ref": null,
-                    "rendered": "Jun 2017",
-                    "type": "a",
-                  },
-                  " (21)",
-                ],
-                "type": "li",
-              },
-            ],
+            "rendered": null,
             "type": "ul",
           },
         ],
@@ -543,38 +284,7 @@ ShallowWrapper {
 </div>,
             <div
               className="tagcloud"
->
-              <a
-                            href="#"
-              >
-                            logo
-              </a>
-              <a
-                            href="#"
-              >
-                            business
-              </a>
-              <a
-                            href="#"
-              >
-                            corporate
-              </a>
-              <a
-                            href="#"
-              >
-                            e-commerce
-              </a>
-              <a
-                            href="#"
-              >
-                            agency
-              </a>
-              <a
-                            href="#"
-              >
-                            responsive
-              </a>
-</div>,
+/>,
           ],
           "className": "widget",
         },
@@ -597,115 +307,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": Array [
-                <a
-                  href="#"
->
-                  logo
-</a>,
-                <a
-                  href="#"
->
-                  business
-</a>,
-                <a
-                  href="#"
->
-                  corporate
-</a>,
-                <a
-                  href="#"
->
-                  e-commerce
-</a>,
-                <a
-                  href="#"
->
-                  agency
-</a>,
-                <a
-                  href="#"
->
-                  responsive
-</a>,
-              ],
+              "children": undefined,
               "className": "tagcloud",
             },
             "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "logo",
-                  "href": "#",
-                },
-                "ref": null,
-                "rendered": "logo",
-                "type": "a",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "business",
-                  "href": "#",
-                },
-                "ref": null,
-                "rendered": "business",
-                "type": "a",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "corporate",
-                  "href": "#",
-                },
-                "ref": null,
-                "rendered": "corporate",
-                "type": "a",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "e-commerce",
-                  "href": "#",
-                },
-                "ref": null,
-                "rendered": "e-commerce",
-                "type": "a",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "agency",
-                  "href": "#",
-                },
-                "ref": null,
-                "rendered": "agency",
-                "type": "a",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "responsive",
-                  "href": "#",
-                },
-                "ref": null,
-                "rendered": "responsive",
-                "type": "a",
-              },
-            ],
+            "rendered": null,
             "type": "div",
           },
         ],
@@ -763,40 +369,7 @@ ShallowWrapper {
             >
                         Archives
             </div>
-            <ul>
-                        <li>
-                                    <a
-                                                href="#"
-                                    >
-                                                March 2017
-                                    </a>
-                                     (40)
-                        </li>
-                        <li>
-                                    <a
-                                                href="#"
-                                    >
-                                                April 2017
-                                    </a>
-                                     (08)
-                        </li>
-                        <li>
-                                    <a
-                                                href="#"
-                                    >
-                                                May 2017
-                                    </a>
-                                     (11)
-                        </li>
-                        <li>
-                                    <a
-                                                href="#"
-                                    >
-                                                Jun 2017
-                                    </a>
-                                     (21)
-                        </li>
-            </ul>
+            <ul />
 </aside>,
           <aside
             className="widget"
@@ -808,38 +381,7 @@ ShallowWrapper {
             </div>
             <div
                         className="tagcloud"
-            >
-                        <a
-                                    href="#"
-                        >
-                                    logo
-                        </a>
-                        <a
-                                    href="#"
-                        >
-                                    business
-                        </a>
-                        <a
-                                    href="#"
-                        >
-                                    corporate
-                        </a>
-                        <a
-                                    href="#"
-                        >
-                                    e-commerce
-                        </a>
-                        <a
-                                    href="#"
-                        >
-                                    agency
-                        </a>
-                        <a
-                                    href="#"
-                        >
-                                    responsive
-                        </a>
-            </div>
+            />
 </aside>,
         ],
         "className": "mr-5",
@@ -1006,40 +548,7 @@ ShallowWrapper {
 >
                 Archives
 </div>,
-              <ul>
-                <li>
-                                <a
-                                                href="#"
-                                >
-                                                March 2017
-                                </a>
-                                 (40)
-                </li>
-                <li>
-                                <a
-                                                href="#"
-                                >
-                                                April 2017
-                                </a>
-                                 (08)
-                </li>
-                <li>
-                                <a
-                                                href="#"
-                                >
-                                                May 2017
-                                </a>
-                                 (11)
-                </li>
-                <li>
-                                <a
-                                                href="#"
-                                >
-                                                Jun 2017
-                                </a>
-                                 (21)
-                </li>
-</ul>,
+              <ul />,
             ],
             "className": "widget",
           },
@@ -1062,172 +571,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": Array [
-                  <li>
-                    <a
-                                        href="#"
-                    >
-                                        March 2017
-                    </a>
-                     (40)
-</li>,
-                  <li>
-                    <a
-                                        href="#"
-                    >
-                                        April 2017
-                    </a>
-                     (08)
-</li>,
-                  <li>
-                    <a
-                                        href="#"
-                    >
-                                        May 2017
-                    </a>
-                     (11)
-</li>,
-                  <li>
-                    <a
-                                        href="#"
-                    >
-                                        Jun 2017
-                    </a>
-                     (21)
-</li>,
-                ],
+                "children": undefined,
               },
               "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": Array [
-                      <a
-                        href="#"
->
-                        March 2017
-</a>,
-                      " (40)",
-                    ],
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "children": "March 2017",
-                        "href": "#",
-                      },
-                      "ref": null,
-                      "rendered": "March 2017",
-                      "type": "a",
-                    },
-                    " (40)",
-                  ],
-                  "type": "li",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": Array [
-                      <a
-                        href="#"
->
-                        April 2017
-</a>,
-                      " (08)",
-                    ],
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "children": "April 2017",
-                        "href": "#",
-                      },
-                      "ref": null,
-                      "rendered": "April 2017",
-                      "type": "a",
-                    },
-                    " (08)",
-                  ],
-                  "type": "li",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": Array [
-                      <a
-                        href="#"
->
-                        May 2017
-</a>,
-                      " (11)",
-                    ],
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "children": "May 2017",
-                        "href": "#",
-                      },
-                      "ref": null,
-                      "rendered": "May 2017",
-                      "type": "a",
-                    },
-                    " (11)",
-                  ],
-                  "type": "li",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": Array [
-                      <a
-                        href="#"
->
-                        Jun 2017
-</a>,
-                      " (21)",
-                    ],
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "children": "Jun 2017",
-                        "href": "#",
-                      },
-                      "ref": null,
-                      "rendered": "Jun 2017",
-                      "type": "a",
-                    },
-                    " (21)",
-                  ],
-                  "type": "li",
-                },
-              ],
+              "rendered": null,
               "type": "ul",
             },
           ],
@@ -1246,38 +593,7 @@ ShallowWrapper {
 </div>,
               <div
                 className="tagcloud"
->
-                <a
-                                href="#"
-                >
-                                logo
-                </a>
-                <a
-                                href="#"
-                >
-                                business
-                </a>
-                <a
-                                href="#"
-                >
-                                corporate
-                </a>
-                <a
-                                href="#"
-                >
-                                e-commerce
-                </a>
-                <a
-                                href="#"
-                >
-                                agency
-                </a>
-                <a
-                                href="#"
-                >
-                                responsive
-                </a>
-</div>,
+/>,
             ],
             "className": "widget",
           },
@@ -1300,115 +616,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": Array [
-                  <a
-                    href="#"
->
-                    logo
-</a>,
-                  <a
-                    href="#"
->
-                    business
-</a>,
-                  <a
-                    href="#"
->
-                    corporate
-</a>,
-                  <a
-                    href="#"
->
-                    e-commerce
-</a>,
-                  <a
-                    href="#"
->
-                    agency
-</a>,
-                  <a
-                    href="#"
->
-                    responsive
-</a>,
-                ],
+                "children": undefined,
                 "className": "tagcloud",
               },
               "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "logo",
-                    "href": "#",
-                  },
-                  "ref": null,
-                  "rendered": "logo",
-                  "type": "a",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "business",
-                    "href": "#",
-                  },
-                  "ref": null,
-                  "rendered": "business",
-                  "type": "a",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "corporate",
-                    "href": "#",
-                  },
-                  "ref": null,
-                  "rendered": "corporate",
-                  "type": "a",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "e-commerce",
-                    "href": "#",
-                  },
-                  "ref": null,
-                  "rendered": "e-commerce",
-                  "type": "a",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "agency",
-                    "href": "#",
-                  },
-                  "ref": null,
-                  "rendered": "agency",
-                  "type": "a",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "responsive",
-                    "href": "#",
-                  },
-                  "ref": null,
-                  "rendered": "responsive",
-                  "type": "a",
-                },
-              ],
+              "rendered": null,
               "type": "div",
             },
           ],

@@ -4,7 +4,25 @@ exports[`Components HomePage Article Snapshot should correctly render Article 1`
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Unknown />,
+  Symbol(enzyme.__unrendered__): <Unknown
+    article={
+        Object {
+            "author": "dhh",
+            "body": "One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
+        
+        It started with a simple refactoring. We allow people to post arbitrary URLs in Basecamp 3’s chat, which we’ll attempt to fetch and display inline, if its an image, movie, or a Twitter URL. There’s a security concern where we don’t want to allow internal IPs in those URLs, like 127.0.0.1, and then have our Downloader class attempt to trigger an internal request that may sidestep other security precautions.
+        
+        The specific policy isn’t as important as the fact that this precondition was originally just part of the Downloader class, but now I also needed it in our forthcoming webhooks API. Because just like with previewable chat URLs, webhooks allow users to set URLs that our system then calls. Same underlying security issue to deal with.
+        
+        No problemo: Just extract the protection into its own module and call it from both spots. First attempt at naming this new module gave me PrivateNetworkProtector, which seemed like a fine choice until I considered the method names that’d work with it:
+        
+        ",
+            "created_at": "2018-02-28T14:48:54.444740278Z",
+            "id": "123",
+            "title": "Hunting for great names in programming",
+          }
+    }
+/>,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -21,11 +39,12 @@ ShallowWrapper {
         <h2
           className="article__title"
 >
-          <a
-                    href=""
+          <Link
+                    replace={false}
+                    to="/articles/123"
           >
-                    Learn about Docker!
-          </a>
+                    Hunting for great names in programming
+          </Link>
 </h2>,
         <ul
           className="article__subtitle mb-2"
@@ -48,7 +67,12 @@ ShallowWrapper {
                               symbol={false}
                               transform={null}
                     />
-                    July 03, 2017
+                    <Link
+                              replace={false}
+                              to="/?date=2018-02-28T14:48:54.444740278Z"
+                    >
+                              February 28th, 2018
+                    </Link>
           </li>
           <li>
                     <FontAwesomeIcon$1
@@ -68,7 +92,12 @@ ShallowWrapper {
                               symbol={false}
                               transform={null}
                     />
-                    3 Comments
+                    <Link
+                              replace={false}
+                              to="/articles/123#comments"
+                    >
+                              3 Comments
+                    </Link>
           </li>
           <li>
                     <FontAwesomeIcon$1
@@ -88,41 +117,37 @@ ShallowWrapper {
                               symbol={false}
                               transform={null}
                     />
-                    <a
-                              href="#"
+                    <Link
+                              replace={false}
+                              to="/?tag=branding"
                     >
                               Branding
-                    </a>
+                    </Link>
                     , 
-                    <a
-                              href="#"
+                    <Link
+                              replace={false}
+                              to="/?tag=design"
                     >
                               Design
-                    </a>
+                    </Link>
           </li>
 </ul>,
-        <a
-          href="#"
+        <Link
+          replace={false}
+          to="/articles/123"
 >
           <div
                     className="article__contents"
           >
-                    <div
-                              className="article__contents--image-container"
-                    >
-                              <img
-                                        alt="Learn about Docker!"
-                                        className="article__contents--image"
-                                        src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
-                              />
-                    </div>
                     <p
-                              className="article__contents--body text-muted"
+                              className="text-muted"
                     >
-                              News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.
+                              One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
+                              
+                              It sta...
                     </p>
           </div>
-</a>,
+</Link>,
         <hr />,
       ],
     },
@@ -133,25 +158,27 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": <a
-            href=""
+          "children": <Link
+            replace={false}
+            to="/articles/123"
 >
-            Learn about Docker!
-</a>,
+            Hunting for great names in programming
+</Link>,
           "className": "article__title",
         },
         "ref": null,
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "class",
           "props": Object {
-            "children": "Learn about Docker!",
-            "href": "",
+            "children": "Hunting for great names in programming",
+            "replace": false,
+            "to": "/articles/123",
           },
           "ref": null,
-          "rendered": "Learn about Docker!",
-          "type": "a",
+          "rendered": "Hunting for great names in programming",
+          "type": [Function],
         },
         "type": "h2",
       },
@@ -179,7 +206,12 @@ ShallowWrapper {
                             symbol={false}
                             transform={null}
               />
-              July 03, 2017
+              <Link
+                            replace={false}
+                            to="/?date=2018-02-28T14:48:54.444740278Z"
+              >
+                            February 28th, 2018
+              </Link>
 </li>,
             <li>
               <FontAwesomeIcon$1
@@ -199,7 +231,12 @@ ShallowWrapper {
                             symbol={false}
                             transform={null}
               />
-              3 Comments
+              <Link
+                            replace={false}
+                            to="/articles/123#comments"
+              >
+                            3 Comments
+              </Link>
 </li>,
             <li>
               <FontAwesomeIcon$1
@@ -219,17 +256,19 @@ ShallowWrapper {
                             symbol={false}
                             transform={null}
               />
-              <a
-                            href="#"
+              <Link
+                            replace={false}
+                            to="/?tag=branding"
               >
                             Branding
-              </a>
+              </Link>
               , 
-              <a
-                            href="#"
+              <Link
+                            replace={false}
+                            to="/?tag=design"
               >
                             Design
-              </a>
+              </Link>
 </li>,
           ],
           "className": "article__subtitle mb-2",
@@ -259,7 +298,12 @@ ShallowWrapper {
                   symbol={false}
                   transform={null}
 />,
-                "July 03, 2017",
+                <Link
+                  replace={false}
+                  to="/?date=2018-02-28T14:48:54.444740278Z"
+>
+                  February 28th, 2018
+</Link>,
               ],
             },
             "ref": null,
@@ -289,7 +333,19 @@ ShallowWrapper {
                 "rendered": null,
                 "type": [Function],
               },
-              "July 03, 2017",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "February 28th, 2018",
+                  "replace": false,
+                  "to": "/?date=2018-02-28T14:48:54.444740278Z",
+                },
+                "ref": null,
+                "rendered": "February 28th, 2018",
+                "type": [Function],
+              },
             ],
             "type": "li",
           },
@@ -316,7 +372,12 @@ ShallowWrapper {
                   symbol={false}
                   transform={null}
 />,
-                "3 Comments",
+                <Link
+                  replace={false}
+                  to="/articles/123#comments"
+>
+                  3 Comments
+</Link>,
               ],
             },
             "ref": null,
@@ -346,7 +407,19 @@ ShallowWrapper {
                 "rendered": null,
                 "type": [Function],
               },
-              "3 Comments",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "3 Comments",
+                  "replace": false,
+                  "to": "/articles/123#comments",
+                },
+                "ref": null,
+                "rendered": "3 Comments",
+                "type": [Function],
+              },
             ],
             "type": "li",
           },
@@ -373,17 +446,19 @@ ShallowWrapper {
                   symbol={false}
                   transform={null}
 />,
-                <a
-                  href="#"
+                <Link
+                  replace={false}
+                  to="/?tag=branding"
 >
                   Branding
-</a>,
+</Link>,
                 ", ",
-                <a
-                  href="#"
+                <Link
+                  replace={false}
+                  to="/?tag=design"
 >
                   Design
-</a>,
+</Link>,
               ],
             },
             "ref": null,
@@ -416,27 +491,29 @@ ShallowWrapper {
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "host",
+                "nodeType": "class",
                 "props": Object {
                   "children": "Branding",
-                  "href": "#",
+                  "replace": false,
+                  "to": "/?tag=branding",
                 },
                 "ref": null,
                 "rendered": "Branding",
-                "type": "a",
+                "type": [Function],
               },
               ", ",
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "host",
+                "nodeType": "class",
                 "props": Object {
                   "children": "Design",
-                  "href": "#",
+                  "replace": false,
+                  "to": "/?tag=design",
                 },
                 "ref": null,
                 "rendered": "Design",
-                "type": "a",
+                "type": [Function],
               },
             ],
             "type": "li",
@@ -447,27 +524,21 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "class",
         "props": Object {
           "children": <div
             className="article__contents"
 >
-            <div
-                        className="article__contents--image-container"
-            >
-                        <img
-                                    alt="Learn about Docker!"
-                                    className="article__contents--image"
-                                    src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
-                        />
-            </div>
             <p
-                        className="article__contents--body text-muted"
+                        className="text-muted"
             >
-                        News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.
+                        One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
+                        
+                        It sta...
             </p>
 </div>,
-          "href": "#",
+          "replace": false,
+          "to": "/articles/123",
         },
         "ref": null,
         "rendered": Object {
@@ -476,69 +547,40 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <div
-                className="article__contents--image-container"
->
-                <img
-                                alt="Learn about Docker!"
-                                className="article__contents--image"
-                                src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
-                />
-</div>,
+              undefined,
               <p
-                className="article__contents--body text-muted"
+                className="text-muted"
 >
-                News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.
+                One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
+                
+                It sta...
 </p>,
             ],
             "className": "article__contents",
           },
           "ref": null,
           "rendered": Array [
+            undefined,
             Object {
               "instance": null,
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <img
-                  alt="Learn about Docker!"
-                  className="article__contents--image"
-                  src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
-/>,
-                "className": "article__contents--image-container",
+                "children": "One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
+
+It sta...",
+                "className": "text-muted",
               },
               "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "alt": "Learn about Docker!",
-                  "className": "article__contents--image",
-                  "src": "https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": "img",
-              },
-              "type": "div",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": "News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.",
-                "className": "article__contents--body text-muted",
-              },
-              "ref": null,
-              "rendered": "News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.",
+              "rendered": "One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
+
+It sta...",
               "type": "p",
             },
           ],
           "type": "div",
         },
-        "type": "a",
+        "type": [Function],
       },
       Object {
         "instance": null,
@@ -562,11 +604,12 @@ ShallowWrapper {
           <h2
             className="article__title"
 >
-            <a
-                        href=""
+            <Link
+                        replace={false}
+                        to="/articles/123"
             >
-                        Learn about Docker!
-            </a>
+                        Hunting for great names in programming
+            </Link>
 </h2>,
           <ul
             className="article__subtitle mb-2"
@@ -589,7 +632,12 @@ ShallowWrapper {
                                     symbol={false}
                                     transform={null}
                         />
-                        July 03, 2017
+                        <Link
+                                    replace={false}
+                                    to="/?date=2018-02-28T14:48:54.444740278Z"
+                        >
+                                    February 28th, 2018
+                        </Link>
             </li>
             <li>
                         <FontAwesomeIcon$1
@@ -609,7 +657,12 @@ ShallowWrapper {
                                     symbol={false}
                                     transform={null}
                         />
-                        3 Comments
+                        <Link
+                                    replace={false}
+                                    to="/articles/123#comments"
+                        >
+                                    3 Comments
+                        </Link>
             </li>
             <li>
                         <FontAwesomeIcon$1
@@ -629,41 +682,37 @@ ShallowWrapper {
                                     symbol={false}
                                     transform={null}
                         />
-                        <a
-                                    href="#"
+                        <Link
+                                    replace={false}
+                                    to="/?tag=branding"
                         >
                                     Branding
-                        </a>
+                        </Link>
                         , 
-                        <a
-                                    href="#"
+                        <Link
+                                    replace={false}
+                                    to="/?tag=design"
                         >
                                     Design
-                        </a>
+                        </Link>
             </li>
 </ul>,
-          <a
-            href="#"
+          <Link
+            replace={false}
+            to="/articles/123"
 >
             <div
                         className="article__contents"
             >
-                        <div
-                                    className="article__contents--image-container"
-                        >
-                                    <img
-                                                alt="Learn about Docker!"
-                                                className="article__contents--image"
-                                                src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
-                                    />
-                        </div>
                         <p
-                                    className="article__contents--body text-muted"
+                                    className="text-muted"
                         >
-                                    News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.
+                                    One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
+                                    
+                                    It sta...
                         </p>
             </div>
-</a>,
+</Link>,
           <hr />,
         ],
       },
@@ -674,25 +723,27 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": <a
-              href=""
+            "children": <Link
+              replace={false}
+              to="/articles/123"
 >
-              Learn about Docker!
-</a>,
+              Hunting for great names in programming
+</Link>,
             "className": "article__title",
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "class",
             "props": Object {
-              "children": "Learn about Docker!",
-              "href": "",
+              "children": "Hunting for great names in programming",
+              "replace": false,
+              "to": "/articles/123",
             },
             "ref": null,
-            "rendered": "Learn about Docker!",
-            "type": "a",
+            "rendered": "Hunting for great names in programming",
+            "type": [Function],
           },
           "type": "h2",
         },
@@ -720,7 +771,12 @@ ShallowWrapper {
                                 symbol={false}
                                 transform={null}
                 />
-                July 03, 2017
+                <Link
+                                replace={false}
+                                to="/?date=2018-02-28T14:48:54.444740278Z"
+                >
+                                February 28th, 2018
+                </Link>
 </li>,
               <li>
                 <FontAwesomeIcon$1
@@ -740,7 +796,12 @@ ShallowWrapper {
                                 symbol={false}
                                 transform={null}
                 />
-                3 Comments
+                <Link
+                                replace={false}
+                                to="/articles/123#comments"
+                >
+                                3 Comments
+                </Link>
 </li>,
               <li>
                 <FontAwesomeIcon$1
@@ -760,17 +821,19 @@ ShallowWrapper {
                                 symbol={false}
                                 transform={null}
                 />
-                <a
-                                href="#"
+                <Link
+                                replace={false}
+                                to="/?tag=branding"
                 >
                                 Branding
-                </a>
+                </Link>
                 , 
-                <a
-                                href="#"
+                <Link
+                                replace={false}
+                                to="/?tag=design"
                 >
                                 Design
-                </a>
+                </Link>
 </li>,
             ],
             "className": "article__subtitle mb-2",
@@ -800,7 +863,12 @@ ShallowWrapper {
                     symbol={false}
                     transform={null}
 />,
-                  "July 03, 2017",
+                  <Link
+                    replace={false}
+                    to="/?date=2018-02-28T14:48:54.444740278Z"
+>
+                    February 28th, 2018
+</Link>,
                 ],
               },
               "ref": null,
@@ -830,7 +898,19 @@ ShallowWrapper {
                   "rendered": null,
                   "type": [Function],
                 },
-                "July 03, 2017",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "February 28th, 2018",
+                    "replace": false,
+                    "to": "/?date=2018-02-28T14:48:54.444740278Z",
+                  },
+                  "ref": null,
+                  "rendered": "February 28th, 2018",
+                  "type": [Function],
+                },
               ],
               "type": "li",
             },
@@ -857,7 +937,12 @@ ShallowWrapper {
                     symbol={false}
                     transform={null}
 />,
-                  "3 Comments",
+                  <Link
+                    replace={false}
+                    to="/articles/123#comments"
+>
+                    3 Comments
+</Link>,
                 ],
               },
               "ref": null,
@@ -887,7 +972,19 @@ ShallowWrapper {
                   "rendered": null,
                   "type": [Function],
                 },
-                "3 Comments",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "3 Comments",
+                    "replace": false,
+                    "to": "/articles/123#comments",
+                  },
+                  "ref": null,
+                  "rendered": "3 Comments",
+                  "type": [Function],
+                },
               ],
               "type": "li",
             },
@@ -914,17 +1011,19 @@ ShallowWrapper {
                     symbol={false}
                     transform={null}
 />,
-                  <a
-                    href="#"
+                  <Link
+                    replace={false}
+                    to="/?tag=branding"
 >
                     Branding
-</a>,
+</Link>,
                   ", ",
-                  <a
-                    href="#"
+                  <Link
+                    replace={false}
+                    to="/?tag=design"
 >
                     Design
-</a>,
+</Link>,
                 ],
               },
               "ref": null,
@@ -957,27 +1056,29 @@ ShallowWrapper {
                 Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "host",
+                  "nodeType": "class",
                   "props": Object {
                     "children": "Branding",
-                    "href": "#",
+                    "replace": false,
+                    "to": "/?tag=branding",
                   },
                   "ref": null,
                   "rendered": "Branding",
-                  "type": "a",
+                  "type": [Function],
                 },
                 ", ",
                 Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "host",
+                  "nodeType": "class",
                   "props": Object {
                     "children": "Design",
-                    "href": "#",
+                    "replace": false,
+                    "to": "/?tag=design",
                   },
                   "ref": null,
                   "rendered": "Design",
-                  "type": "a",
+                  "type": [Function],
                 },
               ],
               "type": "li",
@@ -988,27 +1089,21 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "class",
           "props": Object {
             "children": <div
               className="article__contents"
 >
-              <div
-                            className="article__contents--image-container"
-              >
-                            <img
-                                          alt="Learn about Docker!"
-                                          className="article__contents--image"
-                                          src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
-                            />
-              </div>
               <p
-                            className="article__contents--body text-muted"
+                            className="text-muted"
               >
-                            News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.
+                            One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
+                            
+                            It sta...
               </p>
 </div>,
-            "href": "#",
+            "replace": false,
+            "to": "/articles/123",
           },
           "ref": null,
           "rendered": Object {
@@ -1017,69 +1112,40 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <div
-                  className="article__contents--image-container"
->
-                  <img
-                                    alt="Learn about Docker!"
-                                    className="article__contents--image"
-                                    src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
-                  />
-</div>,
+                undefined,
                 <p
-                  className="article__contents--body text-muted"
+                  className="text-muted"
 >
-                  News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.
+                  One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
+                  
+                  It sta...
 </p>,
               ],
               "className": "article__contents",
             },
             "ref": null,
             "rendered": Array [
+              undefined,
               Object {
                 "instance": null,
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": <img
-                    alt="Learn about Docker!"
-                    className="article__contents--image"
-                    src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
-/>,
-                  "className": "article__contents--image-container",
+                  "children": "One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
+
+It sta...",
+                  "className": "text-muted",
                 },
                 "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "alt": "Learn about Docker!",
-                    "className": "article__contents--image",
-                    "src": "https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": "img",
-                },
-                "type": "div",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.",
-                  "className": "article__contents--body text-muted",
-                },
-                "ref": null,
-                "rendered": "News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.",
+                "rendered": "One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
+
+It sta...",
                 "type": "p",
               },
             ],
             "type": "div",
           },
-          "type": "a",
+          "type": [Function],
         },
         Object {
           "instance": null,
