@@ -45,8 +45,14 @@
     "service/dynamodb/dynamodbattribute",
     "service/sts"
   ]
-  revision = "f0872da8a448f8cb10f4f0c95c2100e4f7356448"
-  version = "v1.13.16"
+  revision = "851c8ce700ee981b0ce28634721c2a925c6f3d0b"
+  version = "v1.13.22"
+
+[[projects]]
+  name = "github.com/davecgh/go-spew"
+  packages = ["spew"]
+  revision = "346938d642f2ec3594ed81d874461961cd0faa76"
+  version = "v1.1.0"
 
 [[projects]]
   name = "github.com/go-ini/ini"
@@ -60,14 +66,26 @@
   revision = "0b12d6b5"
 
 [[projects]]
+  name = "github.com/pmezard/go-difflib"
+  packages = ["difflib"]
+  revision = "792786c7400a136282c1664665ae0a8db921c6c2"
+  version = "v1.0.0"
+
+[[projects]]
   name = "github.com/satori/go.uuid"
   packages = ["."]
   revision = "f58768cc1a7a7e77a3bd49e98cdd21419399b6a3"
   version = "v1.2.0"
 
+[[projects]]
+  name = "github.com/stretchr/testify"
+  packages = ["assert"]
+  revision = "12b6f73e6084dad08a7c6e575284b177ecafbc71"
+  version = "v1.2.1"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "be748e7c93e1ab967bb09ed1ba7017ee8bb8277ff19f97256622e87aad30b356"
+  inputs-digest = "eb95bb057861b86a5a3fc6452af289c298b8ebfeb8e5b08d142b8f00f51de8e1"
   solver-name = "gps-cdcl"
   solver-version = 1

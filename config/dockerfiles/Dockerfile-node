@@ -14,7 +14,10 @@ WORKDIR $INSTALL_PATH
 
 # Copy dependency definitions
 # IMPORTANT:: Need to turn off if starting new app
-COPY $APP_PATH/package.json $APP_PATH/yarn.lock ./
+
+# yarn.lock not working well with 8.10...
+# COPY $APP_PATH/package.json $APP_PATH/yarn.lock ./
+COPY $APP_PATH/package.json ./
 
 # Switch from npm to yarn
 RUN npm i -g yarn@1.5.1
