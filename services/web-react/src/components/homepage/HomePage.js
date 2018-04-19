@@ -6,9 +6,15 @@ import Sidebar from './Sidebar';
 import Article from './Article';
 import Pagination from '../shared/Pagination';
 
+import { fetchList } from '../../actions/articles';
+
 import './css/homepage.css';
 
 export class HomePage extends Component {
+
+  componentDidMount() {
+    this.props.fetchList && this.props.fetchList();
+  }
 
   render() {
     return (
@@ -20,12 +26,18 @@ export class HomePage extends Component {
               <Sidebar />
             </div>
             <div className="col-xl-8 main--content">
-              <Article />
-              <Article />
-              <Article />
-              <Article />
-              <Article />
-              <Pagination currentPage={7} totalPages={10} />
+              {
+                this.props.articles.length === 0 ? (
+                  <p>Loading...</p>
+                ) : (
+                  [
+                    this.props.articles.map((article) => {
+                      return <Article key={article.id} article={article} />;
+                    }),
+                    <Pagination key="pagination" {...this.props.pagination} />
+                  ]
+                )
+              }
             </div>
           </div>
         </div>
@@ -37,15 +49,15 @@ export class HomePage extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-// 	return {
-// 		articles: state.articles.index.resources,
-//     isAuthenticated: !!state.auth.token
-// 	};
-// };
-//
-// const mapDispatchToProps = (dispatch) => ({
-//   fetchList: () => dispatch(fetchList())
-// });
+const mapStateToProps = (state) => {
+	return {
+    pagination: state.articles.index.pagination,
+		articles: state.articles.index.resources
+	};
+};
 
-export default connect(null, null)(HomePage);
+const mapDispatchToProps = (dispatch) => ({
+  fetchList: () => dispatch(fetchList())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

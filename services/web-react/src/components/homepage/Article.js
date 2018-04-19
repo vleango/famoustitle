@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { truncate } from 'lodash';
+import moment from 'moment';
 
 import fontawesome from '@fortawesome/fontawesome';
 import faCalendarAlt from '@fortawesome/fontawesome-free-solid/faCalendarAlt';
@@ -13,28 +16,39 @@ fontawesome.library.add(faCalendarAlt, faTag, faCommentAlt);
 export default (props) => {
   return (
     <article>
-      <h2 className="article__title"><a href="">Learn about Docker!</a></h2>
+      <h2 className="article__title"><Link to={`/articles/${props.article.id}`}>{props.article.title}</Link></h2>
       <ul className="article__subtitle mb-2">
-          <li><FontAwesomeIcon className="mr-2" icon="calendar-alt"/>July 03, 2017</li>
-          <li><FontAwesomeIcon className="mr-2" icon="comment-alt"/>3 Comments</li>
-          <li><FontAwesomeIcon className="mr-2" icon="tag"/><a href="#">Branding</a>, <a href="#">Design</a></li>
+          <li>
+            <FontAwesomeIcon className="mr-2" icon="calendar-alt"/>
+            <Link to={`/?date=${props.article.created_at}`}>
+              { moment(props.article.created_at).format("MMMM Do, YYYY") }
+            </Link>
+          </li>
+          <li>
+            <FontAwesomeIcon className="mr-2" icon="comment-alt"/>
+            <Link to={`/articles/${props.article.id}#comments`}>3 Comments</Link>
+          </li>
+          <li>
+            <FontAwesomeIcon className="mr-2" icon="tag"/>
+            <Link to={`/?tag=branding`}>Branding</Link>, <Link to={`/?tag=design`}>Design</Link>
+          </li>
       </ul>
-      <a href="#">
+      <Link to={`/articles/${props.article.id}`}>
         <div className="article__contents">
-          <div className="article__contents--image-container">
-              <img src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
-              alt="Learn about Docker!" className="article__contents--image" />
-          </div>
-          <p className="article__contents--body text-muted">
-            News articles with helpful tips and how-to guides for all things
-            related to software development. The main focus of these articles
-            is to find better approaches to the software development process.
-            News articles with helpful tips and how-to guides for all things
-            related to software development. The main focus of these articles
-            is to find better approaches to the software development process.
+          { props.article.img_url && (
+            <div className="article__contents--image-container">
+                <img src={this.article.img_url}
+                alt={props.article.title} className="article__contents--image" />
+            </div>
+          ) }
+          <p className={props.article.img_url ? 'article__contents--body text-muted' : 'text-muted'}>
+            { truncate(props.article.body, {
+              'length': 350,
+              'omission': '...'
+            }) }
           </p>
         </div>
-      </a>
+      </Link>
       <hr />
     </article>
   );

@@ -9,6 +9,8 @@ import ReactMarkdown from 'react-markdown';
 import { fetchItem, updateItem, removeItem } from '../../actions/articles';
 import Header from '../shared/headers/Header';
 
+import './css/ArticleItemPage.css';
+
 export class ArticleItemPage extends Component {
 
   constructor(props) {
@@ -181,7 +183,7 @@ export class ArticleItemPage extends Component {
     return (
       <div
         data-name="body"
-        className={this.state.editModeClass}
+        className={`body-markdown ${this.state.editModeClass}`}
         onMouseOver={this.onMouseOver}
         onClick={this.onTextClicked}
         onMouseLeave={this.onMouseLeave}>
@@ -196,41 +198,43 @@ export class ArticleItemPage extends Component {
         <Header resourceTitle={ this.state.title } />
         { this.state.article && (
           <Fragment>
-            <div className="container">
-              { this.props.isAuthenticated && (
-                <div className="clearfix">
-                  <Button onClick={this.onRemoveClicked} disabled={this.state.submitting} className="float-right ml-3" color="danger">Delete</Button>{' '}
-                </div>
-              ) }
+            <div className="canvas">
+              <div className="container">
+                { this.props.isAuthenticated && (
+                  <div className="clearfix">
+                    <Button onClick={this.onRemoveClicked} disabled={this.state.submitting} className="float-right ml-3" color="danger">Delete</Button>{' '}
+                  </div>
+                ) }
 
-              { includes(this.state.editMode, 'title') ? (
-                <Form onSubmit={this.onSubmitChanges} autoComplete="off">
-                  <FormGroup>
-                    <Input type="text"
-                      name="title"
-                      value={this.state.title}
-                      placeholder="Title"
-                      onChange={this.onInputChange} />
-                  </FormGroup>
-                  <Button color="info" size="sm" data-name="title" onClick={this.onCancelClicked}>Cancel</Button>
-                  <Button color="primary" size="sm" data-name="title" className="ml-1" onClick={this.onSavedClicked}>Save</Button>
-                </Form>
-              ) : (
-                <h1
-                  data-name="title"
-                  className={this.state.editModeClass}
-                  onMouseOver={this.onMouseOver}
-                  onClick={this.onTextClicked}
-                  onMouseLeave={this.onMouseLeave}>
-                  {this.state.article.title}
-                </h1>
-              )}
+                { includes(this.state.editMode, 'title') ? (
+                  <Form onSubmit={this.onSubmitChanges} autoComplete="off">
+                    <FormGroup>
+                      <Input type="text"
+                        name="title"
+                        value={this.state.title}
+                        placeholder="Title"
+                        onChange={this.onInputChange} />
+                    </FormGroup>
+                    <Button color="info" size="sm" data-name="title" onClick={this.onCancelClicked}>Cancel</Button>
+                    <Button color="primary" size="sm" data-name="title" className="ml-1" onClick={this.onSavedClicked}>Save</Button>
+                  </Form>
+                ) : (
+                  <h1
+                    data-name="title"
+                    className={this.state.editModeClass}
+                    onMouseOver={this.onMouseOver}
+                    onClick={this.onTextClicked}
+                    onMouseLeave={this.onMouseLeave}>
+                    {this.state.article.title}
+                  </h1>
+                )}
 
-              <p>{this.state.article.author}</p>
-              <p>{ moment(this.state.article.created_at).format('MM-DD-YYYY HH:mm') }</p>
+                <p>{this.state.article.author}</p>
+                <p>{ moment(this.state.article.created_at).format('MM-DD-YYYY HH:mm') }</p>
 
-              { this.displayBody() }
+                { this.displayBody() }
 
+              </div>
             </div>
           </Fragment>
         ) }

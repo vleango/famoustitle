@@ -1,5 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Form, Input } from 'reactstrap';
+import moment from 'moment';
+import { map } from 'lodash';
 
 import fontawesome from '@fortawesome/fontawesome';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -9,7 +13,7 @@ import './css/sidebar.css';
 
 fontawesome.library.add(faSearch);
 
-export default (props) => {
+export const Sidebar = (props) => {
   return (
     <div className="mr-5">
       <aside>
@@ -21,23 +25,32 @@ export default (props) => {
       <aside className="widget">
         <div className="widget-title">Archives</div>
         <ul>
-          <li><a href="#">March 2017</a> (40)</li>
-          <li><a href="#">April 2017</a> (08)</li>
-          <li><a href="#">May 2017</a> (11)</li>
-          <li><a href="#">Jun 2017</a> (21)</li>
+          {
+            props.archives && map(props.archives, (count, date) => {
+              return <li key={date}><Link to={`/?date=${date}`}>{moment(date).format('MMMM YYYY')} ({count})</Link></li>
+            })
+          }
         </ul>
       </aside>
       <aside className="widget">
         <div className="widget-title">Tags</div>
         <div className="tagcloud">
-          <a href="#">logo</a>
-          <a href="#">business</a>
-          <a href="#">corporate</a>
-          <a href="#">e-commerce</a>
-          <a href="#">agency</a>
-          <a href="#">responsive</a>
+          {
+            props.tags && props.tags.map((tag) => {
+              return <Link to={`/?tag=${tag}`} key={tag}>{tag}</Link>
+            })
+          }
         </div>
       </aside>
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+	return {
+		archives: state.articles.index.archives,
+    tags: state.articles.index.tags
+	};
+};
+
+export default connect(mapStateToProps)(Sidebar);
