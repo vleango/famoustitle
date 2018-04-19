@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Header from './Header';
 import Sidebar from './Sidebar';
-import Article from './Articles';
+import Article from './Article';
 import Pagination from '../shared/Pagination';
 
 import './css/homepage.css';

@@ -1,0 +1,1429 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components HomePage Sidebar Snapshot should correctly render Sidebar 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Unknown />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <aside>
+          <Form
+                    className="search-form"
+                    tag="form"
+          >
+                    <Input
+                              className="form-control pr-5"
+                              placeholder="Search..."
+                              type="search"
+                    />
+                    <button
+                              className="search-button"
+                              type="submit"
+                    >
+                              <FontAwesomeIcon$1
+                                        border={false}
+                                        className=""
+                                        fixedWidth={false}
+                                        flip={null}
+                                        icon="search"
+                                        listItem={false}
+                                        mask={null}
+                                        name=""
+                                        pull={null}
+                                        pulse={false}
+                                        rotation={null}
+                                        size={null}
+                                        spin={false}
+                                        symbol={false}
+                                        transform={null}
+                              />
+                    </button>
+          </Form>
+</aside>,
+        <aside
+          className="widget"
+>
+          <div
+                    className="widget-title"
+          >
+                    Archives
+          </div>
+          <ul>
+                    <li>
+                              <a
+                                        href="#"
+                              >
+                                        March 2017
+                              </a>
+                               (40)
+                    </li>
+                    <li>
+                              <a
+                                        href="#"
+                              >
+                                        April 2017
+                              </a>
+                               (08)
+                    </li>
+                    <li>
+                              <a
+                                        href="#"
+                              >
+                                        May 2017
+                              </a>
+                               (11)
+                    </li>
+                    <li>
+                              <a
+                                        href="#"
+                              >
+                                        Jun 2017
+                              </a>
+                               (21)
+                    </li>
+          </ul>
+</aside>,
+        <aside
+          className="widget"
+>
+          <div
+                    className="widget-title"
+          >
+                    Tags
+          </div>
+          <div
+                    className="tagcloud"
+          >
+                    <a
+                              href="#"
+                    >
+                              logo
+                    </a>
+                    <a
+                              href="#"
+                    >
+                              business
+                    </a>
+                    <a
+                              href="#"
+                    >
+                              corporate
+                    </a>
+                    <a
+                              href="#"
+                    >
+                              e-commerce
+                    </a>
+                    <a
+                              href="#"
+                    >
+                              agency
+                    </a>
+                    <a
+                              href="#"
+                    >
+                              responsive
+                    </a>
+          </div>
+</aside>,
+      ],
+      "className": "mr-5",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <Form
+            className="search-form"
+            tag="form"
+>
+            <Input
+                        className="form-control pr-5"
+                        placeholder="Search..."
+                        type="search"
+            />
+            <button
+                        className="search-button"
+                        type="submit"
+            >
+                        <FontAwesomeIcon$1
+                                    border={false}
+                                    className=""
+                                    fixedWidth={false}
+                                    flip={null}
+                                    icon="search"
+                                    listItem={false}
+                                    mask={null}
+                                    name=""
+                                    pull={null}
+                                    pulse={false}
+                                    rotation={null}
+                                    size={null}
+                                    spin={false}
+                                    symbol={false}
+                                    transform={null}
+                        />
+            </button>
+</Form>,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": Array [
+              <Input
+                className="form-control pr-5"
+                placeholder="Search..."
+                type="search"
+/>,
+              <button
+                className="search-button"
+                type="submit"
+>
+                <FontAwesomeIcon$1
+                                border={false}
+                                className=""
+                                fixedWidth={false}
+                                flip={null}
+                                icon="search"
+                                listItem={false}
+                                mask={null}
+                                name=""
+                                pull={null}
+                                pulse={false}
+                                rotation={null}
+                                size={null}
+                                spin={false}
+                                symbol={false}
+                                transform={null}
+                />
+</button>,
+            ],
+            "className": "search-form",
+            "tag": "form",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "className": "form-control pr-5",
+                "placeholder": "Search...",
+                "type": "search",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <FontAwesomeIcon$1
+                  border={false}
+                  className=""
+                  fixedWidth={false}
+                  flip={null}
+                  icon="search"
+                  listItem={false}
+                  mask={null}
+                  name=""
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  symbol={false}
+                  transform={null}
+/>,
+                "className": "search-button",
+                "type": "submit",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "border": false,
+                  "className": "",
+                  "fixedWidth": false,
+                  "flip": null,
+                  "icon": "search",
+                  "listItem": false,
+                  "mask": null,
+                  "name": "",
+                  "pull": null,
+                  "pulse": false,
+                  "rotation": null,
+                  "size": null,
+                  "spin": false,
+                  "symbol": false,
+                  "transform": null,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": "button",
+            },
+          ],
+          "type": [Function],
+        },
+        "type": "aside",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="widget-title"
+>
+              Archives
+</div>,
+            <ul>
+              <li>
+                            <a
+                                          href="#"
+                            >
+                                          March 2017
+                            </a>
+                             (40)
+              </li>
+              <li>
+                            <a
+                                          href="#"
+                            >
+                                          April 2017
+                            </a>
+                             (08)
+              </li>
+              <li>
+                            <a
+                                          href="#"
+                            >
+                                          May 2017
+                            </a>
+                             (11)
+              </li>
+              <li>
+                            <a
+                                          href="#"
+                            >
+                                          Jun 2017
+                            </a>
+                             (21)
+              </li>
+</ul>,
+          ],
+          "className": "widget",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Archives",
+              "className": "widget-title",
+            },
+            "ref": null,
+            "rendered": "Archives",
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <li>
+                  <a
+                                    href="#"
+                  >
+                                    March 2017
+                  </a>
+                   (40)
+</li>,
+                <li>
+                  <a
+                                    href="#"
+                  >
+                                    April 2017
+                  </a>
+                   (08)
+</li>,
+                <li>
+                  <a
+                                    href="#"
+                  >
+                                    May 2017
+                  </a>
+                   (11)
+</li>,
+                <li>
+                  <a
+                                    href="#"
+                  >
+                                    Jun 2017
+                  </a>
+                   (21)
+</li>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <a
+                      href="#"
+>
+                      March 2017
+</a>,
+                    " (40)",
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "March 2017",
+                      "href": "#",
+                    },
+                    "ref": null,
+                    "rendered": "March 2017",
+                    "type": "a",
+                  },
+                  " (40)",
+                ],
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <a
+                      href="#"
+>
+                      April 2017
+</a>,
+                    " (08)",
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "April 2017",
+                      "href": "#",
+                    },
+                    "ref": null,
+                    "rendered": "April 2017",
+                    "type": "a",
+                  },
+                  " (08)",
+                ],
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <a
+                      href="#"
+>
+                      May 2017
+</a>,
+                    " (11)",
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "May 2017",
+                      "href": "#",
+                    },
+                    "ref": null,
+                    "rendered": "May 2017",
+                    "type": "a",
+                  },
+                  " (11)",
+                ],
+                "type": "li",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <a
+                      href="#"
+>
+                      Jun 2017
+</a>,
+                    " (21)",
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Jun 2017",
+                      "href": "#",
+                    },
+                    "ref": null,
+                    "rendered": "Jun 2017",
+                    "type": "a",
+                  },
+                  " (21)",
+                ],
+                "type": "li",
+              },
+            ],
+            "type": "ul",
+          },
+        ],
+        "type": "aside",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="widget-title"
+>
+              Tags
+</div>,
+            <div
+              className="tagcloud"
+>
+              <a
+                            href="#"
+              >
+                            logo
+              </a>
+              <a
+                            href="#"
+              >
+                            business
+              </a>
+              <a
+                            href="#"
+              >
+                            corporate
+              </a>
+              <a
+                            href="#"
+              >
+                            e-commerce
+              </a>
+              <a
+                            href="#"
+              >
+                            agency
+              </a>
+              <a
+                            href="#"
+              >
+                            responsive
+              </a>
+</div>,
+          ],
+          "className": "widget",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Tags",
+              "className": "widget-title",
+            },
+            "ref": null,
+            "rendered": "Tags",
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <a
+                  href="#"
+>
+                  logo
+</a>,
+                <a
+                  href="#"
+>
+                  business
+</a>,
+                <a
+                  href="#"
+>
+                  corporate
+</a>,
+                <a
+                  href="#"
+>
+                  e-commerce
+</a>,
+                <a
+                  href="#"
+>
+                  agency
+</a>,
+                <a
+                  href="#"
+>
+                  responsive
+</a>,
+              ],
+              "className": "tagcloud",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "logo",
+                  "href": "#",
+                },
+                "ref": null,
+                "rendered": "logo",
+                "type": "a",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "business",
+                  "href": "#",
+                },
+                "ref": null,
+                "rendered": "business",
+                "type": "a",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "corporate",
+                  "href": "#",
+                },
+                "ref": null,
+                "rendered": "corporate",
+                "type": "a",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "e-commerce",
+                  "href": "#",
+                },
+                "ref": null,
+                "rendered": "e-commerce",
+                "type": "a",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "agency",
+                  "href": "#",
+                },
+                "ref": null,
+                "rendered": "agency",
+                "type": "a",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "responsive",
+                  "href": "#",
+                },
+                "ref": null,
+                "rendered": "responsive",
+                "type": "a",
+              },
+            ],
+            "type": "div",
+          },
+        ],
+        "type": "aside",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <aside>
+            <Form
+                        className="search-form"
+                        tag="form"
+            >
+                        <Input
+                                    className="form-control pr-5"
+                                    placeholder="Search..."
+                                    type="search"
+                        />
+                        <button
+                                    className="search-button"
+                                    type="submit"
+                        >
+                                    <FontAwesomeIcon$1
+                                                border={false}
+                                                className=""
+                                                fixedWidth={false}
+                                                flip={null}
+                                                icon="search"
+                                                listItem={false}
+                                                mask={null}
+                                                name=""
+                                                pull={null}
+                                                pulse={false}
+                                                rotation={null}
+                                                size={null}
+                                                spin={false}
+                                                symbol={false}
+                                                transform={null}
+                                    />
+                        </button>
+            </Form>
+</aside>,
+          <aside
+            className="widget"
+>
+            <div
+                        className="widget-title"
+            >
+                        Archives
+            </div>
+            <ul>
+                        <li>
+                                    <a
+                                                href="#"
+                                    >
+                                                March 2017
+                                    </a>
+                                     (40)
+                        </li>
+                        <li>
+                                    <a
+                                                href="#"
+                                    >
+                                                April 2017
+                                    </a>
+                                     (08)
+                        </li>
+                        <li>
+                                    <a
+                                                href="#"
+                                    >
+                                                May 2017
+                                    </a>
+                                     (11)
+                        </li>
+                        <li>
+                                    <a
+                                                href="#"
+                                    >
+                                                Jun 2017
+                                    </a>
+                                     (21)
+                        </li>
+            </ul>
+</aside>,
+          <aside
+            className="widget"
+>
+            <div
+                        className="widget-title"
+            >
+                        Tags
+            </div>
+            <div
+                        className="tagcloud"
+            >
+                        <a
+                                    href="#"
+                        >
+                                    logo
+                        </a>
+                        <a
+                                    href="#"
+                        >
+                                    business
+                        </a>
+                        <a
+                                    href="#"
+                        >
+                                    corporate
+                        </a>
+                        <a
+                                    href="#"
+                        >
+                                    e-commerce
+                        </a>
+                        <a
+                                    href="#"
+                        >
+                                    agency
+                        </a>
+                        <a
+                                    href="#"
+                        >
+                                    responsive
+                        </a>
+            </div>
+</aside>,
+        ],
+        "className": "mr-5",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <Form
+              className="search-form"
+              tag="form"
+>
+              <Input
+                            className="form-control pr-5"
+                            placeholder="Search..."
+                            type="search"
+              />
+              <button
+                            className="search-button"
+                            type="submit"
+              >
+                            <FontAwesomeIcon$1
+                                          border={false}
+                                          className=""
+                                          fixedWidth={false}
+                                          flip={null}
+                                          icon="search"
+                                          listItem={false}
+                                          mask={null}
+                                          name=""
+                                          pull={null}
+                                          pulse={false}
+                                          rotation={null}
+                                          size={null}
+                                          spin={false}
+                                          symbol={false}
+                                          transform={null}
+                            />
+              </button>
+</Form>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": Array [
+                <Input
+                  className="form-control pr-5"
+                  placeholder="Search..."
+                  type="search"
+/>,
+                <button
+                  className="search-button"
+                  type="submit"
+>
+                  <FontAwesomeIcon$1
+                                    border={false}
+                                    className=""
+                                    fixedWidth={false}
+                                    flip={null}
+                                    icon="search"
+                                    listItem={false}
+                                    mask={null}
+                                    name=""
+                                    pull={null}
+                                    pulse={false}
+                                    rotation={null}
+                                    size={null}
+                                    spin={false}
+                                    symbol={false}
+                                    transform={null}
+                  />
+</button>,
+              ],
+              "className": "search-form",
+              "tag": "form",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "className": "form-control pr-5",
+                  "placeholder": "Search...",
+                  "type": "search",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <FontAwesomeIcon$1
+                    border={false}
+                    className=""
+                    fixedWidth={false}
+                    flip={null}
+                    icon="search"
+                    listItem={false}
+                    mask={null}
+                    name=""
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    symbol={false}
+                    transform={null}
+/>,
+                  "className": "search-button",
+                  "type": "submit",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "border": false,
+                    "className": "",
+                    "fixedWidth": false,
+                    "flip": null,
+                    "icon": "search",
+                    "listItem": false,
+                    "mask": null,
+                    "name": "",
+                    "pull": null,
+                    "pulse": false,
+                    "rotation": null,
+                    "size": null,
+                    "spin": false,
+                    "symbol": false,
+                    "transform": null,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "button",
+              },
+            ],
+            "type": [Function],
+          },
+          "type": "aside",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="widget-title"
+>
+                Archives
+</div>,
+              <ul>
+                <li>
+                                <a
+                                                href="#"
+                                >
+                                                March 2017
+                                </a>
+                                 (40)
+                </li>
+                <li>
+                                <a
+                                                href="#"
+                                >
+                                                April 2017
+                                </a>
+                                 (08)
+                </li>
+                <li>
+                                <a
+                                                href="#"
+                                >
+                                                May 2017
+                                </a>
+                                 (11)
+                </li>
+                <li>
+                                <a
+                                                href="#"
+                                >
+                                                Jun 2017
+                                </a>
+                                 (21)
+                </li>
+</ul>,
+            ],
+            "className": "widget",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Archives",
+                "className": "widget-title",
+              },
+              "ref": null,
+              "rendered": "Archives",
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <li>
+                    <a
+                                        href="#"
+                    >
+                                        March 2017
+                    </a>
+                     (40)
+</li>,
+                  <li>
+                    <a
+                                        href="#"
+                    >
+                                        April 2017
+                    </a>
+                     (08)
+</li>,
+                  <li>
+                    <a
+                                        href="#"
+                    >
+                                        May 2017
+                    </a>
+                     (11)
+</li>,
+                  <li>
+                    <a
+                                        href="#"
+                    >
+                                        Jun 2017
+                    </a>
+                     (21)
+</li>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <a
+                        href="#"
+>
+                        March 2017
+</a>,
+                      " (40)",
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "March 2017",
+                        "href": "#",
+                      },
+                      "ref": null,
+                      "rendered": "March 2017",
+                      "type": "a",
+                    },
+                    " (40)",
+                  ],
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <a
+                        href="#"
+>
+                        April 2017
+</a>,
+                      " (08)",
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "April 2017",
+                        "href": "#",
+                      },
+                      "ref": null,
+                      "rendered": "April 2017",
+                      "type": "a",
+                    },
+                    " (08)",
+                  ],
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <a
+                        href="#"
+>
+                        May 2017
+</a>,
+                      " (11)",
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "May 2017",
+                        "href": "#",
+                      },
+                      "ref": null,
+                      "rendered": "May 2017",
+                      "type": "a",
+                    },
+                    " (11)",
+                  ],
+                  "type": "li",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <a
+                        href="#"
+>
+                        Jun 2017
+</a>,
+                      " (21)",
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Jun 2017",
+                        "href": "#",
+                      },
+                      "ref": null,
+                      "rendered": "Jun 2017",
+                      "type": "a",
+                    },
+                    " (21)",
+                  ],
+                  "type": "li",
+                },
+              ],
+              "type": "ul",
+            },
+          ],
+          "type": "aside",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="widget-title"
+>
+                Tags
+</div>,
+              <div
+                className="tagcloud"
+>
+                <a
+                                href="#"
+                >
+                                logo
+                </a>
+                <a
+                                href="#"
+                >
+                                business
+                </a>
+                <a
+                                href="#"
+                >
+                                corporate
+                </a>
+                <a
+                                href="#"
+                >
+                                e-commerce
+                </a>
+                <a
+                                href="#"
+                >
+                                agency
+                </a>
+                <a
+                                href="#"
+                >
+                                responsive
+                </a>
+</div>,
+            ],
+            "className": "widget",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Tags",
+                "className": "widget-title",
+              },
+              "ref": null,
+              "rendered": "Tags",
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <a
+                    href="#"
+>
+                    logo
+</a>,
+                  <a
+                    href="#"
+>
+                    business
+</a>,
+                  <a
+                    href="#"
+>
+                    corporate
+</a>,
+                  <a
+                    href="#"
+>
+                    e-commerce
+</a>,
+                  <a
+                    href="#"
+>
+                    agency
+</a>,
+                  <a
+                    href="#"
+>
+                    responsive
+</a>,
+                ],
+                "className": "tagcloud",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "logo",
+                    "href": "#",
+                  },
+                  "ref": null,
+                  "rendered": "logo",
+                  "type": "a",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "business",
+                    "href": "#",
+                  },
+                  "ref": null,
+                  "rendered": "business",
+                  "type": "a",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "corporate",
+                    "href": "#",
+                  },
+                  "ref": null,
+                  "rendered": "corporate",
+                  "type": "a",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "e-commerce",
+                    "href": "#",
+                  },
+                  "ref": null,
+                  "rendered": "e-commerce",
+                  "type": "a",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "agency",
+                    "href": "#",
+                  },
+                  "ref": null,
+                  "rendered": "agency",
+                  "type": "a",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "responsive",
+                    "href": "#",
+                  },
+                  "ref": null,
+                  "rendered": "responsive",
+                  "type": "a",
+                },
+              ],
+              "type": "div",
+            },
+          ],
+          "type": "aside",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

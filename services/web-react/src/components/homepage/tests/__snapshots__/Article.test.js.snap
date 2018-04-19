@@ -1,0 +1,1105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components HomePage Article Snapshot should correctly render Article 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Unknown />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <h2
+          className="article__title"
+>
+          <a
+                    href=""
+          >
+                    Learn about Docker!
+          </a>
+</h2>,
+        <ul
+          className="article__subtitle mb-2"
+>
+          <li>
+                    <FontAwesomeIcon$1
+                              border={false}
+                              className="mr-2"
+                              fixedWidth={false}
+                              flip={null}
+                              icon="calendar-alt"
+                              listItem={false}
+                              mask={null}
+                              name=""
+                              pull={null}
+                              pulse={false}
+                              rotation={null}
+                              size={null}
+                              spin={false}
+                              symbol={false}
+                              transform={null}
+                    />
+                    July 03, 2017
+          </li>
+          <li>
+                    <FontAwesomeIcon$1
+                              border={false}
+                              className="mr-2"
+                              fixedWidth={false}
+                              flip={null}
+                              icon="comment-alt"
+                              listItem={false}
+                              mask={null}
+                              name=""
+                              pull={null}
+                              pulse={false}
+                              rotation={null}
+                              size={null}
+                              spin={false}
+                              symbol={false}
+                              transform={null}
+                    />
+                    3 Comments
+          </li>
+          <li>
+                    <FontAwesomeIcon$1
+                              border={false}
+                              className="mr-2"
+                              fixedWidth={false}
+                              flip={null}
+                              icon="tag"
+                              listItem={false}
+                              mask={null}
+                              name=""
+                              pull={null}
+                              pulse={false}
+                              rotation={null}
+                              size={null}
+                              spin={false}
+                              symbol={false}
+                              transform={null}
+                    />
+                    <a
+                              href="#"
+                    >
+                              Branding
+                    </a>
+                    , 
+                    <a
+                              href="#"
+                    >
+                              Design
+                    </a>
+          </li>
+</ul>,
+        <a
+          href="#"
+>
+          <div
+                    className="article__contents"
+          >
+                    <div
+                              className="article__contents--image-container"
+                    >
+                              <img
+                                        alt="Learn about Docker!"
+                                        className="article__contents--image"
+                                        src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
+                              />
+                    </div>
+                    <p
+                              className="article__contents--body text-muted"
+                    >
+                              News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.
+                    </p>
+          </div>
+</a>,
+        <hr />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <a
+            href=""
+>
+            Learn about Docker!
+</a>,
+          "className": "article__title",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Learn about Docker!",
+            "href": "",
+          },
+          "ref": null,
+          "rendered": "Learn about Docker!",
+          "type": "a",
+        },
+        "type": "h2",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <li>
+              <FontAwesomeIcon$1
+                            border={false}
+                            className="mr-2"
+                            fixedWidth={false}
+                            flip={null}
+                            icon="calendar-alt"
+                            listItem={false}
+                            mask={null}
+                            name=""
+                            pull={null}
+                            pulse={false}
+                            rotation={null}
+                            size={null}
+                            spin={false}
+                            symbol={false}
+                            transform={null}
+              />
+              July 03, 2017
+</li>,
+            <li>
+              <FontAwesomeIcon$1
+                            border={false}
+                            className="mr-2"
+                            fixedWidth={false}
+                            flip={null}
+                            icon="comment-alt"
+                            listItem={false}
+                            mask={null}
+                            name=""
+                            pull={null}
+                            pulse={false}
+                            rotation={null}
+                            size={null}
+                            spin={false}
+                            symbol={false}
+                            transform={null}
+              />
+              3 Comments
+</li>,
+            <li>
+              <FontAwesomeIcon$1
+                            border={false}
+                            className="mr-2"
+                            fixedWidth={false}
+                            flip={null}
+                            icon="tag"
+                            listItem={false}
+                            mask={null}
+                            name=""
+                            pull={null}
+                            pulse={false}
+                            rotation={null}
+                            size={null}
+                            spin={false}
+                            symbol={false}
+                            transform={null}
+              />
+              <a
+                            href="#"
+              >
+                            Branding
+              </a>
+              , 
+              <a
+                            href="#"
+              >
+                            Design
+              </a>
+</li>,
+          ],
+          "className": "article__subtitle mb-2",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <FontAwesomeIcon$1
+                  border={false}
+                  className="mr-2"
+                  fixedWidth={false}
+                  flip={null}
+                  icon="calendar-alt"
+                  listItem={false}
+                  mask={null}
+                  name=""
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  symbol={false}
+                  transform={null}
+/>,
+                "July 03, 2017",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "border": false,
+                  "className": "mr-2",
+                  "fixedWidth": false,
+                  "flip": null,
+                  "icon": "calendar-alt",
+                  "listItem": false,
+                  "mask": null,
+                  "name": "",
+                  "pull": null,
+                  "pulse": false,
+                  "rotation": null,
+                  "size": null,
+                  "spin": false,
+                  "symbol": false,
+                  "transform": null,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "July 03, 2017",
+            ],
+            "type": "li",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <FontAwesomeIcon$1
+                  border={false}
+                  className="mr-2"
+                  fixedWidth={false}
+                  flip={null}
+                  icon="comment-alt"
+                  listItem={false}
+                  mask={null}
+                  name=""
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  symbol={false}
+                  transform={null}
+/>,
+                "3 Comments",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "border": false,
+                  "className": "mr-2",
+                  "fixedWidth": false,
+                  "flip": null,
+                  "icon": "comment-alt",
+                  "listItem": false,
+                  "mask": null,
+                  "name": "",
+                  "pull": null,
+                  "pulse": false,
+                  "rotation": null,
+                  "size": null,
+                  "spin": false,
+                  "symbol": false,
+                  "transform": null,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "3 Comments",
+            ],
+            "type": "li",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <FontAwesomeIcon$1
+                  border={false}
+                  className="mr-2"
+                  fixedWidth={false}
+                  flip={null}
+                  icon="tag"
+                  listItem={false}
+                  mask={null}
+                  name=""
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  symbol={false}
+                  transform={null}
+/>,
+                <a
+                  href="#"
+>
+                  Branding
+</a>,
+                ", ",
+                <a
+                  href="#"
+>
+                  Design
+</a>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "border": false,
+                  "className": "mr-2",
+                  "fixedWidth": false,
+                  "flip": null,
+                  "icon": "tag",
+                  "listItem": false,
+                  "mask": null,
+                  "name": "",
+                  "pull": null,
+                  "pulse": false,
+                  "rotation": null,
+                  "size": null,
+                  "spin": false,
+                  "symbol": false,
+                  "transform": null,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Branding",
+                  "href": "#",
+                },
+                "ref": null,
+                "rendered": "Branding",
+                "type": "a",
+              },
+              ", ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Design",
+                  "href": "#",
+                },
+                "ref": null,
+                "rendered": "Design",
+                "type": "a",
+              },
+            ],
+            "type": "li",
+          },
+        ],
+        "type": "ul",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <div
+            className="article__contents"
+>
+            <div
+                        className="article__contents--image-container"
+            >
+                        <img
+                                    alt="Learn about Docker!"
+                                    className="article__contents--image"
+                                    src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
+                        />
+            </div>
+            <p
+                        className="article__contents--body text-muted"
+            >
+                        News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.
+            </p>
+</div>,
+          "href": "#",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="article__contents--image-container"
+>
+                <img
+                                alt="Learn about Docker!"
+                                className="article__contents--image"
+                                src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
+                />
+</div>,
+              <p
+                className="article__contents--body text-muted"
+>
+                News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.
+</p>,
+            ],
+            "className": "article__contents",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <img
+                  alt="Learn about Docker!"
+                  className="article__contents--image"
+                  src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
+/>,
+                "className": "article__contents--image-container",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "alt": "Learn about Docker!",
+                  "className": "article__contents--image",
+                  "src": "https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "img",
+              },
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.",
+                "className": "article__contents--body text-muted",
+              },
+              "ref": null,
+              "rendered": "News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.",
+              "type": "p",
+            },
+          ],
+          "type": "div",
+        },
+        "type": "a",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": "hr",
+      },
+    ],
+    "type": "article",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <h2
+            className="article__title"
+>
+            <a
+                        href=""
+            >
+                        Learn about Docker!
+            </a>
+</h2>,
+          <ul
+            className="article__subtitle mb-2"
+>
+            <li>
+                        <FontAwesomeIcon$1
+                                    border={false}
+                                    className="mr-2"
+                                    fixedWidth={false}
+                                    flip={null}
+                                    icon="calendar-alt"
+                                    listItem={false}
+                                    mask={null}
+                                    name=""
+                                    pull={null}
+                                    pulse={false}
+                                    rotation={null}
+                                    size={null}
+                                    spin={false}
+                                    symbol={false}
+                                    transform={null}
+                        />
+                        July 03, 2017
+            </li>
+            <li>
+                        <FontAwesomeIcon$1
+                                    border={false}
+                                    className="mr-2"
+                                    fixedWidth={false}
+                                    flip={null}
+                                    icon="comment-alt"
+                                    listItem={false}
+                                    mask={null}
+                                    name=""
+                                    pull={null}
+                                    pulse={false}
+                                    rotation={null}
+                                    size={null}
+                                    spin={false}
+                                    symbol={false}
+                                    transform={null}
+                        />
+                        3 Comments
+            </li>
+            <li>
+                        <FontAwesomeIcon$1
+                                    border={false}
+                                    className="mr-2"
+                                    fixedWidth={false}
+                                    flip={null}
+                                    icon="tag"
+                                    listItem={false}
+                                    mask={null}
+                                    name=""
+                                    pull={null}
+                                    pulse={false}
+                                    rotation={null}
+                                    size={null}
+                                    spin={false}
+                                    symbol={false}
+                                    transform={null}
+                        />
+                        <a
+                                    href="#"
+                        >
+                                    Branding
+                        </a>
+                        , 
+                        <a
+                                    href="#"
+                        >
+                                    Design
+                        </a>
+            </li>
+</ul>,
+          <a
+            href="#"
+>
+            <div
+                        className="article__contents"
+            >
+                        <div
+                                    className="article__contents--image-container"
+                        >
+                                    <img
+                                                alt="Learn about Docker!"
+                                                className="article__contents--image"
+                                                src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
+                                    />
+                        </div>
+                        <p
+                                    className="article__contents--body text-muted"
+                        >
+                                    News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.
+                        </p>
+            </div>
+</a>,
+          <hr />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <a
+              href=""
+>
+              Learn about Docker!
+</a>,
+            "className": "article__title",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Learn about Docker!",
+              "href": "",
+            },
+            "ref": null,
+            "rendered": "Learn about Docker!",
+            "type": "a",
+          },
+          "type": "h2",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <li>
+                <FontAwesomeIcon$1
+                                border={false}
+                                className="mr-2"
+                                fixedWidth={false}
+                                flip={null}
+                                icon="calendar-alt"
+                                listItem={false}
+                                mask={null}
+                                name=""
+                                pull={null}
+                                pulse={false}
+                                rotation={null}
+                                size={null}
+                                spin={false}
+                                symbol={false}
+                                transform={null}
+                />
+                July 03, 2017
+</li>,
+              <li>
+                <FontAwesomeIcon$1
+                                border={false}
+                                className="mr-2"
+                                fixedWidth={false}
+                                flip={null}
+                                icon="comment-alt"
+                                listItem={false}
+                                mask={null}
+                                name=""
+                                pull={null}
+                                pulse={false}
+                                rotation={null}
+                                size={null}
+                                spin={false}
+                                symbol={false}
+                                transform={null}
+                />
+                3 Comments
+</li>,
+              <li>
+                <FontAwesomeIcon$1
+                                border={false}
+                                className="mr-2"
+                                fixedWidth={false}
+                                flip={null}
+                                icon="tag"
+                                listItem={false}
+                                mask={null}
+                                name=""
+                                pull={null}
+                                pulse={false}
+                                rotation={null}
+                                size={null}
+                                spin={false}
+                                symbol={false}
+                                transform={null}
+                />
+                <a
+                                href="#"
+                >
+                                Branding
+                </a>
+                , 
+                <a
+                                href="#"
+                >
+                                Design
+                </a>
+</li>,
+            ],
+            "className": "article__subtitle mb-2",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <FontAwesomeIcon$1
+                    border={false}
+                    className="mr-2"
+                    fixedWidth={false}
+                    flip={null}
+                    icon="calendar-alt"
+                    listItem={false}
+                    mask={null}
+                    name=""
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    symbol={false}
+                    transform={null}
+/>,
+                  "July 03, 2017",
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "border": false,
+                    "className": "mr-2",
+                    "fixedWidth": false,
+                    "flip": null,
+                    "icon": "calendar-alt",
+                    "listItem": false,
+                    "mask": null,
+                    "name": "",
+                    "pull": null,
+                    "pulse": false,
+                    "rotation": null,
+                    "size": null,
+                    "spin": false,
+                    "symbol": false,
+                    "transform": null,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "July 03, 2017",
+              ],
+              "type": "li",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <FontAwesomeIcon$1
+                    border={false}
+                    className="mr-2"
+                    fixedWidth={false}
+                    flip={null}
+                    icon="comment-alt"
+                    listItem={false}
+                    mask={null}
+                    name=""
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    symbol={false}
+                    transform={null}
+/>,
+                  "3 Comments",
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "border": false,
+                    "className": "mr-2",
+                    "fixedWidth": false,
+                    "flip": null,
+                    "icon": "comment-alt",
+                    "listItem": false,
+                    "mask": null,
+                    "name": "",
+                    "pull": null,
+                    "pulse": false,
+                    "rotation": null,
+                    "size": null,
+                    "spin": false,
+                    "symbol": false,
+                    "transform": null,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "3 Comments",
+              ],
+              "type": "li",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <FontAwesomeIcon$1
+                    border={false}
+                    className="mr-2"
+                    fixedWidth={false}
+                    flip={null}
+                    icon="tag"
+                    listItem={false}
+                    mask={null}
+                    name=""
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    symbol={false}
+                    transform={null}
+/>,
+                  <a
+                    href="#"
+>
+                    Branding
+</a>,
+                  ", ",
+                  <a
+                    href="#"
+>
+                    Design
+</a>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "border": false,
+                    "className": "mr-2",
+                    "fixedWidth": false,
+                    "flip": null,
+                    "icon": "tag",
+                    "listItem": false,
+                    "mask": null,
+                    "name": "",
+                    "pull": null,
+                    "pulse": false,
+                    "rotation": null,
+                    "size": null,
+                    "spin": false,
+                    "symbol": false,
+                    "transform": null,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Branding",
+                    "href": "#",
+                  },
+                  "ref": null,
+                  "rendered": "Branding",
+                  "type": "a",
+                },
+                ", ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Design",
+                    "href": "#",
+                  },
+                  "ref": null,
+                  "rendered": "Design",
+                  "type": "a",
+                },
+              ],
+              "type": "li",
+            },
+          ],
+          "type": "ul",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="article__contents"
+>
+              <div
+                            className="article__contents--image-container"
+              >
+                            <img
+                                          alt="Learn about Docker!"
+                                          className="article__contents--image"
+                                          src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
+                            />
+              </div>
+              <p
+                            className="article__contents--body text-muted"
+              >
+                            News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.
+              </p>
+</div>,
+            "href": "#",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  className="article__contents--image-container"
+>
+                  <img
+                                    alt="Learn about Docker!"
+                                    className="article__contents--image"
+                                    src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
+                  />
+</div>,
+                <p
+                  className="article__contents--body text-muted"
+>
+                  News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.
+</p>,
+              ],
+              "className": "article__contents",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <img
+                    alt="Learn about Docker!"
+                    className="article__contents--image"
+                    src="https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png"
+/>,
+                  "className": "article__contents--image-container",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "alt": "Learn about Docker!",
+                    "className": "article__contents--image",
+                    "src": "https://userscontent2.emaze.com/images/77789d02-d2d0-4bc9-b976-6bf6d6cbcdb3/84295f963c6adbd26426b822c11fefe6.png",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "img",
+                },
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.",
+                  "className": "article__contents--body text-muted",
+                },
+                "ref": null,
+                "rendered": "News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process. News articles with helpful tips and how-to guides for all things related to software development. The main focus of these articles is to find better approaches to the software development process.",
+                "type": "p",
+              },
+            ],
+            "type": "div",
+          },
+          "type": "a",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": "hr",
+        },
+      ],
+      "type": "article",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

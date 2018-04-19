@@ -4,6 +4,10 @@ import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 export default (props) => {
   const {currentPage, totalPages} = props;
+  if(currentPage > totalPages) {
+    return;
+  }
+
   const pageBoxes = 5;
   let selectedPagePosition = currentPage % pageBoxes;
 
