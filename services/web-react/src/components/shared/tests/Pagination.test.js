@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-
 import Pagination from '../Pagination';
 
 let wrapper;
@@ -17,12 +16,13 @@ describe('Shared', () => {
       beforeEach(() => {
         wrapper = shallow(<Pagination currentPage={1} totalPages={10} />);
       });
+
       it('should set the currentPage active', () => {
-        expect(wrapper.childAt(1).html().includes('active')).toBe(true);
+        expect(wrapper.childAt(1).prop('active')).toBe(true);
       });
 
-      it('should set the previousArrow disabled', () => {
-        expect(wrapper.childAt(0).html().includes('disabled')).toBe(true);
+      it('should set the previousArrow hidden', () => {
+        expect(wrapper.childAt(0).prop('hidden')).toBe(true);
       });
     });
 
@@ -31,17 +31,12 @@ describe('Shared', () => {
         wrapper = shallow(<Pagination currentPage={7} totalPages={10} />);
       });
       it('should set the currentPage active', () => {
-        expect(wrapper.childAt(2).html().includes('active')).toBe(true);
+        expect(wrapper.childAt(2).prop('active')).toBe(true);
       });
 
-      it('should not set the previousArrow disabled', () => {
-        expect(wrapper.childAt(0).html().includes('disabled')).not.toBe(true);
+      it('should not set the previousArrow hidden', () => {
+        expect(wrapper.childAt(0).prop('hidden')).toBe(false);
       });
-
-      it('should not set the nextArrow disabled', () => {
-        expect(wrapper.childAt(wrapper.children().length - 1).html().includes('disabled')).not.toBe(true);
-      });
-
     });
 
     describe('currentPage > totalPages', () => {
@@ -49,7 +44,7 @@ describe('Shared', () => {
         wrapper = shallow(<Pagination currentPage={20} totalPages={10} />);
       });
       it('should not render pagination', () => {
-        expect(wrapper.html()).toBe(null);
+        expect(wrapper.html()).toBe("");
       });
     });
 
@@ -58,15 +53,15 @@ describe('Shared', () => {
         wrapper = shallow(<Pagination currentPage={10} totalPages={10} />);
       });
       it('should set the currentPage active', () => {
-        expect(wrapper.childAt(wrapper.children().length - 2).html().includes('active')).toBe(true);
+        expect(wrapper.childAt(wrapper.children().length - 2).prop('active')).toBe(true);
       });
 
-      it('should not set the previousArrow disabled', () => {
-        expect(wrapper.childAt(0).html().includes('disabled')).not.toBe(true);
+      it('should not set the previousArrow hidden', () => {
+        expect(wrapper.childAt(0).prop('hidden')).toBe(false);
       });
 
-      it('should set the nextArrow disabled', () => {
-        expect(wrapper.childAt(wrapper.children().length - 1).html().includes('disabled')).toBe(true);
+      it('should set the nextArrow hidden', () => {
+        expect(wrapper.childAt(wrapper.children().length - 1).prop('hidden')).toBe(true);
       });
     });
 
