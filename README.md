@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/vleango/tech_writer/tree/master.svg?style=svg)](https://circleci.com/gh/vleango/tech_writer/tree/master)
+
 # tech_writer_app
 
 Learn React with Redux, Lambda with Go, and DynamoDB together
