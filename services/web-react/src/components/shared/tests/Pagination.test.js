@@ -18,7 +18,7 @@ describe('Shared', () => {
       });
 
       it('should set the currentPage active', () => {
-        expect(wrapper.childAt(1).prop('active')).toBe(false);
+        expect(wrapper.childAt(1).prop('active')).toBe(true);
       });
 
       it('should set the previousArrow hidden', () => {
