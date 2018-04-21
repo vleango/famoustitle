@@ -18,6 +18,13 @@ Resources:
             Method: get
             RestApiId:
               Ref: TechWriter
+        Event2:
+          Type: Api
+          Properties:
+            Path: /articles
+            Method: options
+            RestApiId:
+              Ref: TechWriter
   TechWriter:
     Type: 'AWS::Serverless::Api'
     Properties:
