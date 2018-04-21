@@ -13,6 +13,7 @@ export class ArticleNewPage extends Component {
     this.state = {
       title: "",
       body: "",
+      tags: "",
       submitting: false,
       errorMsg: "",
       token: props.token
@@ -55,6 +56,13 @@ export class ArticleNewPage extends Component {
                 name="title"
                 value={this.state.title}
                 placeholder="Title"
+                onChange={this.onInputChange} />
+            </FormGroup>
+            <FormGroup>
+              <Input type="text"
+                name="tags"
+                value={this.state.tags}
+                placeholder="Tag"
                 onChange={this.onInputChange} />
             </FormGroup>
             <FormGroup>

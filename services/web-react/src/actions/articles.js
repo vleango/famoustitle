@@ -6,7 +6,7 @@ export const fetchList = () => {
   return async (dispatch, getState) => {
     try {
       const response = await axios.get(`${ROOT_API_URL}/articles`);
-      dispatch(list({articles: response.data.articles}));
+      dispatch(list(response.data));
     }
     catch (error) {
       console.log(error);
@@ -70,7 +70,7 @@ export const removeItem = (id) => {
 
 export const list = (data) => ({
   type: 'ARTICLE_LIST',
-  data: { articles: data.articles }
+  data
 });
 
 export const item = (data) => ({

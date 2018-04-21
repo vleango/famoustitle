@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input } from 'reactstrap';
-import moment from 'moment';
 import { map } from 'lodash';
 
 import fontawesome from '@fortawesome/fontawesome';
@@ -27,7 +26,7 @@ export const Sidebar = (props) => {
         <ul>
           {
             props.archives && map(props.archives, (count, date) => {
-              return <li key={date}><Link to={`/?date=${date}`}>{moment(date).format('MMMM YYYY')} ({count})</Link></li>
+              return <li key={date}><Link to={`/?date=${date}`}>{date} ({count})</Link></li>
             })
           }
         </ul>

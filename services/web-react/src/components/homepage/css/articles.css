@@ -17,6 +17,10 @@
   font-size: 14px;
 }
 
+.article__subtitle--tags > a {
+  margin-right: 0.7rem;
+}
+
 .article__contents {
   display: flex;
   align-items: flex-start;

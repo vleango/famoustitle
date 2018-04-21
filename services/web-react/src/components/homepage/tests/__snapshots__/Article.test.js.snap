@@ -19,6 +19,12 @@ ShallowWrapper {
         ",
             "created_at": "2018-02-28T14:48:54.444740278Z",
             "id": "123",
+            "tags": Array [
+              "ruby",
+              "rails",
+              "naming",
+              "web",
+            ],
             "title": "Hunting for great names in programming",
           }
     }
@@ -96,10 +102,12 @@ ShallowWrapper {
                               replace={false}
                               to="/articles/123#comments"
                     >
-                              3 Comments
+                              0 Comments
                     </Link>
           </li>
-          <li>
+          <li
+                    className="article__subtitle--tags"
+          >
                     <FontAwesomeIcon$1
                               border={false}
                               className="mr-2"
@@ -119,16 +127,27 @@ ShallowWrapper {
                     />
                     <Link
                               replace={false}
-                              to="/?tag=branding"
+                              to="/?tag=ruby"
                     >
-                              Branding
+                              ruby
                     </Link>
-                    , 
                     <Link
                               replace={false}
-                              to="/?tag=design"
+                              to="/?tag=rails"
                     >
-                              Design
+                              rails
+                    </Link>
+                    <Link
+                              replace={false}
+                              to="/?tag=naming"
+                    >
+                              naming
+                    </Link>
+                    <Link
+                              replace={false}
+                              to="/?tag=web"
+                    >
+                              web
                     </Link>
           </li>
 </ul>,
@@ -235,10 +254,12 @@ ShallowWrapper {
                             replace={false}
                             to="/articles/123#comments"
               >
-                            3 Comments
+                            0 Comments
               </Link>
 </li>,
-            <li>
+            <li
+              className="article__subtitle--tags"
+>
               <FontAwesomeIcon$1
                             border={false}
                             className="mr-2"
@@ -258,16 +279,27 @@ ShallowWrapper {
               />
               <Link
                             replace={false}
-                            to="/?tag=branding"
+                            to="/?tag=ruby"
               >
-                            Branding
+                            ruby
               </Link>
-              , 
               <Link
                             replace={false}
-                            to="/?tag=design"
+                            to="/?tag=rails"
               >
-                            Design
+                            rails
+              </Link>
+              <Link
+                            replace={false}
+                            to="/?tag=naming"
+              >
+                            naming
+              </Link>
+              <Link
+                            replace={false}
+                            to="/?tag=web"
+              >
+                            web
               </Link>
 </li>,
           ],
@@ -376,7 +408,7 @@ ShallowWrapper {
                   replace={false}
                   to="/articles/123#comments"
 >
-                  3 Comments
+                  0 Comments
 </Link>,
               ],
             },
@@ -412,12 +444,12 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": "3 Comments",
+                  "children": "0 Comments",
                   "replace": false,
                   "to": "/articles/123#comments",
                 },
                 "ref": null,
-                "rendered": "3 Comments",
+                "rendered": "0 Comments",
                 "type": [Function],
               },
             ],
@@ -446,20 +478,42 @@ ShallowWrapper {
                   symbol={false}
                   transform={null}
 />,
-                <Link
-                  replace={false}
-                  to="/?tag=branding"
+                Array [
+                  Array [
+                    <Link
+                      replace={false}
+                      to="/?tag=ruby"
 >
-                  Branding
+                      ruby
 </Link>,
-                ", ",
-                <Link
-                  replace={false}
-                  to="/?tag=design"
+                  ],
+                  Array [
+                    <Link
+                      replace={false}
+                      to="/?tag=rails"
 >
-                  Design
+                      rails
 </Link>,
+                  ],
+                  Array [
+                    <Link
+                      replace={false}
+                      to="/?tag=naming"
+>
+                      naming
+</Link>,
+                  ],
+                  Array [
+                    <Link
+                      replace={false}
+                      to="/?tag=web"
+>
+                      web
+</Link>,
+                  ],
+                ],
               ],
+              "className": "article__subtitle--tags",
             },
             "ref": null,
             "rendered": Array [
@@ -490,29 +544,54 @@ ShallowWrapper {
               },
               Object {
                 "instance": null,
-                "key": undefined,
+                "key": "ruby",
                 "nodeType": "class",
                 "props": Object {
-                  "children": "Branding",
+                  "children": "ruby",
                   "replace": false,
-                  "to": "/?tag=branding",
+                  "to": "/?tag=ruby",
                 },
                 "ref": null,
-                "rendered": "Branding",
+                "rendered": "ruby",
                 "type": [Function],
               },
-              ", ",
               Object {
                 "instance": null,
-                "key": undefined,
+                "key": "rails",
                 "nodeType": "class",
                 "props": Object {
-                  "children": "Design",
+                  "children": "rails",
                   "replace": false,
-                  "to": "/?tag=design",
+                  "to": "/?tag=rails",
                 },
                 "ref": null,
-                "rendered": "Design",
+                "rendered": "rails",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "naming",
+                "nodeType": "class",
+                "props": Object {
+                  "children": "naming",
+                  "replace": false,
+                  "to": "/?tag=naming",
+                },
+                "ref": null,
+                "rendered": "naming",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "web",
+                "nodeType": "class",
+                "props": Object {
+                  "children": "web",
+                  "replace": false,
+                  "to": "/?tag=web",
+                },
+                "ref": null,
+                "rendered": "web",
                 "type": [Function],
               },
             ],
@@ -661,10 +740,12 @@ It sta...",
                                     replace={false}
                                     to="/articles/123#comments"
                         >
-                                    3 Comments
+                                    0 Comments
                         </Link>
             </li>
-            <li>
+            <li
+                        className="article__subtitle--tags"
+            >
                         <FontAwesomeIcon$1
                                     border={false}
                                     className="mr-2"
@@ -684,16 +765,27 @@ It sta...",
                         />
                         <Link
                                     replace={false}
-                                    to="/?tag=branding"
+                                    to="/?tag=ruby"
                         >
-                                    Branding
+                                    ruby
                         </Link>
-                        , 
                         <Link
                                     replace={false}
-                                    to="/?tag=design"
+                                    to="/?tag=rails"
                         >
-                                    Design
+                                    rails
+                        </Link>
+                        <Link
+                                    replace={false}
+                                    to="/?tag=naming"
+                        >
+                                    naming
+                        </Link>
+                        <Link
+                                    replace={false}
+                                    to="/?tag=web"
+                        >
+                                    web
                         </Link>
             </li>
 </ul>,
@@ -800,10 +892,12 @@ It sta...",
                                 replace={false}
                                 to="/articles/123#comments"
                 >
-                                3 Comments
+                                0 Comments
                 </Link>
 </li>,
-              <li>
+              <li
+                className="article__subtitle--tags"
+>
                 <FontAwesomeIcon$1
                                 border={false}
                                 className="mr-2"
@@ -823,16 +917,27 @@ It sta...",
                 />
                 <Link
                                 replace={false}
-                                to="/?tag=branding"
+                                to="/?tag=ruby"
                 >
-                                Branding
+                                ruby
                 </Link>
-                , 
                 <Link
                                 replace={false}
-                                to="/?tag=design"
+                                to="/?tag=rails"
                 >
-                                Design
+                                rails
+                </Link>
+                <Link
+                                replace={false}
+                                to="/?tag=naming"
+                >
+                                naming
+                </Link>
+                <Link
+                                replace={false}
+                                to="/?tag=web"
+                >
+                                web
                 </Link>
 </li>,
             ],
@@ -941,7 +1046,7 @@ It sta...",
                     replace={false}
                     to="/articles/123#comments"
 >
-                    3 Comments
+                    0 Comments
 </Link>,
                 ],
               },
@@ -977,12 +1082,12 @@ It sta...",
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "children": "3 Comments",
+                    "children": "0 Comments",
                     "replace": false,
                     "to": "/articles/123#comments",
                   },
                   "ref": null,
-                  "rendered": "3 Comments",
+                  "rendered": "0 Comments",
                   "type": [Function],
                 },
               ],
@@ -1011,20 +1116,42 @@ It sta...",
                     symbol={false}
                     transform={null}
 />,
-                  <Link
-                    replace={false}
-                    to="/?tag=branding"
+                  Array [
+                    Array [
+                      <Link
+                        replace={false}
+                        to="/?tag=ruby"
 >
-                    Branding
+                        ruby
 </Link>,
-                  ", ",
-                  <Link
-                    replace={false}
-                    to="/?tag=design"
+                    ],
+                    Array [
+                      <Link
+                        replace={false}
+                        to="/?tag=rails"
 >
-                    Design
+                        rails
 </Link>,
+                    ],
+                    Array [
+                      <Link
+                        replace={false}
+                        to="/?tag=naming"
+>
+                        naming
+</Link>,
+                    ],
+                    Array [
+                      <Link
+                        replace={false}
+                        to="/?tag=web"
+>
+                        web
+</Link>,
+                    ],
+                  ],
                 ],
+                "className": "article__subtitle--tags",
               },
               "ref": null,
               "rendered": Array [
@@ -1055,29 +1182,54 @@ It sta...",
                 },
                 Object {
                   "instance": null,
-                  "key": undefined,
+                  "key": "ruby",
                   "nodeType": "class",
                   "props": Object {
-                    "children": "Branding",
+                    "children": "ruby",
                     "replace": false,
-                    "to": "/?tag=branding",
+                    "to": "/?tag=ruby",
                   },
                   "ref": null,
-                  "rendered": "Branding",
+                  "rendered": "ruby",
                   "type": [Function],
                 },
-                ", ",
                 Object {
                   "instance": null,
-                  "key": undefined,
+                  "key": "rails",
                   "nodeType": "class",
                   "props": Object {
-                    "children": "Design",
+                    "children": "rails",
                     "replace": false,
-                    "to": "/?tag=design",
+                    "to": "/?tag=rails",
                   },
                   "ref": null,
-                  "rendered": "Design",
+                  "rendered": "rails",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "naming",
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "naming",
+                    "replace": false,
+                    "to": "/?tag=naming",
+                  },
+                  "ref": null,
+                  "rendered": "naming",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "web",
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "web",
+                    "replace": false,
+                    "to": "/?tag=web",
+                  },
+                  "ref": null,
+                  "rendered": "web",
                   "type": [Function],
                 },
               ],
