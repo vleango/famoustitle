@@ -1,25 +1,3 @@
-// const articlesReducerDefaultState = {
-// 	index: {
-//     pagination: {
-//       currentPage: 1,
-//       totalPages: 1
-//     },
-//     resources: [],
-//     archives: {
-//       '2018-04-24T14:52:28.254839633Z': 11,
-//       '2018-03-24T14:52:28.254839633Z': 40
-//     },
-//     tags: [
-//       'logo',
-//       'business',
-//       'corporate',
-//       'e-commerce',
-//       'agency'
-//     ]
-//   },
-//   show:  { resource: null }
-// };
-
 const articlesReducerDefaultState = {
 	index: {
     pagination: {
@@ -40,7 +18,9 @@ export default (state = articlesReducerDefaultState, action) => {
         ...state,
         index: {
           ...state.index,
-          resources: action.data.articles
+          resources: action.data.articles,
+          archives: action.data.archives,
+          tags: action.data.tags
         }
       };
     case 'ARTICLE_ITEM':

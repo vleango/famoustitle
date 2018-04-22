@@ -44,6 +44,17 @@ ShallowWrapper {
                               tag="div"
                     >
                               <Input
+                                        name="tags"
+                                        onChange={[Function]}
+                                        placeholder="Tag"
+                                        type="text"
+                                        value=""
+                              />
+                    </FormGroup>
+                    <FormGroup
+                              tag="div"
+                    >
+                              <Input
                                         name="body"
                                         onChange={[Function]}
                                         placeholder="Add your article"
@@ -107,6 +118,17 @@ ShallowWrapper {
                         tag="div"
             >
                         <Input
+                                    name="tags"
+                                    onChange={[Function]}
+                                    placeholder="Tag"
+                                    type="text"
+                                    value=""
+                        />
+            </FormGroup>
+            <FormGroup
+                        tag="div"
+            >
+                        <Input
                                     name="body"
                                     onChange={[Function]}
                                     placeholder="Add your article"
@@ -146,6 +168,17 @@ ShallowWrapper {
                                 name="title"
                                 onChange={[Function]}
                                 placeholder="Title"
+                                type="text"
+                                value=""
+                />
+</FormGroup>,
+              <FormGroup
+                tag="div"
+>
+                <Input
+                                name="tags"
+                                onChange={[Function]}
+                                placeholder="Tag"
                                 type="text"
                                 value=""
                 />
@@ -204,6 +237,38 @@ ShallowWrapper {
                   "name": "title",
                   "onChange": [Function],
                   "placeholder": "Title",
+                  "type": "text",
+                  "value": "",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": <Input
+                  name="tags"
+                  onChange={[Function]}
+                  placeholder="Tag"
+                  type="text"
+                  value=""
+/>,
+                "tag": "div",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "name": "tags",
+                  "onChange": [Function],
+                  "placeholder": "Tag",
                   "type": "text",
                   "value": "",
                 },
@@ -322,6 +387,17 @@ ShallowWrapper {
                                     tag="div"
                         >
                                     <Input
+                                                name="tags"
+                                                onChange={[Function]}
+                                                placeholder="Tag"
+                                                type="text"
+                                                value=""
+                                    />
+                        </FormGroup>
+                        <FormGroup
+                                    tag="div"
+                        >
+                                    <Input
                                                 name="body"
                                                 onChange={[Function]}
                                                 placeholder="Add your article"
@@ -385,6 +461,17 @@ ShallowWrapper {
                             tag="div"
               >
                             <Input
+                                          name="tags"
+                                          onChange={[Function]}
+                                          placeholder="Tag"
+                                          type="text"
+                                          value=""
+                            />
+              </FormGroup>
+              <FormGroup
+                            tag="div"
+              >
+                            <Input
                                           name="body"
                                           onChange={[Function]}
                                           placeholder="Add your article"
@@ -424,6 +511,17 @@ ShallowWrapper {
                                     name="title"
                                     onChange={[Function]}
                                     placeholder="Title"
+                                    type="text"
+                                    value=""
+                  />
+</FormGroup>,
+                <FormGroup
+                  tag="div"
+>
+                  <Input
+                                    name="tags"
+                                    onChange={[Function]}
+                                    placeholder="Tag"
                                     type="text"
                                     value=""
                   />
@@ -482,6 +580,38 @@ ShallowWrapper {
                     "name": "title",
                     "onChange": [Function],
                     "placeholder": "Title",
+                    "type": "text",
+                    "value": "",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": <Input
+                    name="tags"
+                    onChange={[Function]}
+                    placeholder="Tag"
+                    type="text"
+                    value=""
+/>,
+                  "tag": "div",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "name": "tags",
+                    "onChange": [Function],
+                    "placeholder": "Tag",
                     "type": "text",
                     "value": "",
                   },

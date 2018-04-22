@@ -26,11 +26,15 @@ export default (props) => {
           </li>
           <li>
             <FontAwesomeIcon className="mr-2" icon="comment-alt"/>
-            <Link to={`/articles/${props.article.id}#comments`}>3 Comments</Link>
+            <Link to={`/articles/${props.article.id}#comments`}>0 Comments</Link>
           </li>
-          <li>
+          <li className="article__subtitle--tags">
             <FontAwesomeIcon className="mr-2" icon="tag"/>
-            <Link to={`/?tag=branding`}>Branding</Link>, <Link to={`/?tag=design`}>Design</Link>
+            {props.article.tags.map((tag) => {
+              return [
+                <Link key={tag} to={`/?tag=${tag}`}>{tag}</Link>
+              ]
+            })}
           </li>
       </ul>
       <Link to={`/articles/${props.article.id}`}>

@@ -12,7 +12,8 @@ The specific policy isn’t as important as the fact that this precondition was 
 No problemo: Just extract the protection into its own module and call it from both spots. First attempt at naming this new module gave me PrivateNetworkProtector, which seemed like a fine choice until I considered the method names that’d work with it:
 
 `,
-    created_at: '2018-02-28T14:48:54.444740278Z'
+    created_at: '2018-02-28T14:48:54.444740278Z',
+    tags: ["ruby", "rails", "naming", "web"]
   },
   {
     id: '456',
@@ -28,7 +29,8 @@ a new database configuration entry in config/database.yml if your application us
 a new secret key base entry in config/secrets.yml for apps on Rails 4.1 and higher
 As I mentioned first we would need a new file in config/environments/. A short example for staging environment could be:
     `,
-    created_at: '2018-02-28T14:48:54.444740278Z'
+    created_at: '2018-02-28T14:48:54.444740278Z',
+    tags: ["css", "web"]
   }
 ]
 
