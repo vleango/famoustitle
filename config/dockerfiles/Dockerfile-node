@@ -1,4 +1,4 @@
-FROM node:8.10.0
+FROM node:9.11.1
 
 # required to be passed in
 ARG APP_PATH
@@ -14,24 +14,15 @@ WORKDIR $INSTALL_PATH
 
 # Copy dependency definitions
 # IMPORTANT:: Need to turn off if starting new app
+COPY $APP_PATH/package.json $APP_PATH/yarn.lock ./
 
-# yarn.lock not working well with 8.10...
-# COPY $APP_PATH/package.json $APP_PATH/yarn.lock ./
-COPY $APP_PATH/package.json ./
-
-# Switch from npm to yarn
-RUN npm i -g yarn@1.5.1
-
-# Install dependencies
+# Install dependencies (yarn installed from node image)
 RUN yarn install
-
-# Get all the code needed to run the app
-COPY $APP_PATH/. $INSTALL_PATH
 
 # Install global packages with local user
 USER $LOCAL_USER
 
-# Add yarn path
-ENV PATH="/home/${LOCAL_USER}/.yarn/bin:${PATH}"
+# Get all the code needed to run the app
+COPY $APP_PATH/. $INSTALL_PATH/.
 
 CMD ["yarn", "run", "start"]

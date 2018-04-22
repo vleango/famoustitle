@@ -7,7 +7,7 @@ Resources:
     Properties:
       Handler: bin/articles_index
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
+      CodeUri: /go/.serverless/tech-writer.zip
       MemorySize: 128
       Timeout: 3
       Events:
@@ -16,6 +16,13 @@ Resources:
           Properties:
             Path: /articles
             Method: get
+            RestApiId:
+              Ref: TechWriter
+        Event2:
+          Type: Api
+          Properties:
+            Path: /articles
+            Method: options
             RestApiId:
               Ref: TechWriter
   TechWriter:
@@ -215,7 +222,7 @@ Resources:
     Properties:
       Handler: bin/articles_create
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
+      CodeUri: /go/.serverless/tech-writer.zip
       MemorySize: 128
       Timeout: 3
       Events:
@@ -224,6 +231,13 @@ Resources:
           Properties:
             Path: /articles
             Method: post
+            RestApiId:
+              Ref: TechWriter
+        Event2:
+          Type: Api
+          Properties:
+            Path: /articles
+            Method: options
             RestApiId:
               Ref: TechWriter
   Articles_createLambdaPermission:
@@ -240,7 +254,7 @@ Resources:
     Properties:
       Handler: bin/articles_show
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
+      CodeUri: /go/.serverless/tech-writer.zip
       MemorySize: 128
       Timeout: 3
       Events:
@@ -265,7 +279,7 @@ Resources:
     Properties:
       Handler: bin/articles_update
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
+      CodeUri: /go/.serverless/tech-writer.zip
       MemorySize: 128
       Timeout: 3
       Events:
@@ -274,6 +288,13 @@ Resources:
           Properties:
             Path: '/articles/{id}'
             Method: post
+            RestApiId:
+              Ref: TechWriter
+        Event2:
+          Type: Api
+          Properties:
+            Path: /articles/{id}
+            Method: options
             RestApiId:
               Ref: TechWriter
   Articles_updateLambdaPermission:
@@ -290,7 +311,7 @@ Resources:
     Properties:
       Handler: bin/articles_destroy
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
+      CodeUri: /go/.serverless/tech-writer.zip
       MemorySize: 128
       Timeout: 3
       Events:
