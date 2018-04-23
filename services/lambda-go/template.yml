@@ -301,6 +301,13 @@ Resources:
             Method: delete
             RestApiId:
               Ref: TechWriter
+        Event2:
+          Type: Api
+          Properties:
+            Path: '/articles/{id}'
+            Method: options
+            RestApiId:
+              Ref: TechWriter
   Articles_destroyLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
