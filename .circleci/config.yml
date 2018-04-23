@@ -4,26 +4,42 @@
 #
 version: 2
 jobs:
-  build:
+  web-react:
     docker:
-      # specify the version you desire here
       - image: circleci/node:9.11.1
     steps:
       - checkout
-
-      # Download and cache dependencies
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "services/web-react/package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
       - run: cd services/web-react; yarn install
-
       - save_cache:
           paths:
             - services/web-react/node_modules
           key: v1-dependencies-{{ checksum "services/web-react/package.json" }}
-
-      # run tests!
       - run: cd services/web-react; yarn test
+  lambda-go:
+    working_directory: /go/src/github.com/vleango
+    docker:
+      - image: circleci/golang:1.10
+    steps:
+      - checkout:
+          path: ~/project
+      - run: cp -r ~/project/services/lambda-go/github.com /go/src/
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gopkg.toml" }}
+      - run: export INSTALL_DIRECTORY=/usr/local/bin
+      - run: curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+      - run: make
+      - save_cache:
+          paths:
+            - services/lambda-go/pkg
+          key: v1-dependencies-{{ checksum "Gopkg.toml" }}
+      - run: go test functions/articles/create/main_test.go
+workflows:
+  version: 2
+  all_tests:
+    jobs:
+      - web-react
+      - lambda-go

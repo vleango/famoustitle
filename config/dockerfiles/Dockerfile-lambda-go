@@ -2,8 +2,9 @@ FROM lambci/lambda:go1.x
 FROM golang:1.10.0
 
 # required to be passed in
+ARG SERVICE_PATH
 ARG APP_PATH
-ARG INSTALL_PATH=/go/src/github.com/vleango
+ARG INSTALL_PATH=/go/src
 ARG LOCAL_USER=go
 ENV SAM_VERSION=0.2.11
 
@@ -17,16 +18,16 @@ RUN apt-get install -y -qq curl && \
 
 RUN npm i -g serverless
 
-COPY $APP_PATH/package.json /go/package.json
+COPY $SERVICE_PATH/$APP_PATH/package.json /go/package.json
 RUN npm install
 
 # copy project to container
-COPY $APP_PATH/. $INSTALL_PATH/.
+COPY $SERVICE_PATH/. $INSTALL_PATH/.
 
 # Install dep
 ENV INSTALL_DIRECTORY=/usr/local/bin
 RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-WORKDIR $INSTALL_PATH
+WORKDIR $INSTALL_PATH/$APP_PATH
 RUN make
 
 # Install global packages with local user

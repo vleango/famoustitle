@@ -7,6 +7,11 @@ import (
 	"github.com/vleango/lib/models"
 )
 
+// var (
+//  // ErrNameNotProvided is thrown when a name is not provided
+//  ErrNameNotProvided = errors.New("no name was provided in the HTTP body")
+// )
+
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
 	if request.HTTPMethod == "OPTIONS" {
