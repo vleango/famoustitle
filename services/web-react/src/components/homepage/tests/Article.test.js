@@ -15,6 +15,14 @@ describe('Components', () => {
           expect(wrapper).toMatchSnapshot();
         });
       });
+
+      describe('article does not contain tags', () => {
+        let art = article;
+        art.tags = null;
+        let wrapper = shallow(<Article article={art} />);
+        expect(wrapper).toMatchSnapshot();
+      });
+
     });
   });
 });
