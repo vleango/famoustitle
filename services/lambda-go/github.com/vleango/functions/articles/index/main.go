@@ -5,23 +5,8 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/vleango/lib/models"
+  "github.com/vleango/lib/utils"
 )
-
-func removeDuplicatesUnordered(elements []string) []string {
-    encountered := map[string]bool{}
-
-    // Create a map of all unique elements.
-    for v:= range elements {
-        encountered[elements[v]] = true
-    }
-
-    // Place all keys from the map into a slice.
-    result := []string{}
-    for key, _ := range encountered {
-        result = append(result, key)
-    }
-    return result
-}
 
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
@@ -44,7 +29,7 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	data := Response{
 		Articles: articles,
     Archives: archives,
-    Tags: removeDuplicatesUnordered(tags),
+    Tags: utils.RemoveStringDuplicatesUnordered(tags),
 	}
 
 	b, err := json.Marshal(data)

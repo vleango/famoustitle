@@ -23,7 +23,15 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 
 	_, err := models.ArticleDestroy(models.Article{ID: request.PathParameters["id"]})
 	if err != nil {
-		return events.APIGatewayProxyResponse{}, err
+    message := map[string]string{
+      "message": err.Error(),
+    }
+    jsonMessage, _ := json.Marshal(message)
+
+    return events.APIGatewayProxyResponse{
+      Body: string(jsonMessage),
+      StatusCode: 404,
+    }, nil
 	}
 
 	response := ResponseBody{

@@ -1,7 +1,3 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
   web-react:
@@ -19,24 +15,33 @@ jobs:
           key: v1-dependencies-{{ checksum "services/web-react/package.json" }}
       - run: cd services/web-react; yarn test
   lambda-go:
+    environment:
+      APP_ENV: "CI"
     working_directory: /go/src/github.com/vleango
     docker:
       - image: circleci/golang:1.10
+      - image: cnadiminti/dynamodb-local
     steps:
       - checkout:
           path: ~/project
-      - run: cp -r ~/project/services/lambda-go/github.com /go/src/
+      - run:
+          name: Copy Project to /go/src
+          command: |
+            cp -r ~/project/services/lambda-go/github.com /go/src/
+            cp -r ~/project/config/aws ~/.aws
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "Gopkg.toml" }}
       - run: export INSTALL_DIRECTORY=/usr/local/bin
       - run: curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-      - run: make
+      - run: dep ensure
       - save_cache:
           paths:
             - services/lambda-go/pkg
           key: v1-dependencies-{{ checksum "Gopkg.toml" }}
-      - run: go test functions/articles/create/main_test.go
+      - run:
+          name: run tests
+          command: ./test.sh
 workflows:
   version: 2
   all_tests:

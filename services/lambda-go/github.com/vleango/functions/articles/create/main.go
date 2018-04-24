@@ -7,11 +7,6 @@ import (
 	"github.com/vleango/lib/models"
 )
 
-// var (
-//  // ErrNameNotProvided is thrown when a name is not provided
-//  ErrNameNotProvided = errors.New("no name was provided in the HTTP body")
-// )
-
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
 	if request.HTTPMethod == "OPTIONS" {
@@ -30,14 +25,19 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 
 	item, err := models.ArticleCreate(requestArticle.Article)
 	if err != nil {
+    message := map[string]string{
+      "message": err.Error(),
+    }
+    jsonMessage, _ := json.Marshal(message)
+
 		return events.APIGatewayProxyResponse{
-			Body:       "error",
+			Body: string(jsonMessage),
 			StatusCode: 400,
 			Headers: map[string]string{
 				"Access-Control-Allow-Origin":  "*",
 				"Access-Control-Allow-Headers": "Content-Type",
 			},
-		}, err
+		}, nil
 	}
 
 	b, err := json.Marshal(item)

@@ -31,14 +31,22 @@ services:
       - ./services/web-react/build:/go/client/dist
     env_file:
       - config/environments/.aws.env
+      - config/environments/lambda-go.env
     depends_on:
       - db-dynamo
+      - db-dynamo-test
   db-dynamo:
     image: cnadiminti/dynamodb-local
     ports:
       - 8000:8000
     volumes:
       - db-dynamo-data:/dynamodb_local_db
+  db-dynamo-test:
+    image: cnadiminti/dynamodb-local
+    ports:
+      - 7000:8000
+    volumes:
+      - db-dynamo-data-test:/dynamodb_local_db
   # datastore-es:
   #   build:
   #     context: .
@@ -61,3 +69,4 @@ services:
   #     - datastore-es
 volumes:
   db-dynamo-data: {}
+  db-dynamo-data-test: {}

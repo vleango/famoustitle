@@ -1,56 +1,108 @@
 package main_test
 
 import (
+  "encoding/json"
+  "testing"
 	"github.com/aws/aws-lambda-go/events"
-	"github.com/stretchr/testify/assert"
+  "github.com/stretchr/testify/suite"
 	main "github.com/vleango/functions/articles/create"
-	"testing"
+  "github.com/vleango/lib/models"
+  "github.com/vleango/lib/test"
 )
 
-func TestHandler(t *testing.T) {
+type Suite struct {
+    suite.Suite
+}
 
-	test := struct {
-		request events.APIGatewayProxyRequest
-		expect  string
-		err     error
-	}{
-		request: events.APIGatewayProxyRequest{Body: "hello"},
-		expect:  "error",
-		err:     nil,
-	}
+var requestBody main.RequestArticle
 
-	response, err := main.Handler(test.request)
-	assert.IsType(t, test.err, err)
-	assert.Equal(t, test.expect, response.Body)
+func (suite *Suite) SetupTest() {
+  test.CleanDB()
+  test.CreateArticlesTable()
 
-	////////
+  requestBody = main.RequestArticle{
+    Article: test.DefaultArticleModel(),
+  }
+}
 
-	tests := []struct {
-		request events.APIGatewayProxyRequest
-		expect  string
-		err     error
-	}{
-		{
-			// Test that the handler responds with the correct response
-			// when a valid name is provided in the HTTP body
-			request: events.APIGatewayProxyRequest{
-				Body: "",
-			},
-			expect:  "Hello Paul",
-			err:     nil,
-		},
-		// {
-		// 	// Test that the handler responds ErrNameNotProvided
-		// 	// when no name is provided in the HTTP body
-		// 	request: events.APIGatewayProxyRequest{Body: ""},
-		// 	expect:  "",
-		// 	err:     main.ErrNameNotProvided,
-		// },
-	}
+func TestSuite(t *testing.T) {
+    suite.Run(t, new(Suite))
+}
 
-	for _, test := range tests {
-		response, err := main.Handler(test.request)
-		assert.IsType(t, test.err, err)
-		assert.Equal(t, test.expect, response.Body)
-	}
+func (suite *Suite) TestSavingNewRecord() {
+  jsonRequestBody, _ := json.Marshal(requestBody)
+  request := events.APIGatewayProxyRequest{
+    Body:   string(jsonRequestBody),
+  }
+
+  response, err := main.Handler(request)
+  suite.Equal(200, response.StatusCode)
+  suite.IsType(nil, err)
+
+  var responseBody models.Article
+  json.Unmarshal([]byte(response.Body), &responseBody)
+  suite.Equal(requestBody.Article.Title, responseBody.Title)
+  suite.Equal(requestBody.Article.Body, responseBody.Body)
+  suite.Equal(requestBody.Article.Tags, responseBody.Tags)
+  suite.NotNil(responseBody.ID)
+  suite.NotNil(responseBody.CreatedAt)
+  suite.NotNil(responseBody.UpdatedAt)
+}
+
+func (suite *Suite) TestMissingTags() {
+  requestBody.Article.Tags = nil
+
+  jsonRequestBody, _ := json.Marshal(requestBody)
+  request := events.APIGatewayProxyRequest{
+    Body:   string(jsonRequestBody),
+  }
+
+  response, err := main.Handler(request)
+  suite.Equal(200, response.StatusCode)
+  suite.IsType(nil, err)
+
+  var responseBody models.Article
+  json.Unmarshal([]byte(response.Body), &responseBody)
+  suite.Equal(requestBody.Article.Title, responseBody.Title)
+  suite.Equal(requestBody.Article.Body, responseBody.Body)
+  suite.Nil(responseBody.Tags)
+  suite.NotNil(responseBody.ID)
+  suite.NotNil(responseBody.CreatedAt)
+  suite.NotNil(responseBody.UpdatedAt)
+}
+
+func (suite *Suite) TestMissingTitle() {
+  requestBody.Article.Title = ""
+
+  jsonRequestBody, _ := json.Marshal(requestBody)
+  request := events.APIGatewayProxyRequest{
+    Body:   string(jsonRequestBody),
+  }
+
+  response, err := main.Handler(request)
+  suite.IsType(nil, err)
+  suite.Equal(400, response.StatusCode)
+
+  var responseBody map[string]string
+  json.Unmarshal([]byte(response.Body), &responseBody)
+
+  suite.Equal("missing title and/or body in the HTTP body", responseBody["message"])
+}
+
+func (suite *Suite) TestMissingBody() {
+  requestBody.Article.Body = ""
+
+  jsonRequestBody, _ := json.Marshal(requestBody)
+  request := events.APIGatewayProxyRequest{
+    Body:   string(jsonRequestBody),
+  }
+
+  response, err := main.Handler(request)
+  suite.IsType(nil, err)
+  suite.Equal(400, response.StatusCode)
+
+  var responseBody map[string]string
+  json.Unmarshal([]byte(response.Body), &responseBody)
+
+  suite.Equal("missing title and/or body in the HTTP body", responseBody["message"])
 }
