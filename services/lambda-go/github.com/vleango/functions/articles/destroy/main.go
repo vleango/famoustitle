@@ -9,39 +9,42 @@ import (
 
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
-	if request.HTTPMethod == "OPTIONS" {
+  if request.HTTPMethod == "OPTIONS" {
 		return events.APIGatewayProxyResponse{
 			Body:       "",
 			StatusCode: 200,
 			Headers: map[string]string{
 				"Access-Control-Allow-Origin":  "*",
 				"Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
 			},
 		}, nil
 	}
 
-	requestArticle := RequestArticle{}
-	json.Unmarshal([]byte(request.Body), &requestArticle)
-
-	item, err := models.ArticleCreate(requestArticle.Article)
+	_, err := models.ArticleDestroy(models.Article{ID: request.PathParameters["id"]})
 	if err != nil {
-		return events.APIGatewayProxyResponse{
-			Body:       "error",
-			StatusCode: 400,
-			Headers: map[string]string{
-				"Access-Control-Allow-Origin":  "*",
-				"Access-Control-Allow-Headers": "Content-Type",
-			},
-		}, err
+    message := map[string]string{
+      "message": err.Error(),
+    }
+    jsonMessage, _ := json.Marshal(message)
+
+    return events.APIGatewayProxyResponse{
+      Body: string(jsonMessage),
+      StatusCode: 404,
+    }, nil
 	}
 
-	b, err := json.Marshal(item)
+	response := ResponseBody{
+		Success: true,
+	}
+
+	body, err := json.Marshal(response)
 	if err != nil {
 		return events.APIGatewayProxyResponse{}, err
 	}
 
 	return events.APIGatewayProxyResponse{
-		Body:       string(b),
+		Body:       string(body),
 		StatusCode: 200,
 		Headers:    map[string]string{"Access-Control-Allow-Origin": "*"},
 	}, nil
@@ -51,6 +54,6 @@ func main() {
 	lambda.Start(Handler)
 }
 
-type RequestArticle struct {
-	Article models.Article `json:"article"`
+type ResponseBody struct {
+	Success bool
 }

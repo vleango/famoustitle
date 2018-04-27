@@ -9,29 +9,37 @@ import (
 
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
-	// only needed in dev? since template.yml doesn't work??
 	if request.HTTPMethod == "OPTIONS" {
 		return events.APIGatewayProxyResponse{
 			Body:       "",
 			StatusCode: 200,
 			Headers: map[string]string{
 				"Access-Control-Allow-Origin":  "*",
-				"Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key",
-				"Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
+				"Access-Control-Allow-Headers": "Content-Type",
 			},
 		}, nil
 	}
 
-	requestArticle := RequestArticle{
-		Article: models.Article{
-			ID: request.PathParameters["id"],
-		},
-	}
+	requestArticle := RequestArticle{}
 	json.Unmarshal([]byte(request.Body), &requestArticle)
-	item, err := models.ArticleUpdate(requestArticle.Article)
+
+	item, err := models.ArticleCreate(requestArticle.Article)
 	if err != nil {
-		return events.APIGatewayProxyResponse{}, err
+    message := map[string]string{
+      "message": err.Error(),
+    }
+    jsonMessage, _ := json.Marshal(message)
+
+		return events.APIGatewayProxyResponse{
+			Body: string(jsonMessage),
+			StatusCode: 400,
+			Headers: map[string]string{
+				"Access-Control-Allow-Origin":  "*",
+				"Access-Control-Allow-Headers": "Content-Type",
+			},
+		}, nil
 	}
+
 	b, err := json.Marshal(item)
 	if err != nil {
 		return events.APIGatewayProxyResponse{}, err

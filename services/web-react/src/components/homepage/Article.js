@@ -30,7 +30,7 @@ export default (props) => {
           </li>
           <li className="article__subtitle--tags">
             <FontAwesomeIcon className="mr-2" icon="tag"/>
-            {props.article.tags.map((tag) => {
+            {props.article.tags && props.article.tags.map((tag) => {
               return [
                 <Link key={tag} to={`/?tag=${tag}`}>{tag}</Link>
               ]

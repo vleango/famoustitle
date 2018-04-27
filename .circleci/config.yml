@@ -1,29 +1,50 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
-  build:
+  web-react:
     docker:
-      # specify the version you desire here
       - image: circleci/node:9.11.1
     steps:
       - checkout
-
-      # Download and cache dependencies
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "services/web-react/package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
       - run: cd services/web-react; yarn install
-
       - save_cache:
           paths:
             - services/web-react/node_modules
           key: v1-dependencies-{{ checksum "services/web-react/package.json" }}
-
-      # run tests!
       - run: cd services/web-react; yarn test
+  lambda-go:
+    environment:
+      APP_ENV: "CI"
+    working_directory: /go/src/github.com/vleango
+    docker:
+      - image: circleci/golang:1.10
+      - image: cnadiminti/dynamodb-local
+    steps:
+      - checkout:
+          path: ~/project
+      - run:
+          name: Copy Project to /go/src
+          command: |
+            cp -r ~/project/services/lambda-go/github.com /go/src/
+            cp -r ~/project/config/aws ~/.aws
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gopkg.toml" }}
+      - run: export INSTALL_DIRECTORY=/usr/local/bin
+      - run: curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+      - run: dep ensure
+      - save_cache:
+          paths:
+            - services/lambda-go/pkg
+          key: v1-dependencies-{{ checksum "Gopkg.toml" }}
+      - run:
+          name: run tests
+          command: ./test.sh
+workflows:
+  version: 2
+  all_tests:
+    jobs:
+      - web-react
+      - lambda-go

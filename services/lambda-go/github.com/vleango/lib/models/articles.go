@@ -12,8 +12,12 @@ import (
 	"time"
 )
 
-var tableName = "articles"
-var svc = database.DynamoSvc
+var (
+ tableName = "articles"
+ svc = database.DynamoSvc
+ ErrTitleBodyNotProvided = errors.New("missing title and/or body in the HTTP body")
+ ErrRecordNotFound = errors.New("record not found")
+)
 
 type Article struct {
 	ID        string    `json:"id"`
@@ -25,6 +29,11 @@ type Article struct {
 }
 
 func ArticleCreate(item Article) (Article, error) {
+
+  if item.Title == "" || item.Body == "" {
+    return Article{}, ErrTitleBodyNotProvided
+  }
+
 	item.ID = fmt.Sprintf("%s", uuid.Must(uuid.NewV4(), nil))
 	item.CreatedAt = time.Now()
 	item.UpdatedAt = time.Now()
@@ -44,7 +53,13 @@ func ArticleCreate(item Article) (Article, error) {
 }
 
 func ArticleDestroy(item Article) (Article, error) {
-	_, err := svc.DeleteItem(&dynamodb.DeleteItemInput{
+  // since deleteItem doesn't return an error, need to verify delete
+  _, err := ArticleFind(item.ID)
+  if err != nil {
+    return item, ErrRecordNotFound
+  }
+
+	_, err = svc.DeleteItem(&dynamodb.DeleteItemInput{
 		TableName: aws.String(tableName),
 		Key: map[string]*dynamodb.AttributeValue{
 			"id": {
@@ -53,9 +68,9 @@ func ArticleDestroy(item Article) (Article, error) {
 		},
 	})
 
-	if err != nil {
-		return Article{}, err
-	}
+  if err != nil {
+    return Article{}, err
+  }
 
 	return item, nil
 }
@@ -94,12 +109,17 @@ func ArticleFind(id string) (Article, error) {
 	}
 
 	article := Article{}
-	err = dynamodbattribute.UnmarshalMap(result.Item, &article)
+	dynamodbattribute.UnmarshalMap(result.Item, &article)
+
+  if article.ID == "" {
+    return Article{}, ErrRecordNotFound
+  }
+
 	return article, nil
 }
 
 func ArticleUpdate(article Article) (Article, error) {
-	if article.Title == "" && article.Body == "" {
+	if article.Title == "" || article.Body == "" {
 		return Article{}, errors.New("title and/or body is blank")
 	}
 
