@@ -123,6 +123,8 @@ func ArticleUpdate(article Article) (Article, error) {
 		return Article{}, errors.New("title and/or body is blank")
 	}
 
+  article.UpdatedAt = time.Now()
+
 	updateExpression := []string{}
 	attributeValue := map[string]*dynamodb.AttributeValue{}
 

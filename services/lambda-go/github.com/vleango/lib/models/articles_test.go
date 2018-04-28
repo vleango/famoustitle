@@ -143,7 +143,7 @@ func (suite *Suite) TestArticleUpdateSuccess() {
   suite.Equal("new body", item.Body)
   suite.Equal([]string{"css", "dev", "frontend"}, item.Tags)
   suite.Equal(article.CreatedAt, item.CreatedAt)
-  // suite.NotEqual(article.UpdatedAt, item.UpdatedAt) TODO
+  suite.NotEqual(article.UpdatedAt, item.UpdatedAt)
 }
 
 func (suite *Suite) TestArticleUpdateTitleBlank() {
