@@ -20,7 +20,7 @@ $ git clone https://github.com/vleango/tech_writer.git
 1. Add an empty `.aws.env` file to `config/environments`
 
 ```
-$ touch config/environemnts/.aws.env
+$ touch config/environments/.aws.env
 ```
 
 2. Install node modules for `web-react`
