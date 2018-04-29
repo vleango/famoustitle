@@ -20,14 +20,14 @@ services:
       dockerfile: ./config/dockerfiles/Dockerfile-lambda-go
       args:
         SERVICE_PATH: ./services/lambda-go
-        APP_PATH: github.com/vleango
-    command: sam local start-api --docker-network tech_writer_default --docker-volume-basedir "$PWD/services/lambda-go/github.com/vleango" --host 0.0.0.0
+        APP_PATH: src/github.com/vleango
+    command: sam local start-api --docker-network tech_writer_default --docker-volume-basedir "$PWD/services/lambda-go/src/github.com/vleango" --host 0.0.0.0
     ports:
       - '4000:3000'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config/aws:/root/.aws
-      - ./services/lambda-go:/go/src
+      - ./services/lambda-go:/go
       - ./services/web-react/build:/go/client/dist
     env_file:
       - config/environments/.aws.env

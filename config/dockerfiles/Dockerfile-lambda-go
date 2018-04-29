@@ -4,7 +4,7 @@ FROM golang:1.10.0
 # required to be passed in
 ARG SERVICE_PATH
 ARG APP_PATH
-ARG INSTALL_PATH=/go/src
+ARG INSTALL_PATH=/go
 ARG LOCAL_USER=go
 ENV SAM_VERSION=0.2.11
 
@@ -18,7 +18,7 @@ RUN apt-get install -y -qq curl && \
 
 RUN npm i -g serverless
 
-COPY $SERVICE_PATH/$APP_PATH/package.json /go/package.json
+COPY $SERVICE_PATH/package.json /go/package.json
 RUN npm install
 
 # copy project to container
