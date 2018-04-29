@@ -27,7 +27,7 @@ jobs:
       - run:
           name: Copy Project to /go/src
           command: |
-            cp -r ~/project/services/lambda-go/github.com /go/src/
+            cp -r ~/project/services/lambda-go/src/github.com /go/src/
             cp -r ~/project/config/aws ~/.aws
       - restore_cache:
           keys:
