@@ -75,31 +75,6 @@ ShallowWrapper {
                               February 28th, 2018
                     </Link>
           </li>
-          <li>
-                    <FontAwesomeIcon$1
-                              border={false}
-                              className="mr-2"
-                              fixedWidth={false}
-                              flip={null}
-                              icon="comment-alt"
-                              listItem={false}
-                              mask={null}
-                              name=""
-                              pull={null}
-                              pulse={false}
-                              rotation={null}
-                              size={null}
-                              spin={false}
-                              symbol={false}
-                              transform={null}
-                    />
-                    <Link
-                              replace={false}
-                              to="/articles/123#comments"
-                    >
-                              0 Comments
-                    </Link>
-          </li>
           <li
                     className="article__subtitle--tags"
           >
@@ -203,31 +178,6 @@ ShallowWrapper {
                             February 28th, 2018
               </Link>
 </li>,
-            <li>
-              <FontAwesomeIcon$1
-                            border={false}
-                            className="mr-2"
-                            fixedWidth={false}
-                            flip={null}
-                            icon="comment-alt"
-                            listItem={false}
-                            mask={null}
-                            name=""
-                            pull={null}
-                            pulse={false}
-                            rotation={null}
-                            size={null}
-                            spin={false}
-                            symbol={false}
-                            transform={null}
-              />
-              <Link
-                            replace={false}
-                            to="/articles/123#comments"
-              >
-                            0 Comments
-              </Link>
-</li>,
             <li
               className="article__subtitle--tags"
 >
@@ -323,80 +273,6 @@ ShallowWrapper {
                 },
                 "ref": null,
                 "rendered": "February 28th, 2018",
-                "type": [Function],
-              },
-            ],
-            "type": "li",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <FontAwesomeIcon$1
-                  border={false}
-                  className="mr-2"
-                  fixedWidth={false}
-                  flip={null}
-                  icon="comment-alt"
-                  listItem={false}
-                  mask={null}
-                  name=""
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  symbol={false}
-                  transform={null}
-/>,
-                <Link
-                  replace={false}
-                  to="/articles/123#comments"
->
-                  0 Comments
-</Link>,
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "border": false,
-                  "className": "mr-2",
-                  "fixedWidth": false,
-                  "flip": null,
-                  "icon": "comment-alt",
-                  "listItem": false,
-                  "mask": null,
-                  "name": "",
-                  "pull": null,
-                  "pulse": false,
-                  "rotation": null,
-                  "size": null,
-                  "spin": false,
-                  "symbol": false,
-                  "transform": null,
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "0 Comments",
-                  "replace": false,
-                  "to": "/articles/123#comments",
-                },
-                "ref": null,
-                "rendered": "0 Comments",
                 "type": [Function],
               },
             ],
@@ -581,31 +457,6 @@ It sta...",
                                     February 28th, 2018
                         </Link>
             </li>
-            <li>
-                        <FontAwesomeIcon$1
-                                    border={false}
-                                    className="mr-2"
-                                    fixedWidth={false}
-                                    flip={null}
-                                    icon="comment-alt"
-                                    listItem={false}
-                                    mask={null}
-                                    name=""
-                                    pull={null}
-                                    pulse={false}
-                                    rotation={null}
-                                    size={null}
-                                    spin={false}
-                                    symbol={false}
-                                    transform={null}
-                        />
-                        <Link
-                                    replace={false}
-                                    to="/articles/123#comments"
-                        >
-                                    0 Comments
-                        </Link>
-            </li>
             <li
                         className="article__subtitle--tags"
             >
@@ -709,31 +560,6 @@ It sta...",
                                 February 28th, 2018
                 </Link>
 </li>,
-              <li>
-                <FontAwesomeIcon$1
-                                border={false}
-                                className="mr-2"
-                                fixedWidth={false}
-                                flip={null}
-                                icon="comment-alt"
-                                listItem={false}
-                                mask={null}
-                                name=""
-                                pull={null}
-                                pulse={false}
-                                rotation={null}
-                                size={null}
-                                spin={false}
-                                symbol={false}
-                                transform={null}
-                />
-                <Link
-                                replace={false}
-                                to="/articles/123#comments"
-                >
-                                0 Comments
-                </Link>
-</li>,
               <li
                 className="article__subtitle--tags"
 >
@@ -829,80 +655,6 @@ It sta...",
                   },
                   "ref": null,
                   "rendered": "February 28th, 2018",
-                  "type": [Function],
-                },
-              ],
-              "type": "li",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": Array [
-                  <FontAwesomeIcon$1
-                    border={false}
-                    className="mr-2"
-                    fixedWidth={false}
-                    flip={null}
-                    icon="comment-alt"
-                    listItem={false}
-                    mask={null}
-                    name=""
-                    pull={null}
-                    pulse={false}
-                    rotation={null}
-                    size={null}
-                    spin={false}
-                    symbol={false}
-                    transform={null}
-/>,
-                  <Link
-                    replace={false}
-                    to="/articles/123#comments"
->
-                    0 Comments
-</Link>,
-                ],
-              },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "border": false,
-                    "className": "mr-2",
-                    "fixedWidth": false,
-                    "flip": null,
-                    "icon": "comment-alt",
-                    "listItem": false,
-                    "mask": null,
-                    "name": "",
-                    "pull": null,
-                    "pulse": false,
-                    "rotation": null,
-                    "size": null,
-                    "spin": false,
-                    "symbol": false,
-                    "transform": null,
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "0 Comments",
-                    "replace": false,
-                    "to": "/articles/123#comments",
-                  },
-                  "ref": null,
-                  "rendered": "0 Comments",
                   "type": [Function],
                 },
               ],
@@ -1128,31 +880,6 @@ ShallowWrapper {
                               February 28th, 2018
                     </Link>
           </li>
-          <li>
-                    <FontAwesomeIcon$1
-                              border={false}
-                              className="mr-2"
-                              fixedWidth={false}
-                              flip={null}
-                              icon="comment-alt"
-                              listItem={false}
-                              mask={null}
-                              name=""
-                              pull={null}
-                              pulse={false}
-                              rotation={null}
-                              size={null}
-                              spin={false}
-                              symbol={false}
-                              transform={null}
-                    />
-                    <Link
-                              replace={false}
-                              to="/articles/123#comments"
-                    >
-                              0 Comments
-                    </Link>
-          </li>
           <li
                     className="article__subtitle--tags"
           >
@@ -1280,31 +1007,6 @@ ShallowWrapper {
                             February 28th, 2018
               </Link>
 </li>,
-            <li>
-              <FontAwesomeIcon$1
-                            border={false}
-                            className="mr-2"
-                            fixedWidth={false}
-                            flip={null}
-                            icon="comment-alt"
-                            listItem={false}
-                            mask={null}
-                            name=""
-                            pull={null}
-                            pulse={false}
-                            rotation={null}
-                            size={null}
-                            spin={false}
-                            symbol={false}
-                            transform={null}
-              />
-              <Link
-                            replace={false}
-                            to="/articles/123#comments"
-              >
-                            0 Comments
-              </Link>
-</li>,
             <li
               className="article__subtitle--tags"
 >
@@ -1424,80 +1126,6 @@ ShallowWrapper {
                 },
                 "ref": null,
                 "rendered": "February 28th, 2018",
-                "type": [Function],
-              },
-            ],
-            "type": "li",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <FontAwesomeIcon$1
-                  border={false}
-                  className="mr-2"
-                  fixedWidth={false}
-                  flip={null}
-                  icon="comment-alt"
-                  listItem={false}
-                  mask={null}
-                  name=""
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  symbol={false}
-                  transform={null}
-/>,
-                <Link
-                  replace={false}
-                  to="/articles/123#comments"
->
-                  0 Comments
-</Link>,
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "border": false,
-                  "className": "mr-2",
-                  "fixedWidth": false,
-                  "flip": null,
-                  "icon": "comment-alt",
-                  "listItem": false,
-                  "mask": null,
-                  "name": "",
-                  "pull": null,
-                  "pulse": false,
-                  "rotation": null,
-                  "size": null,
-                  "spin": false,
-                  "symbol": false,
-                  "transform": null,
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": "0 Comments",
-                  "replace": false,
-                  "to": "/articles/123#comments",
-                },
-                "ref": null,
-                "rendered": "0 Comments",
                 "type": [Function],
               },
             ],
@@ -1766,31 +1394,6 @@ It sta...",
                                     February 28th, 2018
                         </Link>
             </li>
-            <li>
-                        <FontAwesomeIcon$1
-                                    border={false}
-                                    className="mr-2"
-                                    fixedWidth={false}
-                                    flip={null}
-                                    icon="comment-alt"
-                                    listItem={false}
-                                    mask={null}
-                                    name=""
-                                    pull={null}
-                                    pulse={false}
-                                    rotation={null}
-                                    size={null}
-                                    spin={false}
-                                    symbol={false}
-                                    transform={null}
-                        />
-                        <Link
-                                    replace={false}
-                                    to="/articles/123#comments"
-                        >
-                                    0 Comments
-                        </Link>
-            </li>
             <li
                         className="article__subtitle--tags"
             >
@@ -1918,31 +1521,6 @@ It sta...",
                                 February 28th, 2018
                 </Link>
 </li>,
-              <li>
-                <FontAwesomeIcon$1
-                                border={false}
-                                className="mr-2"
-                                fixedWidth={false}
-                                flip={null}
-                                icon="comment-alt"
-                                listItem={false}
-                                mask={null}
-                                name=""
-                                pull={null}
-                                pulse={false}
-                                rotation={null}
-                                size={null}
-                                spin={false}
-                                symbol={false}
-                                transform={null}
-                />
-                <Link
-                                replace={false}
-                                to="/articles/123#comments"
-                >
-                                0 Comments
-                </Link>
-</li>,
               <li
                 className="article__subtitle--tags"
 >
@@ -2062,80 +1640,6 @@ It sta...",
                   },
                   "ref": null,
                   "rendered": "February 28th, 2018",
-                  "type": [Function],
-                },
-              ],
-              "type": "li",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": Array [
-                  <FontAwesomeIcon$1
-                    border={false}
-                    className="mr-2"
-                    fixedWidth={false}
-                    flip={null}
-                    icon="comment-alt"
-                    listItem={false}
-                    mask={null}
-                    name=""
-                    pull={null}
-                    pulse={false}
-                    rotation={null}
-                    size={null}
-                    spin={false}
-                    symbol={false}
-                    transform={null}
-/>,
-                  <Link
-                    replace={false}
-                    to="/articles/123#comments"
->
-                    0 Comments
-</Link>,
-                ],
-              },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "border": false,
-                    "className": "mr-2",
-                    "fixedWidth": false,
-                    "flip": null,
-                    "icon": "comment-alt",
-                    "listItem": false,
-                    "mask": null,
-                    "name": "",
-                    "pull": null,
-                    "pulse": false,
-                    "rotation": null,
-                    "size": null,
-                    "spin": false,
-                    "symbol": false,
-                    "transform": null,
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "0 Comments",
-                    "replace": false,
-                    "to": "/articles/123#comments",
-                  },
-                  "ref": null,
-                  "rendered": "0 Comments",
                   "type": [Function],
                 },
               ],
