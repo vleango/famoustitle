@@ -1,60 +1,60 @@
 package main_test
 
 import (
-  "encoding/json"
-  "testing"
+	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
-  "github.com/stretchr/testify/suite"
+	"github.com/stretchr/testify/suite"
 	main "github.com/vleango/functions/articles/destroy"
-  "github.com/vleango/lib/models"
-  "github.com/vleango/lib/test"
+	"github.com/vleango/lib/models"
+	"github.com/vleango/lib/test"
+	"testing"
 )
 
 type Suite struct {
-    suite.Suite
+	suite.Suite
 }
 
 var article models.Article
 
 func (suite *Suite) SetupTest() {
-  test.CleanDB()
-  test.CreateArticlesTable()
+	test.CleanDB()
+	test.CreateArticlesTable()
 
-  article, _ = models.ArticleCreate(test.DefaultArticleModel())
+	article, _ = models.ArticleCreate(test.DefaultArticleModel())
 }
 
 func TestSuite(t *testing.T) {
-    suite.Run(t, new(Suite))
+	suite.Run(t, new(Suite))
 }
 
 func (suite *Suite) TestDestroyRecordFound() {
-  request := events.APIGatewayProxyRequest{
-    PathParameters: map[string]string{
-      "id": article.ID,
-    },
-  }
+	request := events.APIGatewayProxyRequest{
+		PathParameters: map[string]string{
+			"id": article.ID,
+		},
+	}
 
-  response, err := main.Handler(request)
-  suite.Equal(200, response.StatusCode)
-  suite.IsType(nil, err)
+	response, err := main.Handler(request)
+	suite.Equal(200, response.StatusCode)
+	suite.IsType(nil, err)
 
-  var responseBody main.ResponseBody
-  json.Unmarshal([]byte(response.Body), &responseBody)
-  suite.Equal(true, responseBody.Success)
+	var responseBody main.ResponseBody
+	json.Unmarshal([]byte(response.Body), &responseBody)
+	suite.Equal(true, responseBody.Success)
 }
 
 func (suite *Suite) TestDestroyRecordNotFound() {
-  request := events.APIGatewayProxyRequest{
-    PathParameters: map[string]string{
-      "id": "not-my-id",
-    },
-  }
+	request := events.APIGatewayProxyRequest{
+		PathParameters: map[string]string{
+			"id": "not-my-id",
+		},
+	}
 
-  response, err := main.Handler(request)
-  suite.Equal(404, response.StatusCode)
-  suite.IsType(nil, err)
+	response, err := main.Handler(request)
+	suite.Equal(404, response.StatusCode)
+	suite.IsType(nil, err)
 
-  var responseBody map[string]string
-  json.Unmarshal([]byte(response.Body), &responseBody)
-  suite.Equal("record not found", responseBody["message"])
+	var responseBody map[string]string
+	json.Unmarshal([]byte(response.Body), &responseBody)
+	suite.Equal("record not found", responseBody["message"])
 }

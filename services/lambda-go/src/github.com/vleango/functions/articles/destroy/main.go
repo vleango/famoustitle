@@ -9,29 +9,29 @@ import (
 
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
-  if request.HTTPMethod == "OPTIONS" {
+	if request.HTTPMethod == "OPTIONS" {
 		return events.APIGatewayProxyResponse{
 			Body:       "",
 			StatusCode: 200,
 			Headers: map[string]string{
 				"Access-Control-Allow-Origin":  "*",
 				"Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
+				"Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
 			},
 		}, nil
 	}
 
 	_, err := models.ArticleDestroy(models.Article{ID: request.PathParameters["id"]})
 	if err != nil {
-    message := map[string]string{
-      "message": err.Error(),
-    }
-    jsonMessage, _ := json.Marshal(message)
+		message := map[string]string{
+			"message": err.Error(),
+		}
+		jsonMessage, _ := json.Marshal(message)
 
-    return events.APIGatewayProxyResponse{
-      Body: string(jsonMessage),
-      StatusCode: 404,
-    }, nil
+		return events.APIGatewayProxyResponse{
+			Body:       string(jsonMessage),
+			StatusCode: 404,
+		}, nil
 	}
 
 	response := ResponseBody{

@@ -27,7 +27,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config/aws:/root/.aws
-      - ./services/lambda-go:/go
+      - ./services/lambda-go/src:/go/src
       - ./services/web-react/build:/go/client/dist
     env_file:
       - config/environments/.aws.env
