@@ -11,17 +11,17 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 
 	article, err := models.ArticleFind(request.PathParameters["id"])
 	if err != nil {
-    message := map[string]string{
-      "message": err.Error(),
-    }
-    jsonMessage, _ := json.Marshal(message)
+		message := map[string]string{
+			"message": err.Error(),
+		}
+		jsonMessage, _ := json.Marshal(message)
 
-    return events.APIGatewayProxyResponse{
-      Body: string(jsonMessage),
-      StatusCode: 404,
-    }, nil
+		return events.APIGatewayProxyResponse{
+			Body:       string(jsonMessage),
+			StatusCode: 404,
+		}, nil
 	}
-  
+
 	b, err := json.Marshal(article)
 	if err != nil {
 		return events.APIGatewayProxyResponse{}, err

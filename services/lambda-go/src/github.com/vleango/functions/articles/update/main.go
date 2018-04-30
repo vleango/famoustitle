@@ -22,18 +22,18 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		}, nil
 	}
 
-  // check if article exist
-  _, err := models.ArticleFind(request.PathParameters["id"])
+	// check if article exist
+	_, err := models.ArticleFind(request.PathParameters["id"])
 	if err != nil {
-    message := map[string]string{
-      "message": err.Error(),
-    }
-    jsonMessage, _ := json.Marshal(message)
+		message := map[string]string{
+			"message": err.Error(),
+		}
+		jsonMessage, _ := json.Marshal(message)
 
-    return events.APIGatewayProxyResponse{
-      Body: string(jsonMessage),
-      StatusCode: 404,
-    }, nil
+		return events.APIGatewayProxyResponse{
+			Body:       string(jsonMessage),
+			StatusCode: 404,
+		}, nil
 	}
 
 	requestArticle := RequestArticle{
@@ -44,21 +44,21 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	json.Unmarshal([]byte(request.Body), &requestArticle)
 	item, err := models.ArticleUpdate(requestArticle.Article)
 	if err != nil {
-    message := map[string]string{
-      "message": err.Error(),
-    }
-    jsonMessage, _ := json.Marshal(message)
+		message := map[string]string{
+			"message": err.Error(),
+		}
+		jsonMessage, _ := json.Marshal(message)
 
-    return events.APIGatewayProxyResponse{
-      Body: string(jsonMessage),
-      StatusCode: 400,
-      Headers: map[string]string{
-        "Access-Control-Allow-Origin":  "*",
-        "Access-Control-Allow-Headers": "Content-Type",
-      },
-    }, nil
+		return events.APIGatewayProxyResponse{
+			Body:       string(jsonMessage),
+			StatusCode: 400,
+			Headers: map[string]string{
+				"Access-Control-Allow-Origin":  "*",
+				"Access-Control-Allow-Headers": "Content-Type",
+			},
+		}, nil
 	}
-  
+
 	b, err := json.Marshal(item)
 	if err != nil {
 		return events.APIGatewayProxyResponse{}, err

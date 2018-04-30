@@ -25,13 +25,13 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 
 	item, err := models.ArticleCreate(requestArticle.Article)
 	if err != nil {
-    message := map[string]string{
-      "message": err.Error(),
-    }
-    jsonMessage, _ := json.Marshal(message)
+		message := map[string]string{
+			"message": err.Error(),
+		}
+		jsonMessage, _ := json.Marshal(message)
 
 		return events.APIGatewayProxyResponse{
-			Body: string(jsonMessage),
+			Body:       string(jsonMessage),
 			StatusCode: 400,
 			Headers: map[string]string{
 				"Access-Control-Allow-Origin":  "*",
