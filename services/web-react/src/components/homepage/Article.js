@@ -24,10 +24,10 @@ export default (props) => {
               { moment(props.article.created_at).format("MMMM Do, YYYY") }
             </Link>
           </li>
-          <li>
-            <FontAwesomeIcon className="mr-2" icon="comment-alt"/>
-            <Link to={`/articles/${props.article.id}#comments`}>0 Comments</Link>
-          </li>
+          {/*<li>*/}
+            {/*<FontAwesomeIcon className="mr-2" icon="comment-alt"/>*/}
+            {/*<Link to={`/articles/${props.article.id}#comments`}>0 Comments</Link>*/}
+          {/*</li>*/}
           <li className="article__subtitle--tags">
             <FontAwesomeIcon className="mr-2" icon="tag"/>
             {props.article.tags && props.article.tags.map((tag) => {
