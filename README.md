@@ -29,13 +29,18 @@ $ touch config/environments/.aws.env
 $ docker-compose run --rm web-react yarn install
 ```
 
-3. Build your lambda functions
+3. Install node modules for `lambda-go`
+
+```
+$ docker-compose run --rm lambda-go npm i
+
+4. Build your lambda functions
 
 ```
 $ docker-compose run --rm lambda-go make
 ```
 
-4. Start App
+5. Start App
 
 ```
 $ docker-compose up
