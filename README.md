@@ -33,6 +33,7 @@ $ docker-compose run --rm web-react yarn install
 
 ```
 $ docker-compose run --rm lambda-go npm i
+```
 
 4. Build your lambda functions
 
