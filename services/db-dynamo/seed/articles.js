@@ -1,5 +1,5 @@
 var params = {
-    TableName: 'articles',
+    TableName: 'tech_writer_articles',
     Item: { // a map of attribute name to AttributeValue
         // attribute_value (string | number | boolean | null | Binary | DynamoDBSet | Array | Object)
         // more attributes...
@@ -74,7 +74,7 @@ docClient.put(params, function(err, data) {
 });
 
 var params = {
-    TableName: 'articles',
+    TableName: 'tech_writer_articles',
     Item: { // a map of attribute name to AttributeValue
         // attribute_value (string | number | boolean | null | Binary | DynamoDBSet | Array | Object)
         // more attributes...

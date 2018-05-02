@@ -1,5 +1,5 @@
 var params = {
-    TableName: 'articles',
+    TableName: 'tech_writer_articles',
     KeySchema: [ // The type of of schema.  Must start with a HASH type, with an optional second RANGE.
         { // Required HASH type attribute
             AttributeName: 'id',

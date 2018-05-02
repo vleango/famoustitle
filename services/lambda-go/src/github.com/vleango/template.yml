@@ -10,6 +10,9 @@ Resources:
       CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
       MemorySize: 128
       Timeout: 3
+      Environment:
+        Variables:
+          APP_ENV: development
       Events:
         Event1:
           Type: Api
@@ -19,16 +22,16 @@ Resources:
             RestApiId:
               Ref: TechWriter
         Event2:
-          Type: Api
-          Properties:
-            Path: /articles
-            Method: options
-            RestApiId:
-              Ref: TechWriter
+            Type: Api
+            Properties:
+              Path: /articles
+              Method: options
+              RestApiId:
+                Ref: TechWriter
   TechWriter:
     Type: 'AWS::Serverless::Api'
     Properties:
-      StageName: dev
+      StageName: development
       DefinitionBody:
         swagger: '2.0'
         info:
@@ -225,6 +228,9 @@ Resources:
       CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
       MemorySize: 128
       Timeout: 3
+      Environment:
+        Variables:
+          APP_ENV: development
       Events:
         Event1:
           Type: Api
@@ -250,6 +256,9 @@ Resources:
       CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
       MemorySize: 128
       Timeout: 3
+      Environment:
+        Variables:
+          APP_ENV: development
       Events:
         Event1:
           Type: Api
@@ -275,12 +284,22 @@ Resources:
       CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
       MemorySize: 128
       Timeout: 3
+      Environment:
+        Variables:
+          APP_ENV: development
       Events:
         Event1:
           Type: Api
           Properties:
             Path: '/articles/{id}'
             Method: post
+            RestApiId:
+              Ref: TechWriter
+        Event2:
+          Type: Api
+          Properties:
+            Path: '/articles/{id}'
+            Method: options
             RestApiId:
               Ref: TechWriter
   Articles_updateLambdaPermission:
@@ -300,19 +319,15 @@ Resources:
       CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
       MemorySize: 128
       Timeout: 3
+      Environment:
+        Variables:
+          APP_ENV: development
       Events:
         Event1:
           Type: Api
           Properties:
             Path: '/articles/{id}'
             Method: delete
-            RestApiId:
-              Ref: TechWriter
-        Event2:
-          Type: Api
-          Properties:
-            Path: '/articles/{id}'
-            Method: options
             RestApiId:
               Ref: TechWriter
   Articles_destroyLambdaPermission:

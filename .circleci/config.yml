@@ -16,7 +16,7 @@ jobs:
       - run: cd services/web-react; yarn test
   lambda-go:
     environment:
-      APP_ENV: "CI"
+      APP_ENV: "ci"
     working_directory: /go/src/github.com/vleango
     docker:
       - image: circleci/golang:1.10

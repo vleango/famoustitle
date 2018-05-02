@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/stretchr/testify/suite"
-	main "github.com/vleango/functions/articles/update"
+	"github.com/vleango/functions/articles/update"
 	"github.com/vleango/lib/models"
 	"github.com/vleango/lib/test"
 	"testing"
@@ -22,6 +22,9 @@ func (suite *Suite) SetupTest() {
 	test.CleanDB()
 	test.CreateArticlesTable()
 	article, _ = models.ArticleCreate(test.DefaultArticleModel())
+
+	// to change updated_at
+	//time.Sleep(1 * time.Second)
 }
 
 func TestSuite(t *testing.T) {
@@ -70,7 +73,7 @@ func (suite *Suite) TestUpdateTitle() {
 
 	// convert these to unix epoch to check for matching
 	suite.Equal(article.CreatedAt.Unix(), responseBody.CreatedAt.Unix())
-	suite.Equal(article.UpdatedAt.Unix(), responseBody.UpdatedAt.Unix())
+	//suite.NotEqual(article.UpdatedAt.Unix(), responseBody.UpdatedAt.Unix())
 }
 
 func (suite *Suite) TestUpdateBody() {
@@ -96,18 +99,22 @@ func (suite *Suite) TestUpdateBody() {
 	suite.Equal(article.ID, responseBody.ID)
 	suite.Equal(article.Title, responseBody.Title)
 	suite.Equal("new body", responseBody.Body)
-	suite.Equal(article.Tags, responseBody.Tags)
+
+	suite.Equal(len(article.Tags), len(responseBody.Tags))
+	suite.Contains(responseBody.Tags, "ruby")
+	suite.Contains(responseBody.Tags, "rails")
 
 	// convert these to unix epoch to check for matching
 	suite.Equal(article.CreatedAt.Unix(), responseBody.CreatedAt.Unix())
-	suite.Equal(article.UpdatedAt.Unix(), responseBody.UpdatedAt.Unix())
+	//suite.NotEqual(article.UpdatedAt.Unix(), responseBody.UpdatedAt.Unix())
 }
 
-func (suite *Suite) TestUpdateTags() {
+func (suite *Suite) TestUpdateTitleBlankBodyPresent() {
 	requestBody := main.RequestArticle{
 		Article: article,
 	}
-	requestBody.Article.Tags = []string{"css", "dev", "frontend"}
+	requestBody.Article.Title = ""
+	requestBody.Article.Body = "my new body"
 
 	jsonRequestBody, _ := json.Marshal(requestBody)
 	request := events.APIGatewayProxyRequest{
@@ -121,50 +128,20 @@ func (suite *Suite) TestUpdateTags() {
 	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 
-	var responseBody models.Article
-	json.Unmarshal([]byte(response.Body), &responseBody)
-	suite.Equal(article.ID, responseBody.ID)
-	suite.Equal(article.Title, responseBody.Title)
-	suite.Equal(article.Body, responseBody.Body)
-
-	suite.Equal(len([]string{"css", "dev", "frontend"}), len(responseBody.Tags))
-	suite.Contains(responseBody.Tags, "css")
-	suite.Contains(responseBody.Tags, "dev")
-	suite.Contains(responseBody.Tags, "frontend")
+	updatedArticle, _ := models.ArticleFind(article.ID)
+	suite.Equal(article.Title, updatedArticle.Title)
+	suite.Equal("my new body", updatedArticle.Body)
 
 	// convert these to unix epoch to check for matching
-	suite.Equal(article.CreatedAt.Unix(), responseBody.CreatedAt.Unix())
-	suite.Equal(article.UpdatedAt.Unix(), responseBody.UpdatedAt.Unix())
+	suite.Equal(article.CreatedAt.Unix(), updatedArticle.CreatedAt.Unix())
+	//suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
 }
 
-func (suite *Suite) TestUpdateTitleBlank() {
+func (suite *Suite) TestUpdateTitlePresentBodyBlank() {
 	requestBody := main.RequestArticle{
 		Article: article,
 	}
-	requestBody.Article.Title = ""
-
-	jsonRequestBody, _ := json.Marshal(requestBody)
-	request := events.APIGatewayProxyRequest{
-		PathParameters: map[string]string{
-			"id": article.ID,
-		},
-		Body: string(jsonRequestBody),
-	}
-
-	response, err := main.Handler(request)
-	suite.Equal(400, response.StatusCode)
-	suite.IsType(nil, err)
-
-	var responseBody map[string]string
-	json.Unmarshal([]byte(response.Body), &responseBody)
-
-	suite.Equal("title and/or body is blank", responseBody["message"])
-}
-
-func (suite *Suite) TestUpdateBodyBlank() {
-	requestBody := main.RequestArticle{
-		Article: article,
-	}
+	requestBody.Article.Title = "my new title"
 	requestBody.Article.Body = ""
 
 	jsonRequestBody, _ := json.Marshal(requestBody)
@@ -176,40 +153,14 @@ func (suite *Suite) TestUpdateBodyBlank() {
 	}
 
 	response, err := main.Handler(request)
-	suite.Equal(400, response.StatusCode)
-	suite.IsType(nil, err)
-
-	var responseBody map[string]string
-	json.Unmarshal([]byte(response.Body), &responseBody)
-
-	suite.Equal("title and/or body is blank", responseBody["message"])
-}
-
-func (suite *Suite) TestUpdateTagsBlank() {
-	requestBody := main.RequestArticle{
-		Article: article,
-	}
-	requestBody.Article.Tags = nil
-
-	jsonRequestBody, _ := json.Marshal(requestBody)
-	request := events.APIGatewayProxyRequest{
-		PathParameters: map[string]string{
-			"id": article.ID,
-		},
-		Body: string(jsonRequestBody),
-	}
-
-	response, err := main.Handler(request)
 	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 
-	var responseBody models.Article
-	json.Unmarshal([]byte(response.Body), &responseBody)
-	suite.Equal(article.ID, responseBody.ID)
-	suite.Equal(article.Title, responseBody.Title)
-	suite.Equal(article.Body, responseBody.Body)
-	suite.Equal(0, len(responseBody.Tags))
+	updatedArticle, _ := models.ArticleFind(article.ID)
+	suite.Equal("my new title", updatedArticle.Title)
+	suite.Equal(article.Body, updatedArticle.Body)
+
 	// convert these to unix epoch to check for matching
-	suite.Equal(article.CreatedAt.Unix(), responseBody.CreatedAt.Unix())
-	suite.Equal(article.UpdatedAt.Unix(), responseBody.UpdatedAt.Unix())
+	suite.Equal(article.CreatedAt.Unix(), updatedArticle.CreatedAt.Unix())
+	//suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
 }

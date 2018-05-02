@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/stretchr/testify/suite"
-	main "github.com/vleango/functions/articles/create"
+	"github.com/vleango/functions/articles/create"
 	"github.com/vleango/lib/models"
 	"github.com/vleango/lib/test"
 	"testing"
