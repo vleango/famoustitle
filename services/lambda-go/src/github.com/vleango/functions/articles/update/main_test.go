@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/stretchr/testify/suite"
-	main "github.com/vleango/functions/articles/update"
+	"github.com/vleango/functions/articles/update"
 	"github.com/vleango/lib/models"
 	"github.com/vleango/lib/test"
 	"testing"
@@ -137,11 +137,12 @@ func (suite *Suite) TestUpdateTags() {
 	suite.Equal(article.UpdatedAt.Unix(), responseBody.UpdatedAt.Unix())
 }
 
-func (suite *Suite) TestUpdateTitleBlank() {
+func (suite *Suite) TestUpdateTitleBlankBodyPresent() {
 	requestBody := main.RequestArticle{
 		Article: article,
 	}
 	requestBody.Article.Title = ""
+	requestBody.Article.Body = "my new body"
 
 	jsonRequestBody, _ := json.Marshal(requestBody)
 	request := events.APIGatewayProxyRequest{
@@ -152,19 +153,19 @@ func (suite *Suite) TestUpdateTitleBlank() {
 	}
 
 	response, err := main.Handler(request)
-	suite.Equal(400, response.StatusCode)
+	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 
-	var responseBody map[string]string
-	json.Unmarshal([]byte(response.Body), &responseBody)
-
-	suite.Equal("title and/or body is blank", responseBody["message"])
+	updatedArticle, _ := models.ArticleFind(article.ID)
+	suite.Equal(article.Title, updatedArticle.Title)
+	suite.Equal("my new body", updatedArticle.Body)
 }
 
-func (suite *Suite) TestUpdateBodyBlank() {
+func (suite *Suite) TestUpdateTitlePresentBodyBlank() {
 	requestBody := main.RequestArticle{
 		Article: article,
 	}
+	requestBody.Article.Title = "my new title"
 	requestBody.Article.Body = ""
 
 	jsonRequestBody, _ := json.Marshal(requestBody)
@@ -176,13 +177,12 @@ func (suite *Suite) TestUpdateBodyBlank() {
 	}
 
 	response, err := main.Handler(request)
-	suite.Equal(400, response.StatusCode)
+	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 
-	var responseBody map[string]string
-	json.Unmarshal([]byte(response.Body), &responseBody)
-
-	suite.Equal("title and/or body is blank", responseBody["message"])
+	updatedArticle, _ := models.ArticleFind(article.ID)
+	suite.Equal("my new title", updatedArticle.Title)
+	suite.Equal(article.Body, updatedArticle.Body)
 }
 
 func (suite *Suite) TestUpdateTagsBlank() {

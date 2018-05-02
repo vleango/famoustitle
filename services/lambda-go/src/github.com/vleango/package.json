@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "devDependencies": {
+    "serverless-finch": "^2.1.0",
+    "serverless-iam-roles-per-function": "^0.1.5",
     "serverless-sam": "^0.0.5"
   },
   "scripts": {

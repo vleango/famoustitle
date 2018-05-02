@@ -10,6 +10,17 @@ import (
 
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
+	if request.HTTPMethod == "OPTIONS" {
+		return events.APIGatewayProxyResponse{
+			Body:       "",
+			StatusCode: 200,
+			Headers: map[string]string{
+				"Access-Control-Allow-Origin":  "*",
+				"Access-Control-Allow-Headers": "Content-Type",
+			},
+		}, nil
+	}
+
 	articles, err := models.ArticleFindAll()
 	if err != nil {
 		return events.APIGatewayProxyResponse{}, err
