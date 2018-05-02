@@ -23,7 +23,7 @@ func TestSuite(t *testing.T) {
 
 func (suite *Suite) TestArticle() {
 	article := models.Article{}
-	suite.IsType("asdf-2134", article.ID)
+	suite.IsType("testing-2134", article.ID)
 	suite.IsType("my title", article.Title)
 	suite.IsType("my body", article.Body)
 	suite.IsType([]string{"tag1", "tag2"}, article.Tags)
@@ -84,7 +84,7 @@ func (suite *Suite) TestArticleFindAllEmpty() {
 }
 
 func (suite *Suite) TestArticleFindAllNotEmpty() {
-	articles := []models.Article{}
+	var articles []models.Article
 	article1, _ := models.ArticleCreate(test.DefaultArticleModel())
 	article2, _ := models.ArticleCreate(test.DefaultArticleModel())
 	articles = append(articles, article1)
@@ -134,51 +134,47 @@ func (suite *Suite) TestArticleUpdateSuccess() {
 	article, _ := models.ArticleCreate(test.DefaultArticleModel())
 	article.Title = "new title"
 	article.Body = "new body"
-	article.Tags = []string{"css", "dev", "frontend"}
 
-	item, err := models.ArticleUpdate(article)
+	// to change updated_at
+	time.Sleep(1 * time.Second)
+
+	updatedArticle, err := models.ArticleUpdate(article)
 	suite.IsType(nil, err)
-	suite.Equal(article.ID, item.ID)
-	suite.Equal("new title", item.Title)
-	suite.Equal("new body", item.Body)
-	suite.Equal([]string{"css", "dev", "frontend"}, item.Tags)
-	suite.Equal(article.CreatedAt, item.CreatedAt)
-	suite.NotEqual(article.UpdatedAt, item.UpdatedAt)
+	suite.Equal(article.ID, updatedArticle.ID)
+	suite.Equal("new title", updatedArticle.Title)
+	suite.Equal("new body", updatedArticle.Body)
+	suite.Equal(article.CreatedAt.Unix(), updatedArticle.CreatedAt.Unix())
+	suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
 }
 
 func (suite *Suite) TestArticleUpdateTitleBlankBodyPresent() {
 	article, _ := models.ArticleCreate(test.DefaultArticleModel())
+	originalText := article.Title
 	article.Title = ""
 	article.Body = "my new body"
 
+	// to change updated_at
+	time.Sleep(1 * time.Second)
+
 	updatedArticle, err := models.ArticleUpdate(article)
 	suite.IsType(nil, err)
-	suite.Equal(article.Title, updatedArticle.Title)
+	suite.Equal(originalText, updatedArticle.Title)
 	suite.Equal("my new body", updatedArticle.Body)
+	suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
 }
 
 func (suite *Suite) TestArticleUpdateBodyBlank() {
 	article, _ := models.ArticleCreate(test.DefaultArticleModel())
+	originalText := article.Body
 	article.Title = "my new title"
 	article.Body = ""
+
+	// to change updated_at
+	time.Sleep(1 * time.Second)
 
 	updatedArticle, err := models.ArticleUpdate(article)
 	suite.IsType(nil, err)
 	suite.Equal("my new title", updatedArticle.Title)
-	suite.Equal(article.Body, updatedArticle.Body)
-}
-
-func (suite *Suite) TestArticleUpdateTagsBlank() {
-	article, _ := models.ArticleCreate(test.DefaultArticleModel())
-	article.Tags = nil
-
-	item, err := models.ArticleUpdate(article)
-	suite.IsType(nil, err)
-	suite.IsType(nil, err)
-	suite.Equal(article.ID, item.ID)
-	suite.Equal(article.Title, item.Title)
-	suite.Equal(article.Body, item.Body)
-	suite.Equal(0, len(item.Tags))
-	suite.Equal(article.CreatedAt, item.CreatedAt)
-	// suite.NotEqual(article.UpdatedAt, item.UpdatedAt) TODO
+	suite.Equal(originalText, updatedArticle.Body)
+	suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
 }

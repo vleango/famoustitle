@@ -118,12 +118,10 @@ func ArticleFind(id string) (Article, error) {
 	return article, nil
 }
 
-func ArticleUpdate(article Article) (*dynamodb.UpdateItemOutput, error) {
+func ArticleUpdate(article Article) (Article, error) {
 	if article.Title == "" && article.Body == "" {
-		return nil, errors.New("title and/or body is blank")
+		return Article{}, errors.New("title and/or body is blank")
 	}
-
-	article.UpdatedAt = time.Now()
 
 	attributeValue := map[string]*dynamodb.AttributeValue{}
 	var updateExpression []string
@@ -138,6 +136,9 @@ func ArticleUpdate(article Article) (*dynamodb.UpdateItemOutput, error) {
 		updateExpression = append(updateExpression, "body = :body")
 	}
 
+	attributeValue[":updated_at"] = &dynamodb.AttributeValue{S: aws.String(time.Now().Format(time.RFC3339))}
+	updateExpression = append(updateExpression, "updated_at = :updated_at")
+
 	input := &dynamodb.UpdateItemInput{
 		Key: map[string]*dynamodb.AttributeValue{
 			"id": {
@@ -150,11 +151,12 @@ func ArticleUpdate(article Article) (*dynamodb.UpdateItemOutput, error) {
 		UpdateExpression:          aws.String("set " + strings.Join(updateExpression, ", ")),
 	}
 
-	updatedItem, err := svc.UpdateItem(input)
+	_, err := svc.UpdateItem(input)
 
 	if err != nil {
-		return nil, err
+		return Article{}, err
 	}
 
-	return updatedItem, nil
+	updatedArticle, _ := ArticleFind(article.ID)
+	return updatedArticle, nil
 }
