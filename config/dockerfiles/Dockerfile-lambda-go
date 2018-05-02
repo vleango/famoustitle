@@ -18,7 +18,9 @@ RUN apt-get install -y -qq curl && \
 
 RUN npm i -g serverless
 
-COPY $SERVICE_PATH/package.json /go/package.json
+COPY $SERVICE_PATH/$APP_PATH/package.json /go/$APP_PATH/package.json
+COPY $SERVICE_PATH/$APP_PATH/package-lock.json /go/$APP_PATH/package-lock.json
+WORKDIR $INSTALL_PATH/$APP_PATH
 RUN npm install
 
 # copy project to container
@@ -27,7 +29,6 @@ COPY $SERVICE_PATH/. $INSTALL_PATH/.
 # Install dep
 ENV INSTALL_DIRECTORY=/usr/local/bin
 RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-WORKDIR $INSTALL_PATH/$APP_PATH
 RUN make
 
 # Install global packages with local user
