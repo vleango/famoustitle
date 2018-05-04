@@ -81,6 +81,10 @@ functions:
     iamRoleStatements:
         - Effect: "Allow"
           Action:
+            - "dynamodb:GetItem"
+          Resource: ${env:ARN_DB_RESOURCE}
+        - Effect: "Allow"
+          Action:
             - "dynamodb:DeleteItem"
           Resource: ${env:ARN_DB_RESOURCE}
     events:
