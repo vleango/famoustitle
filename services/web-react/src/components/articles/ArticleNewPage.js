@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { Form, FormGroup, Input } from 'reactstrap';
+import { split, map, trim, uniq } from 'lodash';
 
 import { createItem } from '../../actions/articles';
 import Header from '../shared/headers/Header';
@@ -30,20 +31,22 @@ export class ArticleNewPage extends Component {
 
     try {
       this.setState({ submitting: true, errorMsg: "" });
-      await this.props.createItem({ token: this.state.token, article: { title: this.state.title, body: this.state.body }});
+      let tags = split(this.state.tags, ',');
+      let trimmedTags = map(tags, (tag) => { return trim(tag).toLowerCase() });
+      await this.props.createItem({ token: this.state.token, article: { title: this.state.title, body: this.state.body, tags: uniq(trimmedTags) }});
       this.props.history.push('/');
     }
     catch(error) {
       this.setState({ submitting: false });
       console.log(error);
     }
-  }
+  };
 
   onInputChange = (e) => {
     const field = e.target.name;
     const value = e.target.value;
     this.setState(() => ({ [field]: value }));
-  }
+  };
 
   render() {
     return (
