@@ -8,6 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 	"github.com/satori/go.uuid"
 	"github.com/vleango/database"
+	"github.com/vleango/lib/utils"
 	"strings"
 	"time"
 )
@@ -28,6 +29,7 @@ type Article struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
+// TODO need to separate the tags sanitized so update can use it too
 func ArticleCreate(item Article) (Article, error) {
 
 	if item.Title == "" || item.Body == "" {
@@ -37,6 +39,16 @@ func ArticleCreate(item Article) (Article, error) {
 	item.ID = fmt.Sprintf("%s", uuid.Must(uuid.NewV4(), nil))
 	item.CreatedAt = time.Now()
 	item.UpdatedAt = time.Now()
+
+	var sanitizedTags []string
+	if len(item.Tags) > 0 {
+		for _, tag := range item.Tags {
+			trimmed := strings.TrimSpace(tag)
+			sanitizedTags = append(sanitizedTags, strings.ToLower(trimmed))
+		}
+	}
+	sanitizedTags = utils.RemoveStringDuplicatesUnordered(sanitizedTags)
+	item.Tags = sanitizedTags
 
 	av, err := dynamodbattribute.MarshalMap(item)
 	input := &dynamodb.PutItemInput{
@@ -118,6 +130,8 @@ func ArticleFind(id string) (Article, error) {
 	return article, nil
 }
 
+// TODO need to send all values everytime for an update
+// TODO so that we can save tags properly
 func ArticleUpdate(article Article) (Article, error) {
 	if article.Title == "" && article.Body == "" {
 		return Article{}, errors.New("title and/or body is blank")

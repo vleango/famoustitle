@@ -65,7 +65,7 @@ func (suite *Suite) TestMissingTags() {
 	json.Unmarshal([]byte(response.Body), &responseBody)
 	suite.Equal(requestBody.Article.Title, responseBody.Title)
 	suite.Equal(requestBody.Article.Body, responseBody.Body)
-	suite.Nil(responseBody.Tags)
+	suite.Equal([]string{}, responseBody.Tags)
 	suite.NotNil(responseBody.ID)
 	suite.NotNil(responseBody.CreatedAt)
 	suite.NotNil(responseBody.UpdatedAt)

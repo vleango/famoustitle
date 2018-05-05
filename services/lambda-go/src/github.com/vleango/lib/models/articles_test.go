@@ -47,6 +47,46 @@ func (suite *Suite) TestArticleCreateBodyBlank() {
 	suite.Equal(models.ErrTitleBodyNotProvided, err)
 }
 
+func (suite *Suite) TestArticleCreateTagsWhitespace() {
+	article := test.DefaultArticleModel()
+	article.Tags = []string{
+		" tag1 ",
+		" tag2",
+	}
+	item, err := models.ArticleCreate(article)
+	suite.IsType(nil, err)
+	suite.Equal(2, len(item.Tags))
+	suite.Contains(item.Tags, "tag1")
+	suite.Contains(item.Tags, "tag2")
+}
+
+func (suite *Suite) TestArticleCreateTagsLowerCase() {
+	article := test.DefaultArticleModel()
+	article.Tags = []string{
+		"TAG1",
+		"tag2",
+	}
+	item, err := models.ArticleCreate(article)
+	suite.IsType(nil, err)
+	suite.Equal(2, len(item.Tags))
+	suite.Contains(item.Tags, "tag1")
+	suite.Contains(item.Tags, "tag2")
+}
+
+func (suite *Suite) TestArticleCreateTagsUnique() {
+	article := test.DefaultArticleModel()
+	article.Tags = []string{
+		"tag1",
+		"tag2",
+		"tag1",
+	}
+	item, err := models.ArticleCreate(article)
+	suite.IsType(nil, err)
+	suite.Equal(2, len(item.Tags))
+	suite.Contains(item.Tags, "tag1")
+	suite.Contains(item.Tags, "tag2")
+}
+
 func (suite *Suite) TestArticleCreateSuccess() {
 	article := test.DefaultArticleModel()
 	item, err := models.ArticleCreate(article)
