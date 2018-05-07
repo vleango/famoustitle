@@ -44,6 +44,14 @@ describe('Components', () => {
           });
         });
 
+        describe('contains tags', () => {
+          it('shows tags form', () => {
+              const target = { article: article, editMode: ['tags'] };
+              wrapper.setState({ ...target });
+              expect(wrapper.containsMatchingElement(<Input name="tags"></Input>)).toBeTruthy();
+          });
+        });
+
         describe('does not contain title', () => {
           it('does not show title form', () => {
             const target = { article: article, editMode: [''] };
@@ -58,7 +66,15 @@ describe('Components', () => {
             wrapper.setState({ ...target });
             expect(wrapper.containsMatchingElement(<Input type="textarea" name="body"></Input>)).toBeFalsy();
           });
-        })
+        });
+
+        describe('does not contain tags', () => {
+            it('does not show tags form', () => {
+                const target = { article: article, editMode: [''] };
+                wrapper.setState({ ...target });
+                expect(wrapper.containsMatchingElement(<Input name="tags"></Input>)).toBeFalsy();
+            });
+        });
       });
 
       describe('onMouseOver', () => {
@@ -105,7 +121,7 @@ describe('Components', () => {
       });
 
       describe('onSavedClicked', () => {
-        describe('empty field', () => {
+        describe('title empty field', () => {
           it('does not call updateItem', () => {
             const updateItem = jest.fn();
             wrapper = shallow(<ArticleItemPage article={article} updateItem={updateItem} />);
@@ -113,6 +129,62 @@ describe('Components', () => {
             wrapper.instance().onSavedClicked(e);
             expect(updateItem).not.toHaveBeenCalled();
           });
+        });
+
+        describe('body empty field', () => {
+            it('does not call updateItem', () => {
+                const updateItem = jest.fn();
+                wrapper = shallow(<ArticleItemPage article={article} updateItem={updateItem} />);
+                const e = { target: { dataset: { name: 'body' } }};
+                wrapper.instance().onSavedClicked(e);
+                expect(updateItem).not.toHaveBeenCalled();
+            });
+        });
+
+        describe('tags', () => {
+            describe('tags empty field', () => {
+                it('does call updateItem', () => {
+                    const updateItem = jest.fn();
+                    wrapper = shallow(<ArticleItemPage match={{ params: '1'}} article={article} updateItem={updateItem} />);
+                    wrapper.setState({editMode: ['tags'], article: article, title: "my title", body: "my body", tags: []});
+                    const e = { target: { dataset: { name: 'tags' } }};
+                    wrapper.instance().onSavedClicked(e);
+                    expect(updateItem).toHaveBeenCalledWith(undefined, {"article": {"body": "my body", "tags": [], "title": "my title"}});
+                });
+            });
+
+            describe('tags contains whitespace', () => {
+                it('does call updateItem', () => {
+                    const updateItem = jest.fn();
+                    wrapper = shallow(<ArticleItemPage match={{ params: '1'}} article={article} updateItem={updateItem} />);
+                    wrapper.setState({editMode: ['tags'], article: article, title: "my title", body: "my body", tags: [" tag1 "]});
+                    const e = { target: { dataset: { name: 'tags' } }};
+                    wrapper.instance().onSavedClicked(e);
+                    expect(updateItem).toHaveBeenCalledWith(undefined, {"article": {"body": "my body", "tags": ["tag1"], "title": "my title"}});
+                });
+            });
+
+            describe('tags contains dups', () => {
+                it('does call updateItem', () => {
+                    const updateItem = jest.fn();
+                    wrapper = shallow(<ArticleItemPage match={{ params: '1'}} article={article} updateItem={updateItem} />);
+                    wrapper.setState({editMode: ['tags'], article: article, title: "my title", body: "my body", tags: ["tag1", "tag2", "tag1"]});
+                    const e = { target: { dataset: { name: 'tags' } }};
+                    wrapper.instance().onSavedClicked(e);
+                    expect(updateItem).toHaveBeenCalledWith(undefined, {"article": {"body": "my body", "tags": ["tag1", "tag2"], "title": "my title"}});
+                });
+            });
+
+            describe('tags uppercase', () => {
+                it('does call updateItem with lowercase tags', () => {
+                    const updateItem = jest.fn();
+                    wrapper = shallow(<ArticleItemPage match={{ params: '1'}} article={article} updateItem={updateItem} />);
+                    wrapper.setState({editMode: ['tags'], article: article, title: "my title", body: "my body", tags: ["TAG1", "Tag2"]});
+                    const e = { target: { dataset: { name: 'tags' } }};
+                    wrapper.instance().onSavedClicked(e);
+                    expect(updateItem).toHaveBeenCalledWith(undefined, {"article": {"body": "my body", "tags": ["tag1", "tag2"], "title": "my title"}});
+                });
+            });
         });
 
         describe('editMode', () => {

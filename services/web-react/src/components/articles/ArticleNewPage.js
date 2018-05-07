@@ -31,9 +31,12 @@ export class ArticleNewPage extends Component {
 
     try {
       this.setState({ submitting: true, errorMsg: "" });
-      let tags = split(this.state.tags, ',');
-      let trimmedTags = map(tags, (tag) => { return trim(tag).toLowerCase() });
-      await this.props.createItem({ token: this.state.token, article: { title: this.state.title, body: this.state.body, tags: uniq(trimmedTags) }});
+      const rawTags = split(this.state.tags, ',');
+      const trimmedTags = map(rawTags, (tag) => { return trim(tag).toLowerCase() });
+      const tags = uniq(trimmedTags);
+      const { title, body } = this.state;
+      const article = { title, body, tags };
+      await this.props.createItem({ token: this.state.token, article });
       this.props.history.push('/');
     }
     catch(error) {

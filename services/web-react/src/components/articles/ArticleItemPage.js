@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { Form, FormGroup, Input } from 'reactstrap';
 import moment from 'moment';
-import { includes, pull, uniq } from 'lodash';
+import {includes, map, pull, split, trim, uniq, compact} from 'lodash';
 import ReactMarkdown from 'react-markdown';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 import { fetchItem, updateItem, removeItem } from '../../actions/articles';
 import Header from '../shared/headers/Header';
@@ -19,6 +20,7 @@ export class ArticleItemPage extends Component {
       article: null,
       title: '',
       body: '',
+      tags: [],
       editMode: [],
       previewMode: [],
       editModeClass: '',
@@ -35,10 +37,11 @@ export class ArticleItemPage extends Component {
       this.setState({
         article: nextProps.article,
         title: nextProps.article.title,
-        body: nextProps.article.body
+        body: nextProps.article.body,
+        tags: nextProps.article.tags
       });
     }
-  }
+  };
 
   onMouseOver = () => {
     if(!this.props.isAuthenticated) {
@@ -46,7 +49,7 @@ export class ArticleItemPage extends Component {
     }
 
     this.setState({ editModeClass: 'outline' })
-  }
+  };
 
   onMouseLeave = () => {
     if(!this.props.isAuthenticated) {
@@ -54,7 +57,7 @@ export class ArticleItemPage extends Component {
     }
 
     this.setState({ editModeClass: '' })
-  }
+  };
 
   onTextClicked = (e) => {
     if(!this.props.isAuthenticated) {
@@ -64,7 +67,7 @@ export class ArticleItemPage extends Component {
     let editMode = this.state.editMode;
     editMode.push(e.currentTarget.dataset.name);
     this.setState({ editMode: uniq(editMode) });
-  }
+  };
 
   onCancelClicked = (e) => {
     const field = e.target.dataset.name;
@@ -75,23 +78,23 @@ export class ArticleItemPage extends Component {
       editMode: inputs,
       [field]: value
     });
-  }
+  };
 
   onPreviewClicked = (e) => {
     let previewMode = this.state.previewMode;
     previewMode.push(e.target.dataset.name);
     this.setState({ previewMode: uniq(previewMode) });
-  }
+  };
 
   onPreviewTextClicked = (e) => {
     let previewMode = this.state.previewMode;
     pull(previewMode, e.currentTarget.dataset.name);
     this.setState({ previewMode: previewMode });
-  }
+  };
 
   onPreviewExitClicked = (e) => {
     this.onPreviewTextClicked(e);
-  }
+  };
 
   onSavedClicked = (e) => {
     const field = e.target.dataset.name;
@@ -99,25 +102,27 @@ export class ArticleItemPage extends Component {
 
     // check if empty (can't be empty)
     const value = this.state[field];
-    if(value === "") {
+    if(value === "" && field !== 'tags') {
       return;
     }
 
     pull(inputs, field); // remove cancel mode for input
 
-    // saved the field to article
-    const article = this.state.article;
-    article[field] = value;
-
     // save to backend
-    this.props.updateItem(this.props.match.params.id, { article: { [field]: article[field] }})
+    const rawTags = split(this.state.tags, ',');
+    const trimmedTags = map(rawTags, (tag) => { return trim(tag).toLowerCase() });
+    let tags = uniq(compact(trimmedTags));
+
+    const { title, body } = this.state;
+    const article = { title, body, tags };
+    this.props.updateItem(this.props.match.params.id, { article: article } );
 
     this.setState({
       editMode: inputs,
       article: article
     });
 
-  }
+  };
 
   onRemoveClicked = async (e) => {
     try {
@@ -128,18 +133,52 @@ export class ArticleItemPage extends Component {
     catch (e) {
       this.setState({ submitting: false });
     }
-  }
+  };
 
   onInputChange = (e) => {
     const field = e.target.name;
     const value = e.target.value;
     this.setState(() => ({ [field]: value }));
-  }
+  };
 
   onSubmitChanges = (e) => {
     e.preventDefault();
     // TODO need to be able to save after clicking enter
-  }
+  };
+
+  displayTags = () => {
+      if(includes(this.state.editMode, 'tags')) {
+          return (
+              <Form onSubmit={this.onSubmitChanges} autoComplete="off">
+                  <FormGroup>
+                      <Input type="text"
+                             name="tags"
+                             value={this.state.tags || ""}
+                             placeholder="Add Tags"
+                             onChange={this.onInputChange} />
+                  </FormGroup>
+                  <Button color="info" size="sm" data-name="tags" onClick={this.onCancelClicked}>Cancel</Button>
+                  <Button color="primary" size="sm" data-name="tags" className="ml-1" onClick={this.onSavedClicked}>Save</Button>
+              </Form>
+          )
+      } else {
+          return (
+              <div
+                   data-name="tags"
+                   className={this.state.editModeClass}
+                   onMouseOver={this.onMouseOver}
+                   onClick={this.onTextClicked}
+                   onMouseLeave={this.onMouseLeave}>
+                  <FontAwesomeIcon className="mr-2" icon="tag"/>
+                  {this.state.article.tags && this.state.article.tags.map((tag) => {
+                      return [
+                          <span key={tag} className="mr-2">{tag}</span>
+                      ]
+                  })}
+              </div>
+          )
+      }
+  };
 
   displayBody = () => {
     if(includes(this.state.previewMode, 'body')) {
@@ -149,7 +188,7 @@ export class ArticleItemPage extends Component {
     } else {
       return this.displayMarkdown();
     }
-  }
+  };
 
   displayPreview() {
     return (
@@ -232,6 +271,8 @@ export class ArticleItemPage extends Component {
                 <p>{this.state.article.author}</p>
                 <p>{ moment(this.state.article.created_at).format('MM-DD-YYYY HH:mm') }</p>
 
+                { this.displayTags() }
+
                 { this.displayBody() }
 
               </div>
@@ -245,8 +286,8 @@ export class ArticleItemPage extends Component {
 
 const mapStateToProps = (state, props) => {
 	return {
-    isAuthenticated: !!state.auth.token,
-		article: state.articles.show.resource
+	    isAuthenticated: !!state.auth.token,
+        article: state.articles.show.resource
 	};
 };
 
