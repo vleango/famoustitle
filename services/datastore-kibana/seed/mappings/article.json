@@ -1,0 +1,32 @@
+PUT /article
+{
+  "mappings": {
+    "default": {
+      "properties": {
+        "author": {
+          "type": "text"
+        },
+        "title": {
+          "type": "text"
+        },
+        "body": {
+          "type": "text"
+        },
+        "tags": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword"
+            }
+          }
+        },
+        "created_at": {
+          "type": "date"
+        },
+        "updated_at": {
+          "type": "date"
+        }
+      }
+    }
+  }
+}

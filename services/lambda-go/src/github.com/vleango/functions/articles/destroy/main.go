@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/vleango/lib/datastores/dynamodb"
+	"github.com/vleango/lib/datastores/elasticsearch"
 	"github.com/vleango/lib/models"
 )
 
@@ -21,7 +23,7 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		}, nil
 	}
 
-	_, err := models.ArticleDestroy(models.Article{ID: request.PathParameters["id"]})
+	item, err := dynamodb.ArticleDestroy(models.Article{ID: request.PathParameters["id"]})
 	if err != nil {
 		message := map[string]string{
 			"message": err.Error(),
@@ -46,6 +48,7 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		return events.APIGatewayProxyResponse{}, err
 	}
 
+	elasticsearch.ArticleDestroy(item)
 	return events.APIGatewayProxyResponse{
 		Body:       string(body),
 		StatusCode: 200,

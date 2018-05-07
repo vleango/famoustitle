@@ -21,6 +21,7 @@ jobs:
     docker:
       - image: circleci/golang:1.10
       - image: cnadiminti/dynamodb-local
+      - image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
     steps:
       - checkout:
           path: ~/project
@@ -39,6 +40,12 @@ jobs:
           paths:
             - services/lambda-go/pkg
           key: v1-dependencies-{{ checksum "Gopkg.toml" }}
+      - run:
+          name: connect to dynamodb
+          command: /go/src/github.com/vleango/wait-for-it.sh localhost:8000 && echo 'connected!'
+      - run:
+          name: connect to elasticsearch
+          command: /go/src/github.com/vleango/wait-for-it.sh localhost:9200 && echo 'connected!'
       - run:
           name: run tests
           command: ./test.sh

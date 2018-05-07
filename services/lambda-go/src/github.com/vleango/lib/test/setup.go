@@ -4,29 +4,48 @@ import (
 	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
-	"github.com/vleango/database"
+	"github.com/vleango/config"
 	"github.com/vleango/lib/models"
+	"net/http"
 )
 
-var svc = database.DynamoSvc
+var svc = config.DynamoSvc
+var clusterName = "article"
+
+func CleanDataStores() {
+	CleanDB()
+	CleanElasticSearch()
+}
 
 func CleanDB() {
 	result, err := svc.ListTables(&dynamodb.ListTablesInput{})
-
 	if err != nil {
 		fmt.Println(err)
 	}
-
 	for _, n := range result.TableNames {
 		input := &dynamodb.DeleteTableInput{
 			TableName: aws.String(*n),
 		}
-
 		_, err := svc.DeleteTable(input)
 		if err != nil {
 			fmt.Println(err)
 		}
 	}
+}
+
+func CleanElasticSearch() {
+	url := fmt.Sprintf("%v/%v", config.ElasticSearchHost, clusterName)
+
+	req, err := http.NewRequest("DELETE", url, nil)
+	req.Header.Set("Content-Type", "application/json")
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		panic(err)
+	}
+
+	defer resp.Body.Close()
 }
 
 func CreateArticlesTable() {

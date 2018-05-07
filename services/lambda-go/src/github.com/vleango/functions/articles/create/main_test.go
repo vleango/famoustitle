@@ -1,26 +1,27 @@
-package main_test
+package main
 
 import (
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/stretchr/testify/suite"
-	"github.com/vleango/functions/articles/create"
+	"github.com/vleango/lib/datastores/elasticsearch"
 	"github.com/vleango/lib/models"
 	"github.com/vleango/lib/test"
 	"testing"
+	"time"
 )
 
 type Suite struct {
 	suite.Suite
 }
 
-var requestBody main.RequestArticle
+var requestBody RequestArticle
 
 func (suite *Suite) SetupTest() {
-	test.CleanDB()
+	test.CleanDataStores()
 	test.CreateArticlesTable()
 
-	requestBody = main.RequestArticle{
+	requestBody = RequestArticle{
 		Article: test.DefaultArticleModel(),
 	}
 }
@@ -35,7 +36,7 @@ func (suite *Suite) TestSavingNewRecord() {
 		Body: string(jsonRequestBody),
 	}
 
-	response, err := main.Handler(request)
+	response, err := Handler(request)
 	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 
@@ -49,6 +50,18 @@ func (suite *Suite) TestSavingNewRecord() {
 	suite.NotNil(responseBody.ID)
 	suite.NotNil(responseBody.CreatedAt)
 	suite.NotNil(responseBody.UpdatedAt)
+
+	time.Sleep(1 * time.Second)
+	articles, _, _ := elasticsearch.ArticleFindAll()
+	suite.Equal(1, len(articles))
+	suite.Equal(requestBody.Article.Title, articles[0].Title)
+	suite.Equal(requestBody.Article.Body, articles[0].Body)
+	suite.Equal(2, len(articles[0].Tags))
+	suite.Contains(articles[0].Tags, "ruby")
+	suite.Contains(articles[0].Tags, "rails")
+	suite.Equal(responseBody.ID, articles[0].ID)
+	suite.Equal(responseBody.CreatedAt, articles[0].CreatedAt)
+	suite.Equal(responseBody.UpdatedAt, articles[0].UpdatedAt)
 }
 
 func (suite *Suite) TestMissingTags() {
@@ -59,7 +72,7 @@ func (suite *Suite) TestMissingTags() {
 		Body: string(jsonRequestBody),
 	}
 
-	response, err := main.Handler(request)
+	response, err := Handler(request)
 	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 
@@ -81,7 +94,7 @@ func (suite *Suite) TestMissingTitle() {
 		Body: string(jsonRequestBody),
 	}
 
-	response, err := main.Handler(request)
+	response, err := Handler(request)
 	suite.IsType(nil, err)
 	suite.Equal(400, response.StatusCode)
 
@@ -99,7 +112,7 @@ func (suite *Suite) TestMissingBody() {
 		Body: string(jsonRequestBody),
 	}
 
-	response, err := main.Handler(request)
+	response, err := Handler(request)
 	suite.IsType(nil, err)
 	suite.Equal(400, response.StatusCode)
 
