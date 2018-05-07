@@ -41,10 +41,13 @@ func ArticleCreate(item Article) (Article, error) {
 	item.UpdatedAt = time.Now()
 
 	var sanitizedTags []string
+
 	if len(item.Tags) > 0 {
 		for _, tag := range item.Tags {
-			trimmed := strings.TrimSpace(tag)
-			sanitizedTags = append(sanitizedTags, strings.ToLower(trimmed))
+			if tag != "" {
+				trimmed := strings.TrimSpace(tag)
+				sanitizedTags = append(sanitizedTags, strings.ToLower(trimmed))
+			}
 		}
 	}
 	sanitizedTags = utils.RemoveStringDuplicatesUnordered(sanitizedTags)
@@ -130,9 +133,9 @@ func ArticleFind(id string) (Article, error) {
 	return article, nil
 }
 
-// TODO need to send all values everytime for an update
-// TODO so that we can save tags properly
 func ArticleUpdate(article Article) (Article, error) {
+	var sanitizedTags []string
+
 	if article.Title == "" && article.Body == "" {
 		return Article{}, errors.New("title and/or body is blank")
 	}
@@ -149,6 +152,23 @@ func ArticleUpdate(article Article) (Article, error) {
 		attributeValue[":body"] = &dynamodb.AttributeValue{S: aws.String(article.Body)}
 		updateExpression = append(updateExpression, "body = :body")
 	}
+
+	if len(article.Tags) > 0 {
+		for _, tag := range article.Tags {
+			if tag != "" {
+				trimmed := strings.TrimSpace(tag)
+				sanitizedTags = append(sanitizedTags, strings.ToLower(trimmed))
+			}
+		}
+	}
+	sanitizedTags = utils.RemoveStringDuplicatesUnordered(sanitizedTags)
+
+	if len(sanitizedTags) > 0 {
+		attributeValue[":tags"] = &dynamodb.AttributeValue{SS: aws.StringSlice(sanitizedTags)}
+	} else {
+		attributeValue[":tags"] = &dynamodb.AttributeValue{NULL: aws.Bool(true)}
+	}
+	updateExpression = append(updateExpression, "tags = :tags")
 
 	attributeValue[":updated_at"] = &dynamodb.AttributeValue{S: aws.String(time.Now().Format(time.RFC3339))}
 	updateExpression = append(updateExpression, "updated_at = :updated_at")
