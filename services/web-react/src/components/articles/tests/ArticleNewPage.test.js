@@ -2,8 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { ArticleNewPage } from '../ArticleNewPage';
 
-import { createMemoryHistory } from 'history'
-
 describe('Components', () => {
   describe('ArticleNewPage', () => {
 
@@ -13,7 +11,7 @@ describe('Components', () => {
       it('should correctly render ArticleNewPage', () => {
         expect(wrapper).toMatchSnapshot();
       });
-    })
+    });
 
     describe('Submit', () => {
       describe('Validation', () => {
@@ -54,6 +52,44 @@ describe('Components', () => {
             wrapper.instance().onSubmitArticle(null);
             expect(action).toHaveBeenCalled();
           });
+        });
+        describe('Tags', () => {
+           describe("submits tags as array", () => {
+               const action = jest.fn();
+               const calledArgs = { "article": {"body": "bye", "tags": ["tag1", "tag2"], "title": "hello"}, "token": undefined};
+               let wrapper = shallow(<ArticleNewPage createItem={action} history={[]} />);
+               const target = { title: 'hello', body: 'bye', tags: "tag1,tag2" };
+               wrapper.setState({ ...target });
+               wrapper.instance().onSubmitArticle(null);
+               expect(action).toHaveBeenCalledWith(calledArgs);
+           });
+           describe("trims tags", () => {
+               const action = jest.fn();
+               const calledArgs = { "article": {"body": "bye", "tags": ["tag1", "tag2"], "title": "hello"}, "token": undefined};
+               let wrapper = shallow(<ArticleNewPage createItem={action} history={[]} />);
+               const target = { title: 'hello', body: 'bye', tags: " tag1 , tag2" };
+               wrapper.setState({ ...target });
+               wrapper.instance().onSubmitArticle(null);
+               expect(action).toHaveBeenCalledWith(calledArgs);
+           });
+            describe("lowercase tags", () => {
+                const action = jest.fn();
+                const calledArgs = { "article": {"body": "bye", "tags": ["tag1", "tag2"], "title": "hello"}, "token": undefined};
+                let wrapper = shallow(<ArticleNewPage createItem={action} history={[]} />);
+                const target = { title: 'hello', body: 'bye', tags: " TAG1,tag2" };
+                wrapper.setState({ ...target });
+                wrapper.instance().onSubmitArticle(null);
+                expect(action).toHaveBeenCalledWith(calledArgs);
+            });
+           describe("submits only unique tags", () => {
+               const action = jest.fn();
+               const calledArgs = { "article": {"body": "bye", "tags": ["tag1", "tag2"], "title": "hello"}, "token": undefined};
+               let wrapper = shallow(<ArticleNewPage createItem={action} history={[]} />);
+               const target = { title: 'hello', body: 'bye', tags: "tag1,tag2,tag1" };
+               wrapper.setState({ ...target });
+               wrapper.instance().onSubmitArticle(null);
+               expect(action).toHaveBeenCalledWith(calledArgs);
+           });
         });
       });
     });

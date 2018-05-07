@@ -47,6 +47,56 @@ func (suite *Suite) TestArticleCreateBodyBlank() {
 	suite.Equal(models.ErrTitleBodyNotProvided, err)
 }
 
+func (suite *Suite) TestArticleCreateTagsBlank() {
+	article := test.DefaultArticleModel()
+	article.Tags = []string{
+		"",
+	}
+	item, err := models.ArticleCreate(article)
+	suite.IsType(nil, err)
+	suite.Equal(0, len(item.Tags))
+}
+
+func (suite *Suite) TestArticleCreateTagsWhitespace() {
+	article := test.DefaultArticleModel()
+	article.Tags = []string{
+		" tag1 ",
+		" tag2",
+	}
+	item, err := models.ArticleCreate(article)
+	suite.IsType(nil, err)
+	suite.Equal(2, len(item.Tags))
+	suite.Contains(item.Tags, "tag1")
+	suite.Contains(item.Tags, "tag2")
+}
+
+func (suite *Suite) TestArticleCreateTagsLowerCase() {
+	article := test.DefaultArticleModel()
+	article.Tags = []string{
+		"TAG1",
+		"tag2",
+	}
+	item, err := models.ArticleCreate(article)
+	suite.IsType(nil, err)
+	suite.Equal(2, len(item.Tags))
+	suite.Contains(item.Tags, "tag1")
+	suite.Contains(item.Tags, "tag2")
+}
+
+func (suite *Suite) TestArticleCreateTagsUnique() {
+	article := test.DefaultArticleModel()
+	article.Tags = []string{
+		"tag1",
+		"tag2",
+		"tag1",
+	}
+	item, err := models.ArticleCreate(article)
+	suite.IsType(nil, err)
+	suite.Equal(2, len(item.Tags))
+	suite.Contains(item.Tags, "tag1")
+	suite.Contains(item.Tags, "tag2")
+}
+
 func (suite *Suite) TestArticleCreateSuccess() {
 	article := test.DefaultArticleModel()
 	item, err := models.ArticleCreate(article)
@@ -135,16 +185,23 @@ func (suite *Suite) TestArticleUpdateSuccess() {
 	article.Title = "new title"
 	article.Body = "new body"
 
-	// to change updated_at
-	//time.Sleep(1 * time.Second)
-
 	updatedArticle, err := models.ArticleUpdate(article)
 	suite.IsType(nil, err)
 	suite.Equal(article.ID, updatedArticle.ID)
 	suite.Equal("new title", updatedArticle.Title)
 	suite.Equal("new body", updatedArticle.Body)
 	suite.Equal(article.CreatedAt.Unix(), updatedArticle.CreatedAt.Unix())
-	//suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
+}
+
+func (suite *Suite) TestArticleUpdateSuccessUpdatedAt() {
+	article, _ := models.ArticleCreate(test.DefaultArticleModel())
+
+	// to change updated_at
+	time.Sleep(1 * time.Second)
+
+	updatedArticle, err := models.ArticleUpdate(article)
+	suite.IsType(nil, err)
+	suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
 }
 
 func (suite *Suite) TestArticleUpdateTitleBlankBodyPresent() {
@@ -177,4 +234,76 @@ func (suite *Suite) TestArticleUpdateBodyBlank() {
 	suite.Equal("my new title", updatedArticle.Title)
 	suite.Equal(originalText, updatedArticle.Body)
 	//suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
+}
+
+func (suite *Suite) TestArticleUpdateTagsPresent() {
+	article, _ := models.ArticleCreate(test.DefaultArticleModel())
+	article.Tags = []string{
+		"tag1",
+		"tag2",
+		"tag3",
+	}
+
+	updatedArticle, err := models.ArticleUpdate(article)
+	suite.IsType(nil, err)
+	suite.Equal(article.Title, updatedArticle.Title)
+	suite.Equal(article.Body, updatedArticle.Body)
+	//suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
+	suite.Equal(3, len(updatedArticle.Tags))
+	suite.Contains(updatedArticle.Tags, "tag1")
+	suite.Contains(updatedArticle.Tags, "tag2")
+	suite.Contains(updatedArticle.Tags, "tag3")
+}
+
+func (suite *Suite) TestArticleUpdateTagsEmpty() {
+	article, _ := models.ArticleCreate(test.DefaultArticleModel())
+	article.Tags = []string{}
+
+	updatedArticle, err := models.ArticleUpdate(article)
+	suite.IsType(nil, err)
+	suite.Equal(article.Title, updatedArticle.Title)
+	suite.Equal(article.Body, updatedArticle.Body)
+	suite.Equal(0, len(updatedArticle.Tags))
+}
+
+func (suite *Suite) TestArticleUpdateTagsEmptyString() {
+	article, _ := models.ArticleCreate(test.DefaultArticleModel())
+	article.Tags = []string{
+		"",
+	}
+
+	updatedArticle, err := models.ArticleUpdate(article)
+	suite.IsType(nil, err)
+	suite.Equal(article.Title, updatedArticle.Title)
+	suite.Equal(article.Body, updatedArticle.Body)
+	suite.Equal(0, len(updatedArticle.Tags))
+}
+
+func (suite *Suite) TestArticleUpdateTagsDup() {
+	article, _ := models.ArticleCreate(test.DefaultArticleModel())
+	article.Tags = []string{
+		"tag1",
+		"tag1",
+	}
+
+	updatedArticle, err := models.ArticleUpdate(article)
+	suite.IsType(nil, err)
+	suite.Equal(article.Title, updatedArticle.Title)
+	suite.Equal(article.Body, updatedArticle.Body)
+	suite.Equal(1, len(updatedArticle.Tags))
+	suite.Contains(updatedArticle.Tags, "tag1")
+}
+
+func (suite *Suite) TestArticleUpdateTagsWhitespace() {
+	article, _ := models.ArticleCreate(test.DefaultArticleModel())
+	article.Tags = []string{
+		" tag1 ",
+	}
+
+	updatedArticle, err := models.ArticleUpdate(article)
+	suite.IsType(nil, err)
+	suite.Equal(article.Title, updatedArticle.Title)
+	suite.Equal(article.Body, updatedArticle.Body)
+	suite.Equal(1, len(updatedArticle.Tags))
+	suite.Contains(updatedArticle.Tags, "tag1")
 }

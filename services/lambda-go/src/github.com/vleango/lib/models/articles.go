@@ -8,6 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 	"github.com/satori/go.uuid"
 	"github.com/vleango/database"
+	"github.com/vleango/lib/utils"
 	"strings"
 	"time"
 )
@@ -28,6 +29,7 @@ type Article struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
+// TODO need to separate the tags sanitized so update can use it too
 func ArticleCreate(item Article) (Article, error) {
 
 	if item.Title == "" || item.Body == "" {
@@ -37,6 +39,19 @@ func ArticleCreate(item Article) (Article, error) {
 	item.ID = fmt.Sprintf("%s", uuid.Must(uuid.NewV4(), nil))
 	item.CreatedAt = time.Now()
 	item.UpdatedAt = time.Now()
+
+	var sanitizedTags []string
+
+	if len(item.Tags) > 0 {
+		for _, tag := range item.Tags {
+			if tag != "" {
+				trimmed := strings.TrimSpace(tag)
+				sanitizedTags = append(sanitizedTags, strings.ToLower(trimmed))
+			}
+		}
+	}
+	sanitizedTags = utils.RemoveStringDuplicatesUnordered(sanitizedTags)
+	item.Tags = sanitizedTags
 
 	av, err := dynamodbattribute.MarshalMap(item)
 	input := &dynamodb.PutItemInput{
@@ -119,6 +134,8 @@ func ArticleFind(id string) (Article, error) {
 }
 
 func ArticleUpdate(article Article) (Article, error) {
+	var sanitizedTags []string
+
 	if article.Title == "" && article.Body == "" {
 		return Article{}, errors.New("title and/or body is blank")
 	}
@@ -135,6 +152,23 @@ func ArticleUpdate(article Article) (Article, error) {
 		attributeValue[":body"] = &dynamodb.AttributeValue{S: aws.String(article.Body)}
 		updateExpression = append(updateExpression, "body = :body")
 	}
+
+	if len(article.Tags) > 0 {
+		for _, tag := range article.Tags {
+			if tag != "" {
+				trimmed := strings.TrimSpace(tag)
+				sanitizedTags = append(sanitizedTags, strings.ToLower(trimmed))
+			}
+		}
+	}
+	sanitizedTags = utils.RemoveStringDuplicatesUnordered(sanitizedTags)
+
+	if len(sanitizedTags) > 0 {
+		attributeValue[":tags"] = &dynamodb.AttributeValue{SS: aws.StringSlice(sanitizedTags)}
+	} else {
+		attributeValue[":tags"] = &dynamodb.AttributeValue{NULL: aws.Bool(true)}
+	}
+	updateExpression = append(updateExpression, "tags = :tags")
 
 	attributeValue[":updated_at"] = &dynamodb.AttributeValue{S: aws.String(time.Now().Format(time.RFC3339))}
 	updateExpression = append(updateExpression, "updated_at = :updated_at")

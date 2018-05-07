@@ -69,7 +69,10 @@ func (suite *Suite) TestUpdateTitle() {
 	suite.Equal(article.ID, responseBody.ID)
 	suite.Equal("new title", responseBody.Title)
 	suite.Equal(article.Body, responseBody.Body)
-	suite.Equal(article.Tags, responseBody.Tags)
+
+	suite.Equal(len(article.Tags), len(responseBody.Tags))
+	suite.Contains(responseBody.Tags, "ruby")
+	suite.Contains(responseBody.Tags, "rails")
 
 	// convert these to unix epoch to check for matching
 	suite.Equal(article.CreatedAt.Unix(), responseBody.CreatedAt.Unix())

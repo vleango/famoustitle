@@ -27,7 +27,7 @@ export const createItem = (data) => {
       }
     });
   }
-}
+};
 
 export const fetchItem = (id) => {
   return async (dispatch, getState) => {
@@ -39,7 +39,7 @@ export const fetchItem = (id) => {
       console.log(error);
     }
   }
-}
+};
 
 export const updateItem = (id, data) => {
   return async (dispatch, getState) => {
@@ -51,7 +51,7 @@ export const updateItem = (id, data) => {
       console.log(error);
     }
   }
-}
+};
 
 export const removeItem = (id) => {
   return async (dispatch, getState) => {
@@ -66,7 +66,7 @@ export const removeItem = (id) => {
       }
     });
   }
-}
+};
 
 export const list = (data) => ({
   type: 'ARTICLE_LIST',

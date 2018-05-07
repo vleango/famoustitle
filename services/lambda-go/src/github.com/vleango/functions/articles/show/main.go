@@ -10,6 +10,7 @@ import (
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
 	article, err := models.ArticleFind(request.PathParameters["id"])
+
 	if err != nil {
 		message := map[string]string{
 			"message": err.Error(),
