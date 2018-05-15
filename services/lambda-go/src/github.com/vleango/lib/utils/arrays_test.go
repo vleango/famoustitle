@@ -1,25 +1,24 @@
-package utils_test
+package utils
 
 import (
-  "testing"
-  "github.com/stretchr/testify/suite"
-  "github.com/vleango/lib/utils"
+	"github.com/stretchr/testify/suite"
+	"testing"
 )
 
 type Suite struct {
-    suite.Suite
+	suite.Suite
 }
 
 func (suite *Suite) SetupTest() {
 }
 
 func TestSuite(t *testing.T) {
-    suite.Run(t, new(Suite))
+	suite.Run(t, new(Suite))
 }
 
 func (suite *Suite) TestRemoveStringDuplicatesUnordered() {
-  uniqueArray := utils.RemoveStringDuplicatesUnordered([]string{"ruby", "rails", "ruby"})
-  suite.Equal(2, len(uniqueArray))
-  suite.Contains(uniqueArray, "ruby")
-  suite.Contains(uniqueArray, "rails")
+	uniqueArray := RemoveStringDuplicatesUnordered([]string{"ruby", "rails", "ruby"})
+	suite.Equal(2, len(uniqueArray))
+	suite.Contains(uniqueArray, "ruby")
+	suite.Contains(uniqueArray, "rails")
 }

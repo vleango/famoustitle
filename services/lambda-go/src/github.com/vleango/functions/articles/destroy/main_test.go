@@ -1,13 +1,15 @@
-package main_test
+package main
 
 import (
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/stretchr/testify/suite"
-	"github.com/vleango/functions/articles/destroy"
+	"github.com/vleango/lib/datastores/dynamodb"
+	"github.com/vleango/lib/datastores/elasticsearch"
 	"github.com/vleango/lib/models"
 	"github.com/vleango/lib/test"
 	"testing"
+	"time"
 )
 
 type Suite struct {
@@ -17,10 +19,10 @@ type Suite struct {
 var article models.Article
 
 func (suite *Suite) SetupTest() {
-	test.CleanDB()
+	test.CleanDataStores()
 	test.CreateArticlesTable()
 
-	article, _ = models.ArticleCreate(test.DefaultArticleModel())
+	article, _ = dynamodb.ArticleCreate(test.DefaultArticleModel())
 }
 
 func TestSuite(t *testing.T) {
@@ -34,13 +36,22 @@ func (suite *Suite) TestDestroyRecordFound() {
 		},
 	}
 
-	response, err := main.Handler(request)
+	elasticsearch.ArticleCreate(article)
+	time.Sleep(1 * time.Second)
+	articles, _, _ := elasticsearch.ArticleFindAll()
+	suite.Equal(1, len(articles))
+
+	response, err := Handler(request)
 	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 
-	var responseBody main.ResponseBody
+	var responseBody ResponseBody
 	json.Unmarshal([]byte(response.Body), &responseBody)
 	suite.Equal(true, responseBody.Success)
+
+	time.Sleep(1 * time.Second)
+	articles2, _, _ := elasticsearch.ArticleFindAll()
+	suite.Equal(0, len(articles2))
 }
 
 func (suite *Suite) TestDestroyRecordNotFound() {
@@ -50,7 +61,7 @@ func (suite *Suite) TestDestroyRecordNotFound() {
 		},
 	}
 
-	response, err := main.Handler(request)
+	response, err := Handler(request)
 	suite.Equal(404, response.StatusCode)
 	suite.IsType(nil, err)
 

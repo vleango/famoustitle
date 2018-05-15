@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/vleango/lib/datastores/dynamodb"
+	"github.com/vleango/lib/datastores/elasticsearch"
 	"github.com/vleango/lib/models"
 )
 
@@ -23,7 +25,7 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	}
 
 	// check if article exist
-	_, err := models.ArticleFind(request.PathParameters["id"])
+	_, err := dynamodb.ArticleFind(request.PathParameters["id"])
 	if err != nil {
 		message := map[string]string{
 			"message": err.Error(),
@@ -42,7 +44,7 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		},
 	}
 	json.Unmarshal([]byte(request.Body), &requestArticle)
-	item, err := models.ArticleUpdate(requestArticle.Article)
+	item, err := dynamodb.ArticleUpdate(requestArticle.Article)
 	if err != nil {
 		message := map[string]string{
 			"message": err.Error(),
@@ -64,6 +66,7 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		return events.APIGatewayProxyResponse{}, err
 	}
 
+	elasticsearch.ArticleUpdate(item)
 	return events.APIGatewayProxyResponse{
 		Body:       string(b),
 		StatusCode: 200,

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input } from 'reactstrap';
 import { map } from 'lodash';
+import moment from 'moment';
 
 import fontawesome from '@fortawesome/fontawesome';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -26,7 +27,7 @@ export const Sidebar = (props) => {
         <ul>
           {
             props.archives && map(props.archives, (count, date) => {
-              return <li key={date}><Link to={`/?date=${date}`}>{date} ({count})</Link></li>
+              return <li key={date}><Link to={`/?date=${date}`}>{moment.utc(date).format("MMMM YYYY")} ({count})</Link></li>
             })
           }
         </ul>
@@ -43,12 +44,12 @@ export const Sidebar = (props) => {
       </aside>
     </div>
   );
-}
+};
 
 const mapStateToProps = (state) => {
 	return {
 		archives: state.articles.index.archives,
-    tags: state.articles.index.tags
+        tags: state.articles.index.tags
 	};
 };
 

@@ -1,14 +1,20 @@
 #!/bin/bash
 
 # functions
-go test -v functions/articles/create/main_test.go &&
-go test -v functions/articles/destroy/main_test.go &&
-go test -v functions/articles/index/main_test.go &&
-go test -v functions/articles/show/main_test.go &&
-go test -v functions/articles/update/main_test.go &&
+go test -v github.com/vleango/functions/articles/create/ &&
+go test -v github.com/vleango/functions/articles/destroy/ &&
+go test -v github.com/vleango/functions/articles/index/ &&
+go test -v github.com/vleango/functions/articles/show/ &&
+go test -v github.com/vleango/functions/articles/update/ &&
+
+# datastores
+go test -v github.com/vleango/lib/datastores/dynamodb/ &&
+go test -v github.com/vleango/lib/datastores/elasticsearch &&
 
 # models
-go test -v lib/models/articles_test.go &&
+go test -v github.com/vleango/lib/models/ &&
 
 # lib
-go test -v lib/utils/arrays_test.go
+go test -v github.com/vleango/lib/utils/ &&
+
+echo "All passed"

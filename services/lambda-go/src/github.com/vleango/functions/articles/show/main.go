@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/vleango/lib/models"
+	"github.com/vleango/lib/datastores/dynamodb"
 )
 
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
-	article, err := models.ArticleFind(request.PathParameters["id"])
+	article, err := dynamodb.ArticleFind(request.PathParameters["id"])
 
 	if err != nil {
 		message := map[string]string{

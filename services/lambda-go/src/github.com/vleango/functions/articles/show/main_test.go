@@ -1,11 +1,10 @@
-package main_test
+package main
 
 import (
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/stretchr/testify/suite"
-	"github.com/vleango/functions/articles/show"
-	"github.com/vleango/lib/models"
+	"github.com/vleango/lib/datastores/dynamodb"
 	"github.com/vleango/lib/test"
 	"testing"
 	"time"
@@ -16,7 +15,7 @@ type Suite struct {
 }
 
 func (suite *Suite) SetupTest() {
-	test.CleanDB()
+	test.CleanDataStores()
 	test.CreateArticlesTable()
 }
 
@@ -25,13 +24,13 @@ func TestSuite(t *testing.T) {
 }
 
 func (suite *Suite) TestShowRecordFound() {
-	article, _ := models.ArticleCreate(test.DefaultArticleModel())
+	article, _ := dynamodb.ArticleCreate(test.DefaultArticleModel())
 	request := events.APIGatewayProxyRequest{
 		PathParameters: map[string]string{
 			"id": article.ID,
 		},
 	}
-	response, err := main.Handler(request)
+	response, err := Handler(request)
 	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 
@@ -59,7 +58,7 @@ func (suite *Suite) TestShowRecordNotFound() {
 			"id": "not-found-id",
 		},
 	}
-	response, err := main.Handler(request)
+	response, err := Handler(request)
 	suite.Equal(404, response.StatusCode)
 	suite.IsType(nil, err)
 

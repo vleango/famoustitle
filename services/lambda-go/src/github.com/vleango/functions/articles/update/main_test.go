@@ -1,13 +1,15 @@
-package main_test
+package main
 
 import (
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/stretchr/testify/suite"
-	"github.com/vleango/functions/articles/update"
+	"github.com/vleango/lib/datastores/dynamodb"
+	"github.com/vleango/lib/datastores/elasticsearch"
 	"github.com/vleango/lib/models"
 	"github.com/vleango/lib/test"
 	"testing"
+	"time"
 )
 
 type Suite struct {
@@ -19,9 +21,9 @@ var (
 )
 
 func (suite *Suite) SetupTest() {
-	test.CleanDB()
+	test.CleanDataStores()
 	test.CreateArticlesTable()
-	article, _ = models.ArticleCreate(test.DefaultArticleModel())
+	article, _ = dynamodb.ArticleCreate(test.DefaultArticleModel())
 
 	// to change updated_at
 	//time.Sleep(1 * time.Second)
@@ -37,7 +39,7 @@ func (suite *Suite) TestUpdateRecordNotFound() {
 			"id": "not-found-id",
 		},
 	}
-	response, err := main.Handler(request)
+	response, err := Handler(request)
 	suite.Equal(404, response.StatusCode)
 	suite.IsType(nil, err)
 
@@ -47,7 +49,7 @@ func (suite *Suite) TestUpdateRecordNotFound() {
 }
 
 func (suite *Suite) TestUpdateTitle() {
-	requestBody := main.RequestArticle{
+	requestBody := RequestArticle{
 		Article: article,
 	}
 	requestBody.Article.Title = "new title"
@@ -60,7 +62,7 @@ func (suite *Suite) TestUpdateTitle() {
 		Body: string(jsonRequestBody),
 	}
 
-	response, err := main.Handler(request)
+	response, err := Handler(request)
 	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 
@@ -77,10 +79,24 @@ func (suite *Suite) TestUpdateTitle() {
 	// convert these to unix epoch to check for matching
 	suite.Equal(article.CreatedAt.Unix(), responseBody.CreatedAt.Unix())
 	//suite.NotEqual(article.UpdatedAt.Unix(), responseBody.UpdatedAt.Unix())
+
+	time.Sleep(1 * time.Second)
+	articles, _, _ := elasticsearch.ArticleFindAll()
+	suite.Equal(article.ID, articles[0].ID)
+	suite.Equal("new title", articles[0].Title)
+	suite.Equal(article.Body, articles[0].Body)
+
+	suite.Equal(len(article.Tags), len(articles[0].Tags))
+	suite.Contains(articles[0].Tags, "ruby")
+	suite.Contains(articles[0].Tags, "rails")
+
+	// convert these to unix epoch to check for matching
+	suite.Equal(article.CreatedAt.Unix(), articles[0].CreatedAt.Unix())
+	suite.Equal(responseBody.UpdatedAt.Unix(), articles[0].UpdatedAt.Unix())
 }
 
 func (suite *Suite) TestUpdateBody() {
-	requestBody := main.RequestArticle{
+	requestBody := RequestArticle{
 		Article: article,
 	}
 	requestBody.Article.Body = "new body"
@@ -93,7 +109,7 @@ func (suite *Suite) TestUpdateBody() {
 		Body: string(jsonRequestBody),
 	}
 
-	response, err := main.Handler(request)
+	response, err := Handler(request)
 	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 
@@ -110,10 +126,24 @@ func (suite *Suite) TestUpdateBody() {
 	// convert these to unix epoch to check for matching
 	suite.Equal(article.CreatedAt.Unix(), responseBody.CreatedAt.Unix())
 	//suite.NotEqual(article.UpdatedAt.Unix(), responseBody.UpdatedAt.Unix())
+
+	time.Sleep(1 * time.Second)
+	articles, _, _ := elasticsearch.ArticleFindAll()
+	suite.Equal(article.ID, articles[0].ID)
+	suite.Equal(article.Title, articles[0].Title)
+	suite.Equal("new body", articles[0].Body)
+
+	suite.Equal(len(article.Tags), len(articles[0].Tags))
+	suite.Contains(articles[0].Tags, "ruby")
+	suite.Contains(articles[0].Tags, "rails")
+
+	// convert these to unix epoch to check for matching
+	suite.Equal(article.CreatedAt.Unix(), articles[0].CreatedAt.Unix())
+	suite.Equal(responseBody.UpdatedAt.Unix(), articles[0].UpdatedAt.Unix())
 }
 
 func (suite *Suite) TestUpdateTitleBlankBodyPresent() {
-	requestBody := main.RequestArticle{
+	requestBody := RequestArticle{
 		Article: article,
 	}
 	requestBody.Article.Title = ""
@@ -127,21 +157,30 @@ func (suite *Suite) TestUpdateTitleBlankBodyPresent() {
 		Body: string(jsonRequestBody),
 	}
 
-	response, err := main.Handler(request)
+	response, err := Handler(request)
 	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 
-	updatedArticle, _ := models.ArticleFind(article.ID)
+	updatedArticle, _ := dynamodb.ArticleFind(article.ID)
 	suite.Equal(article.Title, updatedArticle.Title)
 	suite.Equal("my new body", updatedArticle.Body)
 
 	// convert these to unix epoch to check for matching
 	suite.Equal(article.CreatedAt.Unix(), updatedArticle.CreatedAt.Unix())
 	//suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
+
+	time.Sleep(1 * time.Second)
+	articles, _, _ := elasticsearch.ArticleFindAll()
+	suite.Equal(article.ID, articles[0].ID)
+	suite.Equal(article.Title, articles[0].Title)
+	suite.Equal("my new body", articles[0].Body)
+
+	// convert these to unix epoch to check for matching
+	suite.Equal(article.CreatedAt.Unix(), articles[0].CreatedAt.Unix())
 }
 
 func (suite *Suite) TestUpdateTitlePresentBodyBlank() {
-	requestBody := main.RequestArticle{
+	requestBody := RequestArticle{
 		Article: article,
 	}
 	requestBody.Article.Title = "my new title"
@@ -155,15 +194,26 @@ func (suite *Suite) TestUpdateTitlePresentBodyBlank() {
 		Body: string(jsonRequestBody),
 	}
 
-	response, err := main.Handler(request)
+	response, err := Handler(request)
 	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 
-	updatedArticle, _ := models.ArticleFind(article.ID)
+	updatedArticle, _ := dynamodb.ArticleFind(article.ID)
 	suite.Equal("my new title", updatedArticle.Title)
 	suite.Equal(article.Body, updatedArticle.Body)
 
 	// convert these to unix epoch to check for matching
 	suite.Equal(article.CreatedAt.Unix(), updatedArticle.CreatedAt.Unix())
 	//suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
+
+	time.Sleep(1 * time.Second)
+	articles, _, _ := elasticsearch.ArticleFindAll()
+	suite.Equal(article.ID, articles[0].ID)
+	suite.Equal("my new title", articles[0].Title)
+	suite.Equal(article.Body, articles[0].Body)
+
+	// convert these to unix epoch to check for matching
+	suite.Equal(article.CreatedAt.Unix(), articles[0].CreatedAt.Unix())
 }
+
+// TODO need tag updates

@@ -33,36 +33,27 @@ services:
       - config/environments/.aws.env
       - config/environments/lambda-go.env
     depends_on:
-      - db-dynamo
-      - datastore-es
-  db-dynamo:
+      - db-dynamo-test
+      - datastore-es-test
+  db-dynamo-test:
     image: cnadiminti/dynamodb-local
     ports:
       - 8000:8000
     volumes:
-      - db-dynamo-data:/dynamodb_local_db
-  datastore-es:
+      - db-dynamo-data-test:/dynamodb_local_db
+  datastore-es-test:
     build:
       context: .
       dockerfile: ./config/dockerfiles/Dockerfile-es
       args:
         APP_PATH: ./services/datastore-es
     environment:
-      - cluster.name=article
+      - cluster.name=article-test
       - ELASTIC_PASSWORD=password
     ports:
       - 9200:9200
     volumes:
-      - article-esdata:/usr/share/elasticsearch/data
-  datastore-kibana:
-    image: docker.elastic.co/kibana/kibana:6.2.4
-    environment:
-      - ELASTICSEARCH_URL=http://datastore-es:9200
-      - ELASTICSEARCH_PASSWORD=password
-    ports:
-      - 5601:5601
-    depends_on:
-      - datastore-es
+      - article-esdata-test:/usr/share/elasticsearch/data
 volumes:
-  db-dynamo-data: {}
-  article-esdata: {}
+  db-dynamo-data-test: {}
+  article-esdata-test: {}
