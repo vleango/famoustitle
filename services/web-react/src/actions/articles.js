@@ -2,13 +2,36 @@ import axios from 'axios';
 
 import { ROOT_API_URL } from './Base';
 
-export const fetchList = () => {
+export const fetchList = (filters = {}) => {
   return async (dispatch, getState) => {
     try {
-      const response = await axios.get(`${ROOT_API_URL}/articles`);
-      dispatch(list(response.data));
+
+        let resource = "articles";
+        if(filters['tag']) {
+            resource = `articles?tag=${filters['tag']}`
+        } else if(filters['date']) {
+            resource = `articles?date=${filters['date']}`
+        } else if(filters['match']) {
+            resource = `articles?match=${filters['match']}`
+        }
+
+      const response = await axios.get(`${ROOT_API_URL}/${resource}`);
+        let data = { ...response.data, selected: filters };
+      dispatch(list(data));
     }
     catch (error) {
+      console.log(error);
+    }
+  }
+};
+
+export const fetchArticlesArchiveList = () => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.get(`${ROOT_API_URL}/articles/archives`);
+      let data = { ...response.data };
+      dispatch(archives(data));
+    } catch (error) {
       console.log(error);
     }
   }
@@ -71,6 +94,11 @@ export const removeItem = (id) => {
 export const list = (data) => ({
   type: 'ARTICLE_LIST',
   data
+});
+
+export const archives = (data) => ({
+   type: 'ARTICLES_ARCHIVE_LIST',
+   data
 });
 
 export const item = (data) => ({

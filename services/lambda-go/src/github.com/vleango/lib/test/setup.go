@@ -7,6 +7,7 @@ import (
 	"github.com/vleango/config"
 	"github.com/vleango/lib/models"
 	"net/http"
+	"time"
 )
 
 var svc = config.DynamoSvc
@@ -79,8 +80,10 @@ func CreateArticlesTable() {
 
 func DefaultArticleModel() models.Article {
 	return models.Article{
-		Title: "this is my title",
-		Body:  "this is my body",
-		Tags:  []string{"ruby", "rails"},
+		Title:     "this is my title",
+		Body:      "this is my body",
+		Tags:      []string{"ruby", "rails"},
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
 	}
 }

@@ -12,7 +12,7 @@ describe('Components', () => {
 
       describe('Snapshot', () => {
         it('should correctly render HomePage', () => {
-          wrapper = shallow(<HomePage articles={articles} />);
+          wrapper = shallow(<HomePage location={{search: ""}} articles={articles} />);
           expect(wrapper).toMatchSnapshot();
         });
       });

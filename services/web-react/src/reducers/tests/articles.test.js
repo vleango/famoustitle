@@ -16,6 +16,7 @@ describe('Reducers', () => {
               totalPages: 0
             },
             resources: [],
+            selected: {},
             archives: {},
             tags: []
           },

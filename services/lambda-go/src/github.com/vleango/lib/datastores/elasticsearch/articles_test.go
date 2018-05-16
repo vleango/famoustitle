@@ -80,6 +80,102 @@ func (suite *Suite) TestArticleFindAll() {
 	}
 }
 
+func (suite *Suite) TestArticleFindAllByTag() {
+	item1 := test.DefaultArticleModel()
+	item1.ID = "1234"
+	item2 := test.DefaultArticleModel()
+	item2.ID = "abcd"
+
+	ArticleCreate(item1)
+	ArticleCreate(item2)
+	time.Sleep(1 * time.Second)
+
+	articles, _, _ := ArticleFindAll(map[string]string{
+		"tag": "rails",
+	})
+	suite.Equal(2, len(articles))
+}
+
+func (suite *Suite) TestArticleFindAllByTagNotFound() {
+	item1 := test.DefaultArticleModel()
+	item1.ID = "1234"
+	item2 := test.DefaultArticleModel()
+	item2.ID = "abcd"
+
+	ArticleCreate(item1)
+	ArticleCreate(item2)
+	time.Sleep(1 * time.Second)
+
+	articles, _, _ := ArticleFindAll(map[string]string{
+		"tag": "web",
+	})
+	suite.Equal(0, len(articles))
+}
+
+func (suite *Suite) TestArticleFindAllByDate() {
+	item1 := test.DefaultArticleModel()
+	item1.ID = "1234"
+	item2 := test.DefaultArticleModel()
+	item2.ID = "abcd"
+
+	ArticleCreate(item1)
+	ArticleCreate(item2)
+	time.Sleep(1 * time.Second)
+
+	articles, _, _ := ArticleFindAll(map[string]string{
+		"date": time.Now().Format("2006-01-") + "01",
+	})
+	suite.Equal(2, len(articles))
+}
+
+func (suite *Suite) TestArticleFindAllByDateNotFound() {
+	item1 := test.DefaultArticleModel()
+	item1.ID = "1234"
+	item2 := test.DefaultArticleModel()
+	item2.ID = "abcd"
+
+	ArticleCreate(item1)
+	ArticleCreate(item2)
+	time.Sleep(1 * time.Second)
+
+	articles, _, _ := ArticleFindAll(map[string]string{
+		"date": "2000-01-01",
+	})
+	suite.Equal(0, len(articles))
+}
+
+func (suite *Suite) TestArticleFindAllByMatch() {
+	item1 := test.DefaultArticleModel()
+	item1.ID = "1234"
+	item2 := test.DefaultArticleModel()
+	item2.ID = "abcd"
+
+	ArticleCreate(item1)
+	ArticleCreate(item2)
+	time.Sleep(1 * time.Second)
+
+	articles, _, _ := ArticleFindAll(map[string]string{
+		"match": "title",
+	})
+	suite.Equal(2, len(articles))
+}
+
+func (suite *Suite) TestArticleFindAllByMatchNotFound() {
+	item1 := test.DefaultArticleModel()
+	item1.ID = "1234"
+	item2 := test.DefaultArticleModel()
+	item2.ID = "abcd"
+
+	ArticleCreate(item1)
+	ArticleCreate(item2)
+	time.Sleep(1 * time.Second)
+
+	articles, _, _ := ArticleFindAll(map[string]string{
+		"match": "noooo",
+	})
+	suite.Equal(0, len(articles))
+}
+
 func (suite *Suite) TestArticleUpdate() {
 	item := test.DefaultArticleModel()
 	item.ID = "1234"

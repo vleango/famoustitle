@@ -20,9 +20,10 @@ export default (props) => {
       <ul className="article__subtitle mb-2">
           <li>
             <FontAwesomeIcon className="mr-2" icon="calendar-alt"/>
-            <Link to={`/?date=${props.article.created_at}`}>
-              { moment(props.article.created_at).format("MMMM Do, YYYY") }
-            </Link>
+            <button className="btn btn-link article__subtitle--date" onClick={() => props.updateFilter("date", moment(props.article.created_at).format(`YYYY-MM-01`))}>
+                { moment(props.article.created_at).format("MMMM Do, YYYY") }
+            </button>
+
           </li>
           {/*<li>*/}
             {/*<FontAwesomeIcon className="mr-2" icon="comment-alt"/>*/}
@@ -32,7 +33,7 @@ export default (props) => {
             <FontAwesomeIcon className="mr-2" icon="tag"/>
             {props.article.tags && props.article.tags.map((tag) => {
               return [
-                <Link key={tag} to={`/?tag=${tag}`}>{tag}</Link>
+                  <button key={tag} className="article__subtitle--tag btn btn-link" onClick={() => props.updateFilter("tag", tag)}>{tag}</button>
               ]
             })}
           </li>

@@ -50,6 +50,11 @@ ShallowWrapper {
             },
           ]
     }
+    location={
+        Object {
+            "search": "",
+          }
+    }
 />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -74,7 +79,9 @@ ShallowWrapper {
                     <div
                               className="col-xl-4"
                     >
-                              <Connect(Component) />
+                              <Connect(Sidebar)
+                                        updateFilter={[Function]}
+                              />
                     </div>
                     <div
                               className="col-xl-8 main--content"
@@ -103,6 +110,7 @@ ShallowWrapper {
                                                             "title": "Hunting for great names in programming",
                                                           }
                                         }
+                                        updateFilter={[Function]}
                               />
                               <Unknown
                                         article={
@@ -127,6 +135,7 @@ ShallowWrapper {
                                                             "title": "Creating staging and other environments in Rails",
                                                           }
                                         }
+                                        updateFilter={[Function]}
                               />
                               <Unknown />
                     </div>
@@ -162,7 +171,9 @@ ShallowWrapper {
             <div
                         className="col-xl-4"
             >
-                        <Connect(Component) />
+                        <Connect(Sidebar)
+                                    updateFilter={[Function]}
+                        />
             </div>
             <div
                         className="col-xl-8 main--content"
@@ -191,6 +202,7 @@ ShallowWrapper {
                                                             "title": "Hunting for great names in programming",
                                                           }
                                     }
+                                    updateFilter={[Function]}
                         />
                         <Unknown
                                     article={
@@ -215,6 +227,7 @@ ShallowWrapper {
                                                             "title": "Creating staging and other environments in Rails",
                                                           }
                                     }
+                                    updateFilter={[Function]}
                         />
                         <Unknown />
             </div>
@@ -231,7 +244,9 @@ ShallowWrapper {
               <div
                 className="col-xl-4"
 >
-                <Connect(Component) />
+                <Connect(Sidebar)
+                                updateFilter={[Function]}
+                />
 </div>,
               <div
                 className="col-xl-8 main--content"
@@ -260,6 +275,7 @@ ShallowWrapper {
                                                                 "title": "Hunting for great names in programming",
                                                               }
                                 }
+                                updateFilter={[Function]}
                 />
                 <Unknown
                                 article={
@@ -284,6 +300,7 @@ ShallowWrapper {
                                                                 "title": "Creating staging and other environments in Rails",
                                                               }
                                 }
+                                updateFilter={[Function]}
                 />
                 <Unknown />
 </div>,
@@ -297,7 +314,9 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <Connect(Component) />,
+                "children": <Connect(Sidebar)
+                  updateFilter={[Function]}
+/>,
                 "className": "col-xl-4",
               },
               "ref": null,
@@ -305,7 +324,9 @@ ShallowWrapper {
                 "instance": null,
                 "key": undefined,
                 "nodeType": "class",
-                "props": Object {},
+                "props": Object {
+                  "updateFilter": [Function],
+                },
                 "ref": null,
                 "rendered": null,
                 "type": [Function],
@@ -343,6 +364,7 @@ ShallowWrapper {
                                                                   "title": "Hunting for great names in programming",
                                                                 }
                       }
+                      updateFilter={[Function]}
 />,
                     <Unknown
                       article={
@@ -367,6 +389,7 @@ ShallowWrapper {
                                                                   "title": "Creating staging and other environments in Rails",
                                                                 }
                       }
+                      updateFilter={[Function]}
 />,
                   ],
                   <Unknown />,
@@ -401,6 +424,7 @@ No problemo: Just extract the protection into its own module and call it from bo
                       ],
                       "title": "Hunting for great names in programming",
                     },
+                    "updateFilter": [Function],
                   },
                   "ref": null,
                   "rendered": null,
@@ -431,6 +455,7 @@ As I mentioned first we would need a new file in config/environments/. A short e
                       ],
                       "title": "Creating staging and other environments in Rails",
                     },
+                    "updateFilter": [Function],
                   },
                   "ref": null,
                   "rendered": null,
@@ -485,7 +510,9 @@ As I mentioned first we would need a new file in config/environments/. A short e
                         <div
                                     className="col-xl-4"
                         >
-                                    <Connect(Component) />
+                                    <Connect(Sidebar)
+                                                updateFilter={[Function]}
+                                    />
                         </div>
                         <div
                                     className="col-xl-8 main--content"
@@ -514,6 +541,7 @@ As I mentioned first we would need a new file in config/environments/. A short e
                                                                         "title": "Hunting for great names in programming",
                                                                       }
                                                 }
+                                                updateFilter={[Function]}
                                     />
                                     <Unknown
                                                 article={
@@ -538,6 +566,7 @@ As I mentioned first we would need a new file in config/environments/. A short e
                                                                         "title": "Creating staging and other environments in Rails",
                                                                       }
                                                 }
+                                                updateFilter={[Function]}
                                     />
                                     <Unknown />
                         </div>
@@ -573,7 +602,9 @@ As I mentioned first we would need a new file in config/environments/. A short e
               <div
                             className="col-xl-4"
               >
-                            <Connect(Component) />
+                            <Connect(Sidebar)
+                                          updateFilter={[Function]}
+                            />
               </div>
               <div
                             className="col-xl-8 main--content"
@@ -602,6 +633,7 @@ As I mentioned first we would need a new file in config/environments/. A short e
                                                                       "title": "Hunting for great names in programming",
                                                                     }
                                           }
+                                          updateFilter={[Function]}
                             />
                             <Unknown
                                           article={
@@ -626,6 +658,7 @@ As I mentioned first we would need a new file in config/environments/. A short e
                                                                       "title": "Creating staging and other environments in Rails",
                                                                     }
                                           }
+                                          updateFilter={[Function]}
                             />
                             <Unknown />
               </div>
@@ -642,7 +675,9 @@ As I mentioned first we would need a new file in config/environments/. A short e
                 <div
                   className="col-xl-4"
 >
-                  <Connect(Component) />
+                  <Connect(Sidebar)
+                                    updateFilter={[Function]}
+                  />
 </div>,
                 <div
                   className="col-xl-8 main--content"
@@ -671,6 +706,7 @@ As I mentioned first we would need a new file in config/environments/. A short e
                                                                         "title": "Hunting for great names in programming",
                                                                       }
                                     }
+                                    updateFilter={[Function]}
                   />
                   <Unknown
                                     article={
@@ -695,6 +731,7 @@ As I mentioned first we would need a new file in config/environments/. A short e
                                                                         "title": "Creating staging and other environments in Rails",
                                                                       }
                                     }
+                                    updateFilter={[Function]}
                   />
                   <Unknown />
 </div>,
@@ -708,7 +745,9 @@ As I mentioned first we would need a new file in config/environments/. A short e
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": <Connect(Component) />,
+                  "children": <Connect(Sidebar)
+                    updateFilter={[Function]}
+/>,
                   "className": "col-xl-4",
                 },
                 "ref": null,
@@ -716,7 +755,9 @@ As I mentioned first we would need a new file in config/environments/. A short e
                   "instance": null,
                   "key": undefined,
                   "nodeType": "class",
-                  "props": Object {},
+                  "props": Object {
+                    "updateFilter": [Function],
+                  },
                   "ref": null,
                   "rendered": null,
                   "type": [Function],
@@ -754,6 +795,7 @@ As I mentioned first we would need a new file in config/environments/. A short e
                                                                         "title": "Hunting for great names in programming",
                                                                       }
                         }
+                        updateFilter={[Function]}
 />,
                       <Unknown
                         article={
@@ -778,6 +820,7 @@ As I mentioned first we would need a new file in config/environments/. A short e
                                                                         "title": "Creating staging and other environments in Rails",
                                                                       }
                         }
+                        updateFilter={[Function]}
 />,
                     ],
                     <Unknown />,
@@ -812,6 +855,7 @@ No problemo: Just extract the protection into its own module and call it from bo
                         ],
                         "title": "Hunting for great names in programming",
                       },
+                      "updateFilter": [Function],
                     },
                     "ref": null,
                     "rendered": null,
@@ -842,6 +886,7 @@ As I mentioned first we would need a new file in config/environments/. A short e
                         ],
                         "title": "Creating staging and other environments in Rails",
                       },
+                      "updateFilter": [Function],
                     },
                     "ref": null,
                     "rendered": null,

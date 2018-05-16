@@ -1,6 +1,5 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { Form, Input } from 'reactstrap';
 import { map } from 'lodash';
 import moment from 'moment';
@@ -13,43 +12,84 @@ import './css/sidebar.css';
 
 fontawesome.library.add(faSearch);
 
-export const Sidebar = (props) => {
-  return (
-    <div className="mr-5">
-      <aside>
-        <Form className="search-form">
-          <Input className="form-control pr-5" type="search" placeholder="Search..." />
-          <button className="search-button" type="submit"><FontAwesomeIcon icon="search"/></button>
-        </Form>
-      </aside>
-      <aside className="widget">
-        <div className="widget-title">Archives</div>
-        <ul>
-          {
-            props.archives && map(props.archives, (count, date) => {
-              return <li key={date}><Link to={`/?date=${date}`}>{moment.utc(date).format("MMMM YYYY")} ({count})</Link></li>
-            })
-          }
-        </ul>
-      </aside>
-      <aside className="widget">
-        <div className="widget-title">Tags</div>
-        <div className="tagcloud">
-          {
-            props.tags && props.tags.map((tag) => {
-              return <Link to={`/?tag=${tag}`} key={tag}>{tag}</Link>
-            })
-          }
-        </div>
-      </aside>
-    </div>
-  );
-};
+export class Sidebar extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            search: ""
+        };
+    }
+
+    componentWillReceiveProps = (nextProps) => {
+        if(nextProps.selected) {
+            let search = "";
+            if(nextProps.selected.match) {
+                search = nextProps.selected.match
+            }
+            this.setState({
+                search: search
+            });
+        }
+    };
+
+    onInputChange = (e) => {
+        const field = e.target.name;
+        const value = e.target.value;
+        this.setState(() => ({ [field]: value }));
+    };
+
+    onSearchSubmit = (e) => {
+        e && e.preventDefault();
+        this.props.updateFilter("match", this.state.search);
+    };
+
+    render() {
+        return (
+            <div className="mr-5">
+                <aside>
+                    <Form className="search-form" onSubmit={this.onSearchSubmit}>
+                        <Input className="form-control pr-5" type="search" name="search" placeholder="Search..." value={this.state.search} onChange={this.onInputChange} />
+                        <button className="search-button" type="submit"><FontAwesomeIcon icon="search"/></button>
+                    </Form>
+                </aside>
+                <aside className="widget">
+                    <div className="widget-title">Archives</div>
+                    <ul>
+                        {
+                            this.props.archives && map(this.props.archives, (count, date) => {
+                                const momentDate = moment.utc(date);
+                                let className = "btn btn-link widget--date";
+                                if(this.props.selected && this.props.selected.date === momentDate.format("YYYY-MM-DD") ? "* " : "") {
+                                    className += " widget__selected";
+                                }
+                                return <li key={date}>
+                                    <button className={className} onClick={() => this.props.updateFilter("date", momentDate.format("YYYY-MM-DD"))}>{momentDate.format("MMMM YYYY")} ({count})</button>
+                                </li>
+                            })
+                        }
+                    </ul>
+                </aside>
+                <aside className="widget">
+                    <div className="widget-title">Tags</div>
+                    <div className="tagcloud">
+                        {
+                            this.props.tags && this.props.tags.map((tag) => {
+                                return <button key={tag} className={this.props.selected && this.props.selected.tag === tag ? "selected" : ""} onClick={() => this.props.updateFilter("tag", tag)}>{tag}</button>
+                            })
+                        }
+                    </div>
+                </aside>
+            </div>
+        );
+    }
+}
 
 const mapStateToProps = (state) => {
 	return {
 		archives: state.articles.index.archives,
-        tags: state.articles.index.tags
+        tags: state.articles.index.tags,
+        selected: state.articles.index.selected
 	};
 };
 

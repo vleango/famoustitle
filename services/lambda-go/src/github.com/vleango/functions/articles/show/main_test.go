@@ -5,6 +5,7 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/stretchr/testify/suite"
 	"github.com/vleango/lib/datastores/dynamodb"
+	"github.com/vleango/lib/datastores/elasticsearch"
 	"github.com/vleango/lib/test"
 	"testing"
 	"time"
@@ -25,6 +26,9 @@ func TestSuite(t *testing.T) {
 
 func (suite *Suite) TestShowRecordFound() {
 	article, _ := dynamodb.ArticleCreate(test.DefaultArticleModel())
+	elasticsearch.ArticleCreate(article)
+	time.Sleep(1 * time.Second)
+
 	request := events.APIGatewayProxyRequest{
 		PathParameters: map[string]string{
 			"id": article.ID,

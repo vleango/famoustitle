@@ -5,3 +5,4 @@ build:
 	env GOOS=linux go build -ldflags="-s -w" -o bin/articles_show functions/articles/show/main.go
 	env GOOS=linux go build -ldflags="-s -w" -o bin/articles_update functions/articles/update/main.go
 	env GOOS=linux go build -ldflags="-s -w" -o bin/articles_destroy functions/articles/destroy/main.go
+	env GOOS=linux go build -ldflags="-s -w" -o bin/articles_archives_index functions/articles/archives/index/main.go

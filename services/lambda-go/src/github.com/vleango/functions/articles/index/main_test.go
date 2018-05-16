@@ -104,10 +104,6 @@ func (suite *Suite) TestArticles() {
 	}
 }
 
-func (suite *Suite) TestArchives() {
-	suite.Equal(len(articles), responseBody.Archives.Buckets[0].DocCount)
-}
-
 func (suite *Suite) TestTags() {
 	defaultTags := []string{"ruby", "rails"}
 
@@ -125,6 +121,5 @@ func (suite *EmptySuite) TestEmptyArticles() {
 
 	json.Unmarshal([]byte(response.Body), &responseBody)
 	suite.NotNil(responseBody.Articles)
-	suite.NotNil(responseBody.Archives.Buckets)
 	suite.NotNil(responseBody.Tags.Buckets)
 }

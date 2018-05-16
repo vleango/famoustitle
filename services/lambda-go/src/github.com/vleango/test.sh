@@ -6,6 +6,7 @@ go test -v github.com/vleango/functions/articles/destroy/ &&
 go test -v github.com/vleango/functions/articles/index/ &&
 go test -v github.com/vleango/functions/articles/show/ &&
 go test -v github.com/vleango/functions/articles/update/ &&
+go test -v github.com/vleango/functions/articles/archives/index/ &&
 
 # datastores
 go test -v github.com/vleango/lib/datastores/dynamodb/ &&

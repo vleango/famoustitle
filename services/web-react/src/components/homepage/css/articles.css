@@ -17,8 +17,27 @@
   font-size: 14px;
 }
 
+.article__subtitle--date {
+  text-decoration: none !important;
+  font-size: 14px;
+  font-weight: 600;
+  color: inherit;
+}
+
 .article__subtitle--tags > a {
   margin-right: 0.7rem;
+}
+
+.article__subtitle--tag {
+  text-decoration: none !important;
+  font-weight: 600;
+  padding: 0;
+  margin-right: 0.7rem;
+  color: inherit;
+}
+
+.article__subtitle--tag:hover {
+  color: #0056b3;
 }
 
 .article__contents {

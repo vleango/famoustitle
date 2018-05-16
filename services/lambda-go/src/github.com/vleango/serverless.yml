@@ -50,11 +50,6 @@ functions:
           cors: true
   articles_show:
     handler: bin/articles_show
-    iamRoleStatements:
-      - Effect: "Allow"
-        Action:
-          - "dynamodb:GetItem"
-        Resource: ${env:ARN_DB_RESOURCE}
     events:
       - http:
           path: /articles/{id}
@@ -79,16 +74,23 @@ functions:
   articles_destroy:
     handler: bin/articles_destroy
     iamRoleStatements:
-        - Effect: "Allow"
-          Action:
-            - "dynamodb:GetItem"
-          Resource: ${env:ARN_DB_RESOURCE}
-        - Effect: "Allow"
-          Action:
-            - "dynamodb:DeleteItem"
-          Resource: ${env:ARN_DB_RESOURCE}
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:GetItem"
+        Resource: ${env:ARN_DB_RESOURCE}
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:DeleteItem"
+        Resource: ${env:ARN_DB_RESOURCE}
     events:
       - http:
           path: /articles/{id}
           method: delete
+          cors: true
+  articles_archives:
+    handler: bin/articles_archives_index
+    events:
+      - http:
+          path: /articles/archives
+          method: get
           cors: true

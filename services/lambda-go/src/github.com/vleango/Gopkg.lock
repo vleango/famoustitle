@@ -61,6 +61,12 @@
   version = "v1.33.0"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/jinzhu/now"
+  packages = ["."]
+  revision = "ed742868f2aebdb1c0c437bf4f7257f88834b66f"
+
+[[projects]]
   name = "github.com/jmespath/go-jmespath"
   packages = ["."]
   revision = "0b12d6b5"
@@ -90,6 +96,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "0f0f5a5aeb2971b34ad56248dade112bc7645e3c928be5fe1d0b2f85dad8f008"
+  inputs-digest = "db8a78153f6205dfe05ccf2fc425b2f211931eb107e5503d02beb464e25c02ed"
   solver-name = "gps-cdcl"
   solver-version = 1

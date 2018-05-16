@@ -21,13 +21,6 @@ Resources:
             Method: get
             RestApiId:
               Ref: TechWriter
-        Event2:
-            Type: Api
-            Properties:
-              Path: /articles
-              Method: options
-              RestApiId:
-                Ref: TechWriter
   TechWriter:
     Type: 'AWS::Serverless::Api'
     Properties:
@@ -211,6 +204,55 @@ Resources:
                       type: string
                     Access-Control-Allow-Origin:
                       type: string
+          /articles/archives:
+            options:
+              x-amazon-apigateway-integration:
+                type: mock
+                requestTemplates:
+                  application/json: '{ "statusCode" : 200 }'
+                responses:
+                  default:
+                    statusCode: 200
+                    responseParameters:
+                      method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+                      method.response.header.Access-Control-Allow-Methods: '''get'''
+                      method.response.header.Access-Control-Allow-Origin: '''*'''
+                    responseTemplates:
+                      application/json: '{}'
+              responses:
+                '200':
+                  headers:
+                    Access-Control-Allow-Headers:
+                      type: string
+                    Access-Control-Allow-Methods:
+                      type: string
+                    Access-Control-Allow-Origin:
+                      type: string
+            get:
+              x-amazon-apigateway-integration:
+                httpMethod: POST
+                type: aws_proxy
+                uri:
+                  'Fn::Sub': >-
+                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Articles_archives.Arn}/invocations
+                responses:
+                  default:
+                    statusCode: 200
+                    responseParameters:
+                      method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+                      method.response.header.Access-Control-Allow-Methods: '''get'''
+                      method.response.header.Access-Control-Allow-Origin: '''*'''
+                    responseTemplates:
+                      application/json: '{}'
+              responses:
+                '200':
+                  headers:
+                    Access-Control-Allow-Headers:
+                      type: string
+                    Access-Control-Allow-Methods:
+                      type: string
+                    Access-Control-Allow-Origin:
+                      type: string
   Articles_indexLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -295,13 +337,6 @@ Resources:
             Method: post
             RestApiId:
               Ref: TechWriter
-        Event2:
-          Type: Api
-          Properties:
-            Path: '/articles/{id}'
-            Method: options
-            RestApiId:
-              Ref: TechWriter
   Articles_updateLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -338,4 +373,32 @@ Resources:
       Action: 'lambda:InvokeFunction'
       FunctionName:
         Ref: Articles_destroy
+      Principal: apigateway.amazonaws.com
+  Articles_archives:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: bin/articles_archives_index
+      Runtime: go1.x
+      CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
+      MemorySize: 128
+      Timeout: 3
+      Environment:
+        Variables:
+          APP_ENV: development
+      Events:
+        Event1:
+          Type: Api
+          Properties:
+            Path: /articles/archives
+            Method: get
+            RestApiId:
+              Ref: TechWriter
+  Articles_archivesLambdaPermission:
+    Type: 'AWS::Lambda::Permission'
+    DependsOn:
+      - Articles_archives
+    Properties:
+      Action: 'lambda:InvokeFunction'
+      FunctionName:
+        Ref: Articles_archives
       Principal: apigateway.amazonaws.com

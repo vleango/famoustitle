@@ -68,12 +68,12 @@ ShallowWrapper {
                               symbol={false}
                               transform={null}
                     />
-                    <Link
-                              replace={false}
-                              to="/?date=2018-02-28T14:48:54.444740278Z"
+                    <button
+                              className="btn btn-link article__subtitle--date"
+                              onClick={[Function]}
                     >
                               February 28th, 2018
-                    </Link>
+                    </button>
           </li>
           <li
                     className="article__subtitle--tags"
@@ -171,12 +171,12 @@ ShallowWrapper {
                             symbol={false}
                             transform={null}
               />
-              <Link
-                            replace={false}
-                            to="/?date=2018-02-28T14:48:54.444740278Z"
+              <button
+                            className="btn btn-link article__subtitle--date"
+                            onClick={[Function]}
               >
                             February 28th, 2018
-              </Link>
+              </button>
 </li>,
             <li
               className="article__subtitle--tags"
@@ -227,12 +227,12 @@ ShallowWrapper {
                   symbol={false}
                   transform={null}
 />,
-                <Link
-                  replace={false}
-                  to="/?date=2018-02-28T14:48:54.444740278Z"
+                <button
+                  className="btn btn-link article__subtitle--date"
+                  onClick={[Function]}
 >
                   February 28th, 2018
-</Link>,
+</button>,
               ],
             },
             "ref": null,
@@ -265,15 +265,15 @@ ShallowWrapper {
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "class",
+                "nodeType": "host",
                 "props": Object {
                   "children": "February 28th, 2018",
-                  "replace": false,
-                  "to": "/?date=2018-02-28T14:48:54.444740278Z",
+                  "className": "btn btn-link article__subtitle--date",
+                  "onClick": [Function],
                 },
                 "ref": null,
                 "rendered": "February 28th, 2018",
-                "type": [Function],
+                "type": "button",
               },
             ],
             "type": "li",
@@ -450,12 +450,12 @@ It sta...",
                                     symbol={false}
                                     transform={null}
                         />
-                        <Link
-                                    replace={false}
-                                    to="/?date=2018-02-28T14:48:54.444740278Z"
+                        <button
+                                    className="btn btn-link article__subtitle--date"
+                                    onClick={[Function]}
                         >
                                     February 28th, 2018
-                        </Link>
+                        </button>
             </li>
             <li
                         className="article__subtitle--tags"
@@ -553,12 +553,12 @@ It sta...",
                                 symbol={false}
                                 transform={null}
                 />
-                <Link
-                                replace={false}
-                                to="/?date=2018-02-28T14:48:54.444740278Z"
+                <button
+                                className="btn btn-link article__subtitle--date"
+                                onClick={[Function]}
                 >
                                 February 28th, 2018
-                </Link>
+                </button>
 </li>,
               <li
                 className="article__subtitle--tags"
@@ -609,12 +609,12 @@ It sta...",
                     symbol={false}
                     transform={null}
 />,
-                  <Link
-                    replace={false}
-                    to="/?date=2018-02-28T14:48:54.444740278Z"
+                  <button
+                    className="btn btn-link article__subtitle--date"
+                    onClick={[Function]}
 >
                     February 28th, 2018
-</Link>,
+</button>,
                 ],
               },
               "ref": null,
@@ -647,15 +647,15 @@ It sta...",
                 Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "class",
+                  "nodeType": "host",
                   "props": Object {
                     "children": "February 28th, 2018",
-                    "replace": false,
-                    "to": "/?date=2018-02-28T14:48:54.444740278Z",
+                    "className": "btn btn-link article__subtitle--date",
+                    "onClick": [Function],
                   },
                   "ref": null,
                   "rendered": "February 28th, 2018",
-                  "type": [Function],
+                  "type": "button",
                 },
               ],
               "type": "li",
@@ -873,12 +873,12 @@ ShallowWrapper {
                               symbol={false}
                               transform={null}
                     />
-                    <Link
-                              replace={false}
-                              to="/?date=2018-02-28T14:48:54.444740278Z"
+                    <button
+                              className="btn btn-link article__subtitle--date"
+                              onClick={[Function]}
                     >
                               February 28th, 2018
-                    </Link>
+                    </button>
           </li>
           <li
                     className="article__subtitle--tags"
@@ -900,30 +900,30 @@ ShallowWrapper {
                               symbol={false}
                               transform={null}
                     />
-                    <Link
-                              replace={false}
-                              to="/?tag=ruby"
+                    <button
+                              className="article__subtitle--tag btn btn-link"
+                              onClick={[Function]}
                     >
                               ruby
-                    </Link>
-                    <Link
-                              replace={false}
-                              to="/?tag=rails"
+                    </button>
+                    <button
+                              className="article__subtitle--tag btn btn-link"
+                              onClick={[Function]}
                     >
                               rails
-                    </Link>
-                    <Link
-                              replace={false}
-                              to="/?tag=naming"
+                    </button>
+                    <button
+                              className="article__subtitle--tag btn btn-link"
+                              onClick={[Function]}
                     >
                               naming
-                    </Link>
-                    <Link
-                              replace={false}
-                              to="/?tag=web"
+                    </button>
+                    <button
+                              className="article__subtitle--tag btn btn-link"
+                              onClick={[Function]}
                     >
                               web
-                    </Link>
+                    </button>
           </li>
 </ul>,
         <Link
@@ -1000,12 +1000,12 @@ ShallowWrapper {
                             symbol={false}
                             transform={null}
               />
-              <Link
-                            replace={false}
-                            to="/?date=2018-02-28T14:48:54.444740278Z"
+              <button
+                            className="btn btn-link article__subtitle--date"
+                            onClick={[Function]}
               >
                             February 28th, 2018
-              </Link>
+              </button>
 </li>,
             <li
               className="article__subtitle--tags"
@@ -1027,30 +1027,30 @@ ShallowWrapper {
                             symbol={false}
                             transform={null}
               />
-              <Link
-                            replace={false}
-                            to="/?tag=ruby"
+              <button
+                            className="article__subtitle--tag btn btn-link"
+                            onClick={[Function]}
               >
                             ruby
-              </Link>
-              <Link
-                            replace={false}
-                            to="/?tag=rails"
+              </button>
+              <button
+                            className="article__subtitle--tag btn btn-link"
+                            onClick={[Function]}
               >
                             rails
-              </Link>
-              <Link
-                            replace={false}
-                            to="/?tag=naming"
+              </button>
+              <button
+                            className="article__subtitle--tag btn btn-link"
+                            onClick={[Function]}
               >
                             naming
-              </Link>
-              <Link
-                            replace={false}
-                            to="/?tag=web"
+              </button>
+              <button
+                            className="article__subtitle--tag btn btn-link"
+                            onClick={[Function]}
               >
                             web
-              </Link>
+              </button>
 </li>,
           ],
           "className": "article__subtitle mb-2",
@@ -1080,12 +1080,12 @@ ShallowWrapper {
                   symbol={false}
                   transform={null}
 />,
-                <Link
-                  replace={false}
-                  to="/?date=2018-02-28T14:48:54.444740278Z"
+                <button
+                  className="btn btn-link article__subtitle--date"
+                  onClick={[Function]}
 >
                   February 28th, 2018
-</Link>,
+</button>,
               ],
             },
             "ref": null,
@@ -1118,15 +1118,15 @@ ShallowWrapper {
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "class",
+                "nodeType": "host",
                 "props": Object {
                   "children": "February 28th, 2018",
-                  "replace": false,
-                  "to": "/?date=2018-02-28T14:48:54.444740278Z",
+                  "className": "btn btn-link article__subtitle--date",
+                  "onClick": [Function],
                 },
                 "ref": null,
                 "rendered": "February 28th, 2018",
-                "type": [Function],
+                "type": "button",
               },
             ],
             "type": "li",
@@ -1156,36 +1156,36 @@ ShallowWrapper {
 />,
                 Array [
                   Array [
-                    <Link
-                      replace={false}
-                      to="/?tag=ruby"
+                    <button
+                      className="article__subtitle--tag btn btn-link"
+                      onClick={[Function]}
 >
                       ruby
-</Link>,
+</button>,
                   ],
                   Array [
-                    <Link
-                      replace={false}
-                      to="/?tag=rails"
+                    <button
+                      className="article__subtitle--tag btn btn-link"
+                      onClick={[Function]}
 >
                       rails
-</Link>,
+</button>,
                   ],
                   Array [
-                    <Link
-                      replace={false}
-                      to="/?tag=naming"
+                    <button
+                      className="article__subtitle--tag btn btn-link"
+                      onClick={[Function]}
 >
                       naming
-</Link>,
+</button>,
                   ],
                   Array [
-                    <Link
-                      replace={false}
-                      to="/?tag=web"
+                    <button
+                      className="article__subtitle--tag btn btn-link"
+                      onClick={[Function]}
 >
                       web
-</Link>,
+</button>,
                   ],
                 ],
               ],
@@ -1221,54 +1221,54 @@ ShallowWrapper {
               Object {
                 "instance": null,
                 "key": "ruby",
-                "nodeType": "class",
+                "nodeType": "host",
                 "props": Object {
                   "children": "ruby",
-                  "replace": false,
-                  "to": "/?tag=ruby",
+                  "className": "article__subtitle--tag btn btn-link",
+                  "onClick": [Function],
                 },
                 "ref": null,
                 "rendered": "ruby",
-                "type": [Function],
+                "type": "button",
               },
               Object {
                 "instance": null,
                 "key": "rails",
-                "nodeType": "class",
+                "nodeType": "host",
                 "props": Object {
                   "children": "rails",
-                  "replace": false,
-                  "to": "/?tag=rails",
+                  "className": "article__subtitle--tag btn btn-link",
+                  "onClick": [Function],
                 },
                 "ref": null,
                 "rendered": "rails",
-                "type": [Function],
+                "type": "button",
               },
               Object {
                 "instance": null,
                 "key": "naming",
-                "nodeType": "class",
+                "nodeType": "host",
                 "props": Object {
                   "children": "naming",
-                  "replace": false,
-                  "to": "/?tag=naming",
+                  "className": "article__subtitle--tag btn btn-link",
+                  "onClick": [Function],
                 },
                 "ref": null,
                 "rendered": "naming",
-                "type": [Function],
+                "type": "button",
               },
               Object {
                 "instance": null,
                 "key": "web",
-                "nodeType": "class",
+                "nodeType": "host",
                 "props": Object {
                   "children": "web",
-                  "replace": false,
-                  "to": "/?tag=web",
+                  "className": "article__subtitle--tag btn btn-link",
+                  "onClick": [Function],
                 },
                 "ref": null,
                 "rendered": "web",
-                "type": [Function],
+                "type": "button",
               },
             ],
             "type": "li",
@@ -1387,12 +1387,12 @@ It sta...",
                                     symbol={false}
                                     transform={null}
                         />
-                        <Link
-                                    replace={false}
-                                    to="/?date=2018-02-28T14:48:54.444740278Z"
+                        <button
+                                    className="btn btn-link article__subtitle--date"
+                                    onClick={[Function]}
                         >
                                     February 28th, 2018
-                        </Link>
+                        </button>
             </li>
             <li
                         className="article__subtitle--tags"
@@ -1414,30 +1414,30 @@ It sta...",
                                     symbol={false}
                                     transform={null}
                         />
-                        <Link
-                                    replace={false}
-                                    to="/?tag=ruby"
+                        <button
+                                    className="article__subtitle--tag btn btn-link"
+                                    onClick={[Function]}
                         >
                                     ruby
-                        </Link>
-                        <Link
-                                    replace={false}
-                                    to="/?tag=rails"
+                        </button>
+                        <button
+                                    className="article__subtitle--tag btn btn-link"
+                                    onClick={[Function]}
                         >
                                     rails
-                        </Link>
-                        <Link
-                                    replace={false}
-                                    to="/?tag=naming"
+                        </button>
+                        <button
+                                    className="article__subtitle--tag btn btn-link"
+                                    onClick={[Function]}
                         >
                                     naming
-                        </Link>
-                        <Link
-                                    replace={false}
-                                    to="/?tag=web"
+                        </button>
+                        <button
+                                    className="article__subtitle--tag btn btn-link"
+                                    onClick={[Function]}
                         >
                                     web
-                        </Link>
+                        </button>
             </li>
 </ul>,
           <Link
@@ -1514,12 +1514,12 @@ It sta...",
                                 symbol={false}
                                 transform={null}
                 />
-                <Link
-                                replace={false}
-                                to="/?date=2018-02-28T14:48:54.444740278Z"
+                <button
+                                className="btn btn-link article__subtitle--date"
+                                onClick={[Function]}
                 >
                                 February 28th, 2018
-                </Link>
+                </button>
 </li>,
               <li
                 className="article__subtitle--tags"
@@ -1541,30 +1541,30 @@ It sta...",
                                 symbol={false}
                                 transform={null}
                 />
-                <Link
-                                replace={false}
-                                to="/?tag=ruby"
+                <button
+                                className="article__subtitle--tag btn btn-link"
+                                onClick={[Function]}
                 >
                                 ruby
-                </Link>
-                <Link
-                                replace={false}
-                                to="/?tag=rails"
+                </button>
+                <button
+                                className="article__subtitle--tag btn btn-link"
+                                onClick={[Function]}
                 >
                                 rails
-                </Link>
-                <Link
-                                replace={false}
-                                to="/?tag=naming"
+                </button>
+                <button
+                                className="article__subtitle--tag btn btn-link"
+                                onClick={[Function]}
                 >
                                 naming
-                </Link>
-                <Link
-                                replace={false}
-                                to="/?tag=web"
+                </button>
+                <button
+                                className="article__subtitle--tag btn btn-link"
+                                onClick={[Function]}
                 >
                                 web
-                </Link>
+                </button>
 </li>,
             ],
             "className": "article__subtitle mb-2",
@@ -1594,12 +1594,12 @@ It sta...",
                     symbol={false}
                     transform={null}
 />,
-                  <Link
-                    replace={false}
-                    to="/?date=2018-02-28T14:48:54.444740278Z"
+                  <button
+                    className="btn btn-link article__subtitle--date"
+                    onClick={[Function]}
 >
                     February 28th, 2018
-</Link>,
+</button>,
                 ],
               },
               "ref": null,
@@ -1632,15 +1632,15 @@ It sta...",
                 Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "class",
+                  "nodeType": "host",
                   "props": Object {
                     "children": "February 28th, 2018",
-                    "replace": false,
-                    "to": "/?date=2018-02-28T14:48:54.444740278Z",
+                    "className": "btn btn-link article__subtitle--date",
+                    "onClick": [Function],
                   },
                   "ref": null,
                   "rendered": "February 28th, 2018",
-                  "type": [Function],
+                  "type": "button",
                 },
               ],
               "type": "li",
@@ -1670,36 +1670,36 @@ It sta...",
 />,
                   Array [
                     Array [
-                      <Link
-                        replace={false}
-                        to="/?tag=ruby"
+                      <button
+                        className="article__subtitle--tag btn btn-link"
+                        onClick={[Function]}
 >
                         ruby
-</Link>,
+</button>,
                     ],
                     Array [
-                      <Link
-                        replace={false}
-                        to="/?tag=rails"
+                      <button
+                        className="article__subtitle--tag btn btn-link"
+                        onClick={[Function]}
 >
                         rails
-</Link>,
+</button>,
                     ],
                     Array [
-                      <Link
-                        replace={false}
-                        to="/?tag=naming"
+                      <button
+                        className="article__subtitle--tag btn btn-link"
+                        onClick={[Function]}
 >
                         naming
-</Link>,
+</button>,
                     ],
                     Array [
-                      <Link
-                        replace={false}
-                        to="/?tag=web"
+                      <button
+                        className="article__subtitle--tag btn btn-link"
+                        onClick={[Function]}
 >
                         web
-</Link>,
+</button>,
                     ],
                   ],
                 ],
@@ -1735,54 +1735,54 @@ It sta...",
                 Object {
                   "instance": null,
                   "key": "ruby",
-                  "nodeType": "class",
+                  "nodeType": "host",
                   "props": Object {
                     "children": "ruby",
-                    "replace": false,
-                    "to": "/?tag=ruby",
+                    "className": "article__subtitle--tag btn btn-link",
+                    "onClick": [Function],
                   },
                   "ref": null,
                   "rendered": "ruby",
-                  "type": [Function],
+                  "type": "button",
                 },
                 Object {
                   "instance": null,
                   "key": "rails",
-                  "nodeType": "class",
+                  "nodeType": "host",
                   "props": Object {
                     "children": "rails",
-                    "replace": false,
-                    "to": "/?tag=rails",
+                    "className": "article__subtitle--tag btn btn-link",
+                    "onClick": [Function],
                   },
                   "ref": null,
                   "rendered": "rails",
-                  "type": [Function],
+                  "type": "button",
                 },
                 Object {
                   "instance": null,
                   "key": "naming",
-                  "nodeType": "class",
+                  "nodeType": "host",
                   "props": Object {
                     "children": "naming",
-                    "replace": false,
-                    "to": "/?tag=naming",
+                    "className": "article__subtitle--tag btn btn-link",
+                    "onClick": [Function],
                   },
                   "ref": null,
                   "rendered": "naming",
-                  "type": [Function],
+                  "type": "button",
                 },
                 Object {
                   "instance": null,
                   "key": "web",
-                  "nodeType": "class",
+                  "nodeType": "host",
                   "props": Object {
                     "children": "web",
-                    "replace": false,
-                    "to": "/?tag=web",
+                    "className": "article__subtitle--tag btn btn-link",
+                    "onClick": [Function],
                   },
                   "ref": null,
                   "rendered": "web",
-                  "type": [Function],
+                  "type": "button",
                 },
               ],
               "type": "li",

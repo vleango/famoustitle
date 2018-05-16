@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import queryString from 'query-string';
 
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Article from './Article';
 import Pagination from '../shared/Pagination';
 
-import { fetchList } from '../../actions/articles';
+import { fetchList, fetchArticlesArchiveList } from '../../actions/articles';
 
 import './css/homepage.css';
 
 export class HomePage extends Component {
 
   componentDidMount() {
-    this.props.fetchList && this.props.fetchList();
+    const parsed = queryString.parse(this.props.location.search);
+    this.props.fetchList && this.props.fetchList(parsed);
+    this.props.fetchArticlesArchiveList && this.props.fetchArticlesArchiveList();
   }
+
+    updateFilter = (key, value) => {
+        let route = "";
+        let selected = {};
+
+        if(this.props.selected && this.props.selected[key] !== value) {
+            route = `/?${key}=${value}`;
+            selected = {[key]: value};
+        }
+
+        this.props.history.push(route);
+        this.props.fetchList && this.props.fetchList(selected);
+    };
 
   render() {
     return (
@@ -23,7 +39,7 @@ export class HomePage extends Component {
         <div className="container pt-5">
           <div className="row">
             <div className="col-xl-4">
-              <Sidebar />
+              <Sidebar updateFilter={this.updateFilter} />
             </div>
             <div className="col-xl-8 main--content">
               {
@@ -32,7 +48,7 @@ export class HomePage extends Component {
                 ) : (
                   [
                     this.props.articles.map((article) => {
-                      return <Article key={article.id} article={article} />;
+                      return <Article key={article.id} article={article} updateFilter={this.updateFilter} />;
                     }),
                     <Pagination key="pagination" {...this.props.pagination} />
                   ]
@@ -51,13 +67,15 @@ export class HomePage extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-    pagination: state.articles.index.pagination,
-		articles: state.articles.index.resources
+        pagination: state.articles.index.pagination,
+		articles: state.articles.index.resources,
+        selected: state.articles.index.selected
 	};
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchList: () => dispatch(fetchList())
+  fetchList: (filters) => dispatch(fetchList(filters)),
+    fetchArticlesArchiveList: () => dispatch(fetchArticlesArchiveList())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

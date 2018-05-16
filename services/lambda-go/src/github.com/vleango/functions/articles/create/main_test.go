@@ -51,7 +51,7 @@ func (suite *Suite) TestSavingNewRecord() {
 	suite.NotNil(responseBody.CreatedAt)
 	suite.NotNil(responseBody.UpdatedAt)
 
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 	articles, _, _ := elasticsearch.ArticleFindAll()
 	suite.Equal(1, len(articles))
 	suite.Equal(requestBody.Article.Title, articles[0].Title)

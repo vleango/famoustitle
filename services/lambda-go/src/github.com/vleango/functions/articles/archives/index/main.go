@@ -5,16 +5,10 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/vleango/lib/datastores/elasticsearch"
-	"github.com/vleango/lib/models"
 )
 
 type Response struct {
-	Articles []models.Article   `json:"articles"`
-	Tags     elasticsearch.Tags `json:"tags"`
-}
-
-func main() {
-	lambda.Start(Handler)
+	Archives elasticsearch.Archives `json:"archives"`
 }
 
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
@@ -30,10 +24,9 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		}, nil
 	}
 
-	articles, aggregations, err := elasticsearch.ArticleFindAll(request.QueryStringParameters)
+	aggregations, err := elasticsearch.ArticleArchives()
 	data := Response{
-		Articles: articles,
-		Tags:     aggregations.Tags,
+		Archives: aggregations.Archives,
 	}
 
 	b, err := json.Marshal(data)
@@ -46,4 +39,8 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		StatusCode: 200,
 		Headers:    map[string]string{"Access-Control-Allow-Origin": "*"},
 	}, nil
+}
+
+func main() {
+	lambda.Start(Handler)
 }
