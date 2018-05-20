@@ -13,24 +13,57 @@ import './css/homepage.css';
 
 export class HomePage extends Component {
 
-    componentDidMount() {
-        const parsed = queryString.parse(this.props.location.search);
-        this.props.fetchList && this.props.fetchList(parsed);
-        this.props.fetchArticlesArchiveList && this.props.fetchArticlesArchiveList();
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true
+        };
     }
 
-    updateFilter = (key, value) => {
+    async componentDidMount() {
+        const parsed = queryString.parse(this.props.location.search);
+        this.props.fetchArticlesArchiveList && this.props.fetchArticlesArchiveList();
+        if(this.props.fetchList) {
+            await this.props.fetchList(parsed);
+            this.setState({loading: false});
+        }
+    }
+
+    updateFilter = async (key, value) => {
         let route = "";
         let selected = {};
 
+        this.setState({loading: true});
         if(this.props.selected && this.props.selected[key] !== value) {
             route = `/?${key}=${value}`;
             selected = {[key]: value};
         }
 
         this.props.history.push(route);
-        this.props.fetchList && this.props.fetchList(selected);
+        if (this.props.fetchList) {
+            await this.props.fetchList(selected);
+            this.setState({loading: false});
+        }
     };
+
+    mainContent() {
+        if(this.state.loading) {
+            return <p>Loading...</p>
+        }
+
+        return (
+            this.props.articles.length === 0 ? (
+                <p>Results not found</p>
+            ) : (
+                [
+                    this.props.articles.map((article) => {
+                        return <Article key={article.id} article={article} updateFilter={this.updateFilter} />;
+                    }),
+                    <Pagination key="pagination" {...this.props.pagination} />
+                ]
+            )
+        );
+    }
 
     render() {
         return (
@@ -42,18 +75,7 @@ export class HomePage extends Component {
                             <Sidebar updateFilter={this.updateFilter} />
                         </div>
                         <div className="col-xl-8 main--content">
-                            {
-                                this.props.articles.length === 0 ? (
-                                    <p>Loading...</p>
-                                ) : (
-                                    [
-                                        this.props.articles.map((article) => {
-                                            return <Article key={article.id} article={article} updateFilter={this.updateFilter} />;
-                                        }),
-                                        <Pagination key="pagination" {...this.props.pagination} />
-                                    ]
-                                )
-                            }
+                            { this.mainContent() }
                         </div>
                     </div>
                 </div>

@@ -37,7 +37,7 @@ export class ProfileHeader extends React.Component {
     render() {
         return (
             <Navbar color="faded" light expand="md">
-                <NavbarBrand tag={Link} to="/">Tips and Guides</NavbarBrand>
+                <NavbarBrand tag={Link} to="/">TechWriter</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
