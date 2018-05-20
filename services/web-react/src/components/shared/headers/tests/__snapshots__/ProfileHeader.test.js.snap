@@ -24,7 +24,7 @@ ShallowWrapper {
           tag={[Function]}
           to="/"
 >
-          Tips and Guides
+          TechWriter
 </NavbarBrand>,
         <NavbarToggler
           onClick={[Function]}
@@ -98,12 +98,12 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "children": "Tips and Guides",
+          "children": "TechWriter",
           "tag": [Function],
           "to": "/",
         },
         "ref": null,
-        "rendered": "Tips and Guides",
+        "rendered": "TechWriter",
         "type": [Function],
       },
       Object {
@@ -350,7 +350,7 @@ ShallowWrapper {
             tag={[Function]}
             to="/"
 >
-            Tips and Guides
+            TechWriter
 </NavbarBrand>,
           <NavbarToggler
             onClick={[Function]}
@@ -424,12 +424,12 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "Tips and Guides",
+            "children": "TechWriter",
             "tag": [Function],
             "to": "/",
           },
           "ref": null,
-          "rendered": "Tips and Guides",
+          "rendered": "TechWriter",
           "type": [Function],
         },
         Object {
