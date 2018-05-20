@@ -86,11 +86,11 @@ export class Sidebar extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return {
-		archives: state.articles.index.archives,
+    return {
+        archives: state.articles.index.archives,
         tags: state.articles.index.tags,
         selected: state.articles.index.selected
-	};
+    };
 };
 
 export default connect(mapStateToProps)(Sidebar);

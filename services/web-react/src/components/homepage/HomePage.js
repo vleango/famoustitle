@@ -13,11 +13,11 @@ import './css/homepage.css';
 
 export class HomePage extends Component {
 
-  componentDidMount() {
-    const parsed = queryString.parse(this.props.location.search);
-    this.props.fetchList && this.props.fetchList(parsed);
-    this.props.fetchArticlesArchiveList && this.props.fetchArticlesArchiveList();
-  }
+    componentDidMount() {
+        const parsed = queryString.parse(this.props.location.search);
+        this.props.fetchList && this.props.fetchList(parsed);
+        this.props.fetchArticlesArchiveList && this.props.fetchArticlesArchiveList();
+    }
 
     updateFilter = (key, value) => {
         let route = "";
@@ -32,49 +32,49 @@ export class HomePage extends Component {
         this.props.fetchList && this.props.fetchList(selected);
     };
 
-  render() {
-    return (
-      <div className="canvas">
-        <Header />
-        <div className="container pt-5">
-          <div className="row">
-            <div className="col-xl-4">
-              <Sidebar updateFilter={this.updateFilter} />
+    render() {
+        return (
+            <div className="canvas">
+                <Header />
+                <div className="container pt-5">
+                    <div className="row">
+                        <div className="col-xl-4">
+                            <Sidebar updateFilter={this.updateFilter} />
+                        </div>
+                        <div className="col-xl-8 main--content">
+                            {
+                                this.props.articles.length === 0 ? (
+                                    <p>Loading...</p>
+                                ) : (
+                                    [
+                                        this.props.articles.map((article) => {
+                                            return <Article key={article.id} article={article} updateFilter={this.updateFilter} />;
+                                        }),
+                                        <Pagination key="pagination" {...this.props.pagination} />
+                                    ]
+                                )
+                            }
+                        </div>
+                    </div>
+                </div>
+                <footer className="text-muted">
+                    created by Tha Leang
+                </footer>
             </div>
-            <div className="col-xl-8 main--content">
-              {
-                this.props.articles.length === 0 ? (
-                  <p>Loading...</p>
-                ) : (
-                  [
-                    this.props.articles.map((article) => {
-                      return <Article key={article.id} article={article} updateFilter={this.updateFilter} />;
-                    }),
-                    <Pagination key="pagination" {...this.props.pagination} />
-                  ]
-                )
-              }
-            </div>
-          </div>
-        </div>
-        <footer className="text-muted">
-          created by Tha Leang
-        </footer>
-      </div>
-    );
-  }
+        );
+    }
 }
 
 const mapStateToProps = (state) => {
-	return {
+    return {
         pagination: state.articles.index.pagination,
-		articles: state.articles.index.resources,
+        articles: state.articles.index.resources,
         selected: state.articles.index.selected
-	};
+    };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchList: (filters) => dispatch(fetchList(filters)),
+    fetchList: (filters) => dispatch(fetchList(filters)),
     fetchArticlesArchiveList: () => dispatch(fetchArticlesArchiveList())
 });
 

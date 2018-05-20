@@ -7,15 +7,15 @@ import { articles } from '../../../fixtures/articles';
 let wrapper;
 
 describe('Components', () => {
-  describe('HomePage', () => {
     describe('HomePage', () => {
+        describe('HomePage', () => {
 
-      describe('Snapshot', () => {
-        it('should correctly render HomePage', () => {
-          wrapper = shallow(<HomePage location={{search: ""}} articles={articles} />);
-          expect(wrapper).toMatchSnapshot();
+            describe('Snapshot', () => {
+                it('should correctly render HomePage', () => {
+                    wrapper = shallow(<HomePage location={{search: ""}} articles={articles} />);
+                    expect(wrapper).toMatchSnapshot();
+                });
+            });
         });
-      });
     });
-  });
 });

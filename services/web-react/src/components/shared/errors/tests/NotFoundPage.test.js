@@ -4,14 +4,14 @@ import { shallow } from 'enzyme';
 import NotFoundPage from '../NotFoundPage';
 
 describe('Shared', () => {
-  describe('Errors', () => {
-    describe('NotFoundPage', () => {
-      let wrapper = shallow(<NotFoundPage />);
+    describe('Errors', () => {
+        describe('NotFoundPage', () => {
+            let wrapper = shallow(<NotFoundPage />);
 
-      it('should correctly render NotFoundPage', () => {
-        expect(wrapper).toMatchSnapshot();
-      });
+            it('should correctly render NotFoundPage', () => {
+                expect(wrapper).toMatchSnapshot();
+            });
+        });
+
     });
-
-  });
 });

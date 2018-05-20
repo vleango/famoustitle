@@ -16,16 +16,16 @@ import NotFoundPage from '../components/shared/errors/NotFoundPage';
 export const history = createHistory();
 
 export const AppRouter = () => (
-  <Router history={history}>
-    <Switch>
-      <Route path="/" component={HomePage} exact={true} />
-      <PublicRoute path="/articles" component={ArticleListPage} exact={true} />
-      <PrivateRoute path="/articles/new" component={ArticleNewPage} exact={true} />
-      <PublicRoute path="/articles/:id" component={ArticleItemPage} />
-      <PublicRoute path="/login" component={LoginPage} />
-      <PublicRoute component={NotFoundPage} />
-    </Switch>
-  </Router>
+    <Router history={history}>
+        <Switch>
+            <Route path="/" component={HomePage} exact={true} />
+            <PublicRoute path="/articles" component={ArticleListPage} exact={true} />
+            <PrivateRoute path="/articles/new" component={ArticleNewPage} exact={true} />
+            <PublicRoute path="/articles/:id" component={ArticleItemPage} />
+            <PublicRoute path="/login" component={LoginPage} />
+            <PublicRoute component={NotFoundPage} />
+        </Switch>
+    </Router>
 );
 
 export default AppRouter;

@@ -4,16 +4,16 @@ import { shallow } from 'enzyme';
 import { Sidebar } from '../Sidebar';
 
 describe('Components', () => {
-  describe('HomePage', () => {
-    describe('Sidebar', () => {
+    describe('HomePage', () => {
+        describe('Sidebar', () => {
 
-      let wrapper = shallow(<Sidebar />);
+            let wrapper = shallow(<Sidebar />);
 
-      describe('Snapshot', () => {
-        it('should correctly render Sidebar', () => {
-          expect(wrapper).toMatchSnapshot();
+            describe('Snapshot', () => {
+                it('should correctly render Sidebar', () => {
+                    expect(wrapper).toMatchSnapshot();
+                });
+            });
         });
-      });
     });
-  });
 });
