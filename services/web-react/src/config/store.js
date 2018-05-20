@@ -8,7 +8,7 @@ import AuthReducer from '../reducers/auth';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__COMPOSE__ || compose;
 
-const persistConfi = {
+const persistConfig = {
     key: 'auth',
     storage
 };
