@@ -27,7 +27,7 @@ ShallowWrapper {
                         className="col-lg-12"
                 >
                         <h2>
-                                Tips and Guides
+                                TechWriter
                         </h2>
                         <p
                                 className="subtitle text-muted"
@@ -52,7 +52,7 @@ ShallowWrapper {
                     className="col-lg-12"
           >
                     <h2>
-                              Tips and Guides
+                              TechWriter
                     </h2>
                     <p
                               className="subtitle text-muted"
@@ -73,7 +73,7 @@ ShallowWrapper {
             className="col-lg-12"
 >
             <h2>
-                        Tips and Guides
+                        TechWriter
             </h2>
             <p
                         className="subtitle text-muted"
@@ -91,7 +91,7 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <h2>
-                Tips and Guides
+                TechWriter
 </h2>,
               <p
                 className="subtitle text-muted"
@@ -108,10 +108,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "Tips and Guides",
+                "children": "TechWriter",
               },
               "ref": null,
-              "rendered": "Tips and Guides",
+              "rendered": "TechWriter",
               "type": "h2",
             },
             Object {
@@ -151,7 +151,7 @@ ShallowWrapper {
                               className="col-lg-12"
                     >
                               <h2>
-                                        Tips and Guides
+                                        TechWriter
                               </h2>
                               <p
                                         className="subtitle text-muted"
@@ -176,7 +176,7 @@ ShallowWrapper {
                         className="col-lg-12"
             >
                         <h2>
-                                    Tips and Guides
+                                    TechWriter
                         </h2>
                         <p
                                     className="subtitle text-muted"
@@ -197,7 +197,7 @@ ShallowWrapper {
               className="col-lg-12"
 >
               <h2>
-                            Tips and Guides
+                            TechWriter
               </h2>
               <p
                             className="subtitle text-muted"
@@ -215,7 +215,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <h2>
-                  Tips and Guides
+                  TechWriter
 </h2>,
                 <p
                   className="subtitle text-muted"
@@ -232,10 +232,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "Tips and Guides",
+                  "children": "TechWriter",
                 },
                 "ref": null,
-                "rendered": "Tips and Guides",
+                "rendered": "TechWriter",
                 "type": "h2",
               },
               Object {
