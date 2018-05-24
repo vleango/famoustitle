@@ -13,6 +13,7 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
+          ELASTICSEARCH_HOST_URL: ''
       Events:
         Event1:
           Type: Api
@@ -273,6 +274,7 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
+          ELASTICSEARCH_HOST_URL: ''
       Events:
         Event1:
           Type: Api
@@ -301,6 +303,7 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
+          ELASTICSEARCH_HOST_URL: ''
       Events:
         Event1:
           Type: Api
@@ -329,6 +332,7 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
+          ELASTICSEARCH_HOST_URL: ''
       Events:
         Event1:
           Type: Api
@@ -357,6 +361,7 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
+          ELASTICSEARCH_HOST_URL: ''
       Events:
         Event1:
           Type: Api
@@ -385,6 +390,7 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
+          ELASTICSEARCH_HOST_URL: ''
       Events:
         Event1:
           Type: Api

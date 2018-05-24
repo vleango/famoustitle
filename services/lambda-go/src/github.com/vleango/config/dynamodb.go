@@ -9,7 +9,7 @@ import (
 )
 
 var DynamoSvc *dynamodb.DynamoDB
-var defaultRegion = "us-west-2"
+var DefaultRegion = "us-west-2"
 
 var urlStr = ""
 
@@ -30,11 +30,11 @@ func init() {
 
 	if urlStr == "" {
 		sess, err = session.NewSession(&aws.Config{
-			Region: aws.String(defaultRegion),
+			Region: aws.String(DefaultRegion),
 		})
 	} else {
 		sess, err = session.NewSession(&aws.Config{
-			Region:   aws.String(defaultRegion),
+			Region:   aws.String(DefaultRegion),
 			Endpoint: &urlStr,
 		})
 	}
