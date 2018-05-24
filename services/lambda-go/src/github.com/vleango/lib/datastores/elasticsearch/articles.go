@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	clusterName = "article"
+	indexName = "tech_writer_article"
 )
 
 var (
@@ -81,7 +81,7 @@ type Tags struct {
 }
 
 func ArticleCreate(item models.Article) (models.Article, error) {
-	url := fmt.Sprintf("%v/%v/default/%v", config.ElasticSearchHost, clusterName, item.ID)
+	url := fmt.Sprintf("%v/%v/default/%v", config.ElasticSearchHost, indexName, item.ID)
 
 	b, err := json.Marshal(item)
 	if err != nil {
@@ -92,7 +92,7 @@ func ArticleCreate(item models.Article) (models.Article, error) {
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
 	req.Header.Set("Content-Type", "application/json")
 
-	client := &http.Client{}
+	client := config.ESClient
 	resp, err := client.Do(req)
 	defer resp.Body.Close()
 	if err != nil {
@@ -103,9 +103,9 @@ func ArticleCreate(item models.Article) (models.Article, error) {
 }
 
 func ArticleDestroy(item models.Article) (models.Article, error) {
-	url := fmt.Sprintf("%v/%v/default/%v", config.ElasticSearchHost, clusterName, item.ID)
+	url := fmt.Sprintf("%v/%v/default/%v", config.ElasticSearchHost, indexName, item.ID)
 	req, err := http.NewRequest("DELETE", url, nil)
-	client := &http.Client{}
+	client := config.ESClient
 	resp, err := client.Do(req)
 	defer resp.Body.Close()
 	if err != nil {
@@ -170,11 +170,11 @@ func ArticleArchives() (Aggregations, error) {
 }
 
 func ArticleFind(id string) (models.Article, error) {
-	url := fmt.Sprintf("%v/%v/default/%v", config.ElasticSearchHost, clusterName, id)
+	url := fmt.Sprintf("%v/%v/default/%v", config.ElasticSearchHost, indexName, id)
 	req, err := http.NewRequest("GET", url, bytes.NewBuffer([]byte{}))
 	req.Header.Set("Content-Type", "application/json")
 
-	client := &http.Client{}
+	client := config.ESClient
 	resp, err := client.Do(req)
 	defer resp.Body.Close()
 	if err != nil {
@@ -198,7 +198,7 @@ func ArticleFind(id string) (models.Article, error) {
 }
 
 func ArticleUpdate(item models.Article) (models.Article, error) {
-	url := fmt.Sprintf("%v/%v/default/%v", config.ElasticSearchHost, clusterName, item.ID)
+	url := fmt.Sprintf("%v/%v/default/%v", config.ElasticSearchHost, indexName, item.ID)
 
 	b, err := json.Marshal(item)
 	if err != nil {
@@ -209,7 +209,7 @@ func ArticleUpdate(item models.Article) (models.Article, error) {
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
 	req.Header.Set("Content-Type", "application/json")
 
-	client := &http.Client{}
+	client := config.ESClient
 	resp, err := client.Do(req)
 	defer resp.Body.Close()
 	if err != nil {
@@ -257,11 +257,11 @@ func matchStrMatch(val string) string {
 }
 
 func find(jsonStr []byte) ([]models.Article, Aggregations, error) {
-	url := fmt.Sprintf("%v/%v/_search", config.ElasticSearchHost, clusterName)
+	url := fmt.Sprintf("%v/%v/_search", config.ElasticSearchHost, indexName)
 	req, err := http.NewRequest("GET", url, bytes.NewBuffer(jsonStr))
 	req.Header.Set("Content-Type", "application/json")
 
-	client := &http.Client{}
+	client := config.ESClient
 	resp, err := client.Do(req)
 	defer resp.Body.Close()
 	if err != nil {

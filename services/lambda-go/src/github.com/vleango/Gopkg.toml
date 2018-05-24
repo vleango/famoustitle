@@ -48,3 +48,7 @@
 [[constraint]]
   branch = "master"
   name = "github.com/jinzhu/now"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/sha1sum/aws_signing_client"

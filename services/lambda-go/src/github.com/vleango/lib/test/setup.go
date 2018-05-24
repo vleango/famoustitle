@@ -11,7 +11,7 @@ import (
 )
 
 var svc = config.DynamoSvc
-var clusterName = "article"
+var clusterName = "tech_writer_article"
 
 func CleanDataStores() {
 	CleanDB()

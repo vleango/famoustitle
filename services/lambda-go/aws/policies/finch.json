@@ -1,0 +1,18 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket",
+        "s3:PutObject",
+        "s3:PutBucketCORS",
+        "s3:PutBucketWebsite",
+        "s3:ListAllMyBuckets",
+        "s3:PutBucketPolicy",
+
+      ],
+      "Resource": "*"
+    }
+  ]
+}

@@ -4,9 +4,10 @@ provider:
   name: aws
   runtime: go1.x
   region: us-west-2
-  stage: ${env:APP_ENV}
+  stage: ${opt:APP_ENV, 'development'}
   environment:
-      APP_ENV:  ${env:APP_ENV}
+      APP_ENV:  ${self:provider.stage}
+      ELASTICSEARCH_HOST_URL: ${file(./${self:provider.stage}.yml):ELASTICSEARCH_HOST_URL}
 package:
  exclude:
    - ./**

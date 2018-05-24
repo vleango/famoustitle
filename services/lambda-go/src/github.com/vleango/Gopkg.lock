@@ -84,6 +84,12 @@
   version = "v1.2.0"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/sha1sum/aws_signing_client"
+  packages = ["."]
+  revision = "9088e4c7b34b3174ae879fc975deb18ac62ac8d3"
+
+[[projects]]
   name = "github.com/stretchr/testify"
   packages = [
     "assert",
@@ -96,6 +102,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "db8a78153f6205dfe05ccf2fc425b2f211931eb107e5503d02beb464e25c02ed"
+  inputs-digest = "084f68a435e55d4c131456a54938eea937850a9e4c6be372502a9b6a08e3a7b5"
   solver-name = "gps-cdcl"
   solver-version = 1

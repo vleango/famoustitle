@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import queryString from 'query-string';
+import queryString from 'qs';
 
 import Header from './Header';
 import Sidebar from './Sidebar';
