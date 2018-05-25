@@ -31,7 +31,6 @@ services:
       - ./services/web-react/build:/go/src/github.com/vleango/client/dist
     env_file:
       - config/environments/.aws.env
-      - config/environments/lambda-go.env
     depends_on:
       - db-dynamo-test
       - datastore-es-test
