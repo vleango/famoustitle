@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	indexName = "tech_writer_article"
+	indexName = "tech_writer_articles"
 )
 
 var (

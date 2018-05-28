@@ -26,7 +26,7 @@ func init() {
 		ElasticSearchHost = os.Getenv("ELASTICSEARCH_HOST_URL")
 
 		var myClient *http.Client
-		signer := v4.NewSigner(credentials.NewStaticCredentials(os.Getenv("AWS_ACCESS_KEY_ID"), os.Getenv("AWS_SECRET_ACCESS_KEY"), ""))
+		signer := v4.NewSigner(credentials.NewStaticCredentials(os.Getenv("AWS_ID"), os.Getenv("AWS_SECRET"), ""))
 		var awsClient, err = aws_signing_client.New(signer, myClient, "es", DefaultRegion)
 		if err != nil {
 			fmt.Println(err.Error())

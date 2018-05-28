@@ -24,7 +24,8 @@
         "lambda:ListVersionsByFunction",
         "lambda:PublishVersion",
         "lambda:AddPermission",
-        "lambda:DeleteFunction"
+        "lambda:DeleteFunction",
+        "lambda:GetFunctionConfiguration"
       ],
       "Resource": "*"
     },
