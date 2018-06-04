@@ -1,11 +1,14 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/vleango/lib/datastores/elasticsearch"
 	"github.com/vleango/lib/models"
+	"github.com/vleango/lib/responses"
+	"github.com/vleango/lib/utils"
 )
 
 type Response struct {
@@ -17,20 +20,17 @@ func main() {
 	lambda.Start(Handler)
 }
 
-func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-
-	if request.HTTPMethod == "OPTIONS" {
-		return events.APIGatewayProxyResponse{
-			Body:       "",
-			StatusCode: 200,
-			Headers: map[string]string{
-				"Access-Control-Allow-Origin":  "*",
-				"Access-Control-Allow-Headers": "Content-Type",
-			},
-		}, nil
+func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+	response, _, earlyExit := responses.NewProxyResponse(&ctx, &request, false)
+	if earlyExit != nil {
+		return *earlyExit, nil
 	}
 
 	articles, aggregations, err := elasticsearch.ArticleFindAll(request.QueryStringParameters)
+	if err != nil {
+		return response.ServerError(utils.JSONStringWithKey(responses.StatusMsgServerError), err.Error()), nil
+	}
+
 	data := Response{
 		Articles: articles,
 		Tags:     aggregations.Tags,
@@ -38,12 +38,8 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 
 	b, err := json.Marshal(data)
 	if err != nil {
-		return events.APIGatewayProxyResponse{}, err
+		return response.ServerError(utils.JSONStringWithKey(responses.StatusMsgServerError), err.Error()), nil
 	}
 
-	return events.APIGatewayProxyResponse{
-		Body:       string(b),
-		StatusCode: 200,
-		Headers:    map[string]string{"Access-Control-Allow-Origin": "*"},
-	}, nil
+	return response.Ok(string(b)), nil
 }

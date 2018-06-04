@@ -55,6 +55,12 @@
   version = "v1.1.0"
 
 [[projects]]
+  name = "github.com/dgrijalva/jwt-go"
+  packages = ["."]
+  revision = "06ea1031745cb8b3dab3f6a236daf2b0aa468b7e"
+  version = "v3.2.0"
+
+[[projects]]
   name = "github.com/go-ini/ini"
   packages = ["."]
   revision = "6333e38ac20b8949a8dd68baa3650f4dee8f39f0"
@@ -99,9 +105,18 @@
   revision = "12b6f73e6084dad08a7c6e575284b177ecafbc71"
   version = "v1.2.1"
 
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/crypto"
+  packages = [
+    "bcrypt",
+    "blowfish"
+  ]
+  revision = "5ba7f63082460102a45837dbd1827e10f9479ac0"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "084f68a435e55d4c131456a54938eea937850a9e4c6be372502a9b6a08e3a7b5"
+  inputs-digest = "057f490eb0d14178b128483643690af1ff6788947694115fb7b0852c4ff0336a"
   solver-name = "gps-cdcl"
   solver-version = 1

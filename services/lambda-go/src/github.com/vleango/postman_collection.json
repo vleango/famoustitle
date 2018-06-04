@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "fe60dbe6-b526-499b-b396-3f4bd8ee1651",
+		"name": "tech_writer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Articles Index",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:4000/articles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"articles"
+					]
+				},
+				"description": "Get all articles"
+			},
+			"response": []
+		},
+		{
+			"name": "Articles Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRoaXNAYXNkZi5jb20iLCJleHAiOjE1Mjg0NzEzODh9.LCpKxnDQGAhW0s8NN4RGrYNoyTpJQScCB0Bem7A9FNM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"article\": {\n\t\t\"title\": \"yesss!!!!\",\n\t\t\"body\": \"by sdf asdf se\",\n\t\t\"tags\": [\"hiddd\", \"b\"]\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/articles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"articles"
+					]
+				},
+				"description": "Create Article"
+			},
+			"response": []
+		},
+		{
+			"name": "Articles Show",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:4000/articles/547d3381-015e-4222-b532-b7125d302255",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"articles",
+						"547d3381-015e-4222-b532-b7125d302255"
+					]
+				},
+				"description": "Articles details page"
+			},
+			"response": []
+		},
+		{
+			"name": "Articles Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRoaXNAYXNkZi5jb20iLCJleHAiOjE1Mjg0NzEzODh9.LCpKxnDQGAhW0s8NN4RGrYNoyTpJQScCB0Bem7A9FNM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"article\": {\n\t\t\"title\": \"my new title\",\n\t\t\"body\": \"my new body\",\n\t\t\"tags\": [\n\t\t\t\"tagz\"\n\t\t]\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/articles/938d0b70-20f3-4e8f-a473-7f850609d3eb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"articles",
+						"938d0b70-20f3-4e8f-a473-7f850609d3eb"
+					]
+				},
+				"description": "Update an article"
+			},
+			"response": []
+		},
+		{
+			"name": "Articles Destroy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRoaXNAYXNkZi5jb20iLCJleHAiOjE1Mjg0NzEzODh9.LCpKxnDQGAhW0s8NN4RGrYNoyTpJQScCB0Bem7A9FNM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:4000/articles/2e987d2b-4493-4557-86bc-e0a535736e2f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"articles",
+						"2e987d2b-4493-4557-86bc-e0a535736e2f"
+					]
+				},
+				"description": "Delete the article (requires article id)"
+			},
+			"response": []
+		},
+		{
+			"name": "Articles Archives Index",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:4000/articles/archives",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"articles",
+						"archives"
+					]
+				},
+				"description": "Get list of article archives"
+			},
+			"response": []
+		},
+		{
+			"name": "Tokens Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"tha@asdf.com\",\n\t\"password\": \"hogehoge\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/tokens",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"tokens"
+					]
+				},
+				"description": "Create Login JWT Tokens"
+			},
+			"response": []
+		},
+		{
+			"name": "Users Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user\": {\n\t\t\"first_name\": \"Thaa\",\n\t\t\"last_name\": \"Leang\",\n\t\t\"email\": \"tha@asdf.com\"\n\t},\n\t\"password\": \"hogehoge\",\n\t\"password_confirmation\": \"hogehoge\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"users"
+					]
+				},
+				"description": "Create User"
+			},
+			"response": []
+		}
+	]
+}

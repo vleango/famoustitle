@@ -14,6 +14,8 @@ Resources:
         Variables:
           APP_ENV: development
           ELASTICSEARCH_HOST_URL: ''
+          AWS_ID: ''
+          AWS_SECRET: ''
       Events:
         Event1:
           Type: Api
@@ -261,6 +263,104 @@ Resources:
                       type: string
                     Access-Control-Allow-Origin:
                       type: string
+          /tokens:
+            options:
+              x-amazon-apigateway-integration:
+                type: mock
+                requestTemplates:
+                  application/json: '{ "statusCode" : 200 }'
+                responses:
+                  default:
+                    statusCode: 200
+                    responseParameters:
+                      method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+                      method.response.header.Access-Control-Allow-Methods: '''post'''
+                      method.response.header.Access-Control-Allow-Origin: '''*'''
+                    responseTemplates:
+                      application/json: '{}'
+              responses:
+                '200':
+                  headers:
+                    Access-Control-Allow-Headers:
+                      type: string
+                    Access-Control-Allow-Methods:
+                      type: string
+                    Access-Control-Allow-Origin:
+                      type: string
+            post:
+              x-amazon-apigateway-integration:
+                httpMethod: POST
+                type: aws_proxy
+                uri:
+                  'Fn::Sub': >-
+                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Tokens_create.Arn}/invocations
+                responses:
+                  default:
+                    statusCode: 200
+                    responseParameters:
+                      method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+                      method.response.header.Access-Control-Allow-Methods: '''post'''
+                      method.response.header.Access-Control-Allow-Origin: '''*'''
+                    responseTemplates:
+                      application/json: '{}'
+              responses:
+                '200':
+                  headers:
+                    Access-Control-Allow-Headers:
+                      type: string
+                    Access-Control-Allow-Methods:
+                      type: string
+                    Access-Control-Allow-Origin:
+                      type: string
+          /users:
+            options:
+              x-amazon-apigateway-integration:
+                type: mock
+                requestTemplates:
+                  application/json: '{ "statusCode" : 200 }'
+                responses:
+                  default:
+                    statusCode: 200
+                    responseParameters:
+                      method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+                      method.response.header.Access-Control-Allow-Methods: '''post'''
+                      method.response.header.Access-Control-Allow-Origin: '''*'''
+                    responseTemplates:
+                      application/json: '{}'
+              responses:
+                '200':
+                  headers:
+                    Access-Control-Allow-Headers:
+                      type: string
+                    Access-Control-Allow-Methods:
+                      type: string
+                    Access-Control-Allow-Origin:
+                      type: string
+            post:
+              x-amazon-apigateway-integration:
+                httpMethod: POST
+                type: aws_proxy
+                uri:
+                  'Fn::Sub': >-
+                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Users_create.Arn}/invocations
+                responses:
+                  default:
+                    statusCode: 200
+                    responseParameters:
+                      method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key'''
+                      method.response.header.Access-Control-Allow-Methods: '''post'''
+                      method.response.header.Access-Control-Allow-Origin: '''*'''
+                    responseTemplates:
+                      application/json: '{}'
+              responses:
+                '200':
+                  headers:
+                    Access-Control-Allow-Headers:
+                      type: string
+                    Access-Control-Allow-Methods:
+                      type: string
+                    Access-Control-Allow-Origin:
+                      type: string
   Articles_indexLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -282,6 +382,8 @@ Resources:
         Variables:
           APP_ENV: development
           ELASTICSEARCH_HOST_URL: ''
+          AWS_ID: ''
+          AWS_SECRET: ''
       Events:
         Event1:
           Type: Api
@@ -318,6 +420,8 @@ Resources:
         Variables:
           APP_ENV: development
           ELASTICSEARCH_HOST_URL: ''
+          AWS_ID: ''
+          AWS_SECRET: ''
       Events:
         Event1:
           Type: Api
@@ -347,6 +451,8 @@ Resources:
         Variables:
           APP_ENV: development
           ELASTICSEARCH_HOST_URL: ''
+          AWS_ID: ''
+          AWS_SECRET: ''
       Events:
         Event1:
           Type: Api
@@ -376,6 +482,8 @@ Resources:
         Variables:
           APP_ENV: development
           ELASTICSEARCH_HOST_URL: ''
+          AWS_ID: ''
+          AWS_SECRET: ''
       Events:
         Event1:
           Type: Api
@@ -405,6 +513,8 @@ Resources:
         Variables:
           APP_ENV: development
           ELASTICSEARCH_HOST_URL: ''
+          AWS_ID: ''
+          AWS_SECRET: ''
       Events:
         Event1:
           Type: Api
@@ -421,4 +531,66 @@ Resources:
       Action: 'lambda:InvokeFunction'
       FunctionName:
         Ref: Articles_archives
+      Principal: apigateway.amazonaws.com
+  Tokens_create:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: bin/tokens_create
+      Runtime: go1.x
+      CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
+      MemorySize: 128
+      Timeout: 3
+      Environment:
+        Variables:
+          APP_ENV: development
+          ELASTICSEARCH_HOST_URL: ''
+          AWS_ID: ''
+          AWS_SECRET: ''
+      Events:
+        Event1:
+          Type: Api
+          Properties:
+            Path: /tokens
+            Method: post
+            RestApiId:
+              Ref: TechWriter
+  Tokens_createLambdaPermission:
+    Type: 'AWS::Lambda::Permission'
+    DependsOn:
+      - Tokens_create
+    Properties:
+      Action: 'lambda:InvokeFunction'
+      FunctionName:
+        Ref: Tokens_create
+      Principal: apigateway.amazonaws.com
+  Users_create:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: bin/users_create
+      Runtime: go1.x
+      CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
+      MemorySize: 128
+      Timeout: 3
+      Environment:
+        Variables:
+          APP_ENV: development
+          ELASTICSEARCH_HOST_URL: ''
+          AWS_ID: ''
+          AWS_SECRET: ''
+      Events:
+        Event1:
+          Type: Api
+          Properties:
+            Path: /users
+            Method: post
+            RestApiId:
+              Ref: TechWriter
+  Users_createLambdaPermission:
+    Type: 'AWS::Lambda::Permission'
+    DependsOn:
+      - Users_create
+    Properties:
+      Action: 'lambda:InvokeFunction'
+      FunctionName:
+        Ref: Users_create
       Principal: apigateway.amazonaws.com

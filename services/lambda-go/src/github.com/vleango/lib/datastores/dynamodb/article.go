@@ -7,28 +7,21 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 	"github.com/satori/go.uuid"
-	"github.com/vleango/config"
 	"github.com/vleango/lib/models"
 	"github.com/vleango/lib/utils"
 	"strings"
 	"time"
 )
 
-var (
-	tableName               = "tech_writer_articles"
-	svc                     = config.DynamoSvc
-	ErrTitleBodyNotProvided = errors.New("missing title and/or body in the HTTP body")
-	ErrRecordNotFound       = errors.New("record not found")
-)
-
 // TODO need to separate the tags sanitized so update can use it too
-func ArticleCreate(item models.Article) (models.Article, error) {
+func ArticleCreate(item models.Article, author string) (models.Article, error) {
 
 	if item.Title == "" || item.Body == "" {
 		return models.Article{}, ErrTitleBodyNotProvided
 	}
 
 	item.ID = fmt.Sprintf("%s", uuid.Must(uuid.NewV4(), nil))
+	item.Author = author
 	item.CreatedAt = time.Now()
 	item.UpdatedAt = time.Now()
 
@@ -48,7 +41,7 @@ func ArticleCreate(item models.Article) (models.Article, error) {
 	av, err := dynamodbattribute.MarshalMap(item)
 	input := &dynamodb.PutItemInput{
 		Item:      av,
-		TableName: aws.String(tableName),
+		TableName: aws.String(articleTable),
 	}
 
 	_, err = svc.PutItem(input)
@@ -67,7 +60,7 @@ func ArticleDestroy(item models.Article) (models.Article, error) {
 	}
 
 	_, err = svc.DeleteItem(&dynamodb.DeleteItemInput{
-		TableName: aws.String(tableName),
+		TableName: aws.String(articleTable),
 		Key: map[string]*dynamodb.AttributeValue{
 			"id": {
 				S: aws.String(item.ID),
@@ -85,7 +78,7 @@ func ArticleDestroy(item models.Article) (models.Article, error) {
 func ArticleFindAll() ([]models.Article, error) {
 
 	params := &dynamodb.ScanInput{
-		TableName: aws.String(tableName),
+		TableName: aws.String(articleTable),
 	}
 
 	result, err := svc.Scan(params)
@@ -105,7 +98,7 @@ func ArticleFindAll() ([]models.Article, error) {
 
 func ArticleFind(id string) (models.Article, error) {
 	result, err := svc.GetItem(&dynamodb.GetItemInput{
-		TableName: aws.String(tableName),
+		TableName: aws.String(articleTable),
 		Key: map[string]*dynamodb.AttributeValue{
 			"id": {
 				S: aws.String(id),
@@ -174,7 +167,7 @@ func ArticleUpdate(item models.Article) (models.Article, error) {
 			},
 		},
 		ReturnValues:              aws.String("UPDATED_NEW"),
-		TableName:                 aws.String(tableName),
+		TableName:                 aws.String(articleTable),
 		ExpressionAttributeValues: attributeValue,
 		UpdateExpression:          aws.String("set " + strings.Join(updateExpression, ", ")),
 	}

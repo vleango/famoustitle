@@ -1,65 +1,37 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/vleango/lib/datastores/dynamodb"
 	"github.com/vleango/lib/datastores/elasticsearch"
 	"github.com/vleango/lib/models"
+	"github.com/vleango/lib/responses"
+	"github.com/vleango/lib/utils"
 )
 
-func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-
-	if request.HTTPMethod == "OPTIONS" {
-		return events.APIGatewayProxyResponse{
-			Body:       "",
-			StatusCode: 200,
-			Headers: map[string]string{
-				"Access-Control-Allow-Origin":  "*",
-				"Access-Control-Allow-Headers": "Content-Type",
-				"Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
-			},
-		}, nil
+func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+	response, _, earlyExit := responses.NewProxyResponse(&ctx, &request, true)
+	if earlyExit != nil {
+		return *earlyExit, nil
 	}
 
 	item, err := dynamodb.ArticleDestroy(models.Article{ID: request.PathParameters["id"]})
 	if err != nil {
-		message := map[string]string{
-			"message": err.Error(),
-		}
-		jsonMessage, _ := json.Marshal(message)
-
-		return events.APIGatewayProxyResponse{
-			Body:       string(jsonMessage),
-			StatusCode: 404,
-			Headers: map[string]string{
-				"Access-Control-Allow-Origin": "*",
-			},
-		}, nil
+		return response.NotFound(utils.JSONStringWithKey(err.Error()), err.Error()), nil
 	}
 
-	response := ResponseBody{
-		Success: true,
-	}
-
-	body, err := json.Marshal(response)
+	b, err := json.Marshal(map[string]bool{"success": true})
 	if err != nil {
-		return events.APIGatewayProxyResponse{}, err
+		return response.ServerError(utils.JSONStringWithKey(responses.StatusMsgServerError), err.Error()), nil
 	}
 
 	elasticsearch.ArticleDestroy(item)
-	return events.APIGatewayProxyResponse{
-		Body:       string(body),
-		StatusCode: 200,
-		Headers:    map[string]string{"Access-Control-Allow-Origin": "*"},
-	}, nil
+	return response.Ok(string(b)), nil
 }
 
 func main() {
 	lambda.Start(Handler)
-}
-
-type ResponseBody struct {
-	Success bool
 }

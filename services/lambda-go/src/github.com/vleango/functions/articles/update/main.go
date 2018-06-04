@@ -1,41 +1,27 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/vleango/lib/datastores/dynamodb"
 	"github.com/vleango/lib/datastores/elasticsearch"
 	"github.com/vleango/lib/models"
+	"github.com/vleango/lib/responses"
+	"github.com/vleango/lib/utils"
 )
 
-func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-
-	// only needed in dev? since template.yml doesn't work??
-	if request.HTTPMethod == "OPTIONS" {
-		return events.APIGatewayProxyResponse{
-			Body:       "",
-			StatusCode: 200,
-			Headers: map[string]string{
-				"Access-Control-Allow-Origin":  "*",
-				"Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key",
-				"Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
-			},
-		}, nil
+func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+	response, _, earlyExit := responses.NewProxyResponse(&ctx, &request, true)
+	if earlyExit != nil {
+		return *earlyExit, nil
 	}
 
 	// check if article exist
 	_, err := dynamodb.ArticleFind(request.PathParameters["id"])
 	if err != nil {
-		message := map[string]string{
-			"message": err.Error(),
-		}
-		jsonMessage, _ := json.Marshal(message)
-
-		return events.APIGatewayProxyResponse{
-			Body:       string(jsonMessage),
-			StatusCode: 404,
-		}, nil
+		return response.NotFound(utils.JSONStringWithKey(err.Error()), err.Error()), nil
 	}
 
 	requestArticle := RequestArticle{
@@ -46,32 +32,16 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	json.Unmarshal([]byte(request.Body), &requestArticle)
 	item, err := dynamodb.ArticleUpdate(requestArticle.Article)
 	if err != nil {
-		message := map[string]string{
-			"message": err.Error(),
-		}
-		jsonMessage, _ := json.Marshal(message)
-
-		return events.APIGatewayProxyResponse{
-			Body:       string(jsonMessage),
-			StatusCode: 400,
-			Headers: map[string]string{
-				"Access-Control-Allow-Origin":  "*",
-				"Access-Control-Allow-Headers": "Content-Type",
-			},
-		}, nil
+		return response.BadRequest(utils.JSONStringWithKey(err.Error()), err.Error()), nil
 	}
 
 	b, err := json.Marshal(item)
 	if err != nil {
-		return events.APIGatewayProxyResponse{}, err
+		return response.ServerError(utils.JSONStringWithKey(responses.StatusMsgServerError), err.Error()), nil
 	}
 
 	elasticsearch.ArticleUpdate(item)
-	return events.APIGatewayProxyResponse{
-		Body:       string(b),
-		StatusCode: 200,
-		Headers:    map[string]string{"Access-Control-Allow-Origin": "*"},
-	}, nil
+	return response.Ok(string(b)), nil
 }
 
 func main() {

@@ -97,3 +97,17 @@ functions:
           path: /articles/archives
           method: get
           cors: true
+  tokens_create:
+    handler: bin/tokens_create
+    events:
+      - http:
+          path: /tokens
+          method: post
+          cors: true
+  users_create:
+    handler: bin/users_create
+    events:
+      - http:
+          path: /users
+          method: post
+          cors: true

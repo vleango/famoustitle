@@ -5,38 +5,42 @@ import (
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/vleango/lib/auth"
 	"github.com/vleango/lib/datastores/dynamodb"
-	"github.com/vleango/lib/datastores/elasticsearch"
 	"github.com/vleango/lib/models"
 	"github.com/vleango/lib/responses"
 	"github.com/vleango/lib/utils"
 )
 
 func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	response, user, earlyExit := responses.NewProxyResponse(&ctx, &request, true)
+	response, _, earlyExit := responses.NewProxyResponse(&ctx, &request, false)
 	if earlyExit != nil {
 		return *earlyExit, nil
 	}
 
-	requestArticle := RequestArticle{}
-	json.Unmarshal([]byte(request.Body), &requestArticle)
+	requestUser := RequestUser{}
+	json.Unmarshal([]byte(request.Body), &requestUser)
 
-	item, err := dynamodb.ArticleCreate(requestArticle.Article, user.FullName())
+	// create user
+	item, err := dynamodb.UserCreate(requestUser.User, requestUser.Password, requestUser.PasswordConfirmation)
 	if err != nil {
 		return response.BadRequest(utils.JSONStringWithKey(err.Error()), err.Error()), nil
 	}
 
-	err = dynamodb.UserAddArticle(*user, item)
-	if err != nil {
+	// generate token
+	token, err := auth.GenerateToken(item.Email, requestUser.Password)
+	if token == nil || err != nil {
 		return response.BadRequest(utils.JSONStringWithKey(err.Error()), err.Error()), nil
 	}
 
-	b, err := json.Marshal(item)
+	message := map[string]string{
+		"token": *token,
+	}
+	b, err := json.Marshal(message)
 	if err != nil {
 		return response.ServerError(utils.JSONStringWithKey(responses.StatusMsgServerError), err.Error()), nil
 	}
 
-	elasticsearch.ArticleCreate(item)
 	return response.Ok(string(b)), nil
 }
 
@@ -44,6 +48,8 @@ func main() {
 	lambda.Start(Handler)
 }
 
-type RequestArticle struct {
-	Article models.Article `json:"article"`
+type RequestUser struct {
+	User                 models.User `json:"user"`
+	Password             string      `json:"password"`
+	PasswordConfirmation string      `json:"password_confirmation"`
 }
