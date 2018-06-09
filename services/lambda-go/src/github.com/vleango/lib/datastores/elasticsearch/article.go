@@ -81,12 +81,12 @@ type Tags struct {
 	Buckets                 []Bucket `json:"buckets"`
 }
 
-func ArticleCreate(item models.Article) (models.Article, error) {
+func ArticleCreate(item models.Article) (*models.Article, error) {
 	url := fmt.Sprintf("%v/%v/default/%v", config.ElasticSearchHost, indexName, item.ID)
 
 	b, err := json.Marshal(item)
 	if err != nil {
-		return models.Article{}, err
+		return nil, err
 	}
 	var jsonStr = []byte(string(b))
 
@@ -97,27 +97,27 @@ func ArticleCreate(item models.Article) (models.Article, error) {
 	resp, err := client.Do(req)
 	defer resp.Body.Close()
 	if err != nil {
-		return item, err
+		return nil, err
 	}
 
-	return item, nil
+	return &item, nil
 }
 
-func ArticleDestroy(item models.Article) (models.Article, error) {
+func ArticleDestroy(item models.Article) (*models.Article, error) {
 	url := fmt.Sprintf("%v/%v/default/%v", config.ElasticSearchHost, indexName, item.ID)
 	req, err := http.NewRequest("DELETE", url, nil)
 	client := config.ESClient
 	resp, err := client.Do(req)
 	defer resp.Body.Close()
 	if err != nil {
-		return item, err
+		return nil, err
 	}
 
 	if resp.StatusCode != 200 {
-		return item, ErrSaveFailed
+		return nil, ErrSaveFailed
 	}
 
-	return item, nil
+	return &item, nil
 }
 
 func ArticleFindAll(params ...map[string]string) ([]models.Article, Aggregations, error) {
@@ -170,7 +170,7 @@ func ArticleArchives() (Aggregations, error) {
 	return aggs, err
 }
 
-func ArticleFind(id string) (models.Article, error) {
+func ArticleFind(id string) (*models.Article, error) {
 	url := fmt.Sprintf("%v/%v/default/%v", config.ElasticSearchHost, indexName, id)
 	req, err := http.NewRequest("GET", url, bytes.NewBuffer([]byte{}))
 	req.Header.Set("Content-Type", "application/json")
@@ -179,7 +179,7 @@ func ArticleFind(id string) (models.Article, error) {
 	resp, err := client.Do(req)
 	defer resp.Body.Close()
 	if err != nil {
-		return models.Article{}, err
+		return nil, err
 	}
 
 	body, _ := ioutil.ReadAll(resp.Body)
@@ -187,23 +187,23 @@ func ArticleFind(id string) (models.Article, error) {
 	esResponse := HitData{}
 	err = json.Unmarshal(body, &esResponse)
 	if err != nil {
-		return models.Article{}, err
+		return nil, err
 	}
 
 	if !esResponse.Found {
-		return models.Article{}, fmt.Errorf("record not found")
+		return nil, fmt.Errorf("record not found")
 	}
 
 	article := models.Article(esResponse.Source)
-	return article, nil
+	return &article, nil
 }
 
-func ArticleUpdate(item models.Article) (models.Article, error) {
+func ArticleUpdate(item models.Article) (*models.Article, error) {
 	url := fmt.Sprintf("%v/%v/default/%v", config.ElasticSearchHost, indexName, item.ID)
 
 	b, err := json.Marshal(item)
 	if err != nil {
-		return models.Article{}, err
+		return nil, err
 	}
 	var jsonStr = []byte(string(b))
 
@@ -214,10 +214,10 @@ func ArticleUpdate(item models.Article) (models.Article, error) {
 	resp, err := client.Do(req)
 	defer resp.Body.Close()
 	if err != nil {
-		return item, err
+		return nil, err
 	}
 
-	return item, nil
+	return &item, nil
 }
 
 func matchStr(params map[string]string) string {

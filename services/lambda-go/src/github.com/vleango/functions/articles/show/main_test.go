@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/stretchr/testify/suite"
@@ -25,8 +26,9 @@ func TestSuite(t *testing.T) {
 }
 
 func (suite *Suite) TestShowRecordFound() {
-	article, _ := dynamodb.ArticleCreate(test.DefaultArticleModel())
-	elasticsearch.ArticleCreate(article)
+	defaultArticle := test.DefaultArticleModel()
+	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
+	elasticsearch.ArticleCreate(*article)
 	time.Sleep(1 * time.Second)
 
 	request := events.APIGatewayProxyRequest{
@@ -34,7 +36,7 @@ func (suite *Suite) TestShowRecordFound() {
 			"id": article.ID,
 		},
 	}
-	response, err := Handler(request)
+	response, err := Handler(context.Background(), request)
 	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 
@@ -62,7 +64,7 @@ func (suite *Suite) TestShowRecordNotFound() {
 			"id": "not-found-id",
 		},
 	}
-	response, err := Handler(request)
+	response, err := Handler(context.Background(), request)
 	suite.Equal(404, response.StatusCode)
 	suite.IsType(nil, err)
 

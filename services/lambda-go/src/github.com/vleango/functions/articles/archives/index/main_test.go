@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/jinzhu/now"
@@ -31,7 +32,7 @@ func TestSuite(t *testing.T) {
 
 func (suite *Suite) TestHandler() {
 	request := events.APIGatewayProxyRequest{}
-	response, err := Handler(request)
+	response, err := Handler(context.Background(), request)
 	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 

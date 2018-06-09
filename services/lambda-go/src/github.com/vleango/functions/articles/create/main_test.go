@@ -1,7 +1,9 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
+	"fmt"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/stretchr/testify/suite"
 	"github.com/vleango/lib/datastores/elasticsearch"
@@ -13,6 +15,7 @@ import (
 
 type Suite struct {
 	suite.Suite
+	userToken string
 }
 
 var requestBody RequestArticle
@@ -20,6 +23,15 @@ var requestBody RequestArticle
 func (suite *Suite) SetupTest() {
 	test.CleanDataStores()
 	test.CreateArticlesTable()
+	tokens := test.CreateUserTable(map[string]interface{}{
+		"user": models.User{
+			FirstName: "Tha",
+			LastName:  "Leang",
+			Email:     "tha.leang@test.com",
+		},
+		"password": "hogehoge",
+	})
+	suite.userToken = tokens[0]
 
 	requestBody = RequestArticle{
 		Article: test.DefaultArticleModel(),
@@ -30,13 +42,29 @@ func TestSuite(t *testing.T) {
 	suite.Run(t, new(Suite))
 }
 
+func (suite *Suite) TestUnauthenticated() {
+	request := events.APIGatewayProxyRequest{}
+
+	response, err := Handler(context.Background(), request)
+
+	var responseBody map[string]interface{}
+	json.Unmarshal([]byte(response.Body), &responseBody)
+
+	suite.Equal(nil, err)
+	suite.Equal(401, response.StatusCode)
+	suite.Equal("unauthorized", responseBody["message"])
+}
+
 func (suite *Suite) TestSavingNewRecord() {
 	jsonRequestBody, _ := json.Marshal(requestBody)
 	request := events.APIGatewayProxyRequest{
 		Body: string(jsonRequestBody),
+		Headers: map[string]string{
+			"Authorization": fmt.Sprintf("Bearer %v", suite.userToken),
+		},
 	}
 
-	response, err := Handler(request)
+	response, err := Handler(context.Background(), request)
 	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 
@@ -70,9 +98,12 @@ func (suite *Suite) TestMissingTags() {
 	jsonRequestBody, _ := json.Marshal(requestBody)
 	request := events.APIGatewayProxyRequest{
 		Body: string(jsonRequestBody),
+		Headers: map[string]string{
+			"Authorization": fmt.Sprintf("Bearer %v", suite.userToken),
+		},
 	}
 
-	response, err := Handler(request)
+	response, err := Handler(context.Background(), request)
 	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 
@@ -92,9 +123,12 @@ func (suite *Suite) TestMissingTitle() {
 	jsonRequestBody, _ := json.Marshal(requestBody)
 	request := events.APIGatewayProxyRequest{
 		Body: string(jsonRequestBody),
+		Headers: map[string]string{
+			"Authorization": fmt.Sprintf("Bearer %v", suite.userToken),
+		},
 	}
 
-	response, err := Handler(request)
+	response, err := Handler(context.Background(), request)
 	suite.IsType(nil, err)
 	suite.Equal(400, response.StatusCode)
 
@@ -110,9 +144,12 @@ func (suite *Suite) TestMissingBody() {
 	jsonRequestBody, _ := json.Marshal(requestBody)
 	request := events.APIGatewayProxyRequest{
 		Body: string(jsonRequestBody),
+		Headers: map[string]string{
+			"Authorization": fmt.Sprintf("Bearer %v", suite.userToken),
+		},
 	}
 
-	response, err := Handler(request)
+	response, err := Handler(context.Background(), request)
 	suite.IsType(nil, err)
 	suite.Equal(400, response.StatusCode)
 

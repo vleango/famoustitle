@@ -12,6 +12,10 @@ import (
 	"time"
 )
 
+var (
+	ErrArticleDoesNotBelong = fmt.Errorf("resource does not belong to the user")
+)
+
 func UserFindByEmail(email string) (*models.User, error) {
 	result, err := svc.GetItem(&dynamodb.GetItemInput{
 		TableName: aws.String(userTable),
@@ -36,8 +40,8 @@ func UserFindByEmail(email string) (*models.User, error) {
 	return &user, nil
 }
 
-func UserCreate(item models.User, pass string, passwordConfirmation string) (*models.User, error) {
-	if item.FirstName == "" || item.LastName == "" || item.Email == "" || pass == "" || passwordConfirmation == "" {
+func UserCreate(user models.User, pass string, passwordConfirmation string) (*models.User, error) {
+	if user.FirstName == "" || user.LastName == "" || user.Email == "" || pass == "" || passwordConfirmation == "" {
 		return nil, fmt.Errorf("missing required params")
 	}
 
@@ -54,14 +58,14 @@ func UserCreate(item models.User, pass string, passwordConfirmation string) (*mo
 		return nil, err
 	}
 
-	item.PasswordDigest = passwordDigest
-	item.ID = fmt.Sprintf("%s", uuid.Must(uuid.NewV4(), nil))
-	item.Admin = false
-	item.CreatedAt = time.Now()
-	item.UpdatedAt = time.Now()
+	user.PasswordDigest = passwordDigest
+	user.ID = fmt.Sprintf("%s", uuid.Must(uuid.NewV4(), nil))
+	user.Admin = false
+	user.CreatedAt = time.Now()
+	user.UpdatedAt = time.Now()
 
 	// save to DB
-	av, err := dynamodbattribute.MarshalMap(item)
+	av, err := dynamodbattribute.MarshalMap(user)
 	input := &dynamodb.PutItemInput{
 		Item:      av,
 		TableName: aws.String(userTable),
@@ -72,17 +76,17 @@ func UserCreate(item models.User, pass string, passwordConfirmation string) (*mo
 		return nil, err
 	}
 
-	return &item, nil
+	return &user, nil
 }
 
-func UserAddArticle(item models.User, article models.Article) error {
+func UserAddArticle(user models.User, article models.Article) error {
 	var updateExpression []string
 	attributeValue := map[string]*dynamodb.AttributeValue{}
 	articleList := map[string]*dynamodb.AttributeValue{}
 
 	// get article list (minus same article)
-	if len(item.Articles) > 0 {
-		for key, value := range item.Articles {
+	if len(user.Articles) > 0 {
+		for key, value := range user.Articles {
 			if key != article.ID {
 				articleList[key] = &dynamodb.AttributeValue{S: aws.String(value)}
 			}
@@ -101,7 +105,7 @@ func UserAddArticle(item models.User, article models.Article) error {
 	input := &dynamodb.UpdateItemInput{
 		Key: map[string]*dynamodb.AttributeValue{
 			"email": {
-				S: aws.String(item.Email),
+				S: aws.String(user.Email),
 			},
 		},
 		ReturnValues:              aws.String("UPDATED_NEW"),
@@ -113,4 +117,25 @@ func UserAddArticle(item models.User, article models.Article) error {
 	_, err := svc.UpdateItem(input)
 
 	return err
+}
+
+// TODO right now only destroyable/updatable by same author, might need to all any admin to do so as well
+func UserArticleDestroy(user models.User, article models.Article) (*models.Article, error) {
+	for id := range user.Articles {
+		if id == article.ID {
+			return ArticleDestroy(article)
+		}
+	}
+
+	return nil, ErrArticleDoesNotBelong
+}
+
+func UserArticleUpdate(user models.User, article models.Article) (*models.Article, error) {
+	for id := range user.Articles {
+		if id == article.ID {
+			return ArticleUpdate(article)
+		}
+	}
+
+	return nil, ErrArticleDoesNotBelong
 }

@@ -21,12 +21,12 @@ func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events
 	requestArticle := RequestArticle{}
 	json.Unmarshal([]byte(request.Body), &requestArticle)
 
-	item, err := dynamodb.ArticleCreate(requestArticle.Article, user.FullName())
+	item, err := dynamodb.ArticleCreate(&requestArticle.Article, user.FullName())
 	if err != nil {
 		return response.BadRequest(utils.JSONStringWithKey(err.Error()), err.Error()), nil
 	}
 
-	err = dynamodb.UserAddArticle(*user, item)
+	err = dynamodb.UserAddArticle(*user, *item)
 	if err != nil {
 		return response.BadRequest(utils.JSONStringWithKey(err.Error()), err.Error()), nil
 	}
@@ -36,7 +36,7 @@ func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events
 		return response.ServerError(utils.JSONStringWithKey(responses.StatusMsgServerError), err.Error()), nil
 	}
 
-	elasticsearch.ArticleCreate(item)
+	elasticsearch.ArticleCreate(*item)
 	return response.Ok(string(b)), nil
 }
 

@@ -13,14 +13,14 @@ import (
 )
 
 func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	response, _, earlyExit := responses.NewProxyResponse(&ctx, &request, true)
+	response, user, earlyExit := responses.NewProxyResponse(&ctx, &request, true)
 	if earlyExit != nil {
 		return *earlyExit, nil
 	}
 
-	item, err := dynamodb.ArticleDestroy(models.Article{ID: request.PathParameters["id"]})
+	item, err := dynamodb.UserArticleDestroy(*user, models.Article{ID: request.PathParameters["id"]})
 	if err != nil {
-		return response.NotFound(utils.JSONStringWithKey(err.Error()), err.Error()), nil
+		return response.BadRequest(utils.JSONStringWithKey(err.Error()), err.Error()), nil
 	}
 
 	b, err := json.Marshal(map[string]bool{"success": true})
@@ -28,7 +28,7 @@ func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events
 		return response.ServerError(utils.JSONStringWithKey(responses.StatusMsgServerError), err.Error()), nil
 	}
 
-	elasticsearch.ArticleDestroy(item)
+	elasticsearch.ArticleDestroy(*item)
 	return response.Ok(string(b)), nil
 }
 

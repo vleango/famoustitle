@@ -13,7 +13,7 @@ import (
 )
 
 func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	response, _, earlyExit := responses.NewProxyResponse(&ctx, &request, true)
+	response, user, earlyExit := responses.NewProxyResponse(&ctx, &request, true)
 	if earlyExit != nil {
 		return *earlyExit, nil
 	}
@@ -30,7 +30,7 @@ func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events
 		},
 	}
 	json.Unmarshal([]byte(request.Body), &requestArticle)
-	item, err := dynamodb.ArticleUpdate(requestArticle.Article)
+	item, err := dynamodb.UserArticleUpdate(*user, requestArticle.Article)
 	if err != nil {
 		return response.BadRequest(utils.JSONStringWithKey(err.Error()), err.Error()), nil
 	}
@@ -40,7 +40,7 @@ func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events
 		return response.ServerError(utils.JSONStringWithKey(responses.StatusMsgServerError), err.Error()), nil
 	}
 
-	elasticsearch.ArticleUpdate(item)
+	elasticsearch.ArticleUpdate(*item)
 	return response.Ok(string(b)), nil
 }
 

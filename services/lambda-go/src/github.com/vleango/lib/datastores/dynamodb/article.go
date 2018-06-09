@@ -14,10 +14,10 @@ import (
 )
 
 // TODO need to separate the tags sanitized so update can use it too
-func ArticleCreate(item models.Article, author string) (models.Article, error) {
+func ArticleCreate(item *models.Article, author string) (*models.Article, error) {
 
-	if item.Title == "" || item.Body == "" {
-		return models.Article{}, ErrTitleBodyNotProvided
+	if item == nil || item.Title == "" || item.Body == "" {
+		return nil, ErrTitleBodyNotProvided
 	}
 
 	item.ID = fmt.Sprintf("%s", uuid.Must(uuid.NewV4(), nil))
@@ -46,17 +46,17 @@ func ArticleCreate(item models.Article, author string) (models.Article, error) {
 
 	_, err = svc.PutItem(input)
 	if err != nil {
-		return models.Article{}, err
+		return nil, err
 	}
 
 	return item, nil
 }
 
-func ArticleDestroy(item models.Article) (models.Article, error) {
+func ArticleDestroy(item models.Article) (*models.Article, error) {
 	// since deleteItem doesn't return an error, need to verify delete
 	_, err := ArticleFind(item.ID)
 	if err != nil {
-		return item, ErrRecordNotFound
+		return nil, ErrRecordNotFound
 	}
 
 	_, err = svc.DeleteItem(&dynamodb.DeleteItemInput{
@@ -69,10 +69,10 @@ func ArticleDestroy(item models.Article) (models.Article, error) {
 	})
 
 	if err != nil {
-		return models.Article{}, err
+		return nil, err
 	}
 
-	return item, nil
+	return &item, nil
 }
 
 func ArticleFindAll() ([]models.Article, error) {
@@ -96,7 +96,7 @@ func ArticleFindAll() ([]models.Article, error) {
 	return articles, nil
 }
 
-func ArticleFind(id string) (models.Article, error) {
+func ArticleFind(id string) (*models.Article, error) {
 	result, err := svc.GetItem(&dynamodb.GetItemInput{
 		TableName: aws.String(articleTable),
 		Key: map[string]*dynamodb.AttributeValue{
@@ -107,24 +107,24 @@ func ArticleFind(id string) (models.Article, error) {
 	})
 
 	if err != nil {
-		return models.Article{}, err
+		return nil, err
 	}
 
 	article := models.Article{}
 	dynamodbattribute.UnmarshalMap(result.Item, &article)
 
 	if article.ID == "" {
-		return models.Article{}, ErrRecordNotFound
+		return nil, ErrRecordNotFound
 	}
 
-	return article, nil
+	return &article, nil
 }
 
-func ArticleUpdate(item models.Article) (models.Article, error) {
+func ArticleUpdate(item models.Article) (*models.Article, error) {
 	var sanitizedTags []string
 
 	if item.Title == "" && item.Body == "" {
-		return models.Article{}, errors.New("title and/or body is blank")
+		return nil, errors.New("title and/or body is blank")
 	}
 
 	attributeValue := map[string]*dynamodb.AttributeValue{}
@@ -175,7 +175,7 @@ func ArticleUpdate(item models.Article) (models.Article, error) {
 	_, err := svc.UpdateItem(input)
 
 	if err != nil {
-		return models.Article{}, err
+		return nil, err
 	}
 
 	updatedArticle, _ := ArticleFind(item.ID)
