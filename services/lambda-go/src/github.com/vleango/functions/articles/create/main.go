@@ -26,7 +26,7 @@ func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events
 		return response.BadRequest(utils.JSONStringWithKey(err.Error()), err.Error()), nil
 	}
 
-	err = dynamodb.UserAddArticle(*user, *item)
+	err = dynamodb.UserAddRemoveFromArticleList(*user, *item, true)
 	if err != nil {
 		return response.BadRequest(utils.JSONStringWithKey(err.Error()), err.Error()), nil
 	}

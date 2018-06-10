@@ -1,28 +1,18 @@
 package dynamodb_test // need to change package name to avoid import cycle since this package is 'dynamodb' and lib/test imports 'dynamodb'
 
 import (
-	"github.com/stretchr/testify/suite"
 	"github.com/vleango/lib/datastores/dynamodb"
 	"github.com/vleango/lib/models"
 	"github.com/vleango/lib/test"
-	"testing"
 	"time"
 )
 
-type Suite struct {
-	suite.Suite
+func (suite *ArticleSuite) TestArticleCreateNilArticle() {
+	_, err := dynamodb.ArticleCreate(nil, "Tha Leang")
+	suite.Equal(dynamodb.ErrTitleBodyNotProvided, err)
 }
 
-func (suite *Suite) SetupTest() {
-	test.CleanDB()
-	test.CreateArticlesTable()
-}
-
-func TestSuite(t *testing.T) {
-	suite.Run(t, new(Suite))
-}
-
-func (suite *Suite) TestArticleCreateTitleBlank() {
+func (suite *ArticleSuite) TestArticleCreateTitleBlank() {
 	article := test.DefaultArticleModel()
 	article.Title = ""
 
@@ -30,7 +20,7 @@ func (suite *Suite) TestArticleCreateTitleBlank() {
 	suite.Equal(dynamodb.ErrTitleBodyNotProvided, err)
 }
 
-func (suite *Suite) TestArticleCreateBodyBlank() {
+func (suite *ArticleSuite) TestArticleCreateBodyBlank() {
 	article := test.DefaultArticleModel()
 	article.Body = ""
 
@@ -38,7 +28,7 @@ func (suite *Suite) TestArticleCreateBodyBlank() {
 	suite.Equal(dynamodb.ErrTitleBodyNotProvided, err)
 }
 
-func (suite *Suite) TestArticleCreateTagsBlank() {
+func (suite *ArticleSuite) TestArticleCreateTagsBlank() {
 	article := test.DefaultArticleModel()
 	article.Tags = []string{
 		"",
@@ -48,7 +38,7 @@ func (suite *Suite) TestArticleCreateTagsBlank() {
 	suite.Equal(0, len(item.Tags))
 }
 
-func (suite *Suite) TestArticleCreateTagsWhitespace() {
+func (suite *ArticleSuite) TestArticleCreateTagsWhitespace() {
 	article := test.DefaultArticleModel()
 	article.Tags = []string{
 		" tag1 ",
@@ -61,7 +51,7 @@ func (suite *Suite) TestArticleCreateTagsWhitespace() {
 	suite.Contains(item.Tags, "tag2")
 }
 
-func (suite *Suite) TestArticleCreateTagsLowerCase() {
+func (suite *ArticleSuite) TestArticleCreateTagsLowerCase() {
 	article := test.DefaultArticleModel()
 	article.Tags = []string{
 		"TAG1",
@@ -74,7 +64,7 @@ func (suite *Suite) TestArticleCreateTagsLowerCase() {
 	suite.Contains(item.Tags, "tag2")
 }
 
-func (suite *Suite) TestArticleCreateTagsUnique() {
+func (suite *ArticleSuite) TestArticleCreateTagsUnique() {
 	article := test.DefaultArticleModel()
 	article.Tags = []string{
 		"tag1",
@@ -88,7 +78,7 @@ func (suite *Suite) TestArticleCreateTagsUnique() {
 	suite.Contains(item.Tags, "tag2")
 }
 
-func (suite *Suite) TestArticleCreateSuccess() {
+func (suite *ArticleSuite) TestArticleCreateSuccess() {
 	article := test.DefaultArticleModel()
 	item, err := dynamodb.ArticleCreate(&article, "Tha Leang")
 	suite.IsType(nil, err)
@@ -104,7 +94,7 @@ func (suite *Suite) TestArticleCreateSuccess() {
 	suite.NotNil(item.UpdatedAt)
 }
 
-func (suite *Suite) TestArticleDestroyRecordFound() {
+func (suite *ArticleSuite) TestArticleDestroyRecordFound() {
 	defaultArticle := test.DefaultArticleModel()
 	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
 	item, err := dynamodb.ArticleDestroy(*article)
@@ -115,20 +105,20 @@ func (suite *Suite) TestArticleDestroyRecordFound() {
 	suite.Equal(dynamodb.ErrRecordNotFound, err)
 }
 
-func (suite *Suite) TestArticleDestroyRecordNotFound() {
+func (suite *ArticleSuite) TestArticleDestroyRecordNotFound() {
 	article := test.DefaultArticleModel()
 	article.ID = "not-id"
 	_, err := dynamodb.ArticleDestroy(article)
 	suite.Equal(dynamodb.ErrRecordNotFound, err)
 }
 
-func (suite *Suite) TestArticleFindAllEmpty() {
+func (suite *ArticleSuite) TestArticleFindAllEmpty() {
 	items, err := dynamodb.ArticleFindAll()
 	suite.IsType(nil, err)
 	suite.Equal([]models.Article{}, items)
 }
 
-func (suite *Suite) TestArticleFindAllNotEmpty() {
+func (suite *ArticleSuite) TestArticleFindAllNotEmpty() {
 	var articles []models.Article
 	author := "Tha Leang"
 	defaultArticle := test.DefaultArticleModel()
@@ -158,7 +148,7 @@ func (suite *Suite) TestArticleFindAllNotEmpty() {
 	}
 }
 
-func (suite *Suite) TestArticleFindSuccess() {
+func (suite *ArticleSuite) TestArticleFindSuccess() {
 	defaultArticle := test.DefaultArticleModel()
 	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
 	item, err := dynamodb.ArticleFind(article.ID)
@@ -173,12 +163,12 @@ func (suite *Suite) TestArticleFindSuccess() {
 	suite.Equal(article.UpdatedAt.Unix(), item.UpdatedAt.Unix())
 }
 
-func (suite *Suite) TestArticleFindFailure() {
+func (suite *ArticleSuite) TestArticleFindFailure() {
 	_, err := dynamodb.ArticleFind("not-found-id")
 	suite.Equal(dynamodb.ErrRecordNotFound, err)
 }
 
-func (suite *Suite) TestArticleUpdateSuccess() {
+func (suite *ArticleSuite) TestArticleUpdateSuccess() {
 	defaultArticle := test.DefaultArticleModel()
 	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
 	article.Title = "new title"
@@ -192,7 +182,7 @@ func (suite *Suite) TestArticleUpdateSuccess() {
 	suite.Equal(article.CreatedAt.Unix(), updatedArticle.CreatedAt.Unix())
 }
 
-func (suite *Suite) TestArticleUpdateSuccessUpdatedAt() {
+func (suite *ArticleSuite) TestArticleUpdateSuccessUpdatedAt() {
 	defaultArticle := test.DefaultArticleModel()
 	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
 
@@ -204,7 +194,7 @@ func (suite *Suite) TestArticleUpdateSuccessUpdatedAt() {
 	suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
 }
 
-func (suite *Suite) TestArticleUpdateTitleBlankBodyPresent() {
+func (suite *ArticleSuite) TestArticleUpdateTitleBlankBodyPresent() {
 	defaultArticle := test.DefaultArticleModel()
 	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
 	originalText := article.Title
@@ -221,7 +211,7 @@ func (suite *Suite) TestArticleUpdateTitleBlankBodyPresent() {
 	//suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
 }
 
-func (suite *Suite) TestArticleUpdateBodyBlank() {
+func (suite *ArticleSuite) TestArticleUpdateBodyBlank() {
 	defaultArticle := test.DefaultArticleModel()
 	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
 	originalText := article.Body
@@ -238,7 +228,7 @@ func (suite *Suite) TestArticleUpdateBodyBlank() {
 	//suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
 }
 
-func (suite *Suite) TestArticleUpdateTagsPresent() {
+func (suite *ArticleSuite) TestArticleUpdateTagsPresent() {
 	defaultArticle := test.DefaultArticleModel()
 	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
 	article.Tags = []string{
@@ -258,7 +248,7 @@ func (suite *Suite) TestArticleUpdateTagsPresent() {
 	suite.Contains(updatedArticle.Tags, "tag3")
 }
 
-func (suite *Suite) TestArticleUpdateTagsEmpty() {
+func (suite *ArticleSuite) TestArticleUpdateTagsEmpty() {
 	defaultArticle := test.DefaultArticleModel()
 	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
 	article.Tags = []string{}
@@ -270,7 +260,7 @@ func (suite *Suite) TestArticleUpdateTagsEmpty() {
 	suite.Equal(0, len(updatedArticle.Tags))
 }
 
-func (suite *Suite) TestArticleUpdateTagsEmptyString() {
+func (suite *ArticleSuite) TestArticleUpdateTagsEmptyString() {
 	defaultArticle := test.DefaultArticleModel()
 	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
 	article.Tags = []string{
@@ -284,7 +274,7 @@ func (suite *Suite) TestArticleUpdateTagsEmptyString() {
 	suite.Equal(0, len(updatedArticle.Tags))
 }
 
-func (suite *Suite) TestArticleUpdateTagsDup() {
+func (suite *ArticleSuite) TestArticleUpdateTagsDup() {
 	defaultArticle := test.DefaultArticleModel()
 	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
 	article.Tags = []string{
@@ -300,7 +290,7 @@ func (suite *Suite) TestArticleUpdateTagsDup() {
 	suite.Contains(updatedArticle.Tags, "tag1")
 }
 
-func (suite *Suite) TestArticleUpdateTagsWhitespace() {
+func (suite *ArticleSuite) TestArticleUpdateTagsWhitespace() {
 	defaultArticle := test.DefaultArticleModel()
 	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
 	article.Tags = []string{

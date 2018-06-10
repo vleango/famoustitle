@@ -8,6 +8,7 @@ import (
 	"github.com/vleango/lib/logs"
 	"github.com/vleango/lib/models"
 	"github.com/vleango/lib/utils"
+	"strings"
 )
 
 var (
@@ -44,7 +45,7 @@ type Response struct {
 func NewProxyResponse(ctx *context.Context, request *events.APIGatewayProxyRequest, authenticate bool) (resp *Response, user *models.User, earlyExit *events.APIGatewayProxyResponse) {
 	var err error
 
-	if request.HTTPMethod == "OPTIONS" {
+	if strings.ToLower(request.HTTPMethod) == "options" {
 		rsp := Response{}
 		proxyResponse := rsp.Ok("")
 		return nil, nil, &proxyResponse

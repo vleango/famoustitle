@@ -13,10 +13,15 @@ import (
 )
 
 var (
+	ErrEmailRequired        = fmt.Errorf("missing required params: [email]")
 	ErrArticleDoesNotBelong = fmt.Errorf("resource does not belong to the user")
 )
 
 func UserFindByEmail(email string) (*models.User, error) {
+	if email == "" {
+		return nil, ErrEmailRequired
+	}
+
 	result, err := svc.GetItem(&dynamodb.GetItemInput{
 		TableName: aws.String(userTable),
 		Key: map[string]*dynamodb.AttributeValue{
@@ -79,10 +84,14 @@ func UserCreate(user models.User, pass string, passwordConfirmation string) (*mo
 	return &user, nil
 }
 
-func UserAddArticle(user models.User, article models.Article) error {
+func UserAddRemoveFromArticleList(user models.User, article models.Article, addArticle bool) error {
 	var updateExpression []string
 	attributeValue := map[string]*dynamodb.AttributeValue{}
 	articleList := map[string]*dynamodb.AttributeValue{}
+
+	if article.ID == "" || (addArticle && article.Title == "") {
+		return fmt.Errorf("missing required params")
+	}
 
 	// get article list (minus same article)
 	if len(user.Articles) > 0 {
@@ -94,7 +103,9 @@ func UserAddArticle(user models.User, article models.Article) error {
 	}
 
 	// add article to article list
-	articleList[article.ID] = &dynamodb.AttributeValue{S: aws.String(article.Title)}
+	if addArticle {
+		articleList[article.ID] = &dynamodb.AttributeValue{S: aws.String(article.Title)}
+	}
 
 	// do dynamodb updateItem
 	attributeValue[":articles"] = &dynamodb.AttributeValue{
@@ -115,7 +126,6 @@ func UserAddArticle(user models.User, article models.Article) error {
 	}
 
 	_, err := svc.UpdateItem(input)
-
 	return err
 }
 
@@ -123,7 +133,12 @@ func UserAddArticle(user models.User, article models.Article) error {
 func UserArticleDestroy(user models.User, article models.Article) (*models.Article, error) {
 	for id := range user.Articles {
 		if id == article.ID {
-			return ArticleDestroy(article)
+			destroyedArticle, err := ArticleDestroy(article)
+			if err != nil {
+				return nil, err
+			}
+
+			return destroyedArticle, UserAddRemoveFromArticleList(user, *destroyedArticle, false)
 		}
 	}
 
@@ -133,7 +148,12 @@ func UserArticleDestroy(user models.User, article models.Article) (*models.Artic
 func UserArticleUpdate(user models.User, article models.Article) (*models.Article, error) {
 	for id := range user.Articles {
 		if id == article.ID {
-			return ArticleUpdate(article)
+			updatedArticle, err := ArticleUpdate(article)
+			if err != nil {
+				return nil, err
+			}
+
+			return updatedArticle, UserAddRemoveFromArticleList(user, *updatedArticle, true)
 		}
 	}
 

@@ -3,22 +3,30 @@ package auth
 import (
 	"fmt"
 	"github.com/vleango/lib/datastores/dynamodb"
+	"github.com/vleango/lib/logs"
 	"github.com/vleango/lib/models"
 	"strings"
-	"time"
+)
+
+var (
+	ErrAuthTokenUnauthorized = fmt.Errorf("unauthorized")
+	ErrAuthTokenExpired      = fmt.Errorf("token is expired")
 )
 
 func AuthenticateUser(bearer string) (*models.User, error) {
-	token := strings.TrimPrefix(bearer, "Bearer ")
-
-	claims, err := TokenClaims(token)
-	if err != nil {
-		return nil, err
+	if !strings.HasPrefix(bearer, "Bearer") {
+		return nil, ErrAuthTokenUnauthorized
 	}
 
-	// check if expired
-	if claims["exp"] == nil || time.Now().Unix() > int64(claims["exp"].(float64)) {
-		return nil, fmt.Errorf("expired token")
+	token := strings.TrimPrefix(bearer, "Bearer ")
+	claims, err := TokenClaims(token)
+	if err != nil {
+		logs.DebugMessage(400, err.Error())
+		if strings.ToLower(err.Error()) == ErrAuthTokenExpired.Error() {
+			return nil, ErrAuthTokenExpired
+		} else {
+			return nil, ErrAuthTokenUnauthorized
+		}
 	}
 
 	// get user

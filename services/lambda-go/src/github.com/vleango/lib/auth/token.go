@@ -5,15 +5,22 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/vleango/lib/datastores/dynamodb"
 	"github.com/vleango/lib/password"
+	"strings"
 	"time"
 )
 
 var (
 	// TODO
-	hmacSecret = "this is a test"
+	HMACSecret = "this is a test"
+
+	ErrMissingParams = fmt.Errorf("missing required params")
 )
 
 func GenerateToken(email string, pass string) (*string, error) {
+	if email == "" || pass == "" {
+		return nil, ErrMissingParams
+	}
+
 	// find user by email
 	user, err := dynamodb.UserFindByEmail(email)
 	if err != nil {
@@ -35,14 +42,14 @@ func GenerateToken(email string, pass string) (*string, error) {
 	})
 
 	// Sign and get the complete encoded token as a string using the secret
-	tokenString, err := token.SignedString([]byte(hmacSecret))
+	tokenString, err := token.SignedString([]byte(HMACSecret))
 
 	// return the jwt
 	return &tokenString, nil
 }
 
 func TokenClaims(tokenString string) (map[string]interface{}, error) {
-	if tokenString == "" {
+	if tokenString == "" || strings.Count(tokenString, ".") != 2 {
 		return nil, fmt.Errorf("unauthorized")
 	}
 
@@ -50,8 +57,11 @@ func TokenClaims(tokenString string) (map[string]interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
 		}
-		return []byte(hmacSecret), nil
+		return []byte(HMACSecret), nil
 	})
+	if err != nil {
+		return nil, err
+	}
 
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 		return claims, nil

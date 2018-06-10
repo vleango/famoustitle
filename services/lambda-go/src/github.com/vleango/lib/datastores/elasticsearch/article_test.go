@@ -25,6 +25,7 @@ func (suite *Suite) TestArticleCreate() {
 	suite.IsType(nil, err)
 	suite.Equal(item.Title, article.Title)
 	suite.Equal(item.Body, article.Body)
+	suite.Equal(item.Author, article.Author)
 	suite.Equal(len(item.Tags), len(article.Tags))
 	suite.Contains(article.Tags, "rails")
 	suite.Contains(article.Tags, "ruby")

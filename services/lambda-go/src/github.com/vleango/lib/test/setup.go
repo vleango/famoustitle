@@ -82,6 +82,7 @@ func CreateArticlesTable() {
 
 func DefaultArticleModel() models.Article {
 	return models.Article{
+		Author:    "Tha",
 		Title:     "this is my title",
 		Body:      "this is my body",
 		Tags:      []string{"ruby", "rails"},

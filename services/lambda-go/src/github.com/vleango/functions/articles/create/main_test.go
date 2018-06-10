@@ -70,6 +70,7 @@ func (suite *Suite) TestSavingNewRecord() {
 
 	var responseBody models.Article
 	json.Unmarshal([]byte(response.Body), &responseBody)
+	suite.Equal("Tha Leang", responseBody.Author)
 	suite.Equal(requestBody.Article.Title, responseBody.Title)
 	suite.Equal(requestBody.Article.Body, responseBody.Body)
 	suite.Equal(2, len(responseBody.Tags))
@@ -82,6 +83,7 @@ func (suite *Suite) TestSavingNewRecord() {
 	time.Sleep(2 * time.Second)
 	articles, _, _ := elasticsearch.ArticleFindAll()
 	suite.Equal(1, len(articles))
+	suite.Equal("Tha Leang", articles[0].Author)
 	suite.Equal(requestBody.Article.Title, articles[0].Title)
 	suite.Equal(requestBody.Article.Body, articles[0].Body)
 	suite.Equal(2, len(articles[0].Tags))
