@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/stretchr/testify/suite"
@@ -29,21 +30,23 @@ func (suite *Suite) SetupTest() {
 	test.CleanDataStores()
 	test.CreateArticlesTable()
 	articles = []models.Article{}
+	author := "Tha Leang"
+	defaultArticle := test.DefaultArticleModel()
 
-	article1, _ := dynamodb.ArticleCreate(test.DefaultArticleModel())
-	elasticsearch.ArticleCreate(article1)
+	article1, _ := dynamodb.ArticleCreate(&defaultArticle, author)
+	elasticsearch.ArticleCreate(*article1)
 
-	article2, _ := dynamodb.ArticleCreate(test.DefaultArticleModel())
-	elasticsearch.ArticleCreate(article2)
+	article2, _ := dynamodb.ArticleCreate(&defaultArticle, author)
+	elasticsearch.ArticleCreate(*article2)
 
-	article3, _ := dynamodb.ArticleCreate(test.DefaultArticleModel())
-	elasticsearch.ArticleCreate(article3)
+	article3, _ := dynamodb.ArticleCreate(&defaultArticle, author)
+	elasticsearch.ArticleCreate(*article3)
 
-	articles = append(articles, article1, article2, article3)
+	articles = append(articles, *article1, *article2, *article3)
 	time.Sleep(1 * time.Second)
 
 	request := events.APIGatewayProxyRequest{}
-	response, err := Handler(request)
+	response, err := Handler(context.Background(), request)
 	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 
@@ -115,7 +118,7 @@ func (suite *Suite) TestTags() {
 
 func (suite *EmptySuite) TestEmptyArticles() {
 	request := events.APIGatewayProxyRequest{}
-	response, err := Handler(request)
+	response, err := Handler(context.Background(), request)
 	suite.Equal(200, response.StatusCode)
 	suite.IsType(nil, err)
 

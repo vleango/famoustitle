@@ -7,28 +7,21 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 	"github.com/satori/go.uuid"
-	"github.com/vleango/config"
 	"github.com/vleango/lib/models"
 	"github.com/vleango/lib/utils"
 	"strings"
 	"time"
 )
 
-var (
-	tableName               = "tech_writer_articles"
-	svc                     = config.DynamoSvc
-	ErrTitleBodyNotProvided = errors.New("missing title and/or body in the HTTP body")
-	ErrRecordNotFound       = errors.New("record not found")
-)
-
 // TODO need to separate the tags sanitized so update can use it too
-func ArticleCreate(item models.Article) (models.Article, error) {
+func ArticleCreate(item *models.Article, author string) (*models.Article, error) {
 
-	if item.Title == "" || item.Body == "" {
-		return models.Article{}, ErrTitleBodyNotProvided
+	if item == nil || item.Title == "" || item.Body == "" {
+		return nil, ErrTitleBodyNotProvided
 	}
 
 	item.ID = fmt.Sprintf("%s", uuid.Must(uuid.NewV4(), nil))
+	item.Author = author
 	item.CreatedAt = time.Now()
 	item.UpdatedAt = time.Now()
 
@@ -48,26 +41,26 @@ func ArticleCreate(item models.Article) (models.Article, error) {
 	av, err := dynamodbattribute.MarshalMap(item)
 	input := &dynamodb.PutItemInput{
 		Item:      av,
-		TableName: aws.String(tableName),
+		TableName: aws.String(articleTable),
 	}
 
 	_, err = svc.PutItem(input)
 	if err != nil {
-		return models.Article{}, err
+		return nil, err
 	}
 
 	return item, nil
 }
 
-func ArticleDestroy(item models.Article) (models.Article, error) {
+func ArticleDestroy(item models.Article) (*models.Article, error) {
 	// since deleteItem doesn't return an error, need to verify delete
 	_, err := ArticleFind(item.ID)
 	if err != nil {
-		return item, ErrRecordNotFound
+		return nil, ErrRecordNotFound
 	}
 
 	_, err = svc.DeleteItem(&dynamodb.DeleteItemInput{
-		TableName: aws.String(tableName),
+		TableName: aws.String(articleTable),
 		Key: map[string]*dynamodb.AttributeValue{
 			"id": {
 				S: aws.String(item.ID),
@@ -76,16 +69,16 @@ func ArticleDestroy(item models.Article) (models.Article, error) {
 	})
 
 	if err != nil {
-		return models.Article{}, err
+		return nil, err
 	}
 
-	return item, nil
+	return &item, nil
 }
 
 func ArticleFindAll() ([]models.Article, error) {
 
 	params := &dynamodb.ScanInput{
-		TableName: aws.String(tableName),
+		TableName: aws.String(articleTable),
 	}
 
 	result, err := svc.Scan(params)
@@ -103,9 +96,9 @@ func ArticleFindAll() ([]models.Article, error) {
 	return articles, nil
 }
 
-func ArticleFind(id string) (models.Article, error) {
+func ArticleFind(id string) (*models.Article, error) {
 	result, err := svc.GetItem(&dynamodb.GetItemInput{
-		TableName: aws.String(tableName),
+		TableName: aws.String(articleTable),
 		Key: map[string]*dynamodb.AttributeValue{
 			"id": {
 				S: aws.String(id),
@@ -114,24 +107,24 @@ func ArticleFind(id string) (models.Article, error) {
 	})
 
 	if err != nil {
-		return models.Article{}, err
+		return nil, err
 	}
 
 	article := models.Article{}
 	dynamodbattribute.UnmarshalMap(result.Item, &article)
 
 	if article.ID == "" {
-		return models.Article{}, ErrRecordNotFound
+		return nil, ErrRecordNotFound
 	}
 
-	return article, nil
+	return &article, nil
 }
 
-func ArticleUpdate(item models.Article) (models.Article, error) {
+func ArticleUpdate(item models.Article) (*models.Article, error) {
 	var sanitizedTags []string
 
 	if item.Title == "" && item.Body == "" {
-		return models.Article{}, errors.New("title and/or body is blank")
+		return nil, errors.New("title and/or body is blank")
 	}
 
 	attributeValue := map[string]*dynamodb.AttributeValue{}
@@ -174,7 +167,7 @@ func ArticleUpdate(item models.Article) (models.Article, error) {
 			},
 		},
 		ReturnValues:              aws.String("UPDATED_NEW"),
-		TableName:                 aws.String(tableName),
+		TableName:                 aws.String(articleTable),
 		ExpressionAttributeValues: attributeValue,
 		UpdateExpression:          aws.String("set " + strings.Join(updateExpression, ", ")),
 	}
@@ -182,7 +175,7 @@ func ArticleUpdate(item models.Article) (models.Article, error) {
 	_, err := svc.UpdateItem(input)
 
 	if err != nil {
-		return models.Article{}, err
+		return nil, err
 	}
 
 	updatedArticle, _ := ArticleFind(item.ID)

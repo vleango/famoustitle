@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/vleango/lib/datastores/elasticsearch"
+	"github.com/vleango/lib/auth"
 	"github.com/vleango/lib/responses"
 	"github.com/vleango/lib/utils"
 )
@@ -16,12 +16,18 @@ func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events
 		return *earlyExit, nil
 	}
 
-	article, err := elasticsearch.ArticleFind(request.PathParameters["id"])
-	if err != nil {
-		return response.NotFound(utils.JSONStringWithKey(err.Error()), err.Error()), nil
+	body := map[string]string{}
+	json.Unmarshal([]byte(request.Body), &body)
+
+	token, err := auth.GenerateToken(body["email"], body["password"])
+	if token == nil || err != nil {
+		return response.BadRequest(utils.JSONStringWithKey(err.Error()), err.Error()), nil
 	}
 
-	b, err := json.Marshal(article)
+	message := map[string]string{
+		"token": *token,
+	}
+	b, err := json.Marshal(message)
 	if err != nil {
 		return response.ServerError(utils.JSONStringWithKey(responses.StatusMsgServerError), err.Error()), nil
 	}

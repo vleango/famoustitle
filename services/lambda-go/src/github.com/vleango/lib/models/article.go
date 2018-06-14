@@ -6,6 +6,7 @@ import (
 
 type Article struct {
 	ID        string    `json:"id"`
+	Author    string    `json:"author"`
 	Title     string    `json:"title"`
 	Body      string    `json:"body"`
 	Tags      []string  `json:"tags"`

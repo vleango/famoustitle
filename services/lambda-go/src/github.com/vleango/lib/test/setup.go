@@ -5,6 +5,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/vleango/config"
+	"github.com/vleango/lib/auth"
+	localDB "github.com/vleango/lib/datastores/dynamodb"
 	"github.com/vleango/lib/models"
 	"net/http"
 	"time"
@@ -80,10 +82,51 @@ func CreateArticlesTable() {
 
 func DefaultArticleModel() models.Article {
 	return models.Article{
+		Author:    "Tha",
 		Title:     "this is my title",
 		Body:      "this is my body",
 		Tags:      []string{"ruby", "rails"},
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	}
+}
+
+func CreateUserTable(newUsers ...map[string]interface{}) (tokens []string) {
+	input := &dynamodb.CreateTableInput{
+		AttributeDefinitions: []*dynamodb.AttributeDefinition{
+			{
+				AttributeName: aws.String("email"),
+				AttributeType: aws.String("S"),
+			},
+		},
+		KeySchema: []*dynamodb.KeySchemaElement{
+			{
+				AttributeName: aws.String("email"),
+				KeyType:       aws.String("HASH"),
+			},
+		},
+		ProvisionedThroughput: &dynamodb.ProvisionedThroughput{
+			ReadCapacityUnits:  aws.Int64(10),
+			WriteCapacityUnits: aws.Int64(10),
+		},
+		TableName: aws.String("tech_writer_users"),
+	}
+
+	_, err := svc.CreateTable(input)
+
+	if err != nil {
+		fmt.Println("Got error calling CreateTable:")
+		fmt.Println(err.Error())
+	}
+
+	if len(newUsers) > 0 {
+		for _, newUser := range newUsers {
+			localDB.UserCreate(newUser["user"].(models.User), newUser["password"].(string), newUser["password"].(string))
+
+			token, _ := auth.GenerateToken(newUser["user"].(models.User).Email, newUser["password"].(string))
+			tokens = append(tokens, *token)
+		}
+	}
+
+	return tokens
 }
