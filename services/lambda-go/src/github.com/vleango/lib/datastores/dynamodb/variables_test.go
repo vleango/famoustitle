@@ -6,6 +6,6 @@ import (
 )
 
 func TestTableNames(t *testing.T) {
-	assert.Equal(t, "tech_writer_articles", articleTable)
-	assert.Equal(t, "tech_writer_users", userTable)
+	assert.Equal(t, "famoustitle_articles", articleTable)
+	assert.Equal(t, "famoustitle_users", userTable)
 }

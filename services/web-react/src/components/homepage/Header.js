@@ -6,7 +6,7 @@ export default (props) => {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-12">
-                        <h2>TechWriter</h2>
+                        <h2>famoustitle</h2>
                         <p className="subtitle text-muted">
                             News articles with helpful tips and how-to guides for all things
                             related to software development. The main focus of these articles
