@@ -23,7 +23,7 @@ plugins:
 
 custom:
   client:
-    bucketName: ${env:BUCKET_NAME}
+    bucketName: ${file(./${self:provider.stage}.yml):BUCKET_NAME}
     errorDocument: index.html
 
 functions:
@@ -33,7 +33,7 @@ functions:
       - Effect: "Allow"
         Action:
           - "dynamodb:Scan"
-        Resource: ${env:ARN_DB_RESOURCE}
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE}
     events:
       - http:
           path: /articles
@@ -45,7 +45,7 @@ functions:
       - Effect: "Allow"
         Action:
           - "dynamodb:PutItem"
-        Resource: ${env:ARN_DB_RESOURCE}
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE}
     events:
       - http:
           path: /articles
@@ -64,11 +64,11 @@ functions:
       - Effect: "Allow"
         Action:
           - "dynamodb:UpdateItem"
-        Resource: ${env:ARN_DB_RESOURCE}
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE}
       - Effect: "Allow"
         Action:
           - "dynamodb:GetItem"
-        Resource: ${env:ARN_DB_RESOURCE}
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE}
     events:
       - http:
           path: /articles/{id}
@@ -80,11 +80,11 @@ functions:
       - Effect: "Allow"
         Action:
           - "dynamodb:GetItem"
-        Resource: ${env:ARN_DB_RESOURCE}
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE}
       - Effect: "Allow"
         Action:
           - "dynamodb:DeleteItem"
-        Resource: ${env:ARN_DB_RESOURCE}
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE}
     events:
       - http:
           path: /articles/{id}
