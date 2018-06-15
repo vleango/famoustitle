@@ -1,4 +1,4 @@
-# TechWriter Lambda-Go
+# famoustitle Lambda-Go
 
 ## Creating new template
 ```
@@ -15,12 +15,12 @@ Events:
       Path: /articles
       Method: post
       RestApiId:
-        Ref: TechWriter
+        Ref: famoustitle
   Event2:
     Type: Api
     Properties:
       Path: /articles
       Method: options
       RestApiId:
-        Ref: TechWriter
+        Ref: famoustitle
 ```

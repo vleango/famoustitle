@@ -13,7 +13,7 @@ import (
 )
 
 var svc = config.DynamoSvc
-var clusterName = "tech_writer_articles"
+var clusterName = "famoustitle_articles"
 
 func CleanDataStores() {
 	CleanDB()
@@ -69,7 +69,7 @@ func CreateArticlesTable() {
 			ReadCapacityUnits:  aws.Int64(10),
 			WriteCapacityUnits: aws.Int64(10),
 		},
-		TableName: aws.String("tech_writer_articles"),
+		TableName: aws.String("famoustitle_articles"),
 	}
 
 	_, err := svc.CreateTable(input)
@@ -109,7 +109,7 @@ func CreateUserTable(newUsers ...map[string]interface{}) (tokens []string) {
 			ReadCapacityUnits:  aws.Int64(10),
 			WriteCapacityUnits: aws.Int64(10),
 		},
-		TableName: aws.String("tech_writer_users"),
+		TableName: aws.String("famoustitle_users"),
 	}
 
 	_, err := svc.CreateTable(input)

@@ -6,8 +6,8 @@ import (
 )
 
 var (
-	articleTable = "tech_writer_articles"
-	userTable    = "tech_writer_users"
+	articleTable = "famoustitle_articles"
+	userTable    = "famoustitle_users"
 
 	svc                     = config.DynamoSvc
 	ErrTitleBodyNotProvided = errors.New("missing title and/or body in the HTTP body")

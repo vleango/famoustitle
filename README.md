@@ -1,6 +1,6 @@
-[![CircleCI](https://circleci.com/gh/vleango/tech_writer/tree/master.svg?style=svg)](https://circleci.com/gh/vleango/tech_writer/tree/master)
+[![CircleCI](https://circleci.com/gh/vleango/famoustitle/tree/master.svg?style=svg)](https://circleci.com/gh/vleango/famoustitle/tree/master)
 
-# tech_writer_app
+# famoustitle
 
 Learn React with Redux, Lambda with Go, and DynamoDB together
 
@@ -12,7 +12,7 @@ Learn React with Redux, Lambda with Go, and DynamoDB together
 ## Get the App
 
 ```
-$ git clone https://github.com/vleango/tech_writer.git
+$ git clone https://github.com/vleango/famoustitle.git
 ```
 
 ## Setup

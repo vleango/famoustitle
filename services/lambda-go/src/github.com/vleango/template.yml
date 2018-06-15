@@ -7,7 +7,7 @@ Resources:
     Properties:
       Handler: bin/articles_index
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
+      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
       MemorySize: 128
       Timeout: 3
       Environment:
@@ -23,15 +23,15 @@ Resources:
             Path: /articles
             Method: get
             RestApiId:
-              Ref: TechWriter
+              Ref: famoustitle
       Event2:
         Type: Api
         Properties:
           Path: /articles
           Method: options
           RestApiId:
-            Ref: TechWriter
-  TechWriter:
+            Ref: famoustitle
+  famoustitle:
     Type: 'AWS::Serverless::Api'
     Properties:
       StageName: development
@@ -375,7 +375,7 @@ Resources:
     Properties:
       Handler: bin/articles_create
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
+      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
       MemorySize: 128
       Timeout: 3
       Environment:
@@ -391,14 +391,14 @@ Resources:
             Path: /articles
             Method: post
             RestApiId:
-              Ref: TechWriter
+              Ref: famoustitle
         Event2:
           Type: Api
           Properties:
             Path: /articles
             Method: options
             RestApiId:
-              Ref: TechWriter
+              Ref: famoustitle
   Articles_createLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -413,7 +413,7 @@ Resources:
     Properties:
       Handler: bin/articles_show
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
+      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
       MemorySize: 128
       Timeout: 3
       Environment:
@@ -429,7 +429,7 @@ Resources:
             Path: '/articles/{id}'
             Method: get
             RestApiId:
-              Ref: TechWriter
+              Ref: famoustitle
   Articles_showLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -444,7 +444,7 @@ Resources:
     Properties:
       Handler: bin/articles_update
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
+      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
       MemorySize: 128
       Timeout: 3
       Environment:
@@ -460,7 +460,7 @@ Resources:
             Path: '/articles/{id}'
             Method: post
             RestApiId:
-              Ref: TechWriter
+              Ref: famoustitle
   Articles_updateLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -475,7 +475,7 @@ Resources:
     Properties:
       Handler: bin/articles_destroy
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
+      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
       MemorySize: 128
       Timeout: 3
       Environment:
@@ -491,7 +491,7 @@ Resources:
             Path: '/articles/{id}'
             Method: delete
             RestApiId:
-              Ref: TechWriter
+              Ref: famoustitle
   Articles_destroyLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -506,7 +506,7 @@ Resources:
     Properties:
       Handler: bin/articles_archives_index
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
+      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
       MemorySize: 128
       Timeout: 3
       Environment:
@@ -522,7 +522,7 @@ Resources:
             Path: /articles/archives
             Method: get
             RestApiId:
-              Ref: TechWriter
+              Ref: famoustitle
   Articles_archivesLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -537,7 +537,7 @@ Resources:
     Properties:
       Handler: bin/tokens_create
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
+      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
       MemorySize: 128
       Timeout: 3
       Environment:
@@ -553,7 +553,7 @@ Resources:
             Path: /tokens
             Method: post
             RestApiId:
-              Ref: TechWriter
+              Ref: famoustitle
   Tokens_createLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -568,7 +568,7 @@ Resources:
     Properties:
       Handler: bin/users_create
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/tech-writer.zip
+      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
       MemorySize: 128
       Timeout: 3
       Environment:
@@ -584,7 +584,7 @@ Resources:
             Path: /users
             Method: post
             RestApiId:
-              Ref: TechWriter
+              Ref: famoustitle
   Users_createLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:

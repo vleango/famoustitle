@@ -1,4 +1,4 @@
-service: tech-writer
+service: famoustitle
 
 provider:
   name: aws
