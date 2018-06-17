@@ -25,6 +25,10 @@ custom:
   client:
     bucketName: ${file(./${self:provider.stage}.yml):BUCKET_NAME}
     errorDocument: index.html
+    objectHeaders:
+      index.html:
+        - name: Cache-Control
+          value: max-age=0
 
 functions:
   articles_index:
