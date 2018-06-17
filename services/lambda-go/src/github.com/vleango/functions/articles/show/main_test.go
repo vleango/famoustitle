@@ -29,7 +29,7 @@ func (suite *Suite) TestShowRecordFound() {
 	defaultArticle := test.DefaultArticleModel()
 	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
 	elasticsearch.ArticleCreate(*article)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 
 	request := events.APIGatewayProxyRequest{
 		PathParameters: map[string]string{

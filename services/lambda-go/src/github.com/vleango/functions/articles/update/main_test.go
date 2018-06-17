@@ -58,7 +58,7 @@ func (suite *Suite) SetupTest() {
 	suite.UserTokenWithoutArticle = tokens[1]
 
 	// to change updated_at
-	//time.Sleep(1 * time.Second)
+	//time.Sleep(2 * time.Second)
 }
 
 func TestSuite(t *testing.T) {
@@ -150,7 +150,7 @@ func (suite *Suite) TestUpdateTitle() {
 	suite.Equal(article.CreatedAt.Unix(), responseBody.CreatedAt.Unix())
 	//suite.NotEqual(article.UpdatedAt.Unix(), responseBody.UpdatedAt.Unix())
 
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 	articles, _, _ := elasticsearch.ArticleFindAll()
 	suite.Equal(article.ID, articles[0].ID)
 	suite.Equal("new title", articles[0].Title)
@@ -200,7 +200,7 @@ func (suite *Suite) TestUpdateBody() {
 	suite.Equal(article.CreatedAt.Unix(), responseBody.CreatedAt.Unix())
 	//suite.NotEqual(article.UpdatedAt.Unix(), responseBody.UpdatedAt.Unix())
 
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 	articles, _, _ := elasticsearch.ArticleFindAll()
 
 	suite.Equal(article.ID, articles[0].ID)
@@ -246,7 +246,7 @@ func (suite *Suite) TestUpdateTitleBlankBodyPresent() {
 	suite.Equal(article.CreatedAt.Unix(), updatedArticle.CreatedAt.Unix())
 	//suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
 
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 	articles, _, _ := elasticsearch.ArticleFindAll()
 	suite.Equal(article.ID, articles[0].ID)
 	suite.Equal(article.Title, articles[0].Title)
@@ -286,7 +286,7 @@ func (suite *Suite) TestUpdateTitlePresentBodyBlank() {
 	suite.Equal(article.CreatedAt.Unix(), updatedArticle.CreatedAt.Unix())
 	//suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
 
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 	articles, _, _ := elasticsearch.ArticleFindAll()
 	suite.Equal(article.ID, articles[0].ID)
 	suite.Equal("my new title", articles[0].Title)

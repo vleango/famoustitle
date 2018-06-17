@@ -103,7 +103,7 @@ func (suite *Suite) TestDestroyRecordFound() {
 	}
 
 	elasticsearch.ArticleCreate(*article)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 	articles, _, _ := elasticsearch.ArticleFindAll()
 	suite.Equal(1, len(articles))
 
@@ -115,7 +115,7 @@ func (suite *Suite) TestDestroyRecordFound() {
 	json.Unmarshal([]byte(response.Body), &responseBody)
 	suite.Equal(true, responseBody["success"])
 
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 	articles2, _, _ := elasticsearch.ArticleFindAll()
 	suite.Equal(0, len(articles2))
 }

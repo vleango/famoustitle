@@ -32,7 +32,7 @@ func (suite *Suite) TestCleanDataStores() {
 	defaultArticle := DefaultArticleModel()
 	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
 	elasticsearch.ArticleCreate(*article)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 
 	articlesDyanomo, _ = dynamodb.ArticleFindAll()
 	suite.Equal(1, len(articlesDyanomo))
@@ -72,7 +72,7 @@ func (suite *Suite) TestCleanElasticSerch() {
 	defaultArticle := DefaultArticleModel()
 	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
 	elasticsearch.ArticleCreate(*article)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 
 	articlesES, _, _ = elasticsearch.ArticleFindAll()
 	suite.Equal(1, len(articlesES))
