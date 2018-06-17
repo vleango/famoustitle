@@ -43,7 +43,7 @@ func (suite *Suite) SetupTest() {
 	elasticsearch.ArticleCreate(*article3)
 
 	articles = append(articles, *article1, *article2, *article3)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 
 	request := events.APIGatewayProxyRequest{}
 	response, err := Handler(context.Background(), request)
@@ -68,7 +68,7 @@ func (suite *Suite) TestArticles() {
 		elasticsearch.ArticleCreate(article)
 	}
 
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 	esArticles, _, _ := elasticsearch.ArticleFindAll()
 
 	suite.Equal(len(articles), len(esArticles))

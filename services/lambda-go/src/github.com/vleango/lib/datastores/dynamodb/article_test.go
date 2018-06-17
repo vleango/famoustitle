@@ -187,7 +187,7 @@ func (suite *ArticleSuite) TestArticleUpdateSuccessUpdatedAt() {
 	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
 
 	// to change updated_at
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 
 	updatedArticle, err := dynamodb.ArticleUpdate(*article)
 	suite.IsType(nil, err)
@@ -202,7 +202,7 @@ func (suite *ArticleSuite) TestArticleUpdateTitleBlankBodyPresent() {
 	article.Body = "my new body"
 
 	// to change updated_at
-	//time.Sleep(1 * time.Second)
+	//time.Sleep(2 * time.Second)
 
 	updatedArticle, err := dynamodb.ArticleUpdate(*article)
 	suite.IsType(nil, err)
@@ -219,7 +219,7 @@ func (suite *ArticleSuite) TestArticleUpdateBodyBlank() {
 	article.Body = ""
 
 	// to change updated_at
-	//time.Sleep(1 * time.Second)
+	//time.Sleep(2 * time.Second)
 
 	updatedArticle, err := dynamodb.ArticleUpdate(*article)
 	suite.IsType(nil, err)

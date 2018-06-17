@@ -36,12 +36,12 @@ func (suite *Suite) TestArticleDestroy() {
 	item.ID = "1234"
 
 	ArticleCreate(item)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 	articles, _, _ := ArticleFindAll()
 	suite.Equal(1, len(articles))
 
 	ArticleDestroy(item)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 	articles2, _, _ := ArticleFindAll()
 	suite.Equal(0, len(articles2))
 }
@@ -61,7 +61,7 @@ func (suite *Suite) TestArticleFindAll() {
 
 	ArticleCreate(item1)
 	ArticleCreate(item2)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 
 	articles, _, _ := ArticleFindAll()
 	suite.Equal(2, len(articles))
@@ -89,7 +89,7 @@ func (suite *Suite) TestArticleFindAllByTag() {
 
 	ArticleCreate(item1)
 	ArticleCreate(item2)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 
 	articles, _, _ := ArticleFindAll(map[string]string{
 		"tag": "rails",
@@ -105,7 +105,7 @@ func (suite *Suite) TestArticleFindAllByTagNotFound() {
 
 	ArticleCreate(item1)
 	ArticleCreate(item2)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 
 	articles, _, _ := ArticleFindAll(map[string]string{
 		"tag": "web",
@@ -121,7 +121,7 @@ func (suite *Suite) TestArticleFindAllByDate() {
 
 	ArticleCreate(item1)
 	ArticleCreate(item2)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 
 	articles, _, _ := ArticleFindAll(map[string]string{
 		"date": time.Now().Format("2006-01-") + "01",
@@ -137,7 +137,7 @@ func (suite *Suite) TestArticleFindAllByDateNotFound() {
 
 	ArticleCreate(item1)
 	ArticleCreate(item2)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 
 	articles, _, _ := ArticleFindAll(map[string]string{
 		"date": "2000-01-01",
@@ -153,7 +153,7 @@ func (suite *Suite) TestArticleFindAllByMatch() {
 
 	ArticleCreate(item1)
 	ArticleCreate(item2)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 
 	articles, _, _ := ArticleFindAll(map[string]string{
 		"match": "title",
@@ -169,7 +169,7 @@ func (suite *Suite) TestArticleFindAllByMatchNotFound() {
 
 	ArticleCreate(item1)
 	ArticleCreate(item2)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 
 	articles, _, _ := ArticleFindAll(map[string]string{
 		"match": "noooo",
@@ -182,14 +182,14 @@ func (suite *Suite) TestArticleUpdate() {
 	item.ID = "1234"
 
 	ArticleCreate(item)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 
 	item.Title = "my new title"
 	item.Body = "my new body"
 	item.Tags = []string{"web"}
 
 	ArticleUpdate(item)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 
 	articles, _, _ := ArticleFindAll()
 	article := articles[0]
