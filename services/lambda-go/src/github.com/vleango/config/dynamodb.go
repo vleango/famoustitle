@@ -8,10 +8,15 @@ import (
 	"os"
 )
 
-var DynamoSvc *dynamodb.DynamoDB
-var DefaultRegion = "us-west-2"
+var (
+	DynamoSvc     *dynamodb.DynamoDB
+	DefaultRegion = "us-west-2"
 
-var urlStr = ""
+	urlStr = ""
+
+	DynamoArticlesTable = "famoustitle_articles"
+	DynamoUsersTable    = "famoustitle_users"
+)
 
 func init() {
 	switch os.Getenv("APP_ENV") {
