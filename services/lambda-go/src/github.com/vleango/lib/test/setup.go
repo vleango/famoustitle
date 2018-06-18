@@ -122,7 +122,7 @@ func CreateUserTable(newUsers ...map[string]interface{}) (tokens []string) {
 		for _, newUser := range newUsers {
 			localDB.UserCreate(newUser["user"].(models.User), newUser["password"].(string), newUser["password"].(string))
 
-			token, _ := auth.GenerateToken(newUser["user"].(models.User).Email, newUser["password"].(string))
+			_, token, _ := auth.GenerateToken(newUser["user"].(models.User).Email, newUser["password"].(string))
 			tokens = append(tokens, *token)
 		}
 	}

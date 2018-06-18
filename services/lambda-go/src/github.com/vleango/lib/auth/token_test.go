@@ -20,33 +20,40 @@ func (suite *TokenSuite) SetupTest() {
 }
 
 func (suite *Suite) TestGenerateTokenMissingEmail() {
-	token, err := auth.GenerateToken("", "hogehoge")
+	user, token, err := auth.GenerateToken("", "hogehoge")
 	suite.Nil(token)
+	suite.Nil(user)
 	suite.Equal(auth.ErrMissingParams, err)
 }
 
 func (suite *Suite) TestGenerateTokenMissingPass() {
-	token, err := auth.GenerateToken("tha.leang@test.com", "")
+	user, token, err := auth.GenerateToken("tha.leang@test.com", "")
 	suite.Nil(token)
+	suite.Nil(user)
 	suite.Equal(auth.ErrMissingParams, err)
 }
 
 func (suite *TokenSuite) TestGenerateTokenUserNotFound() {
-	token, err := auth.GenerateToken("fake@email.com", "hogehoge")
+	user, token, err := auth.GenerateToken("fake@email.com", "hogehoge")
 	suite.Nil(token)
+	suite.Nil(user)
 	suite.Equal("record not found", err.Error())
 }
 
 func (suite *TokenSuite) TestGenerateTokenPasswordNotMatch() {
-	token, err := auth.GenerateToken("tha.leang@test.com", "bad-pass")
+	user, token, err := auth.GenerateToken("tha.leang@test.com", "bad-pass")
 	suite.Nil(token)
+	suite.Nil(user)
 	suite.Equal("password does not match", err.Error())
 }
 
 func (suite *TokenSuite) TestGenerateToken() {
-	token, err := auth.GenerateToken("tha.leang@test.com", "hogehoge")
+	user, token, err := auth.GenerateToken("tha.leang@test.com", "hogehoge")
 	suite.Nil(err)
 	suite.NotNil(token)
+	suite.Equal(user.FirstName, "Tha")
+	suite.Equal(user.LastName, "Leang")
+	suite.Equal(user.Email, "tha.leang@test.com")
 }
 
 func (suite *Suite) TestTokenClaimsTokenStringEmpty() {
