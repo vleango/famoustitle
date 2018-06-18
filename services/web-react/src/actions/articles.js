@@ -42,7 +42,7 @@ export const createItem = (data) => {
         return new Promise(async(resolve, reject) => {
             try {
                 let token = "";
-                if(getState().auth && getState().auth.token) {
+                if(getState() && getState().auth && getState().auth.token) {
                     token = getState().auth.token;
                 }
 
@@ -74,7 +74,7 @@ export const updateItem = (id, data) => {
     return async (dispatch, getState) => {
         try {
             let token = "";
-            if(getState().auth && getState().auth.token) {
+            if(getState() && getState().auth && getState().auth.token) {
                 token = getState().auth.token;
             }
 
@@ -94,7 +94,7 @@ export const removeItem = (id) => {
         return new Promise(async(resolve, reject) => {
             try {
                 let token = "";
-                if(getState().auth && getState().auth.token) {
+                if(getState() && getState().auth && getState().auth.token) {
                     token = getState().auth.token;
                 }
 

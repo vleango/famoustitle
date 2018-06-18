@@ -83,7 +83,7 @@ describe('Actions', () => {
 
             it('should call POST /articles', async () => {
                 await createItem({someData: true})(dispatch, getState);
-                expect(axios.post).toHaveBeenLastCalledWith(`${ROOT_API_URL}/articles`, {someData: true});
+                expect(axios.post).toHaveBeenLastCalledWith(`${ROOT_API_URL}/articles`, {someData: true}, {"headers": {"Authorization": "Bearer "}});
             });
         });
 
