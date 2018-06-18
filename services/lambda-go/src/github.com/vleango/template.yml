@@ -430,6 +430,13 @@ Resources:
             Method: get
             RestApiId:
               Ref: famoustitle
+        Event2:
+          Type: Api
+          Properties:
+            Path: '/articles/{id}'
+            Method: options
+            RestApiId:
+              Ref: famoustitle
   Articles_showLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -461,6 +468,13 @@ Resources:
             Method: post
             RestApiId:
               Ref: famoustitle
+        Event2:
+          Type: Api
+          Properties:
+            Path: '/articles/{id}'
+            Method: options
+            RestApiId:
+              Ref: famoustitle
   Articles_updateLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -490,6 +504,13 @@ Resources:
           Properties:
             Path: '/articles/{id}'
             Method: delete
+            RestApiId:
+              Ref: famoustitle
+        Event2:
+          Type: Api
+          Properties:
+            Path: '/articles/{id}'
+            Method: options
             RestApiId:
               Ref: famoustitle
   Articles_destroyLambdaPermission:
@@ -552,6 +573,13 @@ Resources:
           Properties:
             Path: /tokens
             Method: post
+            RestApiId:
+              Ref: famoustitle
+        Event2:
+          Type: Api
+          Properties:
+            Path: /tokens
+            Method: options
             RestApiId:
               Ref: famoustitle
   Tokens_createLambdaPermission:
