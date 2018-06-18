@@ -11,7 +11,8 @@ export default (state = loginReducerDefaultState, action) => {
                 ...state,
                 token: action.data.token,
                 firstName: action.data.firstName,
-                lastName: action.data.lastName
+                lastName: action.data.lastName,
+                email: action.data.email
             };
         case 'AUTH_LOGOUT':
             return loginReducerDefaultState;

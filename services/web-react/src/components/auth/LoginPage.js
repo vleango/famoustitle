@@ -34,12 +34,11 @@ export class LoginPage extends Component {
 
         try {
             this.setState({ submitting: true, errorMsg: "" });
-            await this.props.startLogin({ auth: { email: this.state.email, password: this.state.password }});
+            await this.props.startLogin({ email: this.state.email, password: this.state.password });
             this.props.history.push('/');
         }
-        catch (error) {
-            this.setState({ submitting: false });
-            console.log(error);
+        catch (err) {
+            this.setState({ submitting: false, errorMsg: "email and/or password was incorrect" });
         }
     };
 

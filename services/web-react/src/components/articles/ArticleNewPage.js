@@ -40,8 +40,7 @@ export class ArticleNewPage extends Component {
             this.props.history.push('/');
         }
         catch(error) {
-            this.setState({ submitting: false });
-            console.log(error);
+            this.setState({ submitting: false, errorMsg: "server error" });
         }
     };
 

@@ -41,11 +41,17 @@ export const createItem = (data) => {
     return async (dispatch, getState) => {
         return new Promise(async(resolve, reject) => {
             try {
-                const response = await axios.post(`${ROOT_API_URL}/articles`, data);
+                let token = "";
+                if(getState().auth && getState().auth.token) {
+                    token = getState().auth.token;
+                }
+
+                const response = await axios.post(`${ROOT_API_URL}/articles`, data, {
+                    headers: {"Authorization": `Bearer ${token}`}
+                });
                 resolve(response.body);
             }
             catch (error) {
-                console.log(error);
                 reject(error);
             }
         });
@@ -67,7 +73,14 @@ export const fetchItem = (id) => {
 export const updateItem = (id, data) => {
     return async (dispatch, getState) => {
         try {
-            await axios.post(`${ROOT_API_URL}/articles/${id}`, data);
+            let token = "";
+            if(getState().auth && getState().auth.token) {
+                token = getState().auth.token;
+            }
+
+            await axios.post(`${ROOT_API_URL}/articles/${id}`, data, {
+                headers: {"Authorization": `Bearer ${token}`}
+            });
             dispatch(item({})); // if success don't need to return anything since the page has already been updated
         }
         catch (error) {
@@ -80,7 +93,14 @@ export const removeItem = (id) => {
     return async (dispatch, getState) => {
         return new Promise(async(resolve, reject) => {
             try {
-                const response = await axios.delete(`${ROOT_API_URL}/articles/${id}`);
+                let token = "";
+                if(getState().auth && getState().auth.token) {
+                    token = getState().auth.token;
+                }
+
+                const response = await axios.delete(`${ROOT_API_URL}/articles/${id}`, {
+                    headers: {"Authorization": `Bearer ${token}`}
+                });
                 resolve(response.body);
             }
             catch (error) {
