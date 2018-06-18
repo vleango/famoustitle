@@ -19,13 +19,16 @@ func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events
 	body := map[string]string{}
 	json.Unmarshal([]byte(request.Body), &body)
 
-	token, err := auth.GenerateToken(body["email"], body["password"])
+	user, token, err := auth.GenerateToken(body["email"], body["password"])
 	if token == nil || err != nil {
 		return response.BadRequest(utils.JSONStringWithKey(err.Error()), err.Error()), nil
 	}
 
 	message := map[string]string{
-		"token": *token,
+		"token":      *token,
+		"first_name": user.FirstName,
+		"last_name":  user.LastName,
+		"email":      user.Email,
 	}
 	b, err := json.Marshal(message)
 	if err != nil {

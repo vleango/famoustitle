@@ -1,12 +1,18 @@
+import {ROOT_API_URL} from "./Base";
+import axios from "axios/index";
 
 export const startLogin = (data) => {
     return async (dispatch, getState) => {
-        try {
-            dispatch(login({first_name: 'Tha', last_name: 'Leang', token: '456'}));
-        }
-        catch (error) {
-            console.log(error);
-        }
+        return new Promise(async(resolve, reject) => {
+            try {
+                const response = await axios.post(`${ROOT_API_URL}/tokens`, data);
+                dispatch(login({ ...response.data }));
+                resolve(response.body);
+            }
+            catch (err) {
+                reject(err);
+            }
+        });
     }
 };
 
@@ -26,7 +32,8 @@ export const login = (data) => ({
     data: {
         token: data.token,
         firstName: data.first_name,
-        lastName: data.last_name
+        lastName: data.last_name,
+        email: data.email
     }
 });
 

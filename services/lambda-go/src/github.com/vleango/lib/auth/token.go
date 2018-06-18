@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/vleango/lib/datastores/dynamodb"
+	"github.com/vleango/lib/models"
 	"github.com/vleango/lib/password"
 	"strings"
 	"time"
@@ -16,21 +17,21 @@ var (
 	ErrMissingParams = fmt.Errorf("missing required params")
 )
 
-func GenerateToken(email string, pass string) (*string, error) {
+func GenerateToken(email string, pass string) (*models.User, *string, error) {
 	if email == "" || pass == "" {
-		return nil, ErrMissingParams
+		return nil, nil, ErrMissingParams
 	}
 
 	// find user by email
 	user, err := dynamodb.UserFindByEmail(email)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	// get the user's password_digest // check if password match
 	ok := password.CheckPasswordHash(pass, user.PasswordDigest)
 	if !ok {
-		return nil, fmt.Errorf("password does not match")
+		return nil, nil, fmt.Errorf("password does not match")
 	}
 
 	// generate jwt
@@ -45,7 +46,7 @@ func GenerateToken(email string, pass string) (*string, error) {
 	tokenString, err := token.SignedString([]byte(HMACSecret))
 
 	// return the jwt
-	return &tokenString, nil
+	return user, &tokenString, nil
 }
 
 func TokenClaims(tokenString string) (map[string]interface{}, error) {
