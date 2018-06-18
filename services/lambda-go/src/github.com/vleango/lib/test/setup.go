@@ -13,7 +13,6 @@ import (
 )
 
 var svc = config.DynamoSvc
-var clusterName = "famoustitle_articles"
 
 func CleanDataStores() {
 	CleanDB()
@@ -37,7 +36,7 @@ func CleanDB() {
 }
 
 func CleanElasticSearch() {
-	url := fmt.Sprintf("%v/%v", config.ElasticSearchHost, clusterName)
+	url := fmt.Sprintf("%v/%v", config.ElasticSearchHost, config.DynamoArticlesTable)
 
 	req, err := http.NewRequest("DELETE", url, nil)
 	req.Header.Set("Content-Type", "application/json")
@@ -69,7 +68,7 @@ func CreateArticlesTable() {
 			ReadCapacityUnits:  aws.Int64(10),
 			WriteCapacityUnits: aws.Int64(10),
 		},
-		TableName: aws.String("famoustitle_articles"),
+		TableName: aws.String(config.DynamoArticlesTable),
 	}
 
 	_, err := svc.CreateTable(input)
@@ -109,7 +108,7 @@ func CreateUserTable(newUsers ...map[string]interface{}) (tokens []string) {
 			ReadCapacityUnits:  aws.Int64(10),
 			WriteCapacityUnits: aws.Int64(10),
 		},
-		TableName: aws.String("famoustitle_users"),
+		TableName: aws.String(config.DynamoUsersTable),
 	}
 
 	_, err := svc.CreateTable(input)
