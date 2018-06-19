@@ -613,6 +613,13 @@ Resources:
             Method: post
             RestApiId:
               Ref: famoustitle
+        Event2:
+          Type: Api
+          Properties:
+            Path: /users
+            Method: options
+            RestApiId:
+              Ref: famoustitle
   Users_createLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
