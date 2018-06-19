@@ -63,17 +63,20 @@ func UserCreate(user models.User, pass string, passwordConfirmation string) (*mo
 		return nil, err
 	}
 
+	user.FirstName = strings.Title(user.FirstName)
+	user.LastName = strings.Title(user.LastName)
 	user.PasswordDigest = passwordDigest
 	user.ID = fmt.Sprintf("%s", uuid.Must(uuid.NewV4(), nil))
 	user.Admin = false
 	user.CreatedAt = time.Now()
 	user.UpdatedAt = time.Now()
 
-	// save to DB
+	// save new records to DB (attribute_not_exists)
 	av, err := dynamodbattribute.MarshalMap(user)
 	input := &dynamodb.PutItemInput{
-		Item:      av,
-		TableName: aws.String(userTable),
+		Item:                av,
+		TableName:           aws.String(userTable),
+		ConditionExpression: aws.String("attribute_not_exists(email)"),
 	}
 
 	_, err = svc.PutItem(input)

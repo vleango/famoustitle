@@ -6,7 +6,7 @@ const loginReducerDefaultState = {
 
 export default (state = loginReducerDefaultState, action) => {
     switch(action.type) {
-        case 'AUTH_LOGIN':
+        case 'AUTH_TOKEN':
             return {
                 ...state,
                 token: action.data.token,

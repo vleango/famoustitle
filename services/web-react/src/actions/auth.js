@@ -6,7 +6,7 @@ export const startLogin = (data) => {
         return new Promise(async(resolve, reject) => {
             try {
                 const response = await axios.post(`${ROOT_API_URL}/tokens`, data);
-                dispatch(login({ ...response.data }));
+                dispatch(token({ ...response.data }));
                 resolve(response.body);
             }
             catch (err) {
@@ -27,8 +27,23 @@ export const startLogout = (data) => {
     }
 };
 
-export const login = (data) => ({
-    type: 'AUTH_LOGIN',
+export const startRegister = (data) => {
+    return async (dispatch, getState) => {
+        return new Promise(async(resolve, reject) => {
+            try {
+                const response = await axios.post(`${ROOT_API_URL}/users`, data);
+                dispatch(token({ ...response.data }));
+                resolve(response.body);
+            }
+            catch (err) {
+                reject(err);
+            }
+        });
+    }
+};
+
+export const token = (data) => ({
+    type: 'AUTH_TOKEN',
     data: {
         token: data.token,
         firstName: data.first_name,

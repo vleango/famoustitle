@@ -6,6 +6,7 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/stretchr/testify/suite"
 	"github.com/vleango/lib/models"
+	"github.com/vleango/lib/responses"
 	"github.com/vleango/lib/test"
 	"testing"
 )
@@ -145,6 +146,31 @@ func (suite *Suite) TestMissingPasswordConfirmation() {
 	suite.Equal(nil, err)
 	suite.Equal(400, response.StatusCode)
 	suite.Equal("missing required params", responseBody["message"])
+}
+
+func (suite *Suite) TestUniqueEmail() {
+	requestBody := map[string]interface{}{
+		"user":                  suite.user,
+		"password":              suite.password,
+		"password_confirmation": suite.password,
+	}
+
+	b, _ := json.Marshal(requestBody)
+	request := events.APIGatewayProxyRequest{
+		Body: string(b),
+	}
+
+	response, err := Handler(context.Background(), request)
+	var responseBody map[string]interface{}
+	json.Unmarshal([]byte(response.Body), &responseBody)
+	suite.Equal(nil, err)
+	suite.Equal(responses.StatusOk, response.StatusCode)
+
+	// test if can save again
+	response, err = Handler(context.Background(), request)
+	json.Unmarshal([]byte(response.Body), &responseBody)
+	suite.Equal(nil, err)
+	suite.Equal(responses.StatusBadRequest, response.StatusCode)
 }
 
 func (suite *Suite) TestPasswordMismatch() {

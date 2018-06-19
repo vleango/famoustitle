@@ -68,14 +68,36 @@ func (suite *UserSuite) TestUserCreatePasswordMatch() {
 	suite.Equal("password does not match", err.Error())
 }
 
-func (suite *UserSuite) TestUserCreate() {
+func (suite *UserSuite) TestUserCreateUniqueEmail() {
 	user, err := dynamodb.UserCreate(suite.user, "hogehoge", "hogehoge")
+	suite.Nil(user)
+	suite.NotNil(err)
+}
+
+func (suite *UserSuite) TestUserCreateNames() {
+	createUser := suite.user
+	createUser.FirstName = "tha"
+	createUser.LastName = "leang"
+	createUser.Email = "test@example.com"
+	user, err := dynamodb.UserCreate(createUser, "hogehoge", "hogehoge")
 	suite.Nil(err)
 	suite.NotNil(user.ID)
 	suite.NotNil(user.PasswordDigest)
-	suite.Equal(suite.user.FirstName, user.FirstName)
-	suite.Equal(suite.user.LastName, user.LastName)
-	suite.Equal(suite.user.Email, user.Email)
+	suite.Equal(user.FirstName, "Tha")
+	suite.Equal(user.LastName, "Leang")
+	suite.Equal(user.Email, "test@example.com")
+}
+
+func (suite *UserSuite) TestUserCreate() {
+	createUser := suite.user
+	createUser.Email = "test@example.com"
+	user, err := dynamodb.UserCreate(createUser, "hogehoge", "hogehoge")
+	suite.Nil(err)
+	suite.NotNil(user.ID)
+	suite.NotNil(user.PasswordDigest)
+	suite.Equal(user.FirstName, suite.user.FirstName)
+	suite.Equal(user.LastName, suite.user.LastName)
+	suite.Equal(user.Email, "test@example.com")
 }
 
 func (suite *UserSuite) TestUserAddRemoveFromArticleListMissingID() {
