@@ -15,6 +15,7 @@ jobs:
           key: v1-dependencies-{{ checksum "services/web-react/package.json" }}
       - run: cd services/web-react; yarn test
   lambda-go:
+    parallelism: 2
     environment:
       APP_ENV: "ci"
     working_directory: /go/src/github.com/vleango
