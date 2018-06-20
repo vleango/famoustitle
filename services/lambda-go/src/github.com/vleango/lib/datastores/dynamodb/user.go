@@ -67,7 +67,7 @@ func UserCreate(user models.User, pass string, passwordConfirmation string) (*mo
 	user.LastName = strings.Title(user.LastName)
 	user.PasswordDigest = passwordDigest
 	user.ID = fmt.Sprintf("%s", uuid.Must(uuid.NewV4(), nil))
-	user.Admin = false
+	user.IsAdmin = false
 	user.IsWriter = false
 	user.CreatedAt = time.Now()
 	user.UpdatedAt = time.Now()
