@@ -63,17 +63,21 @@ func UserCreate(user models.User, pass string, passwordConfirmation string) (*mo
 		return nil, err
 	}
 
+	user.FirstName = strings.Title(user.FirstName)
+	user.LastName = strings.Title(user.LastName)
 	user.PasswordDigest = passwordDigest
 	user.ID = fmt.Sprintf("%s", uuid.Must(uuid.NewV4(), nil))
-	user.Admin = false
+	user.IsAdmin = false
+	user.IsWriter = false
 	user.CreatedAt = time.Now()
 	user.UpdatedAt = time.Now()
 
-	// save to DB
+	// save new records to DB (attribute_not_exists)
 	av, err := dynamodbattribute.MarshalMap(user)
 	input := &dynamodb.PutItemInput{
-		Item:      av,
-		TableName: aws.String(userTable),
+		Item:                av,
+		TableName:           aws.String(userTable),
+		ConditionExpression: aws.String("attribute_not_exists(email)"),
 	}
 
 	_, err = svc.PutItem(input)
@@ -82,6 +86,38 @@ func UserCreate(user models.User, pass string, passwordConfirmation string) (*mo
 	}
 
 	return &user, nil
+}
+
+func UserUpdate(item models.User) (*models.User, error) {
+	attributeValue := map[string]*dynamodb.AttributeValue{}
+	var updateExpression []string
+
+	attributeValue[":is_writer"] = &dynamodb.AttributeValue{BOOL: aws.Bool(item.IsWriter)}
+	updateExpression = append(updateExpression, "is_writer = :is_writer")
+
+	attributeValue[":updated_at"] = &dynamodb.AttributeValue{S: aws.String(time.Now().Format(time.RFC3339))}
+	updateExpression = append(updateExpression, "updated_at = :updated_at")
+
+	input := &dynamodb.UpdateItemInput{
+		Key: map[string]*dynamodb.AttributeValue{
+			"email": {
+				S: aws.String(item.Email),
+			},
+		},
+		ReturnValues:              aws.String("UPDATED_NEW"),
+		TableName:                 aws.String(userTable),
+		ExpressionAttributeValues: attributeValue,
+		UpdateExpression:          aws.String("set " + strings.Join(updateExpression, ", ")),
+	}
+
+	_, err := svc.UpdateItem(input)
+
+	if err != nil {
+		return nil, err
+	}
+
+	updatedUser, _ := UserFindByEmail(item.Email)
+	return updatedUser, nil
 }
 
 func UserAddRemoveFromArticleList(user models.User, article models.Article, addArticle bool) error {
@@ -129,7 +165,6 @@ func UserAddRemoveFromArticleList(user models.User, article models.Article, addA
 	return err
 }
 
-// TODO right now only destroyable/updatable by same author, might need to all any admin to do so as well
 func UserArticleDestroy(user models.User, article models.Article) (*models.Article, error) {
 	for id := range user.Articles {
 		if id == article.ID {

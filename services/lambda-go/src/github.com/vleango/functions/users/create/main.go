@@ -33,11 +33,12 @@ func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events
 		return response.BadRequest(utils.JSONStringWithKey(err.Error()), err.Error()), nil
 	}
 
-	message := map[string]string{
+	message := map[string]interface{}{
 		"token":      *token,
 		"first_name": user.FirstName,
 		"last_name":  user.LastName,
 		"email":      user.Email,
+		"is_writer":  user.IsWriter,
 	}
 	b, err := json.Marshal(message)
 	if err != nil {

@@ -21,6 +21,10 @@ func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events
 	requestArticle := RequestArticle{}
 	json.Unmarshal([]byte(request.Body), &requestArticle)
 
+	if !user.IsWriter {
+		return response.Unauthorized(utils.JSONStringWithKey("user not allowed to create articles")), nil
+	}
+
 	item, err := dynamodb.ArticleCreate(&requestArticle.Article, user.FullName())
 	if err != nil {
 		return response.BadRequest(utils.JSONStringWithKey(err.Error()), err.Error()), nil

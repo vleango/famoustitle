@@ -8,6 +8,7 @@ import ArticleItemPage from '../components/articles/ArticleItemPage';
 import ArticleNewPage from '../components/articles/ArticleNewPage';
 
 import LoginPage from '../components/auth/LoginPage';
+import RegisterPage from '../components/auth/RegisterPage';
 
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
@@ -23,6 +24,7 @@ export const AppRouter = () => (
             <PrivateRoute path="/articles/new" component={ArticleNewPage} exact={true} />
             <PublicRoute path="/articles/:id" component={ArticleItemPage} />
             <PublicRoute path="/login" component={LoginPage} />
+            <PublicRoute path="/register" component={RegisterPage} />
             <PublicRoute component={NotFoundPage} />
         </Switch>
     </Router>

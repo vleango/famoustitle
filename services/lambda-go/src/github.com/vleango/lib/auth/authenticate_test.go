@@ -64,7 +64,7 @@ func (suite *Suite) TestAuthenticateUserEmptyBearer() {
 	suite.Equal(auth.ErrAuthTokenUnauthorized, err)
 }
 
-func (suite *Suite) TestAuthenticateUserEmailNotFound() {
+func (suite *AuthenticateSuite) TestAuthenticateUserEmailNotFound() {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"email": "fake@email.com",
 		"exp":   time.Now().Add(time.Hour * 72).Unix(),

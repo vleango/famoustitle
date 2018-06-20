@@ -5,12 +5,12 @@ import { Route, Redirect } from 'react-router-dom';
 import ProfileHeader from '../components/shared/headers/ProfileHeader';
 
 export const PrivateRoute = ({
-                                 isAuthenticated,
+                                 isAuthenticatedWriter,
                                  component: Component,
                                  ...rest
                              }) => (
     <Route {...rest} component={(props) => (
-        isAuthenticated ? (
+        isAuthenticatedWriter ? (
             <Fragment>
                 <ProfileHeader />
                 <Component {...props} />
@@ -22,7 +22,7 @@ export const PrivateRoute = ({
 );
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: !!state.auth.token
+    isAuthenticatedWriter: !!state.auth.token && state.auth.isWriter
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

@@ -37,7 +37,7 @@ functions:
       - Effect: "Allow"
         Action:
           - "dynamodb:Scan"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE}
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
     events:
       - http:
           path: /articles
@@ -49,7 +49,7 @@ functions:
       - Effect: "Allow"
         Action:
           - "dynamodb:PutItem"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE}
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
     events:
       - http:
           path: /articles
@@ -68,11 +68,11 @@ functions:
       - Effect: "Allow"
         Action:
           - "dynamodb:UpdateItem"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE}
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
       - Effect: "Allow"
         Action:
           - "dynamodb:GetItem"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE}
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
     events:
       - http:
           path: /articles/{id}
@@ -84,11 +84,11 @@ functions:
       - Effect: "Allow"
         Action:
           - "dynamodb:GetItem"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE}
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
       - Effect: "Allow"
         Action:
           - "dynamodb:DeleteItem"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE}
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
     events:
       - http:
           path: /articles/{id}
@@ -103,6 +103,11 @@ functions:
           cors: true
   tokens_create:
     handler: bin/tokens_create
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:GetItem"
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
     events:
       - http:
           path: /tokens
