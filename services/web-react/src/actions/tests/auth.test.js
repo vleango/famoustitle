@@ -16,9 +16,11 @@ describe('Actions', () => {
             beforeEach(() => {
                 axios.post = jest.fn((url) => Promise.resolve({
                     data: {
+                        email: 'bob@hope.com',
                         first_name: 'Bob',
                         last_name: 'Hope',
-                        token: '123'
+                        token: '123',
+                        is_writer: true
                     }
                 }));
             });
@@ -29,9 +31,11 @@ describe('Actions', () => {
                 expect(dispatch.mock.calls[0][0]).toEqual({
                     type: 'AUTH_TOKEN',
                     data: {
+                        email: 'bob@hope.com',
                         token: '123',
                         firstName: 'Bob',
-                        lastName: 'Hope'
+                        lastName: 'Hope',
+                        isWriter: true
                     }
                 });
             });
@@ -41,9 +45,11 @@ describe('Actions', () => {
             beforeEach(() => {
                 axios.post = jest.fn((url) => Promise.resolve({
                     data: {
+                        email: 'bob@hope.com',
                         first_name: 'Bob',
                         last_name: 'Hope',
-                        token: '123'
+                        token: '123',
+                        is_writer: true
                     }
                 }));
             });
@@ -54,9 +60,11 @@ describe('Actions', () => {
                expect(dispatch.mock.calls[0][0]).toEqual({
                    type: 'AUTH_TOKEN',
                    data: {
+                       email: 'bob@hope.com',
                        token: '123',
                        firstName: 'Bob',
-                       lastName: 'Hope'
+                       lastName: 'Hope',
+                       isWriter: true
                    }
                });
             });

@@ -48,7 +48,8 @@ export const token = (data) => ({
         token: data.token,
         firstName: data.first_name,
         lastName: data.last_name,
-        email: data.email
+        email: data.email,
+        isWriter: data.is_writer
     }
 });
 

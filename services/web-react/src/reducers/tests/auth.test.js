@@ -13,7 +13,9 @@ describe('Reducers', () => {
                 expect(state).toEqual({
                     token: null,
                     firstName: "",
-                    lastName: ""
+                    lastName: "",
+                    email: "",
+                    isWriter: false
                 });
             });
         });
@@ -26,7 +28,8 @@ describe('Reducers', () => {
                         token: "123",
                         firstName: "tha",
                         lastName: "leang",
-                        email: "tha@test.com"
+                        email: "tha@test.com",
+                        isWriter: true
                     }
                 };
 
@@ -35,7 +38,8 @@ describe('Reducers', () => {
                     token: "123",
                     firstName: "tha",
                     lastName: "leang",
-                    email: "tha@test.com"
+                    email: "tha@test.com",
+                    isWriter: true
                 });
             });
         });
@@ -49,7 +53,9 @@ describe('Reducers', () => {
                 expect(state).toEqual({
                     token: null,
                     firstName: "",
-                    lastName: ""
+                    lastName: "",
+                    email: "",
+                    isWriter: false
                 });
             });
         })
