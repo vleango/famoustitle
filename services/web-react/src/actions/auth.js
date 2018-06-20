@@ -7,7 +7,7 @@ export const startLogin = (data) => {
             try {
                 const response = await axios.post(`${ROOT_API_URL}/tokens`, data);
                 dispatch(token({ ...response.data }));
-                resolve(response.body);
+                resolve(response.data);
             }
             catch (err) {
                 reject(err);
