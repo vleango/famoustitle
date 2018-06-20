@@ -6,16 +6,20 @@ import (
 	"fmt"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/stretchr/testify/suite"
+	"github.com/vleango/lib/datastores/dynamodb"
 	"github.com/vleango/lib/datastores/elasticsearch"
 	"github.com/vleango/lib/models"
+	"github.com/vleango/lib/responses"
 	"github.com/vleango/lib/test"
+	"log"
 	"testing"
 	"time"
 )
 
 type Suite struct {
 	suite.Suite
-	userToken string
+	userToken   string
+	writerToken string
 }
 
 var requestBody RequestArticle
@@ -30,8 +34,27 @@ func (suite *Suite) SetupTest() {
 			Email:     "tha.leang@test.com",
 		},
 		"password": "hogehoge",
+	}, map[string]interface{}{
+		"user": models.User{
+			FirstName: "Writer",
+			LastName:  "Me",
+			Email:     "writer@test.com",
+		},
+		"password": "hogehoge",
 	})
+
+	writer := models.User{
+		Email:    "writer@test.com",
+		IsWriter: true,
+	}
+
+	_, err := dynamodb.UserUpdate(writer)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	suite.userToken = tokens[0]
+	suite.writerToken = tokens[1]
 
 	requestBody = RequestArticle{
 		Article: test.DefaultArticleModel(),
@@ -60,7 +83,7 @@ func (suite *Suite) TestSavingNewRecord() {
 	request := events.APIGatewayProxyRequest{
 		Body: string(jsonRequestBody),
 		Headers: map[string]string{
-			"Authorization": fmt.Sprintf("Bearer %v", suite.userToken),
+			"Authorization": fmt.Sprintf("Bearer %v", suite.writerToken),
 		},
 	}
 
@@ -70,7 +93,7 @@ func (suite *Suite) TestSavingNewRecord() {
 
 	var responseBody models.Article
 	json.Unmarshal([]byte(response.Body), &responseBody)
-	suite.Equal("Tha Leang", responseBody.Author)
+	suite.Equal("Writer Me", responseBody.Author)
 	suite.Equal(requestBody.Article.Title, responseBody.Title)
 	suite.Equal(requestBody.Article.Body, responseBody.Body)
 	suite.Equal(2, len(responseBody.Tags))
@@ -83,7 +106,7 @@ func (suite *Suite) TestSavingNewRecord() {
 	time.Sleep(2 * time.Second)
 	articles, _, _ := elasticsearch.ArticleFindAll()
 	suite.Equal(1, len(articles))
-	suite.Equal("Tha Leang", articles[0].Author)
+	suite.Equal("Writer Me", articles[0].Author)
 	suite.Equal(requestBody.Article.Title, articles[0].Title)
 	suite.Equal(requestBody.Article.Body, articles[0].Body)
 	suite.Equal(2, len(articles[0].Tags))
@@ -101,7 +124,7 @@ func (suite *Suite) TestMissingTags() {
 	request := events.APIGatewayProxyRequest{
 		Body: string(jsonRequestBody),
 		Headers: map[string]string{
-			"Authorization": fmt.Sprintf("Bearer %v", suite.userToken),
+			"Authorization": fmt.Sprintf("Bearer %v", suite.writerToken),
 		},
 	}
 
@@ -126,7 +149,7 @@ func (suite *Suite) TestMissingTitle() {
 	request := events.APIGatewayProxyRequest{
 		Body: string(jsonRequestBody),
 		Headers: map[string]string{
-			"Authorization": fmt.Sprintf("Bearer %v", suite.userToken),
+			"Authorization": fmt.Sprintf("Bearer %v", suite.writerToken),
 		},
 	}
 
@@ -147,7 +170,7 @@ func (suite *Suite) TestMissingBody() {
 	request := events.APIGatewayProxyRequest{
 		Body: string(jsonRequestBody),
 		Headers: map[string]string{
-			"Authorization": fmt.Sprintf("Bearer %v", suite.userToken),
+			"Authorization": fmt.Sprintf("Bearer %v", suite.writerToken),
 		},
 	}
 
@@ -159,4 +182,22 @@ func (suite *Suite) TestMissingBody() {
 	json.Unmarshal([]byte(response.Body), &responseBody)
 
 	suite.Equal("missing title and/or body in the HTTP body", responseBody["message"])
+}
+
+func (suite *Suite) TestUserNotWriter() {
+	jsonRequestBody, _ := json.Marshal(requestBody)
+	request := events.APIGatewayProxyRequest{
+		Body: string(jsonRequestBody),
+		Headers: map[string]string{
+			"Authorization": fmt.Sprintf("Bearer %v", suite.userToken),
+		},
+	}
+
+	response, err := Handler(context.Background(), request)
+	var responseBody map[string]string
+	json.Unmarshal([]byte(response.Body), &responseBody)
+
+	suite.Nil(err)
+	suite.Equal(responses.StatusUnauthorized, response.StatusCode)
+	suite.Equal("user not allowed to create articles", responseBody["message"])
 }

@@ -12,6 +12,7 @@ type User struct {
 	Email          string            `json:"email"`
 	PasswordDigest string            `json:"password_digest"`
 	Admin          bool              `json:"admin"`
+	IsWriter       bool              `json:"is_writer"`
 	Articles       map[string]string `json:"articles"`
 	CreatedAt      time.Time         `json:"created_at"`
 	UpdatedAt      time.Time         `json:"updated_at"`

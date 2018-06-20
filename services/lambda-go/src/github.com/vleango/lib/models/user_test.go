@@ -12,6 +12,7 @@ func (suite *Suite) TestUser() {
 	suite.IsType("email", user.Email)
 	suite.IsType("digest", user.PasswordDigest)
 	suite.IsType(true, user.Admin)
+	suite.IsType(true, user.IsWriter)
 	suite.IsType(map[string]string{}, user.Articles)
 	suite.IsType(time.Now(), user.CreatedAt)
 	suite.IsType(time.Now(), user.UpdatedAt)

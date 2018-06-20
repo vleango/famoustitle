@@ -70,7 +70,6 @@ func NewProxyResponse(ctx *context.Context, request *events.APIGatewayProxyReque
 // ProxyResponse returns an APIGateway Proxy Response
 // options[0] is a log message
 func (r *Response) ProxyResponse(status int, body string, options []interface{}) events.APIGatewayProxyResponse {
-
 	if len(options) > 0 {
 		logs.DebugMessage(status, options[0].(string))
 	}
