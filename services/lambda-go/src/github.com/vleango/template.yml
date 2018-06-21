@@ -13,6 +13,7 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
+          DOMAIN_URL: 'http://localhost:3000'
           ELASTICSEARCH_HOST_URL: ''
           AWS_ID: ''
           AWS_SECRET: ''
@@ -381,6 +382,7 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
+          DOMAIN_URL: 'http://localhost:3000'
           ELASTICSEARCH_HOST_URL: ''
           AWS_ID: ''
           AWS_SECRET: ''
@@ -419,6 +421,7 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
+          DOMAIN_URL: 'http://localhost:3000'
           ELASTICSEARCH_HOST_URL: ''
           AWS_ID: ''
           AWS_SECRET: ''
@@ -457,6 +460,7 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
+          DOMAIN_URL: 'http://localhost:3000'
           ELASTICSEARCH_HOST_URL: ''
           AWS_ID: ''
           AWS_SECRET: ''
@@ -495,6 +499,7 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
+          DOMAIN_URL: 'http://localhost:3000'
           ELASTICSEARCH_HOST_URL: ''
           AWS_ID: ''
           AWS_SECRET: ''
@@ -533,6 +538,7 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
+          DOMAIN_URL: 'http://localhost:3000'
           ELASTICSEARCH_HOST_URL: ''
           AWS_ID: ''
           AWS_SECRET: ''
@@ -564,6 +570,7 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
+          DOMAIN_URL: 'http://localhost:3000'
           ELASTICSEARCH_HOST_URL: ''
           AWS_ID: ''
           AWS_SECRET: ''
@@ -602,6 +609,7 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
+          DOMAIN_URL: 'http://localhost:3000'
           ELASTICSEARCH_HOST_URL: ''
           AWS_ID: ''
           AWS_SECRET: ''

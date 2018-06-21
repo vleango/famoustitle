@@ -7,6 +7,7 @@ provider:
   stage: ${opt:stage, 'development'}
   environment:
       APP_ENV:  ${self:provider.stage}
+      DOMAIN_URL: ${file(./${self:provider.stage}.yml):DOMAIN_URL}
       ELASTICSEARCH_HOST_URL: ${file(./${self:provider.stage}.yml):ELASTICSEARCH_HOST_URL}
       AWS_ID: ${file(./${self:provider.stage}.yml):AWS_ACCESS_KEY_ID}
       AWS_SECRET: ${file(./${self:provider.stage}.yml):AWS_SECRET_ACCESS_KEY}
