@@ -18,6 +18,7 @@ jobs:
     parallelism: 2
     environment:
       APP_ENV: "ci"
+      ELASTICSEARCH_HOST_URL: "http://localhost:9200"
     working_directory: /go/src/github.com/vleango
     docker:
       - image: circleci/golang:1.10
