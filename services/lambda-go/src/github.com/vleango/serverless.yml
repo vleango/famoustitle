@@ -127,8 +127,8 @@ functions:
     iamRoleStatements:
       - Effect: "Allow"
         Action:
-          - "dynamodb:PutItem"
           - "dynamodb:GetItem"
+          - "dynamodb:PutItem"
         Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
     events:
       - http:
