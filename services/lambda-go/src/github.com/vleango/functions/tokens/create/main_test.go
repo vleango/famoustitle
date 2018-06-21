@@ -8,8 +8,8 @@ import (
 	"github.com/vleango/lib/auth"
 	"github.com/vleango/lib/models"
 	"github.com/vleango/lib/test"
-	"strings"
 	"testing"
+	"time"
 )
 
 type Suite struct {
@@ -133,6 +133,7 @@ func (suite *Suite) TestHandler() {
 		Body: string(b),
 	}
 
+	exp := time.Now().Add(time.Hour * 72).Unix()
 	response, err := Handler(context.Background(), request)
 
 	var responseBody map[string]interface{}
@@ -141,11 +142,9 @@ func (suite *Suite) TestHandler() {
 	suite.Equal(nil, err)
 	suite.Equal(200, response.StatusCode)
 
-	// test JWT header and payload (not timestamp because it can differ)
-	result1 := strings.Split(suite.token, ".")
-	result2 := strings.Split(responseBody["token"].(string), ".")
-	suite.Equal(3, len(result1))
-	suite.Equal(3, len(result2))
-	suite.Equal(result2[0], result1[0])
-	suite.Equal(result2[1], result1[1])
+	token := responseBody["token"].(string)
+	claims, err := auth.TokenClaims(token)
+	suite.Nil(err)
+	suite.Equal(claims["email"], suite.user.Email)
+	suite.True(int64(claims["exp"].(float64)) >= exp)
 }
