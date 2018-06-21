@@ -50,6 +50,11 @@ functions:
         Action:
           - "dynamodb:PutItem"
         Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:GetItem"
+          - "dynamodb:UpdateItem"
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
     events:
       - http:
           path: /articles
@@ -67,12 +72,14 @@ functions:
     iamRoleStatements:
       - Effect: "Allow"
         Action:
+          - "dynamodb:GetItem"
           - "dynamodb:UpdateItem"
         Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
       - Effect: "Allow"
         Action:
           - "dynamodb:GetItem"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
+          - "dynamodb:UpdateItem"
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
     events:
       - http:
           path: /articles/{id}
@@ -84,11 +91,13 @@ functions:
       - Effect: "Allow"
         Action:
           - "dynamodb:GetItem"
+          - "dynamodb:DeleteItem"
         Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
       - Effect: "Allow"
         Action:
-          - "dynamodb:DeleteItem"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
+          - "dynamodb:GetItem"
+          - "dynamodb:UpdateItem"
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
     events:
       - http:
           path: /articles/{id}
@@ -115,6 +124,12 @@ functions:
           cors: true
   users_create:
     handler: bin/users_create
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:PutItem"
+          - "dynamodb:GetItem"
+        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
     events:
       - http:
           path: /users
