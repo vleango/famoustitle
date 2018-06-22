@@ -8,13 +8,14 @@ import (
 	"github.com/vleango/lib/logs"
 	"github.com/vleango/lib/models"
 	"github.com/vleango/lib/utils"
+	"os"
 	"strings"
 )
 
 var (
 	DefaultHeaders = map[string]string{
 		"Content-Type":                 "application/json",
-		"Access-Control-Allow-Origin":  "*",
+		"Access-Control-Allow-Origin":  os.Getenv("DOMAIN_URL"),
 		"Access-Control-Allow-Headers": "Content-Type,Authorization",
 		"Access-Control-Allow-Methods": "GET,POST,PUT,DELETE",
 	}

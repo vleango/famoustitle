@@ -8,6 +8,7 @@ import (
 	"github.com/stretchr/testify/suite"
 	"github.com/vleango/lib/models"
 	"github.com/vleango/lib/test"
+	"os"
 	"testing"
 )
 
@@ -74,9 +75,10 @@ func (suite *Suite) TestNewProxyResponseAuthenticated() {
 func (suite *Suite) TestProxyResponseLogOption() {
 	response := Response{}
 	resp := response.ProxyResponse(100, "hello", []interface{}{"debug msg"})
+
 	defaultHeaders := map[string]string{
 		"Content-Type":                 "application/json",
-		"Access-Control-Allow-Origin":  "*",
+		"Access-Control-Allow-Origin":  os.Getenv("DOMAIN_URL"),
 		"Access-Control-Allow-Headers": "Content-Type,Authorization",
 		"Access-Control-Allow-Methods": "GET,POST,PUT,DELETE",
 	}

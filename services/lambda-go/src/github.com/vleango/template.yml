@@ -13,7 +13,8 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
-          ELASTICSEARCH_HOST_URL: ''
+          DOMAIN_URL: 'http://localhost:3000'
+          ELASTICSEARCH_HOST_URL: 'http://datastore-es:9200'
           AWS_ID: ''
           AWS_SECRET: ''
       Events:
@@ -23,7 +24,7 @@ Resources:
             Path: /articles
             Method: get
             RestApiId:
-              Ref: famoustitle
+              Ref: Famoustitle
       Event2:
         Type: Api
         Properties:
@@ -381,7 +382,8 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
-          ELASTICSEARCH_HOST_URL: ''
+          DOMAIN_URL: 'http://localhost:3000'
+          ELASTICSEARCH_HOST_URL: 'http://datastore-es:9200'
           AWS_ID: ''
           AWS_SECRET: ''
       Events:
@@ -391,7 +393,7 @@ Resources:
             Path: /articles
             Method: post
             RestApiId:
-              Ref: famoustitle
+              Ref: Famoustitle
         Event2:
           Type: Api
           Properties:
@@ -419,7 +421,8 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
-          ELASTICSEARCH_HOST_URL: ''
+          DOMAIN_URL: 'http://localhost:3000'
+          ELASTICSEARCH_HOST_URL: 'http://datastore-es:9200'
           AWS_ID: ''
           AWS_SECRET: ''
       Events:
@@ -429,7 +432,7 @@ Resources:
             Path: '/articles/{id}'
             Method: get
             RestApiId:
-              Ref: famoustitle
+              Ref: Famoustitle
         Event2:
           Type: Api
           Properties:
@@ -457,7 +460,8 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
-          ELASTICSEARCH_HOST_URL: ''
+          DOMAIN_URL: 'http://localhost:3000'
+          ELASTICSEARCH_HOST_URL: 'http://datastore-es:9200'
           AWS_ID: ''
           AWS_SECRET: ''
       Events:
@@ -467,7 +471,7 @@ Resources:
             Path: '/articles/{id}'
             Method: post
             RestApiId:
-              Ref: famoustitle
+              Ref: Famoustitle
         Event2:
           Type: Api
           Properties:
@@ -495,7 +499,8 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
-          ELASTICSEARCH_HOST_URL: ''
+          DOMAIN_URL: 'http://localhost:3000'
+          ELASTICSEARCH_HOST_URL: 'http://datastore-es:9200'
           AWS_ID: ''
           AWS_SECRET: ''
       Events:
@@ -505,7 +510,7 @@ Resources:
             Path: '/articles/{id}'
             Method: delete
             RestApiId:
-              Ref: famoustitle
+              Ref: Famoustitle
         Event2:
           Type: Api
           Properties:
@@ -533,7 +538,8 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
-          ELASTICSEARCH_HOST_URL: ''
+          DOMAIN_URL: 'http://localhost:3000'
+          ELASTICSEARCH_HOST_URL: 'http://datastore-es:9200'
           AWS_ID: ''
           AWS_SECRET: ''
       Events:
@@ -543,7 +549,7 @@ Resources:
             Path: /articles/archives
             Method: get
             RestApiId:
-              Ref: famoustitle
+              Ref: Famoustitle
   Articles_archivesLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -564,7 +570,8 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
-          ELASTICSEARCH_HOST_URL: ''
+          DOMAIN_URL: 'http://localhost:3000'
+          ELASTICSEARCH_HOST_URL: 'http://datastore-es:9200'
           AWS_ID: ''
           AWS_SECRET: ''
       Events:
@@ -574,7 +581,7 @@ Resources:
             Path: /tokens
             Method: post
             RestApiId:
-              Ref: famoustitle
+              Ref: Famoustitle
         Event2:
           Type: Api
           Properties:
@@ -602,7 +609,8 @@ Resources:
       Environment:
         Variables:
           APP_ENV: development
-          ELASTICSEARCH_HOST_URL: ''
+          DOMAIN_URL: 'http://localhost:3000'
+          ELASTICSEARCH_HOST_URL: 'http://datastore-es:9200'
           AWS_ID: ''
           AWS_SECRET: ''
       Events:
@@ -612,7 +620,7 @@ Resources:
             Path: /users
             Method: post
             RestApiId:
-              Ref: famoustitle
+              Ref: Famoustitle
         Event2:
           Type: Api
           Properties:

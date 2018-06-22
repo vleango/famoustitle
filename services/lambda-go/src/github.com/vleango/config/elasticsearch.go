@@ -14,17 +14,10 @@ var ESClient *http.Client
 
 func init() {
 	ESClient = &http.Client{}
+	ElasticSearchHost = os.Getenv("ELASTICSEARCH_HOST_URL")
 
 	switch os.Getenv("APP_ENV") {
-	case "development":
-		ElasticSearchHost = "http://datastore-es:9200"
-	case "test":
-		ElasticSearchHost = "http://datastore-es-test:9200"
-	case "ci":
-		ElasticSearchHost = "http://localhost:9200"
 	case "production":
-		ElasticSearchHost = os.Getenv("ELASTICSEARCH_HOST_URL")
-
 		var myClient *http.Client
 		signer := v4.NewSigner(credentials.NewStaticCredentials(os.Getenv("AWS_ID"), os.Getenv("AWS_SECRET"), ""))
 		var awsClient, err = aws_signing_client.New(signer, myClient, "es", DefaultRegion)
