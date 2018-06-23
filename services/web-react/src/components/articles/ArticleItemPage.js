@@ -6,6 +6,7 @@ import moment from 'moment';
 import {includes, map, pull, split, trim, uniq, compact} from 'lodash';
 import ReactMarkdown from 'react-markdown';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { toastInProgress, toastSuccess, toastFail } from '../shared/Toast';
 
 import { fetchItem, updateItem, removeItem } from '../../actions/articles';
 import Header from '../shared/headers/Header';
@@ -96,7 +97,7 @@ export class ArticleItemPage extends Component {
         this.onPreviewTextClicked(e);
     };
 
-    onSavedClicked = (e) => {
+    onSavedClicked = async (e) => {
         const field = e.target.dataset.name;
         let inputs = this.state.editMode;
 
@@ -115,13 +116,19 @@ export class ArticleItemPage extends Component {
 
         const { title, body } = this.state;
         const article = { title, body, tags };
-        this.props.updateItem(this.props.match.params.id, { article: article } );
-
         this.setState({
             editMode: inputs,
             article: article
         });
 
+        const toastID = toastInProgress("Saving in progress...");
+
+        try {
+            await this.props.updateItem(this.props.match.params.id, { article: article } );
+            toastSuccess("Save successful!", toastID);
+        } catch(e) {
+            toastFail(e, toastID);
+        }
     };
 
     onRemoveClicked = async (e) => {
@@ -293,7 +300,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => ({
     fetchItem: (data) => dispatch(fetchItem(data)),
-    updateItem: (id, data) => dispatch(updateItem(id, data)),
+    updateItem: async (id, data) => await dispatch(updateItem(id, data)),
     removeItem: async (id) => await dispatch(removeItem(id))
 });
 

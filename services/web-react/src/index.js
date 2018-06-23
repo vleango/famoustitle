@@ -8,13 +8,15 @@ import './index.css';
 
 import AppRouter from './routers/app-router';
 import configureStore from './config/store';
+import Toast from './components/shared/Toast';
 
 const storeConfig = configureStore();
 
 const jsx = (
   <Provider store={storeConfig.store}>
     <PersistGate loading={<p>Loading...</p>} persistor={storeConfig.persistor}>
-      <AppRouter />
+        <Toast />
+        <AppRouter />
     </PersistGate>
   </Provider>
 );
