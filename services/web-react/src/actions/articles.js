@@ -41,14 +41,7 @@ export const createItem = (data) => {
     return async (dispatch, getState) => {
         return new Promise(async(resolve, reject) => {
             try {
-                let token = "";
-                if(getState() && getState().auth && getState().auth.token) {
-                    token = getState().auth.token;
-                }
-
-                const response = await axios.post(`${ROOT_API_URL}/articles`, data, {
-                    headers: {"Authorization": `Bearer ${token}`}
-                });
+                const response = await axios.post(`${ROOT_API_URL}/articles`, data, authHeader(getState));
                 resolve(response.body);
             }
             catch (error) {
@@ -73,14 +66,7 @@ export const fetchItem = (id) => {
 export const updateItem = (id, data) => {
     return async (dispatch, getState) => {
         try {
-            let token = "";
-            if(getState() && getState().auth && getState().auth.token) {
-                token = getState().auth.token;
-            }
-
-            await axios.post(`${ROOT_API_URL}/articles/${id}`, data, {
-                headers: {"Authorization": `Bearer ${token}`}
-            });
+            await axios.post(`${ROOT_API_URL}/articles/${id}`, data, authHeader(getState));
             dispatch(item({})); // if success don't need to return anything since the page has already been updated
         }
         catch (error) {
@@ -93,14 +79,7 @@ export const removeItem = (id) => {
     return async (dispatch, getState) => {
         return new Promise(async(resolve, reject) => {
             try {
-                let token = "";
-                if(getState() && getState().auth && getState().auth.token) {
-                    token = getState().auth.token;
-                }
-
-                const response = await axios.delete(`${ROOT_API_URL}/articles/${id}`, {
-                    headers: {"Authorization": `Bearer ${token}`}
-                });
+                const response = await axios.delete(`${ROOT_API_URL}/articles/${id}`, authHeader(getState));
                 resolve(response.body);
             }
             catch (error) {
@@ -130,3 +109,13 @@ export const update = (data) => ({
     type: 'ARTICLE_UPDATE',
     data
 });
+
+const authHeader = (state) => {
+    let token = "";
+    if(state() && state().auth && state().auth.token) {
+        token = state().auth.token;
+    }
+    return {
+        headers: {"Authorization": `Bearer ${token}`}
+    }
+};
