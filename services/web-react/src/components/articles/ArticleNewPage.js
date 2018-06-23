@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { Form, FormGroup, Input } from 'reactstrap';
 import { split, map, trim, uniq } from 'lodash';
+import { toastInProgress, toastSuccess, toastFail } from '../shared/Toast';
 
 import { createItem } from '../../actions/articles';
 import Header from '../shared/headers/Header';
@@ -29,6 +30,8 @@ export class ArticleNewPage extends Component {
             return;
         }
 
+        const toastID = toastInProgress("Saving in progress...");
+
         try {
             this.setState({ submitting: true, errorMsg: "" });
             const rawTags = split(this.state.tags, ',');
@@ -37,10 +40,12 @@ export class ArticleNewPage extends Component {
             const { title, body } = this.state;
             const article = { title, body, tags };
             await this.props.createItem({ token: this.state.token, article });
+            toastSuccess("Save successful!", toastID);
             this.props.history.push('/');
         }
         catch(error) {
             this.setState({ submitting: false, errorMsg: "server error" });
+            toastFail(e, toastID);
         }
     };
 

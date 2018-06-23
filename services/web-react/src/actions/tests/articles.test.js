@@ -112,10 +112,6 @@ describe('Actions', () => {
                 const id = 6;
                 await updateItem(id)(dispatch, getState);
                 expect(axios.get).toHaveBeenLastCalledWith(`${ROOT_API_URL}/articles/${id}`);
-                expect(dispatch.mock.calls[0][0]).toEqual({
-                    type: 'ARTICLE_ITEM',
-                    data: {}
-                });
             });
         });
 

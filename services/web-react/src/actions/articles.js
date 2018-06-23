@@ -65,13 +65,16 @@ export const fetchItem = (id) => {
 
 export const updateItem = (id, data) => {
     return async (dispatch, getState) => {
-        try {
-            await axios.post(`${ROOT_API_URL}/articles/${id}`, data, authHeader(getState));
-            dispatch(item({})); // if success don't need to return anything since the page has already been updated
-        }
-        catch (error) {
-            console.log(error);
-        }
+        return new Promise(async(resolve, reject) => {
+            try {
+                const response = await axios.post(`${ROOT_API_URL}/articles/${id}`, data, authHeader(getState));
+                resolve(response.body);
+            }
+            catch (error) {
+                console.log(error);
+                reject(error);
+            }
+        });
     }
 };
 
