@@ -120,5 +120,5 @@ const authHeader = (state) => {
     }
     return {
         headers: {"Authorization": `Bearer ${token}`}
-    }
+    };
 };

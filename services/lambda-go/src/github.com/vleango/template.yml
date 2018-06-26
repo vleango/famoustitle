@@ -9,7 +9,7 @@ Resources:
       Runtime: go1.x
       CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
       MemorySize: 128
-      Timeout: 3
+      Timeout: 10
       Environment:
         Variables:
           APP_ENV: development
@@ -31,8 +31,8 @@ Resources:
           Path: /articles
           Method: options
           RestApiId:
-            Ref: famoustitle
-  famoustitle:
+            Ref: Famoustitle
+  Famoustitle:
     Type: 'AWS::Serverless::Api'
     Properties:
       StageName: development
@@ -378,7 +378,7 @@ Resources:
       Runtime: go1.x
       CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
       MemorySize: 128
-      Timeout: 3
+      Timeout: 10
       Environment:
         Variables:
           APP_ENV: development
@@ -400,7 +400,7 @@ Resources:
             Path: /articles
             Method: options
             RestApiId:
-              Ref: famoustitle
+              Ref: Famoustitle
   Articles_createLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -417,7 +417,7 @@ Resources:
       Runtime: go1.x
       CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
       MemorySize: 128
-      Timeout: 3
+      Timeout: 10
       Environment:
         Variables:
           APP_ENV: development
@@ -439,7 +439,7 @@ Resources:
             Path: '/articles/{id}'
             Method: options
             RestApiId:
-              Ref: famoustitle
+              Ref: Famoustitle
   Articles_showLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -456,7 +456,7 @@ Resources:
       Runtime: go1.x
       CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
       MemorySize: 128
-      Timeout: 3
+      Timeout: 10
       Environment:
         Variables:
           APP_ENV: development
@@ -478,7 +478,7 @@ Resources:
             Path: '/articles/{id}'
             Method: options
             RestApiId:
-              Ref: famoustitle
+              Ref: Famoustitle
   Articles_updateLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -495,7 +495,7 @@ Resources:
       Runtime: go1.x
       CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
       MemorySize: 128
-      Timeout: 3
+      Timeout: 10
       Environment:
         Variables:
           APP_ENV: development
@@ -517,7 +517,7 @@ Resources:
             Path: '/articles/{id}'
             Method: options
             RestApiId:
-              Ref: famoustitle
+              Ref: Famoustitle
   Articles_destroyLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -534,7 +534,7 @@ Resources:
       Runtime: go1.x
       CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
       MemorySize: 128
-      Timeout: 3
+      Timeout: 10
       Environment:
         Variables:
           APP_ENV: development
@@ -566,7 +566,7 @@ Resources:
       Runtime: go1.x
       CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
       MemorySize: 128
-      Timeout: 3
+      Timeout: 10
       Environment:
         Variables:
           APP_ENV: development
@@ -588,7 +588,7 @@ Resources:
             Path: /tokens
             Method: options
             RestApiId:
-              Ref: famoustitle
+              Ref: Famoustitle
   Tokens_createLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
@@ -605,7 +605,7 @@ Resources:
       Runtime: go1.x
       CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
       MemorySize: 128
-      Timeout: 3
+      Timeout: 10
       Environment:
         Variables:
           APP_ENV: development
@@ -627,7 +627,7 @@ Resources:
             Path: /users
             Method: options
             RestApiId:
-              Ref: famoustitle
+              Ref: Famoustitle
   Users_createLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:

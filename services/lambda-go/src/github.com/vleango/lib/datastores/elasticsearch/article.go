@@ -9,16 +9,18 @@ import (
 	"github.com/vleango/lib/models"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"time"
 )
 
 var (
-	indexName = "famoustitle_articles"
-)
-
-var (
+	indexName     = ""
 	ErrSaveFailed = errors.New("saved failed")
 )
+
+func init() {
+	indexName = fmt.Sprintf("famoustitle_articles_%v", os.Getenv("APP_ENV"))
+}
 
 type ESResponse struct {
 	Took         int          `json:"took"`
