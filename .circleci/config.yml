@@ -20,6 +20,7 @@ jobs:
       APP_ENV: "ci"
       ELASTICSEARCH_HOST_URL: "http://localhost:9200"
       DYNAMODB_HOST_URL: "http://localhost:8000"
+      REGION: "us-west-2"
     working_directory: /go/src/github.com/vleango
     docker:
       - image: circleci/golang:1.10

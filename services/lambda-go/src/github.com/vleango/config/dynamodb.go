@@ -18,7 +18,6 @@ var (
 
 func init() {
 	var err error
-
 	urlStr := os.Getenv("DYNAMODB_HOST_URL")
 
 	if urlStr == "" {
