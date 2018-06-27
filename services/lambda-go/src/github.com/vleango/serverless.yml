@@ -3,14 +3,16 @@ service: famoustitle
 provider:
   name: aws
   runtime: go1.x
-  region: us-west-2
+  region: ${file(./.${self:provider.stage}.yml):REGION}
   stage: ${opt:stage, 'development'}
+  timeout: 10
   environment:
       APP_ENV:  ${self:provider.stage}
-      DOMAIN_URL: ${file(./${self:provider.stage}.yml):DOMAIN_URL}
-      ELASTICSEARCH_HOST_URL: ${file(./${self:provider.stage}.yml):ELASTICSEARCH_HOST_URL}
-      AWS_ID: ${file(./${self:provider.stage}.yml):AWS_ACCESS_KEY_ID}
-      AWS_SECRET: ${file(./${self:provider.stage}.yml):AWS_SECRET_ACCESS_KEY}
+      DOMAIN_URL: ${file(./.${self:provider.stage}.yml):DOMAIN_URL}
+      ELASTICSEARCH_HOST_URL: ${file(./.${self:provider.stage}.yml):ELASTICSEARCH_HOST_URL}
+      DYNAMODB_HOST_URL: ${file(./.${self:provider.stage}.yml):DYNAMODB_HOST_URL}
+      AWS_ID: ${file(./.${self:provider.stage}.yml):AWS_ACCESS_KEY_ID}
+      AWS_SECRET: ${file(./.${self:provider.stage}.yml):AWS_SECRET_ACCESS_KEY}
 package:
  exclude:
    - ./**
@@ -24,7 +26,7 @@ plugins:
 
 custom:
   client:
-    bucketName: ${file(./${self:provider.stage}.yml):BUCKET_NAME}
+    bucketName: ${file(./.${self:provider.stage}.yml):BUCKET_NAME}
     errorDocument: index.html
     objectHeaders:
       index.html:
@@ -38,7 +40,7 @@ functions:
       - Effect: "Allow"
         Action:
           - "dynamodb:Scan"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
+        Resource: ${file(./.${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
     events:
       - http:
           path: /articles
@@ -50,12 +52,12 @@ functions:
       - Effect: "Allow"
         Action:
           - "dynamodb:PutItem"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
+        Resource: ${file(./.${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
       - Effect: "Allow"
         Action:
           - "dynamodb:GetItem"
           - "dynamodb:UpdateItem"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
+        Resource: ${file(./.${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
     events:
       - http:
           path: /articles
@@ -75,12 +77,12 @@ functions:
         Action:
           - "dynamodb:GetItem"
           - "dynamodb:UpdateItem"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
+        Resource: ${file(./.${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
       - Effect: "Allow"
         Action:
           - "dynamodb:GetItem"
           - "dynamodb:UpdateItem"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
+        Resource: ${file(./.${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
     events:
       - http:
           path: /articles/{id}
@@ -93,12 +95,12 @@ functions:
         Action:
           - "dynamodb:GetItem"
           - "dynamodb:DeleteItem"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
+        Resource: ${file(./.${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
       - Effect: "Allow"
         Action:
           - "dynamodb:GetItem"
           - "dynamodb:UpdateItem"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
+        Resource: ${file(./.${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
     events:
       - http:
           path: /articles/{id}
@@ -117,7 +119,7 @@ functions:
       - Effect: "Allow"
         Action:
           - "dynamodb:GetItem"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
+        Resource: ${file(./.${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
     events:
       - http:
           path: /tokens
@@ -130,7 +132,7 @@ functions:
         Action:
           - "dynamodb:GetItem"
           - "dynamodb:PutItem"
-        Resource: ${file(./${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
+        Resource: ${file(./.${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
     events:
       - http:
           path: /users

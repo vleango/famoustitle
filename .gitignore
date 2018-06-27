@@ -6,6 +6,8 @@
 **/bin/
 **/vendor/
 production.yml
+.production.yml
+.staging.yml
 
 # Node
 #############################

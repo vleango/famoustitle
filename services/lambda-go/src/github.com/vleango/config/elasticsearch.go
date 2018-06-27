@@ -17,10 +17,12 @@ func init() {
 	ElasticSearchHost = os.Getenv("ELASTICSEARCH_HOST_URL")
 
 	switch os.Getenv("APP_ENV") {
+	case "staging":
+		fallthrough
 	case "production":
 		var myClient *http.Client
 		signer := v4.NewSigner(credentials.NewStaticCredentials(os.Getenv("AWS_ID"), os.Getenv("AWS_SECRET"), ""))
-		var awsClient, err = aws_signing_client.New(signer, myClient, "es", DefaultRegion)
+		var awsClient, err = aws_signing_client.New(signer, myClient, "es", "us-west-2")
 		if err != nil {
 			fmt.Println(err.Error())
 		}

@@ -9,37 +9,24 @@ import (
 )
 
 var (
-	DynamoSvc     *dynamodb.DynamoDB
-	DefaultRegion = "us-west-2"
-
-	urlStr = ""
-
+	DynamoSvc           *dynamodb.DynamoDB
 	DynamoArticlesTable = "famoustitle_articles"
 	DynamoUsersTable    = "famoustitle_users"
+
+	Session *session.Session
 )
 
 func init() {
-	switch os.Getenv("APP_ENV") {
-	case "development":
-		urlStr = "http://db-dynamo:8000"
-	case "test":
-		urlStr = "http://db-dynamo-test:8000"
-	case "ci":
-		urlStr = "http://localhost:8000"
-	case "production":
-		urlStr = ""
-	}
-
-	var sess *session.Session
 	var err error
+	urlStr := os.Getenv("DYNAMODB_HOST_URL")
 
 	if urlStr == "" {
-		sess, err = session.NewSession(&aws.Config{
-			Region: aws.String(DefaultRegion),
+		Session, err = session.NewSession(&aws.Config{
+			Region: aws.String(os.Getenv("REGION")),
 		})
 	} else {
-		sess, err = session.NewSession(&aws.Config{
-			Region:   aws.String(DefaultRegion),
+		Session, err = session.NewSession(&aws.Config{
+			Region:   aws.String(os.Getenv("REGION")),
 			Endpoint: &urlStr,
 		})
 	}
@@ -48,5 +35,5 @@ func init() {
 		log.Fatal(err)
 	}
 
-	DynamoSvc = dynamodb.New(sess)
+	DynamoSvc = dynamodb.New(Session)
 }

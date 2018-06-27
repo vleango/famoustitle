@@ -9,6 +9,7 @@ import (
 	localDB "github.com/vleango/lib/datastores/dynamodb"
 	"github.com/vleango/lib/models"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -21,6 +22,7 @@ func CleanDataStores() {
 
 func CleanDB() {
 	result, err := svc.ListTables(&dynamodb.ListTablesInput{})
+
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -36,18 +38,18 @@ func CleanDB() {
 }
 
 func CleanElasticSearch() {
-	url := fmt.Sprintf("%v/%v", config.ElasticSearchHost, config.DynamoArticlesTable)
+	url := fmt.Sprintf("%v/%v_%v", config.ElasticSearchHost, config.DynamoArticlesTable, os.Getenv("APP_ENV"))
 
 	req, err := http.NewRequest("DELETE", url, nil)
 	req.Header.Set("Content-Type", "application/json")
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
+	defer resp.Body.Close()
+
 	if err != nil {
 		panic(err)
 	}
-
-	defer resp.Body.Close()
 }
 
 func CreateArticlesTable() {
