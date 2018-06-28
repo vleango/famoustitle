@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { Form, FormGroup, Input } from 'reactstrap';
+import { toastInProgress, toastSuccess, toastFail } from '../shared/Toast';
 
 import { startLogin } from '../../actions/auth';
 import Header from '../shared/headers/Header';
@@ -32,13 +33,21 @@ export class LoginPage extends Component {
             return;
         }
 
+        const toastID = toastInProgress("Logging in...");
+
         try {
             this.setState({ submitting: true, errorMsg: "" });
             await this.props.startLogin({ email: this.state.email, password: this.state.password });
+            toastSuccess("Success!", toastID);
             this.props.history.push('/');
         }
-        catch (err) {
-            this.setState({ submitting: false, errorMsg: "email and/or password was incorrect" });
+        catch (error) {
+            let msg = "email and/or password was incorrect";
+            if(error && error.response) {
+                msg = error.response.statusText;
+            }
+            this.setState({ submitting: false, errorMsg: msg });
+            toastFail(msg, toastID);
         }
     };
 

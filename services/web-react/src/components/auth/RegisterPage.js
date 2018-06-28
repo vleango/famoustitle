@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { Form, FormGroup, Input } from 'reactstrap';
+import { toastInProgress, toastSuccess, toastFail } from '../shared/Toast';
 
 import { startRegister } from '../../actions/auth';
 import Header from '../shared/headers/Header';
@@ -45,6 +46,8 @@ export class RegisterPage extends Component {
             return;
         }
 
+        const toastID = toastInProgress("Creating your account...");
+
         try {
             this.setState({ submitting: true, errorMsg: "" });
             await this.props.startRegister({
@@ -56,10 +59,16 @@ export class RegisterPage extends Component {
                 password: this.state.password,
                 password_confirmation: this.state.password_confirmation
             });
+            toastSuccess("Success!", toastID);
             this.props.history.push('/');
         }
-        catch (err) {
-            this.setState({ submitting: false, errorMsg: "something went wrong..." });
+        catch (error) {
+            let msg = "something went wrong...";
+            if(error && error.response) {
+                msg = error.response.statusText;
+            }
+            this.setState({ submitting: false, errorMsg: msg });
+            toastFail(msg, toastID);
         }
     };
 
