@@ -53,14 +53,17 @@ export const createItem = (data) => {
 
 export const fetchItem = (id) => {
     return async (dispatch, getState) => {
-        try {
-            const response = await axios.get(`${ROOT_API_URL}/articles/${id}`);
-            dispatch(item({article: response.data}));
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
+        return new Promise(async(resolve, reject) => {
+            try {
+                const response = await axios.get(`${ROOT_API_URL}/articles/${id}`);
+                resolve(response.body);
+                dispatch(item({article: response.data}));
+            }
+            catch (error) {
+                reject(error);
+            }
+        });
+    };
 };
 
 export const updateItem = (id, data) => {

@@ -29,8 +29,14 @@ export class ArticleItemPage extends Component {
         };
     }
 
-    componentDidMount() {
-        this.props.fetchItem && this.props.fetchItem(this.props.match.params.id);
+    async componentDidMount() {
+        if(this.props.fetchItem) {
+            try {
+                await this.props.fetchItem(this.props.match.params.id);
+            } catch(error) {
+                this.props.history.push('/404');
+            }
+        }
     }
 
     componentWillReceiveProps = (nextProps) => {
@@ -311,7 +317,7 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchItem: (data) => dispatch(fetchItem(data)),
+    fetchItem: async (data) => await dispatch(fetchItem(data)),
     updateItem: async (id, data) => await dispatch(updateItem(id, data)),
     removeItem: async (id) => await dispatch(removeItem(id))
 });
