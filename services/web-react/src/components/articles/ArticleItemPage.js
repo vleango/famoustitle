@@ -126,19 +126,31 @@ export class ArticleItemPage extends Component {
         try {
             await this.props.updateItem(this.props.match.params.id, { article: article } );
             toastSuccess("Save successful!", toastID);
-        } catch(e) {
-            toastFail(e, toastID);
+        } catch(error) {
+            let msg = "server error";
+            if(error && error.response) {
+                msg = error.response.statusText;
+            }
+            toastFail(msg, toastID);
         }
     };
 
     onRemoveClicked = async (e) => {
+        const toastID = toastInProgress("Delete in progress...");
+
         try {
             this.setState({ submitting: true });
             await this.props.removeItem(this.props.match.params.id);
+            toastSuccess("Successful!", toastID);
             this.props.history.push('/');
         }
-        catch (e) {
+        catch (error) {
+            let msg = "server error";
+            if(error && error.response) {
+                msg = error.response.statusText;
+            }
             this.setState({ submitting: false });
+            toastFail(msg, toastID);
         }
     };
 
