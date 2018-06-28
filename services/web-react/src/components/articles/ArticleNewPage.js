@@ -44,8 +44,12 @@ export class ArticleNewPage extends Component {
             this.props.history.push('/');
         }
         catch(error) {
-            this.setState({ submitting: false, errorMsg: "server error" });
-            toastFail(e, toastID);
+            let msg = "server error";
+            if(error && error.response) {
+                msg = error.response.statusText;
+            }
+            this.setState({ submitting: false, errorMsg: msg });
+            toastFail(msg, toastID);
         }
     };
 
