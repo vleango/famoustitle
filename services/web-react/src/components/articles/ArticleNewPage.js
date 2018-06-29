@@ -40,7 +40,7 @@ export class ArticleNewPage extends Component {
             const { title, body } = this.state;
             const article = { title, body, tags };
             await this.props.createItem({ token: this.state.token, article });
-            toastSuccess("Save successful!", toastID);
+            toastSuccess("Success!", toastID);
             this.props.history.push('/');
         }
         catch(error) {

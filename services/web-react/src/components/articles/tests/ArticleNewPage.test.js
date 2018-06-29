@@ -2,6 +2,18 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { ArticleNewPage } from '../ArticleNewPage';
 
+import { toastInProgress, toastSuccess, toastFail } from '../../shared/Toast';
+
+jest.mock('../../shared/Toast', () => ({
+    toastInProgress: jest.fn((message, id) => { return 1 }),
+    toastSuccess: jest.fn((message, id) => { return 2 }),
+    toastFail: jest.fn((message, id) => { return 3 })
+}));
+
+beforeEach(() => {
+    jest.clearAllMocks();
+});
+
 describe('Components', () => {
     describe('ArticleNewPage', () => {
 
@@ -90,6 +102,31 @@ describe('Components', () => {
                         wrapper.instance().onSubmitArticle(null);
                         expect(action).toHaveBeenCalledWith(calledArgs);
                     });
+                });
+            });
+
+            describe('title and body are present', () => {
+                it('Success', async () => {
+                    const createItem = jest.fn(() => Promise.resolve());
+                    let wrapper = shallow(<ArticleNewPage createItem={createItem} history={[]} />);
+                    wrapper.setState({ title: 'my title', body: 'my body' });
+                    await wrapper.instance().onSubmitArticle();
+                    expect(wrapper.state('submitting')).toBe(true);
+                    expect(toastInProgress).toHaveBeenCalledWith("Saving in progress...");
+                    expect(toastSuccess).toHaveBeenCalledWith("Success!", 1);
+                    expect(toastFail).not.toHaveBeenCalled();
+                });
+
+                it('Fail', async () => {
+                    const createItem = jest.fn(() => Promise.reject());
+                    let wrapper = shallow(<ArticleNewPage createItem={createItem} history={[]} />);
+                    wrapper.setState({ title: 'my title', body: 'my body' });
+                    await wrapper.instance().onSubmitArticle();
+                    expect(wrapper.state('submitting')).toBe(false);
+                    expect(wrapper.state('errorMsg')).toBe("server error");
+                    expect(toastInProgress).toHaveBeenCalledWith("Saving in progress...");
+                    expect(toastSuccess).not.toHaveBeenCalled();
+                    expect(toastFail).toHaveBeenCalledWith("server error", 1);
                 });
             });
         });

@@ -3,6 +3,18 @@ import { shallow } from 'enzyme';
 
 import { RegisterPage } from '../RegisterPage';
 
+import { toastInProgress, toastSuccess, toastFail } from '../../shared/Toast';
+
+jest.mock('../../shared/Toast', () => ({
+    toastInProgress: jest.fn((message, id) => { return 1 }),
+    toastSuccess: jest.fn((message, id) => { return 2 }),
+    toastFail: jest.fn((message, id) => { return 3 })
+}));
+
+beforeEach(() => {
+    jest.clearAllMocks();
+});
+
 describe('Components', () => {
     describe('Auth', () => {
         describe('RegisterPage', () => {
@@ -70,6 +82,34 @@ describe('Components', () => {
                         wrapper.instance().onSubmitRegister();
                         expect(wrapper.state('errorMsg')).toBe("password is less than 6 characters");
                     });
+                });
+
+                describe('first_name, last_name, email, password, and password_confirmation are given', () => {
+                   it('Success', async () => {
+                       const startRegister = jest.fn(() => Promise.resolve());
+                       let wrapper = shallow(<RegisterPage startRegister={startRegister} history={[]} />);
+
+                       wrapper.setState({ first_name: "Tha", last_name: "Leang", email: "tha@test.com", password: "123456", password_confirmation: "123456" });
+                       await wrapper.instance().onSubmitRegister();
+                       expect(wrapper.state('submitting')).toBe(true);
+                       expect(wrapper.state('errorMsg')).toBe("");
+                       expect(toastInProgress).toHaveBeenCalledWith("Creating your account...");
+                       expect(toastSuccess).toHaveBeenCalledWith("Success!", 1);
+                       expect(toastFail).not.toHaveBeenCalled();
+                   });
+
+                   it('Fail', async () => {
+                       const startRegister = jest.fn(() => Promise.reject());
+                       let wrapper = shallow(<RegisterPage startRegister={startRegister} history={[]} />);
+
+                       wrapper.setState({ first_name: "Tha", last_name: "Leang", email: "tha@test.com", password: "123456", password_confirmation: "123456" });
+                       await wrapper.instance().onSubmitRegister();
+                       expect(wrapper.state('submitting')).toBe(false);
+                       expect(wrapper.state('errorMsg')).toBe("something went wrong...");
+                       expect(toastInProgress).toHaveBeenCalledWith("Creating your account...");
+                       expect(toastSuccess).not.toHaveBeenCalled();
+                       expect(toastFail).toHaveBeenCalledWith("something went wrong...", 1);
+                   });
                 });
             });
 
