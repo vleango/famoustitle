@@ -6,7 +6,6 @@ import { split, map, trim, uniq } from 'lodash';
 import { toastInProgress, toastSuccess, toastFail } from '../shared/Toast';
 
 import { createItem } from '../../actions/articles';
-import Header from '../shared/headers/Header';
 
 export class ArticleNewPage extends Component {
 
@@ -62,7 +61,6 @@ export class ArticleNewPage extends Component {
     render() {
         return (
             <Fragment>
-                <Header resourceTitle="Create New Article" />
                 <div className="container">
                     <Form onSubmit={this.onSubmitArticle} autoComplete="off">
                         <FormGroup>

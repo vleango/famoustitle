@@ -1,17 +1,18 @@
-import React, { Component, Fragment } from 'react';
+import React, {Component, Fragment} from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'reactstrap';
-import { Form, FormGroup, Input } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
-import {includes, map, pull, split, trim, uniq, compact} from 'lodash';
 import ReactMarkdown from 'react-markdown';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { toastInProgress, toastSuccess, toastFail } from '../shared/Toast';
 
-import { fetchItem, updateItem, removeItem } from '../../actions/articles';
-import Header from '../shared/headers/Header';
-
+import { fetchItem } from '../../actions/articles';
 import './css/ArticleItemPage.css';
+
+import faUser from "@fortawesome/fontawesome-free-solid/faUser";
+import faCalendarAlt from "@fortawesome/fontawesome-free-solid/faCalendarAlt";
+import faTag from "@fortawesome/fontawesome-free-solid/faTag";
+import fontawesome from "@fortawesome/fontawesome/index";
+fontawesome.library.add(faUser, faCalendarAlt, faTag);
 
 export class ArticleItemPage extends Component {
 
@@ -19,13 +20,7 @@ export class ArticleItemPage extends Component {
         super(props);
         this.state = {
             article: null,
-            title: '',
-            body: '',
-            tags: [],
-            editMode: [],
-            previewMode: [],
-            editModeClass: '',
-            submitting: false
+            loadingText: "Loading..."
         };
     }
 
@@ -34,7 +29,9 @@ export class ArticleItemPage extends Component {
             try {
                 await this.props.fetchItem(this.props.match.params.id);
             } catch(error) {
-                this.props.history.push('/404');
+                this.setState({
+                    loadingText: error.toString()
+                });
             }
         }
     }
@@ -42,215 +39,39 @@ export class ArticleItemPage extends Component {
     componentWillReceiveProps = (nextProps) => {
         if(nextProps.article) {
             this.setState({
-                article: nextProps.article,
-                title: nextProps.article.title,
-                body: nextProps.article.body,
-                tags: nextProps.article.tags
+                article: nextProps.article
             });
         }
     };
 
-    onMouseOver = () => {
-        if(!this.props.isAuthenticated) {
-            return
-        }
-
-        this.setState({ editModeClass: 'outline' })
-    };
-
-    onMouseLeave = () => {
-        if(!this.props.isAuthenticated) {
-            return
-        }
-
-        this.setState({ editModeClass: '' })
-    };
-
-    onTextClicked = (e) => {
-        if(!this.props.isAuthenticated) {
-            return
-        }
-
-        let editMode = this.state.editMode;
-        editMode.push(e.currentTarget.dataset.name);
-        this.setState({ editMode: uniq(editMode) });
-    };
-
-    onCancelClicked = (e) => {
-        const field = e.target.dataset.name;
-        let inputs = this.state.editMode;
-        pull(inputs, field); // remove cancel mode for input
-        const value = this.state.article[field]; // get value to revert text
-        this.setState({
-            editMode: inputs,
-            [field]: value
-        });
-    };
-
-    onPreviewClicked = (e) => {
-        let previewMode = this.state.previewMode;
-        previewMode.push(e.target.dataset.name);
-        this.setState({ previewMode: uniq(previewMode) });
-    };
-
-    onPreviewTextClicked = (e) => {
-        let previewMode = this.state.previewMode;
-        pull(previewMode, e.currentTarget.dataset.name);
-        this.setState({ previewMode: previewMode });
-    };
-
-    onPreviewExitClicked = (e) => {
-        this.onPreviewTextClicked(e);
-    };
-
-    onSavedClicked = async (e) => {
-        const field = e.target.dataset.name;
-        let inputs = this.state.editMode;
-
-        // check if empty (can't be empty)
-        const value = this.state[field];
-        if(value === "" && field !== 'tags') {
-            return;
-        }
-
-        pull(inputs, field); // remove cancel mode for input
-
-        // save to backend
-        const rawTags = split(this.state.tags, ',');
-        const trimmedTags = map(rawTags, (tag) => { return trim(tag).toLowerCase() });
-        let tags = uniq(compact(trimmedTags));
-
-        const { title, body } = this.state;
-        const article = { title, body, tags };
-        this.setState({
-            editMode: inputs,
-            article: article
-        });
-
-        const toastID = toastInProgress("Saving in progress...");
-
-        try {
-            await this.props.updateItem(this.props.match.params.id, { article: article } );
-            toastSuccess("Save successful!", toastID);
-        } catch(error) {
-            let msg = "server error";
-            if(error && error.response) {
-                msg = error.response.statusText;
-            }
-            toastFail(msg, toastID);
-        }
-    };
-
-    onRemoveClicked = async (e) => {
-        const toastID = toastInProgress("Delete in progress...");
-
-        try {
-            this.setState({ submitting: true });
-            await this.props.removeItem(this.props.match.params.id);
-            toastSuccess("Successful!", toastID);
-            this.props.history.push('/');
-        }
-        catch (error) {
-            let msg = "server error";
-            if(error && error.response) {
-                msg = error.response.statusText;
-            }
-            this.setState({ submitting: false });
-            toastFail(msg, toastID);
-        }
-    };
-
-    onInputChange = (e) => {
-        const field = e.target.name;
-        const value = e.target.value;
-        this.setState(() => ({ [field]: value }));
-    };
-
-    onSubmitChanges = (e) => {
-        e.preventDefault();
-        // TODO need to be able to save after clicking enter
-    };
-
-    displayTags = () => {
-        if(includes(this.state.editMode, 'tags')) {
-            return (
-                <Form onSubmit={this.onSubmitChanges} autoComplete="off">
-                    <FormGroup>
-                        <Input type="text"
-                               name="tags"
-                               value={this.state.tags || ""}
-                               placeholder="Add Tags"
-                               onChange={this.onInputChange} />
-                    </FormGroup>
-                    <Button color="info" size="sm" data-name="tags" onClick={this.onCancelClicked}>Cancel</Button>
-                    <Button color="primary" size="sm" data-name="tags" className="ml-1" onClick={this.onSavedClicked}>Save</Button>
-                </Form>
-            )
-        } else {
-            return (
-                <div
-                    data-name="tags"
-                    className={this.state.editModeClass}
-                    onMouseOver={this.onMouseOver}
-                    onClick={this.onTextClicked}
-                    onMouseLeave={this.onMouseLeave}>
-                    <FontAwesomeIcon className="mr-2" icon="tag"/>
-                    {this.state.article.tags && this.state.article.tags.map((tag) => {
-                        return [
-                            <span key={tag} className="mr-2">{tag}</span>
-                        ]
-                    })}
-                </div>
-            )
-        }
-    };
-
-    displayBody = () => {
-        if(includes(this.state.previewMode, 'body')) {
-            return this.displayPreview();
-        } else if (includes(this.state.editMode, 'body')) {
-            return this.displayForm();
-        } else {
-            return this.displayMarkdown();
-        }
-    };
-
-    displayPreview() {
+    displayInfo = () => {
         return (
-            <Fragment>
-                <Button color="info" size="sm" data-name="body" onClick={this.onPreviewExitClicked}>Exit Preview</Button>
-                <div data-name="body" onClick={this.onPreviewTextClicked}><ReactMarkdown source={ this.state.body } /></div>
-                <Button color="info" size="sm" data-name="body" onClick={this.onPreviewExitClicked}>Exit Preview</Button>
-            </Fragment>
+            <div className="pt-3 pb-5">
+                <FontAwesomeIcon className="mr-2" icon="user"/>
+                <span className="mr-5">{this.state.article.author}</span>
+
+                <FontAwesomeIcon className="mr-2" icon="calendar-alt"/>
+                <span className="mr-5">{ moment(this.state.article.created_at).format('MM-DD-YYYY HH:mm') }</span>
+
+                { this.state.article.tags && this.state.article.tags.length > 0 && (
+                    <Fragment>
+                        <FontAwesomeIcon className="mr-2" icon="tag"/>
+                        {
+                            this.state.article.tags.map((tag) => {
+                                return [
+                                    <Link key={tag} className="mr-2" to={`/?tag=${tag}`}>{tag}</Link>
+                                ]
+                            })
+                        }
+                    </Fragment>
+                )}
+            </div>
         );
-    }
+    };
 
-    displayForm() {
+    displayBody() {
         return (
-            <Form>
-                <FormGroup>
-                    <Input type="textarea"
-                           rows="20"
-                           name="body"
-                           value={this.state.body}
-                           placeholder="Add your article"
-                           onChange={this.onInputChange} />
-                </FormGroup>
-                <Button color="info" size="sm" data-name="body" onClick={this.onCancelClicked}>Cancel</Button>
-                <Button color="info" size="sm" data-name="body" className="ml-1" onClick={this.onPreviewClicked}>Preview</Button>
-                <Button color="primary" size="sm" data-name="body" className="ml-1" onClick={this.onSavedClicked}>Save</Button>
-            </Form>
-        );
-    }
-
-    displayMarkdown() {
-        return (
-            <div
-                data-name="body"
-                className={`body-markdown ${this.state.editModeClass}`}
-                onMouseOver={this.onMouseOver}
-                onClick={this.onTextClicked}
-                onMouseLeave={this.onMouseLeave}>
+            <div className={`body-markdown spacing`}>
                 <ReactMarkdown source={ this.state.article.body } />
             </div>
         )
@@ -258,52 +79,20 @@ export class ArticleItemPage extends Component {
 
     render() {
         return (
-            <div>
-                <Header resourceTitle={ this.state.title } />
-                { this.state.article && (
-                    <Fragment>
-                        <div className="canvas">
-                            <div className="container">
-                                { this.props.isAuthenticated && (
-                                    <div className="clearfix">
-                                        <Button onClick={this.onRemoveClicked} disabled={this.state.submitting} className="float-right ml-3" color="danger">Delete</Button>{' '}
-                                    </div>
-                                ) }
+            <div className="canvas">
+                <div className="container pt-5 pb-5">
+                    {/* message for when loading article */}
+                    { !this.state.article && <p>{this.state.loadingText}</p> }
 
-                                { includes(this.state.editMode, 'title') ? (
-                                    <Form onSubmit={this.onSubmitChanges} autoComplete="off">
-                                        <FormGroup>
-                                            <Input type="text"
-                                                   name="title"
-                                                   value={this.state.title}
-                                                   placeholder="Title"
-                                                   onChange={this.onInputChange} />
-                                        </FormGroup>
-                                        <Button color="info" size="sm" data-name="title" onClick={this.onCancelClicked}>Cancel</Button>
-                                        <Button color="primary" size="sm" data-name="title" className="ml-1" onClick={this.onSavedClicked}>Save</Button>
-                                    </Form>
-                                ) : (
-                                    <h1
-                                        data-name="title"
-                                        className={this.state.editModeClass}
-                                        onMouseOver={this.onMouseOver}
-                                        onClick={this.onTextClicked}
-                                        onMouseLeave={this.onMouseLeave}>
-                                        {this.state.article.title}
-                                    </h1>
-                                )}
-
-                                <p>{this.state.article.author}</p>
-                                <p>{ moment(this.state.article.created_at).format('MM-DD-YYYY HH:mm') }</p>
-
-                                { this.displayTags() }
-
-                                { this.displayBody() }
-
-                            </div>
-                        </div>
-                    </Fragment>
-                ) }
+                    {/* after article loads */}
+                    { this.state.article && (
+                        <Fragment>
+                            <h1>{this.state.article.title}</h1>
+                            { this.displayInfo() }
+                            { this.displayBody() }
+                        </Fragment>
+                    ) }
+                </div>
             </div>
         );
     }
@@ -317,9 +106,7 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchItem: async (data) => await dispatch(fetchItem(data)),
-    updateItem: async (id, data) => await dispatch(updateItem(id, data)),
-    removeItem: async (id) => await dispatch(removeItem(id))
+    fetchItem: async (data) => await dispatch(fetchItem(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleItemPage);

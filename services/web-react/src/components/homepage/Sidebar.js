@@ -46,7 +46,7 @@ export class Sidebar extends Component {
 
     render() {
         return (
-            <div className="mr-5">
+            <div className="search-container">
                 <aside>
                     <Form className="search-form" onSubmit={this.onSearchSubmit}>
                         <Input className="form-control pr-5" type="search" name="search" placeholder="Search..." value={this.state.search} onChange={this.onInputChange} />

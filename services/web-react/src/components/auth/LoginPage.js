@@ -5,7 +5,6 @@ import { Form, FormGroup, Input } from 'reactstrap';
 import { toastInProgress, toastSuccess, toastFail } from '../shared/Toast';
 
 import { startLogin } from '../../actions/auth';
-import Header from '../shared/headers/Header';
 
 export class LoginPage extends Component {
 
@@ -54,7 +53,6 @@ export class LoginPage extends Component {
     render() {
         return (
             <Fragment>
-                <Header resourceTitle="Login" />
                 <div className="container">
                     <Form onSubmit={this.onSubmitLogin} autoComplete="off">
                         <FormGroup>

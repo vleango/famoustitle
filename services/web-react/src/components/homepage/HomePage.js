@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import queryString from 'qs';
 
-import Header from './Header';
 import Sidebar from './Sidebar';
 import Article from './Article';
 import Pagination from '../shared/Pagination';
@@ -68,7 +67,6 @@ export class HomePage extends Component {
     render() {
         return (
             <div className="canvas">
-                <Header />
                 <div className="container pt-5">
                     <div className="row">
                         <div className="col-xl-4">
