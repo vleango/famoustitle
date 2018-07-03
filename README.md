@@ -38,6 +38,7 @@ $ docker-compose run --rm lambda-go npm i
 4. Build your lambda functions
 
 ```
+$ docker-compose run --rm lambda-go dep ensure
 $ docker-compose run --rm lambda-go make
 ```
 
