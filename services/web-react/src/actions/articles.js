@@ -4,36 +4,42 @@ import { ROOT_API_URL } from './Base';
 
 export const fetchList = (filters = {}) => {
     return async (dispatch, getState) => {
-        try {
+        return new Promise(async(resolve, reject) => {
+            try {
 
-            let resource = "articles";
-            if(filters['tag']) {
-                resource = `articles?tag=${filters['tag']}`
-            } else if(filters['date']) {
-                resource = `articles?date=${filters['date']}`
-            } else if(filters['match']) {
-                resource = `articles?match=${filters['match']}`
+                let resource = "articles";
+                if(filters['tag']) {
+                    resource = `articles?tag=${filters['tag']}`
+                } else if(filters['date']) {
+                    resource = `articles?date=${filters['date']}`
+                } else if(filters['match']) {
+                    resource = `articles?match=${filters['match']}`
+                }
+
+                const response = await axios.get(`${ROOT_API_URL}/${resource}`);
+                let data = { ...response.data, selected: filters };
+                dispatch(list(data));
+                resolve(data);
             }
-
-            const response = await axios.get(`${ROOT_API_URL}/${resource}`);
-            let data = { ...response.data, selected: filters };
-            dispatch(list(data));
-        }
-        catch (error) {
-            console.log(error);
-        }
+            catch (error) {
+                reject(error);
+            }
+        });
     }
 };
 
 export const fetchArticlesArchiveList = () => {
     return async (dispatch, getState) => {
-        try {
-            const response = await axios.get(`${ROOT_API_URL}/articles/archives`);
-            let data = { ...response.data };
-            dispatch(archives(data));
-        } catch (error) {
-            console.log(error);
-        }
+        return new Promise(async(resolve, reject) => {
+            try {
+                const response = await axios.get(`${ROOT_API_URL}/articles/archives`);
+                let data = { ...response.data };
+                dispatch(archives(data));
+                resolve(data);
+            } catch (error) {
+                reject(error);
+            }
+        });
     }
 };
 
