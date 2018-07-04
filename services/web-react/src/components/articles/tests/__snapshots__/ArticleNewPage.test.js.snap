@@ -17,11 +17,332 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
-      "children": Array [
-        <Header
-          resourceTitle="Create New Article"
+      "children": <div
+        className="container"
+>
+        <Form
+                autoComplete="off"
+                onSubmit={[Function]}
+                tag="form"
+        >
+                <FormGroup
+                        tag="div"
+                >
+                        <Input
+                                name="title"
+                                onChange={[Function]}
+                                placeholder="Title"
+                                type="text"
+                                value=""
+                        />
+                </FormGroup>
+                <FormGroup
+                        tag="div"
+                >
+                        <Input
+                                name="tags"
+                                onChange={[Function]}
+                                placeholder="Tag"
+                                type="text"
+                                value=""
+                        />
+                </FormGroup>
+                <FormGroup
+                        tag="div"
+                >
+                        <Input
+                                name="body"
+                                onChange={[Function]}
+                                placeholder="Add your article"
+                                rows="20"
+                                type="textarea"
+                                value=""
+                        />
+                </FormGroup>
+                
+                <div
+                        className="clearfix"
+                >
+                        <Button
+                                color="primary float-right"
+                                disabled={false}
+                                size="lg"
+                                tag="button"
+                        >
+                                Save
+                        </Button>
+                </div>
+        </Form>
+</div>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <Form
+          autoComplete="off"
+          onSubmit={[Function]}
+          tag="form"
+>
+          <FormGroup
+                    tag="div"
+          >
+                    <Input
+                              name="title"
+                              onChange={[Function]}
+                              placeholder="Title"
+                              type="text"
+                              value=""
+                    />
+          </FormGroup>
+          <FormGroup
+                    tag="div"
+          >
+                    <Input
+                              name="tags"
+                              onChange={[Function]}
+                              placeholder="Tag"
+                              type="text"
+                              value=""
+                    />
+          </FormGroup>
+          <FormGroup
+                    tag="div"
+          >
+                    <Input
+                              name="body"
+                              onChange={[Function]}
+                              placeholder="Add your article"
+                              rows="20"
+                              type="textarea"
+                              value=""
+                    />
+          </FormGroup>
+          
+          <div
+                    className="clearfix"
+          >
+                    <Button
+                              color="primary float-right"
+                              disabled={false}
+                              size="lg"
+                              tag="button"
+                    >
+                              Save
+                    </Button>
+          </div>
+</Form>,
+        "className": "container",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "autoComplete": "off",
+          "children": Array [
+            <FormGroup
+              tag="div"
+>
+              <Input
+                            name="title"
+                            onChange={[Function]}
+                            placeholder="Title"
+                            type="text"
+                            value=""
+              />
+</FormGroup>,
+            <FormGroup
+              tag="div"
+>
+              <Input
+                            name="tags"
+                            onChange={[Function]}
+                            placeholder="Tag"
+                            type="text"
+                            value=""
+              />
+</FormGroup>,
+            <FormGroup
+              tag="div"
+>
+              <Input
+                            name="body"
+                            onChange={[Function]}
+                            placeholder="Add your article"
+                            rows="20"
+                            type="textarea"
+                            value=""
+              />
+</FormGroup>,
+            "",
+            <div
+              className="clearfix"
+>
+              <Button
+                            color="primary float-right"
+                            disabled={false}
+                            size="lg"
+                            tag="button"
+              >
+                            Save
+              </Button>
+</div>,
+          ],
+          "onSubmit": [Function],
+          "tag": "form",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": <Input
+                name="title"
+                onChange={[Function]}
+                placeholder="Title"
+                type="text"
+                value=""
 />,
-        <div
+              "tag": "div",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "name": "title",
+                "onChange": [Function],
+                "placeholder": "Title",
+                "type": "text",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": <Input
+                name="tags"
+                onChange={[Function]}
+                placeholder="Tag"
+                type="text"
+                value=""
+/>,
+              "tag": "div",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "name": "tags",
+                "onChange": [Function],
+                "placeholder": "Tag",
+                "type": "text",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": <Input
+                name="body"
+                onChange={[Function]}
+                placeholder="Add your article"
+                rows="20"
+                type="textarea"
+                value=""
+/>,
+              "tag": "div",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "name": "body",
+                "onChange": [Function],
+                "placeholder": "Add your article",
+                "rows": "20",
+                "type": "textarea",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          "",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <Button
+                color="primary float-right"
+                disabled={false}
+                size="lg"
+                tag="button"
+>
+                Save
+</Button>,
+              "className": "clearfix",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "Save",
+                "color": "primary float-right",
+                "disabled": false,
+                "size": "lg",
+                "tag": "button",
+              },
+              "ref": null,
+              "rendered": "Save",
+              "type": [Function],
+            },
+            "type": "div",
+          },
+        ],
+        "type": [Function],
+      },
+      "type": "div",
+    },
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <div
           className="container"
 >
           <Form
@@ -78,22 +399,9 @@ ShallowWrapper {
                     </div>
           </Form>
 </div>,
-      ],
-    },
-    "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "resourceTitle": "Create New Article",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
       },
-      Object {
+      "ref": null,
+      "rendered": Object {
         "instance": null,
         "key": undefined,
         "nodeType": "host",
@@ -351,350 +659,6 @@ ShallowWrapper {
         },
         "type": "div",
       },
-    ],
-    "type": Symbol(react.fragment),
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": Array [
-          <Header
-            resourceTitle="Create New Article"
-/>,
-          <div
-            className="container"
->
-            <Form
-                        autoComplete="off"
-                        onSubmit={[Function]}
-                        tag="form"
-            >
-                        <FormGroup
-                                    tag="div"
-                        >
-                                    <Input
-                                                name="title"
-                                                onChange={[Function]}
-                                                placeholder="Title"
-                                                type="text"
-                                                value=""
-                                    />
-                        </FormGroup>
-                        <FormGroup
-                                    tag="div"
-                        >
-                                    <Input
-                                                name="tags"
-                                                onChange={[Function]}
-                                                placeholder="Tag"
-                                                type="text"
-                                                value=""
-                                    />
-                        </FormGroup>
-                        <FormGroup
-                                    tag="div"
-                        >
-                                    <Input
-                                                name="body"
-                                                onChange={[Function]}
-                                                placeholder="Add your article"
-                                                rows="20"
-                                                type="textarea"
-                                                value=""
-                                    />
-                        </FormGroup>
-                        
-                        <div
-                                    className="clearfix"
-                        >
-                                    <Button
-                                                color="primary float-right"
-                                                disabled={false}
-                                                size="lg"
-                                                tag="button"
-                                    >
-                                                Save
-                                    </Button>
-                        </div>
-            </Form>
-</div>,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "resourceTitle": "Create New Article",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": <Form
-              autoComplete="off"
-              onSubmit={[Function]}
-              tag="form"
->
-              <FormGroup
-                            tag="div"
-              >
-                            <Input
-                                          name="title"
-                                          onChange={[Function]}
-                                          placeholder="Title"
-                                          type="text"
-                                          value=""
-                            />
-              </FormGroup>
-              <FormGroup
-                            tag="div"
-              >
-                            <Input
-                                          name="tags"
-                                          onChange={[Function]}
-                                          placeholder="Tag"
-                                          type="text"
-                                          value=""
-                            />
-              </FormGroup>
-              <FormGroup
-                            tag="div"
-              >
-                            <Input
-                                          name="body"
-                                          onChange={[Function]}
-                                          placeholder="Add your article"
-                                          rows="20"
-                                          type="textarea"
-                                          value=""
-                            />
-              </FormGroup>
-              
-              <div
-                            className="clearfix"
-              >
-                            <Button
-                                          color="primary float-right"
-                                          disabled={false}
-                                          size="lg"
-                                          tag="button"
-                            >
-                                          Save
-                            </Button>
-              </div>
-</Form>,
-            "className": "container",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "autoComplete": "off",
-              "children": Array [
-                <FormGroup
-                  tag="div"
->
-                  <Input
-                                    name="title"
-                                    onChange={[Function]}
-                                    placeholder="Title"
-                                    type="text"
-                                    value=""
-                  />
-</FormGroup>,
-                <FormGroup
-                  tag="div"
->
-                  <Input
-                                    name="tags"
-                                    onChange={[Function]}
-                                    placeholder="Tag"
-                                    type="text"
-                                    value=""
-                  />
-</FormGroup>,
-                <FormGroup
-                  tag="div"
->
-                  <Input
-                                    name="body"
-                                    onChange={[Function]}
-                                    placeholder="Add your article"
-                                    rows="20"
-                                    type="textarea"
-                                    value=""
-                  />
-</FormGroup>,
-                "",
-                <div
-                  className="clearfix"
->
-                  <Button
-                                    color="primary float-right"
-                                    disabled={false}
-                                    size="lg"
-                                    tag="button"
-                  >
-                                    Save
-                  </Button>
-</div>,
-              ],
-              "onSubmit": [Function],
-              "tag": "form",
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "children": <Input
-                    name="title"
-                    onChange={[Function]}
-                    placeholder="Title"
-                    type="text"
-                    value=""
-/>,
-                  "tag": "div",
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "name": "title",
-                    "onChange": [Function],
-                    "placeholder": "Title",
-                    "type": "text",
-                    "value": "",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "children": <Input
-                    name="tags"
-                    onChange={[Function]}
-                    placeholder="Tag"
-                    type="text"
-                    value=""
-/>,
-                  "tag": "div",
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "name": "tags",
-                    "onChange": [Function],
-                    "placeholder": "Tag",
-                    "type": "text",
-                    "value": "",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "children": <Input
-                    name="body"
-                    onChange={[Function]}
-                    placeholder="Add your article"
-                    rows="20"
-                    type="textarea"
-                    value=""
-/>,
-                  "tag": "div",
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "name": "body",
-                    "onChange": [Function],
-                    "placeholder": "Add your article",
-                    "rows": "20",
-                    "type": "textarea",
-                    "value": "",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                "type": [Function],
-              },
-              "",
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": <Button
-                    color="primary float-right"
-                    disabled={false}
-                    size="lg"
-                    tag="button"
->
-                    Save
-</Button>,
-                  "className": "clearfix",
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "class",
-                  "props": Object {
-                    "children": "Save",
-                    "color": "primary float-right",
-                    "disabled": false,
-                    "size": "lg",
-                    "tag": "button",
-                  },
-                  "ref": null,
-                  "rendered": "Save",
-                  "type": [Function],
-                },
-                "type": "div",
-              },
-            ],
-            "type": [Function],
-          },
-          "type": "div",
-        },
-      ],
       "type": Symbol(react.fragment),
     },
   ],

@@ -1,5 +1,5 @@
 build:
-	dep ensure
+#	dep ensure
 	env GOOS=linux go build -ldflags="-s -w" -o bin/articles_index functions/articles/index/main.go
 	env GOOS=linux go build -ldflags="-s -w" -o bin/articles_create functions/articles/create/main.go
 	env GOOS=linux go build -ldflags="-s -w" -o bin/articles_show functions/articles/show/main.go

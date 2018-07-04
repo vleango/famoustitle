@@ -79,7 +79,7 @@ ShallowWrapper {
           />
 </aside>,
       ],
-      "className": "mr-5",
+      "className": "search-container",
     },
     "ref": null,
     "rendered": Array [
@@ -403,7 +403,7 @@ ShallowWrapper {
             />
 </aside>,
         ],
-        "className": "mr-5",
+        "className": "search-container",
       },
       "ref": null,
       "rendered": Array [

@@ -556,6 +556,13 @@ Resources:
             Method: get
             RestApiId:
               Ref: Famoustitle
+        Event2:
+          Type: Api
+          Properties:
+            Path: /articles/archives
+            Method: options
+            RestApiId:
+              Ref: Famoustitle
   Articles_archivesLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:

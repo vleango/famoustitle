@@ -1,8 +1,7 @@
 import React, {Fragment} from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-
-import ProfileHeader from '../components/shared/headers/ProfileHeader';
+import { NavBar } from "../components/shared/headers/NavBar";
 
 export const PrivateRoute = ({
                                  isAuthenticatedWriter,
@@ -12,7 +11,7 @@ export const PrivateRoute = ({
     <Route {...rest} component={(props) => (
         isAuthenticatedWriter ? (
             <Fragment>
-                <ProfileHeader />
+                <NavBar />
                 <Component {...props} />
             </Fragment>
         ) : (

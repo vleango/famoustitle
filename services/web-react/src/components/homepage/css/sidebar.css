@@ -1,3 +1,7 @@
+.search-container {
+    margin-right: 3rem;
+}
+
 .search-form {
   position: relative;
 }
@@ -86,6 +90,10 @@
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
+  .search-container {
+    margin-right: 0rem;
+  }
+
   .widget {
     display: none;
   }
@@ -93,6 +101,10 @@
 
 /* small and medium */
 @media (min-width: 575.98px) and (max-width: 1199.98px) {
+  .search-container {
+    margin-right: 0rem;
+  }
+
   .widget {
     display: none;
   }

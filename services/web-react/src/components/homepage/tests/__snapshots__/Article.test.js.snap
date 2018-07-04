@@ -75,27 +75,6 @@ ShallowWrapper {
                               February 28th, 2018
                     </button>
           </li>
-          <li
-                    className="article__subtitle--tags"
-          >
-                    <FontAwesomeIcon$1
-                              border={false}
-                              className="mr-2"
-                              fixedWidth={false}
-                              flip={null}
-                              icon="tag"
-                              listItem={false}
-                              mask={null}
-                              name=""
-                              pull={null}
-                              pulse={false}
-                              rotation={null}
-                              size={null}
-                              spin={false}
-                              symbol={false}
-                              transform={null}
-                    />
-          </li>
 </ul>,
         <Link
           replace={false}
@@ -178,27 +157,7 @@ ShallowWrapper {
                             February 28th, 2018
               </button>
 </li>,
-            <li
-              className="article__subtitle--tags"
->
-              <FontAwesomeIcon$1
-                            border={false}
-                            className="mr-2"
-                            fixedWidth={false}
-                            flip={null}
-                            icon="tag"
-                            listItem={false}
-                            mask={null}
-                            name=""
-                            pull={null}
-                            pulse={false}
-                            rotation={null}
-                            size={null}
-                            spin={false}
-                            symbol={false}
-                            transform={null}
-              />
-</li>,
+            null,
           ],
           "className": "article__subtitle mb-2",
         },
@@ -278,64 +237,7 @@ ShallowWrapper {
             ],
             "type": "li",
           },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <FontAwesomeIcon$1
-                  border={false}
-                  className="mr-2"
-                  fixedWidth={false}
-                  flip={null}
-                  icon="tag"
-                  listItem={false}
-                  mask={null}
-                  name=""
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  symbol={false}
-                  transform={null}
-/>,
-                null,
-              ],
-              "className": "article__subtitle--tags",
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "border": false,
-                  "className": "mr-2",
-                  "fixedWidth": false,
-                  "flip": null,
-                  "icon": "tag",
-                  "listItem": false,
-                  "mask": null,
-                  "name": "",
-                  "pull": null,
-                  "pulse": false,
-                  "rotation": null,
-                  "size": null,
-                  "spin": false,
-                  "symbol": false,
-                  "transform": null,
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              null,
-            ],
-            "type": "li",
-          },
+          null,
         ],
         "type": "ul",
       },
@@ -457,27 +359,6 @@ It sta...",
                                     February 28th, 2018
                         </button>
             </li>
-            <li
-                        className="article__subtitle--tags"
-            >
-                        <FontAwesomeIcon$1
-                                    border={false}
-                                    className="mr-2"
-                                    fixedWidth={false}
-                                    flip={null}
-                                    icon="tag"
-                                    listItem={false}
-                                    mask={null}
-                                    name=""
-                                    pull={null}
-                                    pulse={false}
-                                    rotation={null}
-                                    size={null}
-                                    spin={false}
-                                    symbol={false}
-                                    transform={null}
-                        />
-            </li>
 </ul>,
           <Link
             replace={false}
@@ -560,27 +441,7 @@ It sta...",
                                 February 28th, 2018
                 </button>
 </li>,
-              <li
-                className="article__subtitle--tags"
->
-                <FontAwesomeIcon$1
-                                border={false}
-                                className="mr-2"
-                                fixedWidth={false}
-                                flip={null}
-                                icon="tag"
-                                listItem={false}
-                                mask={null}
-                                name=""
-                                pull={null}
-                                pulse={false}
-                                rotation={null}
-                                size={null}
-                                spin={false}
-                                symbol={false}
-                                transform={null}
-                />
-</li>,
+              null,
             ],
             "className": "article__subtitle mb-2",
           },
@@ -660,64 +521,7 @@ It sta...",
               ],
               "type": "li",
             },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": Array [
-                  <FontAwesomeIcon$1
-                    border={false}
-                    className="mr-2"
-                    fixedWidth={false}
-                    flip={null}
-                    icon="tag"
-                    listItem={false}
-                    mask={null}
-                    name=""
-                    pull={null}
-                    pulse={false}
-                    rotation={null}
-                    size={null}
-                    spin={false}
-                    symbol={false}
-                    transform={null}
-/>,
-                  null,
-                ],
-                "className": "article__subtitle--tags",
-              },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "border": false,
-                    "className": "mr-2",
-                    "fixedWidth": false,
-                    "flip": null,
-                    "icon": "tag",
-                    "listItem": false,
-                    "mask": null,
-                    "name": "",
-                    "pull": null,
-                    "pulse": false,
-                    "rotation": null,
-                    "size": null,
-                    "spin": false,
-                    "symbol": false,
-                    "transform": null,
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                null,
-              ],
-              "type": "li",
-            },
+            null,
           ],
           "type": "ul",
         },
