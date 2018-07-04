@@ -21,6 +21,7 @@ jspm_packages
 .aws.env
 *.log
 .env.production
+.env.production.bk
 
 # Rails
 #############################
