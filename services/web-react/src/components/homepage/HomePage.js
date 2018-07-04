@@ -20,8 +20,8 @@ export class HomePage extends Component {
     }
 
     async componentDidMount() {
-        const parsed = queryString.parse(this.props.location.search);
-        this.props.fetchArticlesArchiveList && this.props.fetchArticlesArchiveList();
+        const parsed = queryString.parse(this.props.location.search, { ignoreQueryPrefix: true });
+        this.props.fetchArticlesArchiveList && await this.props.fetchArticlesArchiveList();
         if(this.props.fetchList) {
             await this.props.fetchList(parsed);
             this.setState({loading: false});
@@ -30,19 +30,12 @@ export class HomePage extends Component {
 
     updateFilter = async (key, value) => {
         let route = "";
-        let selected = {};
-
         this.setState({loading: true});
         if(this.props.selected && this.props.selected[key] !== value) {
             route = `/?${key}=${value}`;
-            selected = {[key]: value};
         }
 
         this.props.history.push(route);
-        if (this.props.fetchList) {
-            await this.props.fetchList(selected);
-            this.setState({loading: false});
-        }
     };
 
     mainContent() {
