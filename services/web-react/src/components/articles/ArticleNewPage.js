@@ -16,9 +16,12 @@ export class ArticleNewPage extends Component {
             body: "",
             tags: "",
             submitting: false,
-            errorMsg: "",
-            token: props.token
+            errorMsg: ""
         };
+    }
+
+    componentDidMount() {
+        window.scrollTo(0, 0);
     }
 
     onSubmitArticle = async (e) => {
@@ -38,7 +41,7 @@ export class ArticleNewPage extends Component {
             const tags = uniq(trimmedTags);
             const { title, body } = this.state;
             const article = { title, body, tags };
-            await this.props.createItem({ token: this.state.token, article });
+            await this.props.createItem({ article });
             toastSuccess("Success!", toastID);
             this.props.history.push('/');
         }
@@ -97,14 +100,8 @@ export class ArticleNewPage extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        token: state.auth.token
-    };
-};
-
 const mapDispatchToProps = (dispatch) => ({
     createItem: async (data) => await dispatch(createItem(data))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArticleNewPage);
+export default connect(null, mapDispatchToProps)(ArticleNewPage);

@@ -6,7 +6,7 @@ import Sidebar from './Sidebar';
 import Article from './Article';
 import Pagination from '../shared/Pagination';
 
-import { fetchList, fetchArticlesArchiveList } from '../../actions/articles';
+import { fetchList, fetchArchiveArticlesList } from '../../actions/articles';
 
 import './css/homepage.css';
 
@@ -20,8 +20,10 @@ export class HomePage extends Component {
     }
 
     async componentDidMount() {
+        window.scrollTo(0, 0);
+
         const parsed = queryString.parse(this.props.location.search, { ignoreQueryPrefix: true });
-        this.props.fetchArticlesArchiveList && await this.props.fetchArticlesArchiveList();
+        this.props.fetchArchiveArticlesList && await this.props.fetchArchiveArticlesList();
         if(this.props.fetchList) {
             await this.props.fetchList(parsed);
             this.setState({loading: false});
@@ -88,7 +90,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
     fetchList: (filters) => dispatch(fetchList(filters)),
-    fetchArticlesArchiveList: () => dispatch(fetchArticlesArchiveList())
+    fetchArchiveArticlesList: () => dispatch(fetchArchiveArticlesList())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

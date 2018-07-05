@@ -34,6 +34,13 @@ custom:
           value: max-age=0
 
 functions:
+  archives_articles:
+    handler: bin/archives_articles_index
+    events:
+      - http:
+          path: /archives/articles
+          method: get
+          cors: true
   articles_index:
     handler: bin/articles_index
     iamRoleStatements:
@@ -106,13 +113,6 @@ functions:
           path: /articles/{id}
           method: delete
           cors: true
-  articles_archives:
-    handler: bin/articles_archives_index
-    events:
-      - http:
-          path: /articles/archives
-          method: get
-          cors: true
   tokens_create:
     handler: bin/tokens_create
     iamRoleStatements:
@@ -124,6 +124,13 @@ functions:
       - http:
           path: /tokens
           method: post
+          cors: true
+  user_articles_verify:
+    handler: bin/user_articles_verify_show
+    events:
+      - http:
+          path: /users_articles/verify/{id}
+          method: get
           cors: true
   users_create:
     handler: bin/users_create

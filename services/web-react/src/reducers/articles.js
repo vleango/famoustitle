@@ -11,7 +11,11 @@ const articlesReducerDefaultState = {
         tags: [],
         selected: {}
     },
-    show:  { resource: null }
+    show:  {
+        resource: null,
+        editable_id: null
+    },
+    edit:  { resource: null }
 };
 
 export default (state = articlesReducerDefaultState, action) => {
@@ -29,7 +33,7 @@ export default (state = articlesReducerDefaultState, action) => {
                     selected: action.data.selected
                 }
             };
-        case 'ARTICLES_ARCHIVE_LIST':
+        case 'ARCHIVE_ARTICLES_LIST':
             let archives = {};
             forEach(action.data.archives.buckets, (bucket) => {
                 archives[bucket["key_as_string"]] = bucket["doc_count"];
@@ -45,7 +49,18 @@ export default (state = articlesReducerDefaultState, action) => {
         case 'ARTICLE_ITEM':
             return {
                 ...state,
-                show: { resource: action.data.article }
+                show: {
+                    ...state.show,
+                    resource: action.data.article
+                }
+            };
+        case 'ARTICLE_EDITABLE':
+            return {
+                ...state,
+                show: {
+                    ...state.show,
+                    editable_id: action.data.editable_id
+                }
             };
         case 'ARTICLE_UPDATE':
             return {

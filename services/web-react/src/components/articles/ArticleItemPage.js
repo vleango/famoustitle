@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import ReactMarkdown from 'react-markdown';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { Button } from 'reactstrap';
 
-import { fetchItem } from '../../actions/articles';
+import { fetchItem, itemEditable } from '../../actions/articles';
 import './css/ArticleItemPage.css';
 
 import faUser from "@fortawesome/fontawesome-free-solid/faUser";
@@ -20,11 +21,23 @@ export class ArticleItemPage extends Component {
         super(props);
         this.state = {
             article: null,
-            loadingText: "Loading..."
+            loadingText: "Loading...",
+            editable_id: null
         };
     }
 
     async componentDidMount() {
+        window.scrollTo(0, 0);
+
+        if(this.props.itemEditable) {
+            try {
+                const response = await this.props.itemEditable(this.props.match.params.id);
+                this.setState({
+                    editable_id: response["id"]
+                });
+            } catch (error) {}
+        }
+
         if(this.props.fetchItem) {
             try {
                 await this.props.fetchItem(this.props.match.params.id);
@@ -81,6 +94,13 @@ export class ArticleItemPage extends Component {
         return (
             <div className="canvas">
                 <div className="container pt-5 pb-5">
+
+                    { this.state.editable_id && (
+                        <div className="clearfix">
+                            <Button tag={Link} to={`/articles/${this.state.editable_id}/edit`} className="float-right" color="info">Edit</Button>{' '}
+                        </div>
+                    ) }
+
                     {/* message for when loading article */}
                     { !this.state.article && <p>{this.state.loadingText}</p> }
 
@@ -100,13 +120,13 @@ export class ArticleItemPage extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        isAuthenticated: !!state.auth.token,
         article: state.articles.show.resource
     };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchItem: async (data) => await dispatch(fetchItem(data))
+    fetchItem: async (data) => await dispatch(fetchItem(data)),
+    itemEditable: async (data) => await dispatch(itemEditable(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleItemPage);

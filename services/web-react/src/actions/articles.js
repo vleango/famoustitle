@@ -28,11 +28,11 @@ export const fetchList = (filters = {}) => {
     }
 };
 
-export const fetchArticlesArchiveList = () => {
+export const fetchArchiveArticlesList = () => {
     return async (dispatch, getState) => {
         return new Promise(async(resolve, reject) => {
             try {
-                const response = await axios.get(`${ROOT_API_URL}/articles/archives`);
+                const response = await axios.get(`${ROOT_API_URL}/archives/articles`);
                 let data = { ...response.data };
                 dispatch(archives(data));
                 resolve(data);
@@ -64,6 +64,20 @@ export const fetchItem = (id) => {
                 const response = await axios.get(`${ROOT_API_URL}/articles/${id}`);
                 resolve(response.body);
                 dispatch(item({article: response.data}));
+            }
+            catch (error) {
+                reject(error);
+            }
+        });
+    };
+};
+
+export const itemEditable = (id) => {
+    return async (dispatch, getState) => {
+        return new Promise(async(resolve, reject) => {
+            try {
+                const response = await axios.get(`${ROOT_API_URL}/users_articles/verify/${id}`, authHeader(getState));
+                resolve(response.data);
             }
             catch (error) {
                 reject(error);
@@ -108,12 +122,17 @@ export const list = (data) => ({
 });
 
 export const archives = (data) => ({
-    type: 'ARTICLES_ARCHIVE_LIST',
+    type: 'ARCHIVE_ARTICLES_LIST',
     data
 });
 
 export const item = (data) => ({
     type: 'ARTICLE_ITEM',
+    data
+});
+
+export const itemEdit = (data) => ({
+    type: 'ARTICLE_EDITABLE',
     data
 });
 
