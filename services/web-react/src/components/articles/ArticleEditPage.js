@@ -14,7 +14,9 @@ import faUser from "@fortawesome/fontawesome-free-solid/faUser";
 import faCalendarAlt from "@fortawesome/fontawesome-free-solid/faCalendarAlt";
 import faTag from "@fortawesome/fontawesome-free-solid/faTag";
 import fontawesome from "@fortawesome/fontawesome/index";
-import {itemEditable} from "../../actions/articles";
+import {itemEditable, updateItem} from "../../actions/articles";
+import { toastInProgress, toastSuccess, toastFail } from '../shared/Toast';
+
 fontawesome.library.add(faUser, faCalendarAlt, faTag);
 
 export class ArticleEditPage extends Component {
@@ -42,7 +44,7 @@ export class ArticleEditPage extends Component {
                     author: response["author"],
                     title: response["title"],
                     body: response["body"],
-                    tags: response["tags"],
+                    tags: response["tags"] || "",
                     date: response["updated_at"]
                 });
             } catch (error) {
@@ -98,8 +100,24 @@ export class ArticleEditPage extends Component {
         this.setState(() => ({ [field]: value }));
     };
 
-    onSubmitEditArticle = () => {
-        console.log("edit");
+    onSubmitEditArticle = async (e) => {
+        e && e.preventDefault();
+
+        const toastID = toastInProgress("Saving in progress...");
+        try {
+            this.setState({ submitting: true, errorMsg: "" });
+            const {author, title, body, tags} = this.state;
+            await this.props.updateItem({id: this.props.match.params.id, article: { author, title, body, tags: split(tags, ",") }});
+            toastSuccess("Success!", toastID);
+            this.setState({ submitting: false, errorMsg: "" });
+        } catch (error) {
+            let msg = "server error";
+            if(error && error.response) {
+                msg = error.response.statusText;
+            }
+            this.setState({ submitting: false, errorMsg: msg });
+            toastFail(msg, toastID);
+        }
     };
 
     render() {
@@ -163,7 +181,8 @@ export class ArticleEditPage extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    itemEditable: async (data) => await dispatch(itemEditable(data))
+    itemEditable: async (data) => await dispatch(itemEditable(data)),
+    updateItem: async (data) => await dispatch(updateItem(data))
 });
 
 export default connect(null, mapDispatchToProps)(ArticleEditPage);

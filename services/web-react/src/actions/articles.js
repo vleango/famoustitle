@@ -86,11 +86,11 @@ export const itemEditable = (id) => {
     };
 };
 
-export const updateItem = (id, data) => {
+export const updateItem = (data) => {
     return async (dispatch, getState) => {
         return new Promise(async(resolve, reject) => {
             try {
-                const response = await axios.post(`${ROOT_API_URL}/articles/${id}`, data, authHeader(getState));
+                const response = await axios.post(`${ROOT_API_URL}/articles/${data.id}`, {article: data.article}, authHeader(getState));
                 resolve(response.body);
             }
             catch (error) {

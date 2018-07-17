@@ -127,6 +127,15 @@ functions:
           cors: true
   user_articles_verify:
     handler: bin/user_articles_verify_show
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:GetItem"
+        Resource: ${file(./.${self:provider.stage}.yml):ARN_DB_RESOURCE_ARTICLES}
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:GetItem"
+        Resource: ${file(./.${self:provider.stage}.yml):ARN_DB_RESOURCE_USERS}
     events:
       - http:
           path: /users_articles/verify/{id}
