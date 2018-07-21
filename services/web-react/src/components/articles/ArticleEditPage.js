@@ -5,6 +5,7 @@ import { Button } from 'reactstrap';
 import { Form, FormGroup, Input } from 'reactstrap';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { split } from 'lodash';
+import Spinner from '../shared/Spinner';
 
 import './css/ArticleItemPage.css';
 import moment from "moment/moment";
@@ -166,7 +167,7 @@ export class ArticleEditPage extends Component {
                             </div>
                             <div className="col-md">
                                 <div className="mt-5">
-                                    { this.state.errorMsg === "" && this.state.author === "" && <p>Loading...</p> }
+                                    { this.state.errorMsg === "" && this.state.author === "" && <Spinner /> }
                                     { this.state.author && (
                                         <Fragment>
                                             <h3>{this.state.title}</h3>

@@ -5,6 +5,7 @@ import moment from 'moment';
 import ReactMarkdown from 'react-markdown';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Button } from 'reactstrap';
+import Spinner from '../shared/Spinner';
 
 import { fetchItem, itemEditable } from '../../actions/articles';
 import './css/ArticleItemPage.css';
@@ -21,7 +22,7 @@ export class ArticleItemPage extends Component {
         super(props);
         this.state = {
             article: null,
-            loadingText: "Loading...",
+            errorMsg: "",
             editable_id: null
         };
     }
@@ -43,7 +44,7 @@ export class ArticleItemPage extends Component {
                 await this.props.fetchItem(this.props.match.params.id);
             } catch(error) {
                 this.setState({
-                    loadingText: error.toString()
+                    errorMsg: error.toString()
                 });
             }
         }
@@ -102,7 +103,8 @@ export class ArticleItemPage extends Component {
                     ) }
 
                     {/* message for when loading article */}
-                    { !this.state.article && <p>{this.state.loadingText}</p> }
+                    { !this.state.article && <Spinner /> }
+                    { this.state.errorMsg }
 
                     {/* after article loads */}
                     { this.state.article && (

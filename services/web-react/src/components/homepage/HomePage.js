@@ -5,6 +5,7 @@ import queryString from 'qs';
 import Sidebar from './Sidebar';
 import Article from './Article';
 import Pagination from '../shared/Pagination';
+import Spinner from '../shared/Spinner';
 
 import { fetchList, fetchArchiveArticlesList } from '../../actions/articles';
 
@@ -42,7 +43,7 @@ export class HomePage extends Component {
 
     mainContent() {
         if(this.state.loading) {
-            return <p>Loading...</p>
+            return <Spinner />
         }
 
         return (
