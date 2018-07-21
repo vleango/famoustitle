@@ -6,6 +6,7 @@ import Sidebar from './Sidebar';
 import Article from './Article';
 import Pagination from '../shared/Pagination';
 import Spinner from '../shared/Spinner';
+import {Helmet} from "react-helmet";
 
 import { fetchList, fetchArchiveArticlesList } from '../../actions/articles';
 
@@ -63,6 +64,10 @@ export class HomePage extends Component {
     render() {
         return (
             <div className="canvas">
+                <Helmet>
+                    <title>FamousTitle.com</title>
+                </Helmet>
+
                 <div className="container pt-5">
                     <div className="row">
                         <div className="col-xl-4">

@@ -4,6 +4,7 @@ import { Button } from 'reactstrap';
 import { Form, FormGroup, Input } from 'reactstrap';
 import { split, map, trim, uniq } from 'lodash';
 import { toastInProgress, toastSuccess, toastFail } from '../shared/Toast';
+import {Helmet} from "react-helmet";
 
 import { createItem } from '../../actions/articles';
 
@@ -65,6 +66,10 @@ export class ArticleNewPage extends Component {
     render() {
         return (
             <Fragment>
+                <Helmet>
+                    <title>Write a new article - FamousTitle.com</title>
+                </Helmet>
+
                 <div className="container">
                     <Form onSubmit={this.onSubmitArticle} autoComplete="off">
                         <FormGroup>

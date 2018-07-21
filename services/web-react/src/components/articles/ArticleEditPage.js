@@ -6,6 +6,7 @@ import { Form, FormGroup, Input } from 'reactstrap';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { split } from 'lodash';
 import Spinner from '../shared/Spinner';
+import {Helmet} from "react-helmet";
 
 import './css/ArticleItemPage.css';
 import moment from "moment/moment";
@@ -126,6 +127,10 @@ export class ArticleEditPage extends Component {
     render() {
         return (
             <Fragment>
+                <Helmet>
+                    <title>Edit an article - FamousTitle.com</title>
+                </Helmet>
+
                 <div className="container">
 
                     <Form onSubmit={this.onSubmitEditArticle} autoComplete="off">

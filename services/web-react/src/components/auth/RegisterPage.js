@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { Form, FormGroup, Input } from 'reactstrap';
 import { toastInProgress, toastSuccess, toastFail } from '../shared/Toast';
+import {Helmet} from "react-helmet";
 
 import { startRegister } from '../../actions/auth';
 
@@ -74,6 +75,10 @@ export class RegisterPage extends Component {
     render() {
         return (
             <Fragment>
+                <Helmet>
+                    <title>Create an account - FamousTitle.com</title>
+                </Helmet>
+
                 <div className="container">
                     <Form onSubmit={this.onSubmitRegister} autoComplete="off">
                         <FormGroup>

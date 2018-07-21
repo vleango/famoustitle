@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Button } from 'reactstrap';
 import Spinner from '../shared/Spinner';
+import {Helmet} from "react-helmet";
 
 import { fetchItem, removeItem, itemEditable } from '../../actions/articles';
 import './css/ArticleItemPage.css';
@@ -114,8 +115,11 @@ export class ArticleItemPage extends Component {
     render() {
         return (
             <div className="canvas">
-                <div className="container pt-5 pb-5">
+                <Helmet>
+                    {this.state.article && <title>{this.state.article.title} - FamousTitle.com</title>}
+                </Helmet>
 
+                <div className="container pt-5 pb-5">
                     { this.state.editable_id && (
                         <div className="clearfix">
                             <Button disabled={this.state.deleting} onClick={this.onDeleteArticle} className="float-right" color="info">Delete</Button>
