@@ -49,7 +49,7 @@ export default (props) => {
                         </div>
                     ) }
                     <p className={props.article.img_url ? 'article__contents--body text-muted' : 'text-muted'}>
-                        { truncate(props.article.body, {
+                        { truncate(props.article.subtitle, {
                             'length': 350,
                             'omission': '...'
                         }) }

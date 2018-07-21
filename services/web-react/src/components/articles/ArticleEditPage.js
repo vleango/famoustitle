@@ -26,6 +26,7 @@ export class ArticleEditPage extends Component {
         this.state = {
             author: "",
             title: "",
+            subtitle: "",
             body: "",
             tags: "",
             date: "",
@@ -43,6 +44,7 @@ export class ArticleEditPage extends Component {
                 this.setState({
                     author: response["author"],
                     title: response["title"],
+                    subtitle: response["subtitle"] || "",
                     body: response["body"],
                     tags: response["tags"] || "",
                     date: response["updated_at"]
@@ -106,8 +108,8 @@ export class ArticleEditPage extends Component {
         const toastID = toastInProgress("Saving in progress...");
         try {
             this.setState({ submitting: true, errorMsg: "" });
-            const {author, title, body, tags} = this.state;
-            await this.props.updateItem({id: this.props.match.params.id, article: { author, title, body, tags: split(tags, ",") }});
+            const {author, title, subtitle, body, tags} = this.state;
+            await this.props.updateItem({id: this.props.match.params.id, article: { author, title, subtitle, body, tags: split(tags, ",") }});
             toastSuccess("Success!", toastID);
             this.setState({ submitting: false, errorMsg: "" });
         } catch (error) {
@@ -138,6 +140,13 @@ export class ArticleEditPage extends Component {
                                     </FormGroup>
                                     <FormGroup>
                                         <Input type="text"
+                                               name="subtitle"
+                                               value={this.state.subtitle}
+                                               placeholder="Subtitle"
+                                               onChange={this.onInputChange} />
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Input type="text"
                                                name="tags"
                                                value={this.state.tags}
                                                placeholder="Tag"
@@ -161,6 +170,7 @@ export class ArticleEditPage extends Component {
                                     { this.state.author && (
                                         <Fragment>
                                             <h3>{this.state.title}</h3>
+                                            <p>{this.state.subtitle}</p>
                                             { this.displayInfo(false) }
                                             { this.displayBody() }
                                             <div className="clearfix">

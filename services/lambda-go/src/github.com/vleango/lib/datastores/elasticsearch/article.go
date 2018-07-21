@@ -56,6 +56,7 @@ type Source struct {
 	ID        string    `json:"id"`
 	Author    string    `json:"author"`
 	Title     string    `json:"title"`
+	Subtitle  *string   `json:"subtitle"`
 	Body      string    `json:"body"`
 	Tags      []string  `json:"tags"`
 	ImgUrl    *string   `json:"img_url"`

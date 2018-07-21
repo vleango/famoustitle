@@ -13,6 +13,7 @@ export class ArticleNewPage extends Component {
         super(props);
         this.state = {
             title: "",
+            subtitle: "",
             body: "",
             tags: "",
             submitting: false,
@@ -26,7 +27,7 @@ export class ArticleNewPage extends Component {
 
     onSubmitArticle = async (e) => {
         e && e.preventDefault();
-        const { title, body } = this.state;
+        const { title, body, subtitle } = this.state;
         if(title === "" || body === "") {
             this.setState({ errorMsg: "title or body is blank" });
             return;
@@ -40,7 +41,7 @@ export class ArticleNewPage extends Component {
             const trimmedTags = map(rawTags, (tag) => { return trim(tag).toLowerCase() });
             const tags = uniq(trimmedTags);
             const { title, body } = this.state;
-            const article = { title, body, tags };
+            const article = { title, subtitle, body, tags };
             await this.props.createItem({ article });
             toastSuccess("Success!", toastID);
             this.props.history.push('/');
@@ -71,6 +72,13 @@ export class ArticleNewPage extends Component {
                                    name="title"
                                    value={this.state.title}
                                    placeholder="Title"
+                                   onChange={this.onInputChange} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Input type="text"
+                                   name="subtitle"
+                                   value={this.state.subtitle}
+                                   placeholder="Subtitle"
                                    onChange={this.onInputChange} />
                         </FormGroup>
                         <FormGroup>
