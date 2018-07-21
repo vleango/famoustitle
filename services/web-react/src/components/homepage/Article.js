@@ -44,7 +44,7 @@ export default (props) => {
                 <div className="article__contents">
                     { props.article.img_url && (
                         <div className="article__contents--image-container">
-                            <img src={this.article.img_url}
+                            <img src={props.article.img_url}
                                  alt={props.article.title} className="article__contents--image" />
                         </div>
                     ) }

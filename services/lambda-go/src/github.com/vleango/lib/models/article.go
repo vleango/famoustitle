@@ -10,6 +10,7 @@ type Article struct {
 	Title     string    `json:"title"`
 	Body      string    `json:"body"`
 	Tags      []string  `json:"tags"`
+	ImgUrl    *string   `json:"img_url"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
