@@ -7,13 +7,14 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Button } from 'reactstrap';
 import Spinner from '../shared/Spinner';
 
-import { fetchItem, itemEditable } from '../../actions/articles';
+import { fetchItem, removeItem, itemEditable } from '../../actions/articles';
 import './css/ArticleItemPage.css';
 
 import faUser from "@fortawesome/fontawesome-free-solid/faUser";
 import faCalendarAlt from "@fortawesome/fontawesome-free-solid/faCalendarAlt";
 import faTag from "@fortawesome/fontawesome-free-solid/faTag";
 import fontawesome from "@fortawesome/fontawesome/index";
+import { toastInProgress, toastSuccess, toastFail } from '../shared/Toast';
 fontawesome.library.add(faUser, faCalendarAlt, faTag);
 
 export class ArticleItemPage extends Component {
@@ -23,7 +24,8 @@ export class ArticleItemPage extends Component {
         this.state = {
             article: null,
             errorMsg: "",
-            editable_id: null
+            editable_id: null,
+            deleting: false
         };
     }
 
@@ -91,6 +93,24 @@ export class ArticleItemPage extends Component {
         )
     }
 
+    onDeleteArticle = async () => {
+        const toastID = toastInProgress("deleting in progress...");
+        try{
+            this.setState({ deleting: true, errorMsg: "" });
+            await this.props.removeItem({id: this.props.match.params.id });
+            toastSuccess("Success!", toastID);
+            this.setState({ submitting: false, errorMsg: "" });
+            this.props.history.push('/');
+        } catch(error) {
+            let msg = "server error";
+            if(error && error.response) {
+                msg = error.response.statusText;
+            }
+            this.setState({ submitting: false, errorMsg: msg });
+            toastFail(msg, toastID);
+        }
+    };
+
     render() {
         return (
             <div className="canvas">
@@ -98,7 +118,8 @@ export class ArticleItemPage extends Component {
 
                     { this.state.editable_id && (
                         <div className="clearfix">
-                            <Button tag={Link} to={`/articles/${this.state.editable_id}/edit`} className="float-right" color="info">Edit</Button>{' '}
+                            <Button disabled={this.state.deleting} onClick={this.onDeleteArticle} className="float-right" color="info">Delete</Button>
+                            <Button tag={Link} to={`/articles/${this.state.editable_id}/edit`} className="float-right mr-4" color="info">Edit</Button>
                         </div>
                     ) }
 
@@ -128,7 +149,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => ({
     fetchItem: async (data) => await dispatch(fetchItem(data)),
-    itemEditable: async (data) => await dispatch(itemEditable(data))
+    itemEditable: async (data) => await dispatch(itemEditable(data)),
+    removeItem: async (data) => await dispatch(removeItem(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleItemPage);

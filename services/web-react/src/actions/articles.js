@@ -101,11 +101,11 @@ export const updateItem = (data) => {
     }
 };
 
-export const removeItem = (id) => {
+export const removeItem = (data) => {
     return async (dispatch, getState) => {
         return new Promise(async(resolve, reject) => {
             try {
-                const response = await axios.delete(`${ROOT_API_URL}/articles/${id}`, authHeader(getState));
+                const response = await axios.delete(`${ROOT_API_URL}/articles/${data.id}`, authHeader(getState));
                 resolve(response.body);
             }
             catch (error) {
