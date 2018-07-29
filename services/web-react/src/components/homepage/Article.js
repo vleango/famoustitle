@@ -56,7 +56,6 @@ export default (props) => {
                     </p>
                 </div>
             </Link>
-            <hr />
         </article>
     );
 }

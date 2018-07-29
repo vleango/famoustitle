@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import { connect } from 'react-redux';
 import queryString from 'qs';
 
@@ -47,13 +47,21 @@ export class HomePage extends Component {
             return <Spinner />
         }
 
+        let position = 0;
+
         return (
             this.props.articles.length === 0 ? (
                 <p>Results not found</p>
             ) : (
                 [
                     this.props.articles.map((article) => {
-                        return <Article key={article.id} article={article} updateFilter={this.updateFilter} />;
+                        position += 1;
+                        return (
+                            <Fragment key={position}>
+                                <Article key={article.id} article={article} updateFilter={this.updateFilter} />
+                                { position !== this.props.articles.length && <hr /> }
+                            </Fragment>
+                        );
                     }),
                     <Pagination key="pagination" {...this.props.pagination} />
                 ]
@@ -73,14 +81,11 @@ export class HomePage extends Component {
                         <div className="col-xl-4">
                             <Sidebar updateFilter={this.updateFilter} />
                         </div>
-                        <div className="col-xl-8 main--content">
+                        <div className="col-xl-8 main--content mb-4">
                             { this.mainContent() }
                         </div>
                     </div>
                 </div>
-                <footer className="text-muted">
-                    created by Tha Leang
-                </footer>
             </div>
         );
     }
