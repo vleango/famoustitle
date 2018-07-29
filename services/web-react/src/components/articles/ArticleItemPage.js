@@ -119,7 +119,7 @@ export class ArticleItemPage extends Component {
                     {this.state.article && <title>{this.state.article.title} - FamousTitle.com</title>}
                 </Helmet>
 
-                <div className="container pt-5 pb-5">
+                <div className="container article-show-container pt-5 pb-5">
                     { this.state.editable_id && (
                         <div className="clearfix">
                             <Button disabled={this.state.deleting} onClick={this.onDeleteArticle} className="float-right" color="info">Delete</Button>

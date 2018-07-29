@@ -10,3 +10,15 @@
     font-weight: bolder;
     font-size: 2rem;
 }
+
+@media (min-width: 1140px) {
+    .article-show-container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 992px) {
+    .article-show-container {
+        max-width: 768px;
+    }
+}
