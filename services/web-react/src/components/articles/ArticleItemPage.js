@@ -5,6 +5,7 @@ import moment from 'moment';
 import ReactMarkdown from 'react-markdown';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Button } from 'reactstrap';
+import { Modal } from 'reactstrap';
 import Spinner from '../shared/Spinner';
 import {Helmet} from "react-helmet";
 
@@ -23,6 +24,7 @@ export class ArticleItemPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            imgModal: false,
             article: null,
             errorMsg: "",
             editable_id: null,
@@ -86,10 +88,25 @@ export class ArticleItemPage extends Component {
         );
     };
 
+    imgModalToggle = (props) => {
+        this.setState({
+            modalData: {alt: props.target.alt, src: props.target.src},
+            imgModal: !this.state.imgModal,
+        });
+    };
+
+    LinkRenderer = (props) => {
+        return <a href={props.href} rel="noopener noreferrer" target="_blank">{props.children}</a>
+    };
+
+    ImgRenderer = (props) => {
+        return <img className={"pointer"} onClick={this.imgModalToggle} alt={props.alt} src={props.src}>{props.children}</img>
+    };
+
     displayBody() {
         return (
             <div className={`body-markdown spacing`}>
-                <ReactMarkdown source={ this.state.article.body } />
+                <ReactMarkdown source={ this.state.article.body } renderers={{link: this.LinkRenderer, image: this.ImgRenderer}}/>
             </div>
         )
     }
@@ -139,6 +156,15 @@ export class ArticleItemPage extends Component {
                             { this.displayBody() }
                         </Fragment>
                     ) }
+
+                    {/* Img Modal */}
+                    <Modal isOpen={this.state.imgModal} toggle={this.imgModalToggle} centered={true} size={'article-img-dialog'}>
+                        {this.state.modalData && (
+                            <a rel="noopener noreferrer" onClick={this.imgModalToggle} target="_blank" href={this.state.modalData.src}>
+                                <img className='modal-img' alt={this.state.modalData.alt} src={this.state.modalData.src} />
+                            </a>
+                        )}
+                    </Modal>
                 </div>
             </div>
         );
