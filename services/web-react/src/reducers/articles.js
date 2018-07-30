@@ -33,7 +33,7 @@ export default (state = articlesReducerDefaultState, action) => {
                     selected: action.data.selected
                 }
             };
-        case 'ARCHIVE_ARTICLES_LIST':
+        case 'ARTICLES_ARCHIVE_LIST':
             let archives = {};
             forEach(action.data.archives.buckets, (bucket) => {
                 archives[bucket["key_as_string"]] = bucket["doc_count"];

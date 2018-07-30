@@ -64,6 +64,7 @@ ShallowWrapper {
           >
                     Archives
           </div>
+          <Unknown />
           <ul />
 </aside>,
         <aside
@@ -74,6 +75,7 @@ ShallowWrapper {
           >
                     Tags
           </div>
+          <Unknown />
           <div
                     className="tagcloud"
           />
@@ -254,6 +256,7 @@ ShallowWrapper {
 >
               Archives
 </div>,
+            <Unknown />,
             <ul />,
           ],
           "className": "widget",
@@ -271,6 +274,15 @@ ShallowWrapper {
             "ref": null,
             "rendered": "Archives",
             "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
           },
           Object {
             "instance": null,
@@ -297,6 +309,7 @@ ShallowWrapper {
 >
               Tags
 </div>,
+            <Unknown />,
             <div
               className="tagcloud"
 />,
@@ -316,6 +329,15 @@ ShallowWrapper {
             "ref": null,
             "rendered": "Tags",
             "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
           },
           Object {
             "instance": null,
@@ -388,6 +410,7 @@ ShallowWrapper {
             >
                         Archives
             </div>
+            <Unknown />
             <ul />
 </aside>,
           <aside
@@ -398,6 +421,7 @@ ShallowWrapper {
             >
                         Tags
             </div>
+            <Unknown />
             <div
                         className="tagcloud"
             />
@@ -578,6 +602,7 @@ ShallowWrapper {
 >
                 Archives
 </div>,
+              <Unknown />,
               <ul />,
             ],
             "className": "widget",
@@ -595,6 +620,15 @@ ShallowWrapper {
               "ref": null,
               "rendered": "Archives",
               "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
             },
             Object {
               "instance": null,
@@ -621,6 +655,7 @@ ShallowWrapper {
 >
                 Tags
 </div>,
+              <Unknown />,
               <div
                 className="tagcloud"
 />,
@@ -640,6 +675,15 @@ ShallowWrapper {
               "ref": null,
               "rendered": "Tags",
               "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
             },
             Object {
               "instance": null,

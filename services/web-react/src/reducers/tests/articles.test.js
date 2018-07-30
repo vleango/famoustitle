@@ -10,6 +10,9 @@ describe('Reducers', () => {
                 };
                 const state = articleReducer(undefined, action);
                 expect(state).toEqual({
+                    edit: {
+                        resource: null
+                    },
                     index: {
                         pagination: {
                             currentPage: 0,
@@ -21,6 +24,7 @@ describe('Reducers', () => {
                         tags: []
                     },
                     show: {
+                        editable_id: null,
                         resource: null
                     }
                 });
@@ -46,6 +50,9 @@ describe('Reducers', () => {
 
                const state = articleReducer(undefined, action);
                expect(state).toEqual({
+                   edit: {
+                       resource: null
+                   },
                    index: {
                        pagination: {
                            currentPage: 0,
@@ -57,6 +64,7 @@ describe('Reducers', () => {
                        tags: ["123", "456"]
                    },
                    show: {
+                       editable_id: null,
                        resource: null
                    }
                });
@@ -81,17 +89,21 @@ describe('Reducers', () => {
 
                 const state = articleReducer(undefined, action);
                 expect(state).toEqual({
+                    edit: {
+                        resource: null
+                    },
                     index: {
                         pagination: {
                             currentPage: 0,
                             totalPages: 0
                         },
+                        archives: {"hello": 1},
                         resources: [],
                         selected: {},
-                        archives: {"hello": 1},
                         tags: []
                     },
                     show: {
+                        editable_id: null,
                         resource: null
                     }
                 });
@@ -109,6 +121,9 @@ describe('Reducers', () => {
 
                 const state = articleReducer(undefined, action);
                 expect(state).toEqual({
+                    edit: {
+                        resource: null,
+                    },
                     index: {
                         pagination: {
                             currentPage: 0,
@@ -120,6 +135,7 @@ describe('Reducers', () => {
                         tags: []
                     },
                     show: {
+                        editable_id: null,
                         resource: "art"
                     }
                 });

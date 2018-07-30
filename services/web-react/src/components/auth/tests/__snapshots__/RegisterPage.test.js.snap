@@ -17,399 +17,16 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
-      "children": <div
-        className="container"
+      "children": Array [
+        <HelmetWrapper
+          defer={true}
+          encodeSpecialCharacters={true}
 >
-        <Form
-                autoComplete="off"
-                onSubmit={[Function]}
-                tag="form"
-        >
-                <FormGroup
-                        tag="div"
-                >
-                        <Input
-                                name="first_name"
-                                onChange={[Function]}
-                                placeholder="First name"
-                                type="text"
-                                value=""
-                        />
-                        <Input
-                                name="last_name"
-                                onChange={[Function]}
-                                placeholder="Last name"
-                                type="text"
-                                value=""
-                        />
-                        <Input
-                                name="email"
-                                onChange={[Function]}
-                                placeholder="Email"
-                                type="email"
-                                value=""
-                        />
-                </FormGroup>
-                <FormGroup
-                        tag="div"
-                >
-                        <Input
-                                name="password"
-                                onChange={[Function]}
-                                placeholder="password"
-                                type="password"
-                                value=""
-                        />
-                        <Input
-                                name="password_confirmation"
-                                onChange={[Function]}
-                                placeholder="password confirmation"
-                                type="password"
-                                value=""
-                        />
-                </FormGroup>
-                
-                <div
-                        className="clearfix"
-                >
-                        <Button
-                                color="primary float-right"
-                                disabled={false}
-                                size="lg"
-                                tag="button"
-                        >
-                                Register
-                        </Button>
-                </div>
-        </Form>
-</div>,
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": <Form
-          autoComplete="off"
-          onSubmit={[Function]}
-          tag="form"
->
-          <FormGroup
-                    tag="div"
-          >
-                    <Input
-                              name="first_name"
-                              onChange={[Function]}
-                              placeholder="First name"
-                              type="text"
-                              value=""
-                    />
-                    <Input
-                              name="last_name"
-                              onChange={[Function]}
-                              placeholder="Last name"
-                              type="text"
-                              value=""
-                    />
-                    <Input
-                              name="email"
-                              onChange={[Function]}
-                              placeholder="Email"
-                              type="email"
-                              value=""
-                    />
-          </FormGroup>
-          <FormGroup
-                    tag="div"
-          >
-                    <Input
-                              name="password"
-                              onChange={[Function]}
-                              placeholder="password"
-                              type="password"
-                              value=""
-                    />
-                    <Input
-                              name="password_confirmation"
-                              onChange={[Function]}
-                              placeholder="password confirmation"
-                              type="password"
-                              value=""
-                    />
-          </FormGroup>
-          
-          <div
-                    className="clearfix"
-          >
-                    <Button
-                              color="primary float-right"
-                              disabled={false}
-                              size="lg"
-                              tag="button"
-                    >
-                              Register
-                    </Button>
-          </div>
-</Form>,
-        "className": "container",
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "autoComplete": "off",
-          "children": Array [
-            <FormGroup
-              tag="div"
->
-              <Input
-                            name="first_name"
-                            onChange={[Function]}
-                            placeholder="First name"
-                            type="text"
-                            value=""
-              />
-              <Input
-                            name="last_name"
-                            onChange={[Function]}
-                            placeholder="Last name"
-                            type="text"
-                            value=""
-              />
-              <Input
-                            name="email"
-                            onChange={[Function]}
-                            placeholder="Email"
-                            type="email"
-                            value=""
-              />
-</FormGroup>,
-            <FormGroup
-              tag="div"
->
-              <Input
-                            name="password"
-                            onChange={[Function]}
-                            placeholder="password"
-                            type="password"
-                            value=""
-              />
-              <Input
-                            name="password_confirmation"
-                            onChange={[Function]}
-                            placeholder="password confirmation"
-                            type="password"
-                            value=""
-              />
-</FormGroup>,
-            "",
-            <div
-              className="clearfix"
->
-              <Button
-                            color="primary float-right"
-                            disabled={false}
-                            size="lg"
-                            tag="button"
-              >
-                            Register
-              </Button>
-</div>,
-          ],
-          "onSubmit": [Function],
-          "tag": "form",
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": Array [
-                <Input
-                  name="first_name"
-                  onChange={[Function]}
-                  placeholder="First name"
-                  type="text"
-                  value=""
-/>,
-                <Input
-                  name="last_name"
-                  onChange={[Function]}
-                  placeholder="Last name"
-                  type="text"
-                  value=""
-/>,
-                <Input
-                  name="email"
-                  onChange={[Function]}
-                  placeholder="Email"
-                  type="email"
-                  value=""
-/>,
-              ],
-              "tag": "div",
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "name": "first_name",
-                  "onChange": [Function],
-                  "placeholder": "First name",
-                  "type": "text",
-                  "value": "",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "name": "last_name",
-                  "onChange": [Function],
-                  "placeholder": "Last name",
-                  "type": "text",
-                  "value": "",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "name": "email",
-                  "onChange": [Function],
-                  "placeholder": "Email",
-                  "type": "email",
-                  "value": "",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-            ],
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": Array [
-                <Input
-                  name="password"
-                  onChange={[Function]}
-                  placeholder="password"
-                  type="password"
-                  value=""
-/>,
-                <Input
-                  name="password_confirmation"
-                  onChange={[Function]}
-                  placeholder="password confirmation"
-                  type="password"
-                  value=""
-/>,
-              ],
-              "tag": "div",
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "name": "password",
-                  "onChange": [Function],
-                  "placeholder": "password",
-                  "type": "password",
-                  "value": "",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "name": "password_confirmation",
-                  "onChange": [Function],
-                  "placeholder": "password confirmation",
-                  "type": "password",
-                  "value": "",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-            ],
-            "type": [Function],
-          },
-          "",
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": <Button
-                color="primary float-right"
-                disabled={false}
-                size="lg"
-                tag="button"
->
-                Register
-</Button>,
-              "className": "clearfix",
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": "Register",
-                "color": "primary float-right",
-                "disabled": false,
-                "size": "lg",
-                "tag": "button",
-              },
-              "ref": null,
-              "rendered": "Register",
-              "type": [Function],
-            },
-            "type": "div",
-          },
-        ],
-        "type": [Function],
-      },
-      "type": "div",
-    },
-    "type": Symbol(react.fragment),
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": <div
+          <title>
+                    Create an account - FamousTitle.com
+          </title>
+</HelmetWrapper>,
+        <div
           className="container"
 >
           <Form
@@ -475,9 +92,36 @@ ShallowWrapper {
                     </div>
           </Form>
 </div>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <title>
+            Create an account - FamousTitle.com
+</title>,
+          "defer": true,
+          "encodeSpecialCharacters": true,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Create an account - FamousTitle.com",
+          },
+          "ref": null,
+          "rendered": "Create an account - FamousTitle.com",
+          "type": "title",
+        },
+        "type": [Function],
       },
-      "ref": null,
-      "rendered": Object {
+      Object {
         "instance": null,
         "key": undefined,
         "nodeType": "host",
@@ -793,6 +437,436 @@ ShallowWrapper {
         },
         "type": "div",
       },
+    ],
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <HelmetWrapper
+            defer={true}
+            encodeSpecialCharacters={true}
+>
+            <title>
+                        Create an account - FamousTitle.com
+            </title>
+</HelmetWrapper>,
+          <div
+            className="container"
+>
+            <Form
+                        autoComplete="off"
+                        onSubmit={[Function]}
+                        tag="form"
+            >
+                        <FormGroup
+                                    tag="div"
+                        >
+                                    <Input
+                                                name="first_name"
+                                                onChange={[Function]}
+                                                placeholder="First name"
+                                                type="text"
+                                                value=""
+                                    />
+                                    <Input
+                                                name="last_name"
+                                                onChange={[Function]}
+                                                placeholder="Last name"
+                                                type="text"
+                                                value=""
+                                    />
+                                    <Input
+                                                name="email"
+                                                onChange={[Function]}
+                                                placeholder="Email"
+                                                type="email"
+                                                value=""
+                                    />
+                        </FormGroup>
+                        <FormGroup
+                                    tag="div"
+                        >
+                                    <Input
+                                                name="password"
+                                                onChange={[Function]}
+                                                placeholder="password"
+                                                type="password"
+                                                value=""
+                                    />
+                                    <Input
+                                                name="password_confirmation"
+                                                onChange={[Function]}
+                                                placeholder="password confirmation"
+                                                type="password"
+                                                value=""
+                                    />
+                        </FormGroup>
+                        
+                        <div
+                                    className="clearfix"
+                        >
+                                    <Button
+                                                color="primary float-right"
+                                                disabled={false}
+                                                size="lg"
+                                                tag="button"
+                                    >
+                                                Register
+                                    </Button>
+                        </div>
+            </Form>
+</div>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <title>
+              Create an account - FamousTitle.com
+</title>,
+            "defer": true,
+            "encodeSpecialCharacters": true,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Create an account - FamousTitle.com",
+            },
+            "ref": null,
+            "rendered": "Create an account - FamousTitle.com",
+            "type": "title",
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <Form
+              autoComplete="off"
+              onSubmit={[Function]}
+              tag="form"
+>
+              <FormGroup
+                            tag="div"
+              >
+                            <Input
+                                          name="first_name"
+                                          onChange={[Function]}
+                                          placeholder="First name"
+                                          type="text"
+                                          value=""
+                            />
+                            <Input
+                                          name="last_name"
+                                          onChange={[Function]}
+                                          placeholder="Last name"
+                                          type="text"
+                                          value=""
+                            />
+                            <Input
+                                          name="email"
+                                          onChange={[Function]}
+                                          placeholder="Email"
+                                          type="email"
+                                          value=""
+                            />
+              </FormGroup>
+              <FormGroup
+                            tag="div"
+              >
+                            <Input
+                                          name="password"
+                                          onChange={[Function]}
+                                          placeholder="password"
+                                          type="password"
+                                          value=""
+                            />
+                            <Input
+                                          name="password_confirmation"
+                                          onChange={[Function]}
+                                          placeholder="password confirmation"
+                                          type="password"
+                                          value=""
+                            />
+              </FormGroup>
+              
+              <div
+                            className="clearfix"
+              >
+                            <Button
+                                          color="primary float-right"
+                                          disabled={false}
+                                          size="lg"
+                                          tag="button"
+                            >
+                                          Register
+                            </Button>
+              </div>
+</Form>,
+            "className": "container",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "autoComplete": "off",
+              "children": Array [
+                <FormGroup
+                  tag="div"
+>
+                  <Input
+                                    name="first_name"
+                                    onChange={[Function]}
+                                    placeholder="First name"
+                                    type="text"
+                                    value=""
+                  />
+                  <Input
+                                    name="last_name"
+                                    onChange={[Function]}
+                                    placeholder="Last name"
+                                    type="text"
+                                    value=""
+                  />
+                  <Input
+                                    name="email"
+                                    onChange={[Function]}
+                                    placeholder="Email"
+                                    type="email"
+                                    value=""
+                  />
+</FormGroup>,
+                <FormGroup
+                  tag="div"
+>
+                  <Input
+                                    name="password"
+                                    onChange={[Function]}
+                                    placeholder="password"
+                                    type="password"
+                                    value=""
+                  />
+                  <Input
+                                    name="password_confirmation"
+                                    onChange={[Function]}
+                                    placeholder="password confirmation"
+                                    type="password"
+                                    value=""
+                  />
+</FormGroup>,
+                "",
+                <div
+                  className="clearfix"
+>
+                  <Button
+                                    color="primary float-right"
+                                    disabled={false}
+                                    size="lg"
+                                    tag="button"
+                  >
+                                    Register
+                  </Button>
+</div>,
+              ],
+              "onSubmit": [Function],
+              "tag": "form",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": Array [
+                    <Input
+                      name="first_name"
+                      onChange={[Function]}
+                      placeholder="First name"
+                      type="text"
+                      value=""
+/>,
+                    <Input
+                      name="last_name"
+                      onChange={[Function]}
+                      placeholder="Last name"
+                      type="text"
+                      value=""
+/>,
+                    <Input
+                      name="email"
+                      onChange={[Function]}
+                      placeholder="Email"
+                      type="email"
+                      value=""
+/>,
+                  ],
+                  "tag": "div",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "name": "first_name",
+                      "onChange": [Function],
+                      "placeholder": "First name",
+                      "type": "text",
+                      "value": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "name": "last_name",
+                      "onChange": [Function],
+                      "placeholder": "Last name",
+                      "type": "text",
+                      "value": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "name": "email",
+                      "onChange": [Function],
+                      "placeholder": "Email",
+                      "type": "email",
+                      "value": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": Array [
+                    <Input
+                      name="password"
+                      onChange={[Function]}
+                      placeholder="password"
+                      type="password"
+                      value=""
+/>,
+                    <Input
+                      name="password_confirmation"
+                      onChange={[Function]}
+                      placeholder="password confirmation"
+                      type="password"
+                      value=""
+/>,
+                  ],
+                  "tag": "div",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "name": "password",
+                      "onChange": [Function],
+                      "placeholder": "password",
+                      "type": "password",
+                      "value": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "name": "password_confirmation",
+                      "onChange": [Function],
+                      "placeholder": "password confirmation",
+                      "type": "password",
+                      "value": "",
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+              "",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <Button
+                    color="primary float-right"
+                    disabled={false}
+                    size="lg"
+                    tag="button"
+>
+                    Register
+</Button>,
+                  "className": "clearfix",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Register",
+                    "color": "primary float-right",
+                    "disabled": false,
+                    "size": "lg",
+                    "tag": "button",
+                  },
+                  "ref": null,
+                  "rendered": "Register",
+                  "type": [Function],
+                },
+                "type": "div",
+              },
+            ],
+            "type": [Function],
+          },
+          "type": "div",
+        },
+      ],
       "type": Symbol(react.fragment),
     },
   ],

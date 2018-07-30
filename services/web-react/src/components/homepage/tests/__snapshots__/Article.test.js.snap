@@ -85,14 +85,9 @@ ShallowWrapper {
           >
                     <p
                               className="text-muted"
-                    >
-                              One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-                              
-                              It sta...
-                    </p>
+                    />
           </div>
 </Link>,
-        <hr />,
       ],
     },
     "ref": null,
@@ -251,11 +246,7 @@ ShallowWrapper {
 >
             <p
                         className="text-muted"
-            >
-                        One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-                        
-                        It sta...
-            </p>
+            />
 </div>,
           "replace": false,
           "to": "/articles/123",
@@ -270,11 +261,7 @@ ShallowWrapper {
               undefined,
               <p
                 className="text-muted"
->
-                One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-                
-                It sta...
-</p>,
+/>,
             ],
             "className": "article__contents",
           },
@@ -286,30 +273,17 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-
-It sta...",
+                "children": "",
                 "className": "text-muted",
               },
               "ref": null,
-              "rendered": "One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-
-It sta...",
+              "rendered": "",
               "type": "p",
             },
           ],
           "type": "div",
         },
         "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": "hr",
       },
     ],
     "type": "article",
@@ -369,14 +343,9 @@ It sta...",
             >
                         <p
                                     className="text-muted"
-                        >
-                                    One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-                                    
-                                    It sta...
-                        </p>
+                        />
             </div>
 </Link>,
-          <hr />,
         ],
       },
       "ref": null,
@@ -535,11 +504,7 @@ It sta...",
 >
               <p
                             className="text-muted"
-              >
-                            One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-                            
-                            It sta...
-              </p>
+              />
 </div>,
             "replace": false,
             "to": "/articles/123",
@@ -554,11 +519,7 @@ It sta...",
                 undefined,
                 <p
                   className="text-muted"
->
-                  One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-                  
-                  It sta...
-</p>,
+/>,
               ],
               "className": "article__contents",
             },
@@ -570,30 +531,17 @@ It sta...",
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-
-It sta...",
+                  "children": "",
                   "className": "text-muted",
                 },
                 "ref": null,
-                "rendered": "One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-
-It sta...",
+                "rendered": "",
                 "type": "p",
               },
             ],
             "type": "div",
           },
           "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": "hr",
         },
       ],
       "type": "article",
@@ -739,14 +687,9 @@ ShallowWrapper {
           >
                     <p
                               className="text-muted"
-                    >
-                              One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-                              
-                              It sta...
-                    </p>
+                    />
           </div>
 </Link>,
-        <hr />,
       ],
     },
     "ref": null,
@@ -1090,11 +1033,7 @@ ShallowWrapper {
 >
             <p
                         className="text-muted"
-            >
-                        One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-                        
-                        It sta...
-            </p>
+            />
 </div>,
           "replace": false,
           "to": "/articles/123",
@@ -1109,11 +1048,7 @@ ShallowWrapper {
               undefined,
               <p
                 className="text-muted"
->
-                One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-                
-                It sta...
-</p>,
+/>,
             ],
             "className": "article__contents",
           },
@@ -1125,30 +1060,17 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-
-It sta...",
+                "children": "",
                 "className": "text-muted",
               },
               "ref": null,
-              "rendered": "One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-
-It sta...",
+              "rendered": "",
               "type": "p",
             },
           ],
           "type": "div",
         },
         "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": "hr",
       },
     ],
     "type": "article",
@@ -1253,14 +1175,9 @@ It sta...",
             >
                         <p
                                     className="text-muted"
-                        >
-                                    One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-                                    
-                                    It sta...
-                        </p>
+                        />
             </div>
 </Link>,
-          <hr />,
         ],
       },
       "ref": null,
@@ -1604,11 +1521,7 @@ It sta...",
 >
               <p
                             className="text-muted"
-              >
-                            One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-                            
-                            It sta...
-              </p>
+              />
 </div>,
             "replace": false,
             "to": "/articles/123",
@@ -1623,11 +1536,7 @@ It sta...",
                 undefined,
                 <p
                   className="text-muted"
->
-                  One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-                  
-                  It sta...
-</p>,
+/>,
               ],
               "className": "article__contents",
             },
@@ -1639,30 +1548,17 @@ It sta...",
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-
-It sta...",
+                  "children": "",
                   "className": "text-muted",
                 },
                 "ref": null,
-                "rendered": "One of the real delights of programming is picking great variable, method, and class names. But an even greater treat is when you can name pairs, or even whole narratives, that fit just right. And the very best of those is when you’re forced to trade off multiple forces pulling in different directions. This is the story of one such case.
-
-It sta...",
+                "rendered": "",
                 "type": "p",
               },
             ],
             "type": "div",
           },
           "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": "hr",
         },
       ],
       "type": "article",

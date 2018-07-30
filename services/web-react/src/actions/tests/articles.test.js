@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ROOT_API_URL } from '../Base';
-import { fetchList, fetchArticlesArchiveList, createItem, fetchItem, updateItem, removeItem } from '../articles';
+import { fetchList, fetchArchiveArticlesList, createItem, fetchItem, updateItem, removeItem } from '../articles';
 
 // thunk methods
 let dispatch, getState;
@@ -67,10 +67,10 @@ describe('Actions', () => {
             });
 
             it('should call GET /articles/archives', async () => {
-                await fetchArticlesArchiveList()(dispatch, getState);
-                expect(axios.get).toHaveBeenLastCalledWith(`${ROOT_API_URL}/articles/archives`);
+                await fetchArchiveArticlesList()(dispatch, getState);
+                expect(axios.get).toHaveBeenLastCalledWith(`${ROOT_API_URL}/archives/articles`);
                 expect(dispatch.mock.calls[0][0]).toEqual({
-                    type: 'ARTICLES_ARCHIVE_LIST',
+                    type: 'ARCHIVE_ARTICLES_LIST',
                     data: {articles: 'hi'},
                 });
             });
