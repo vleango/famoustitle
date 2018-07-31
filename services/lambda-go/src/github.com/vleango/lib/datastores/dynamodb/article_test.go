@@ -38,6 +38,15 @@ func (suite *ArticleSuite) TestArticleCreateTagsBlank() {
 	suite.Equal(0, len(item.Tags))
 }
 
+func (suite *ArticleSuite) TestArticleCreateBlankSubtitle() {
+	article := test.DefaultArticleModel()
+	subtitle := ""
+	article.Subtitle = &subtitle
+	item, err := dynamodb.ArticleCreate(&article, "Tha Leang")
+	suite.IsType(nil, err)
+	suite.Equal("", *item.Subtitle)
+}
+
 func (suite *ArticleSuite) TestArticleCreateTagsWhitespace() {
 	article := test.DefaultArticleModel()
 	article.Tags = []string{
@@ -84,8 +93,10 @@ func (suite *ArticleSuite) TestArticleCreateSuccess() {
 	suite.IsType(nil, err)
 
 	suite.Equal(article.Title, item.Title)
+	suite.Equal(article.Subtitle, item.Subtitle)
 	suite.Equal(article.Body, item.Body)
 	suite.Equal(len(article.Tags), len(item.Tags))
+	suite.Equal(article.ImgUrl, item.ImgUrl)
 	suite.Contains(item.Tags, "ruby")
 	suite.Contains(item.Tags, "rails")
 
@@ -170,15 +181,18 @@ func (suite *ArticleSuite) TestArticleFindFailure() {
 
 func (suite *ArticleSuite) TestArticleUpdateSuccess() {
 	defaultArticle := test.DefaultArticleModel()
+	subtitle := "new subtitle"
 	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
 	article.Title = "new title"
 	article.Body = "new body"
+	article.Subtitle = &subtitle
 
 	updatedArticle, err := dynamodb.ArticleUpdate(*article)
 	suite.IsType(nil, err)
 	suite.Equal(article.ID, updatedArticle.ID)
 	suite.Equal("new title", updatedArticle.Title)
 	suite.Equal("new body", updatedArticle.Body)
+	suite.Equal("new subtitle", *updatedArticle.Subtitle)
 	suite.Equal(article.CreatedAt.Unix(), updatedArticle.CreatedAt.Unix())
 }
 
@@ -208,6 +222,22 @@ func (suite *ArticleSuite) TestArticleUpdateTitleBlankBodyPresent() {
 	suite.IsType(nil, err)
 	suite.Equal(originalText, updatedArticle.Title)
 	suite.Equal("my new body", updatedArticle.Body)
+	//suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
+}
+
+func (suite *ArticleSuite) TestArticleUpdateSubtitleBlank() {
+	defaultArticle := test.DefaultArticleModel()
+	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
+	subtitle := ""
+	originalText := article.Subtitle
+	article.Subtitle = &subtitle
+
+	// to change updated_at
+	//time.Sleep(2 * time.Second)
+
+	updatedArticle, err := dynamodb.ArticleUpdate(*article)
+	suite.IsType(nil, err)
+	suite.Equal(originalText, updatedArticle.Subtitle)
 	//suite.NotEqual(article.UpdatedAt.Unix(), updatedArticle.UpdatedAt.Unix())
 }
 

@@ -82,9 +82,11 @@ func CreateArticlesTable() {
 }
 
 func DefaultArticleModel() models.Article {
+	subtitle := "this is my subtitle"
 	return models.Article{
 		Author:    "Tha",
 		Title:     "this is my title",
+		Subtitle:  &subtitle,
 		Body:      "this is my body",
 		Tags:      []string{"ruby", "rails"},
 		CreatedAt: time.Now(),
