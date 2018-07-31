@@ -137,7 +137,7 @@ func ArticleUpdate(item models.Article) (*models.Article, error) {
 	}
 
 	// subtitle
-	if *item.Subtitle != "" {
+	if item.Subtitle != nil && *item.Subtitle != "" {
 		attributeValue[":subtitle"] = &dynamodb.AttributeValue{S: item.Subtitle}
 		updateExpression = append(updateExpression, "subtitle = :subtitle")
 	}
