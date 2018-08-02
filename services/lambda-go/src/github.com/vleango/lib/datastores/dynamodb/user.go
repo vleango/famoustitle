@@ -165,32 +165,43 @@ func UserAddRemoveFromArticleList(user models.User, article models.Article, addA
 	return err
 }
 
-func UserArticleDestroy(user models.User, article models.Article) (*models.Article, error) {
+// IsUserArticle verifies if the article belongs to the user
+func IsUserArticle(user models.User, article models.Article) (*models.Article, error) {
 	for id := range user.Articles {
 		if id == article.ID {
-			destroyedArticle, err := ArticleDestroy(article)
-			if err != nil {
-				return nil, err
-			}
-
-			return destroyedArticle, UserAddRemoveFromArticleList(user, *destroyedArticle, false)
+			return &article, nil
 		}
 	}
 
 	return nil, ErrArticleDoesNotBelong
 }
 
-func UserArticleUpdate(user models.User, article models.Article) (*models.Article, error) {
-	for id := range user.Articles {
-		if id == article.ID {
-			updatedArticle, err := ArticleUpdate(article)
-			if err != nil {
-				return nil, err
-			}
-
-			return updatedArticle, UserAddRemoveFromArticleList(user, *updatedArticle, true)
-		}
+// UserArticleDestroy attempts to destroy the user's article
+func UserArticleDestroy(user models.User, article models.Article) (*models.Article, error) {
+	_, err := IsUserArticle(user, article)
+	if err != nil {
+		return nil, err
 	}
 
-	return nil, ErrArticleDoesNotBelong
+	destroyedArticle, err := ArticleDestroy(article)
+	if err != nil {
+		return nil, err
+	}
+
+	return destroyedArticle, UserAddRemoveFromArticleList(user, *destroyedArticle, false)
+}
+
+// UserArticleUpdate attempts to update the user's article
+func UserArticleUpdate(user models.User, article models.Article) (*models.Article, error) {
+	_, err := IsUserArticle(user, article)
+	if err != nil {
+		return nil, err
+	}
+
+	updatedArticle, err := ArticleUpdate(article)
+	if err != nil {
+		return nil, err
+	}
+
+	return updatedArticle, UserAddRemoveFromArticleList(user, *updatedArticle, true)
 }

@@ -68,7 +68,7 @@ describe('Components', () => {
                 describe('Tags', () => {
                     describe("submits tags as array", () => {
                         const action = jest.fn();
-                        const calledArgs = { "article": {"body": "bye", "tags": ["tag1", "tag2"], "title": "hello"}, "token": undefined};
+                        const calledArgs = { "article": {"body": "bye", "subtitle": "", "tags": ["tag1", "tag2"], "title": "hello"}};
                         let wrapper = shallow(<ArticleNewPage createItem={action} history={[]} />);
                         const target = { title: 'hello', body: 'bye', tags: "tag1,tag2" };
                         wrapper.setState({ ...target });
@@ -77,7 +77,7 @@ describe('Components', () => {
                     });
                     describe("trims tags", () => {
                         const action = jest.fn();
-                        const calledArgs = { "article": {"body": "bye", "tags": ["tag1", "tag2"], "title": "hello"}, "token": undefined};
+                        const calledArgs = { "article": {"body": "bye", "subtitle": "", "tags": ["tag1", "tag2"], "title": "hello"}};
                         let wrapper = shallow(<ArticleNewPage createItem={action} history={[]} />);
                         const target = { title: 'hello', body: 'bye', tags: " tag1 , tag2" };
                         wrapper.setState({ ...target });
@@ -86,7 +86,7 @@ describe('Components', () => {
                     });
                     describe("lowercase tags", () => {
                         const action = jest.fn();
-                        const calledArgs = { "article": {"body": "bye", "tags": ["tag1", "tag2"], "title": "hello"}, "token": undefined};
+                        const calledArgs = { "article": {"body": "bye", "subtitle": "", "tags": ["tag1", "tag2"], "title": "hello"}};
                         let wrapper = shallow(<ArticleNewPage createItem={action} history={[]} />);
                         const target = { title: 'hello', body: 'bye', tags: " TAG1,tag2" };
                         wrapper.setState({ ...target });
@@ -95,7 +95,7 @@ describe('Components', () => {
                     });
                     describe("submits only unique tags", () => {
                         const action = jest.fn();
-                        const calledArgs = { "article": {"body": "bye", "tags": ["tag1", "tag2"], "title": "hello"}, "token": undefined};
+                        const calledArgs = { "article": {"body": "bye", "subtitle": "", "tags": ["tag1", "tag2"], "title": "hello"}};
                         let wrapper = shallow(<ArticleNewPage createItem={action} history={[]} />);
                         const target = { title: 'hello', body: 'bye', tags: "tag1,tag2,tag1" };
                         wrapper.setState({ ...target });

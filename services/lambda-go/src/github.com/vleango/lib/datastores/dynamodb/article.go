@@ -130,16 +130,25 @@ func ArticleUpdate(item models.Article) (*models.Article, error) {
 	attributeValue := map[string]*dynamodb.AttributeValue{}
 	var updateExpression []string
 
+	// title
 	if item.Title != "" {
 		attributeValue[":title"] = &dynamodb.AttributeValue{S: aws.String(item.Title)}
 		updateExpression = append(updateExpression, "title = :title")
 	}
 
+	// subtitle
+	if item.Subtitle != nil && *item.Subtitle != "" {
+		attributeValue[":subtitle"] = &dynamodb.AttributeValue{S: item.Subtitle}
+		updateExpression = append(updateExpression, "subtitle = :subtitle")
+	}
+
+	// body
 	if item.Body != "" {
 		attributeValue[":body"] = &dynamodb.AttributeValue{S: aws.String(item.Body)}
 		updateExpression = append(updateExpression, "body = :body")
 	}
 
+	// tags
 	if len(item.Tags) > 0 {
 		for _, tag := range item.Tags {
 			if tag != "" {

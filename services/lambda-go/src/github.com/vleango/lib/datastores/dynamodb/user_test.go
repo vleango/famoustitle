@@ -234,3 +234,23 @@ func (suite *UserSuite) TestUserArticleUpdate() {
 	suite.Equal(1, len(user.Articles))
 	suite.Equal(updatedArticle.Title, user.Articles[updatedArticle.ID])
 }
+
+func (suite *UserSuite) TestIsUserArticleDoesNotBelong() {
+	article, err := dynamodb.IsUserArticle(suite.user, models.Article{ID: "no-id"})
+	suite.Nil(article)
+	suite.Equal(dynamodb.ErrArticleDoesNotBelong, err)
+}
+
+func (suite *UserSuite) TestIsUserArticle() {
+	defaultArticle := test.DefaultArticleModel()
+	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
+	err := dynamodb.UserAddRemoveFromArticleList(suite.user, *article, true)
+	suite.Nil(err)
+
+	user, _ := dynamodb.UserFindByEmail(suite.user.Email)
+	suite.Equal(1, len(user.Articles))
+
+	fetchedArticle, err := dynamodb.IsUserArticle(*user, models.Article{ID: article.ID})
+	suite.Nil(err)
+	suite.Equal(fetchedArticle.ID, article.ID)
+}

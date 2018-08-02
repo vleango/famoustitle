@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import { connect } from 'react-redux';
 import queryString from 'qs';
 
 import Sidebar from './Sidebar';
 import Article from './Article';
 import Pagination from '../shared/Pagination';
+import Spinner from '../shared/Spinner';
+import {Helmet} from "react-helmet";
 
-import { fetchList, fetchArticlesArchiveList } from '../../actions/articles';
+import { fetchList, fetchArchiveArticlesList } from '../../actions/articles';
 
 import './css/homepage.css';
 
@@ -20,8 +22,10 @@ export class HomePage extends Component {
     }
 
     async componentDidMount() {
+        window.scrollTo(0, 0);
+
         const parsed = queryString.parse(this.props.location.search, { ignoreQueryPrefix: true });
-        this.props.fetchArticlesArchiveList && await this.props.fetchArticlesArchiveList();
+        this.props.fetchArchiveArticlesList && await this.props.fetchArchiveArticlesList();
         if(this.props.fetchList) {
             await this.props.fetchList(parsed);
             this.setState({loading: false});
@@ -40,8 +44,10 @@ export class HomePage extends Component {
 
     mainContent() {
         if(this.state.loading) {
-            return <p>Loading...</p>
+            return <Spinner />
         }
+
+        let position = 0;
 
         return (
             this.props.articles.length === 0 ? (
@@ -49,7 +55,13 @@ export class HomePage extends Component {
             ) : (
                 [
                     this.props.articles.map((article) => {
-                        return <Article key={article.id} article={article} updateFilter={this.updateFilter} />;
+                        position += 1;
+                        return (
+                            <Fragment key={position}>
+                                <Article key={article.id} article={article} updateFilter={this.updateFilter} />
+                                { position !== this.props.articles.length && <hr /> }
+                            </Fragment>
+                        );
                     }),
                     <Pagination key="pagination" {...this.props.pagination} />
                 ]
@@ -60,19 +72,20 @@ export class HomePage extends Component {
     render() {
         return (
             <div className="canvas">
+                <Helmet>
+                    <title>FamousTitle.com</title>
+                </Helmet>
+
                 <div className="container pt-5">
                     <div className="row">
                         <div className="col-xl-4">
                             <Sidebar updateFilter={this.updateFilter} />
                         </div>
-                        <div className="col-xl-8 main--content">
+                        <div className="col-xl-8 main--content mb-4">
                             { this.mainContent() }
                         </div>
                     </div>
                 </div>
-                <footer className="text-muted">
-                    created by Tha Leang
-                </footer>
             </div>
         );
     }
@@ -88,7 +101,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
     fetchList: (filters) => dispatch(fetchList(filters)),
-    fetchArticlesArchiveList: () => dispatch(fetchArticlesArchiveList())
+    fetchArchiveArticlesList: () => dispatch(fetchArchiveArticlesList())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

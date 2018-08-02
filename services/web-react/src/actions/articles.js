@@ -28,15 +28,16 @@ export const fetchList = (filters = {}) => {
     }
 };
 
-export const fetchArticlesArchiveList = () => {
+export const fetchArchiveArticlesList = () => {
     return async (dispatch, getState) => {
         return new Promise(async(resolve, reject) => {
             try {
-                const response = await axios.get(`${ROOT_API_URL}/articles/archives`);
+                const response = await axios.get(`${ROOT_API_URL}/archives/articles`);
                 let data = { ...response.data };
                 dispatch(archives(data));
                 resolve(data);
             } catch (error) {
+                console.log(error);
                 reject(error);
             }
         });
@@ -72,11 +73,25 @@ export const fetchItem = (id) => {
     };
 };
 
-export const updateItem = (id, data) => {
+export const itemEditable = (id) => {
     return async (dispatch, getState) => {
         return new Promise(async(resolve, reject) => {
             try {
-                const response = await axios.post(`${ROOT_API_URL}/articles/${id}`, data, authHeader(getState));
+                const response = await axios.get(`${ROOT_API_URL}/users_articles/verify/${id}`, authHeader(getState));
+                resolve(response.data);
+            }
+            catch (error) {
+                reject(error);
+            }
+        });
+    };
+};
+
+export const updateItem = (data) => {
+    return async (dispatch, getState) => {
+        return new Promise(async(resolve, reject) => {
+            try {
+                const response = await axios.post(`${ROOT_API_URL}/articles/${data.id}`, {article: data.article}, authHeader(getState));
                 resolve(response.body);
             }
             catch (error) {
@@ -87,11 +102,11 @@ export const updateItem = (id, data) => {
     }
 };
 
-export const removeItem = (id) => {
+export const removeItem = (data) => {
     return async (dispatch, getState) => {
         return new Promise(async(resolve, reject) => {
             try {
-                const response = await axios.delete(`${ROOT_API_URL}/articles/${id}`, authHeader(getState));
+                const response = await axios.delete(`${ROOT_API_URL}/articles/${data.id}`, authHeader(getState));
                 resolve(response.body);
             }
             catch (error) {
@@ -108,12 +123,17 @@ export const list = (data) => ({
 });
 
 export const archives = (data) => ({
-    type: 'ARTICLES_ARCHIVE_LIST',
+    type: 'ARCHIVE_ARTICLES_LIST',
     data
 });
 
 export const item = (data) => ({
     type: 'ARTICLE_ITEM',
+    data
+});
+
+export const itemEdit = (data) => ({
+    type: 'ARTICLE_EDITABLE',
     data
 });
 

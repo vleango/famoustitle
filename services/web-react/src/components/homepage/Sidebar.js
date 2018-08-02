@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Form, Input } from 'reactstrap';
-import { map } from 'lodash';
+import { size, reverse, map } from 'lodash';
 import moment from 'moment';
+import Spinner from '../shared/Spinner';
 
 import fontawesome from '@fortawesome/fontawesome';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -55,9 +56,10 @@ export class Sidebar extends Component {
                 </aside>
                 <aside className="widget">
                     <div className="widget-title">Archives</div>
+                    { size(this.props.archives) === 0 && <Spinner/> }
                     <ul>
                         {
-                            this.props.archives && map(this.props.archives, (count, date) => {
+                            this.props.archives && reverse(map(this.props.archives, (count, date) => {
                                 const momentDate = moment.utc(date);
                                 let className = "btn btn-link widget--date";
                                 if(this.props.selected && this.props.selected.date === momentDate.format("YYYY-MM-DD") ? "* " : "") {
@@ -66,12 +68,13 @@ export class Sidebar extends Component {
                                 return <li key={date}>
                                     <button className={className} onClick={() => this.props.updateFilter("date", momentDate.format("YYYY-MM-DD"))}>{momentDate.format("MMMM YYYY")} ({count})</button>
                                 </li>
-                            })
+                            }))
                         }
                     </ul>
                 </aside>
                 <aside className="widget">
                     <div className="widget-title">Tags</div>
+                    { size(this.props.archives) === 0 && <Spinner/> }
                     <div className="tagcloud">
                         {
                             this.props.tags && this.props.tags.map((tag) => {

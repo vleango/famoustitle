@@ -10,3 +10,27 @@
     font-weight: bolder;
     font-size: 2rem;
 }
+
+.modal-article-img-dialog {
+    max-width: 70%;
+}
+
+.modal-img {
+    width: 100%;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+@media (min-width: 992px) {
+    .article-show-container {
+        max-width: 768px;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-article-img-dialog {
+        max-width: 100%;
+    }
+}

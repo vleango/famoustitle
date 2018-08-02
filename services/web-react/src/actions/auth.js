@@ -36,6 +36,7 @@ export const startRegister = (data) => {
                 resolve(response.body);
             }
             catch (err) {
+                console.log(err);
                 reject(err);
             }
         });
