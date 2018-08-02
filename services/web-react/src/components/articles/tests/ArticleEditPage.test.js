@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ArticleItemPage } from '../ArticleItemPage';
+import { ArticleEditPage } from '../ArticleEditPage';
 
 import { toastInProgress, toastSuccess, toastFail } from '../../shared/Toast';
 
@@ -15,36 +15,36 @@ beforeEach(() => {
 });
 
 describe('Components', () => {
-    describe('ArticleItemPage', () => {
+    describe('ArticleEditPage', () => {
 
-        let wrapper = shallow(<ArticleItemPage />);
+        let wrapper = shallow(<ArticleEditPage />);
 
         describe('Snapshot', () => {
-            it('should correctly render ArticleItemPage', () => {
+            it('should correctly render ArticleEditPage', () => {
                 expect(wrapper).toMatchSnapshot();
             });
         });
 
-        describe('onDeleteArticle', () => {
+        describe('onSubmitEditArticle', () => {
             it('Success', async () => {
-                const removeItem = jest.fn(() => Promise.resolve());
-                let wrapper = shallow(<ArticleItemPage removeItem={removeItem} history={[]} match={{params: {id: 1}}} />);
+                const updateItem = jest.fn(() => Promise.resolve());
+                let wrapper = shallow(<ArticleEditPage updateItem={updateItem} history={[]} match={{params: {id: 1}}} />);
                 wrapper.setState({ author: 'Tha', title: 'my title', subtitle: 'my sub', body: 'my body', tags: 'tag1,tag2' });
-                await wrapper.instance().onDeleteArticle();
+                await wrapper.instance().onSubmitEditArticle();
                 expect(wrapper.state('submitting')).toBe(false);
-                expect(toastInProgress).toHaveBeenCalledWith("Deleting in progress...");
+                expect(toastInProgress).toHaveBeenCalledWith("Saving in progress...");
                 expect(toastSuccess).toHaveBeenCalledWith("Success!", 1);
                 expect(toastFail).not.toHaveBeenCalled();
             });
 
             it('Fail', async () => {
-                const removeItem = jest.fn(() => Promise.reject());
-                let wrapper = shallow(<ArticleItemPage removeItem={removeItem} history={[]} match={{params: {id: 1}}} />);
+                const updateItem = jest.fn(() => Promise.reject());
+                let wrapper = shallow(<ArticleEditPage updateItem={updateItem} history={[]} match={{params: {id: 1}}} />);
                 wrapper.setState({ author: 'Tha', title: 'my title', subtitle: 'my sub', body: 'my body', tags: 'tag1,tag2' });
-                await wrapper.instance().onDeleteArticle();
+                await wrapper.instance().onSubmitEditArticle();
                 expect(wrapper.state('submitting')).toBe(false);
                 expect(wrapper.state('errorMsg')).toBe("server error");
-                expect(toastInProgress).toHaveBeenCalledWith("Deleting in progress...");
+                expect(toastInProgress).toHaveBeenCalledWith("Saving in progress...");
                 expect(toastSuccess).not.toHaveBeenCalled();
                 expect(toastFail).toHaveBeenCalledWith("server error", 1);
             });

@@ -37,6 +37,7 @@ export const fetchArchiveArticlesList = () => {
                 dispatch(archives(data));
                 resolve(data);
             } catch (error) {
+                console.log(error);
                 reject(error);
             }
         });

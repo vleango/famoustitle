@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { ROOT_API_URL } from '../Base';
-import { fetchList, fetchArchiveArticlesList, createItem, fetchItem, updateItem, removeItem } from '../articles';
+import { fetchList, fetchArchiveArticlesList, createItem, fetchItem, updateItem, removeItem, itemEditable } from '../articles';
 
 // thunk methods
 let dispatch, getState;
+let defaultHeader = {"headers": {"Authorization": "Bearer "}};
 
 describe('Actions', () => {
     describe('Articles', () => {
@@ -83,7 +84,7 @@ describe('Actions', () => {
 
             it('should call POST /articles', async () => {
                 await createItem({someData: true})(dispatch, getState);
-                expect(axios.post).toHaveBeenLastCalledWith(`${ROOT_API_URL}/articles`, {someData: true}, {"headers": {"Authorization": "Bearer "}});
+                expect(axios.post).toHaveBeenLastCalledWith(`${ROOT_API_URL}/articles`, {someData: true}, defaultHeader);
             });
         });
 
@@ -109,9 +110,9 @@ describe('Actions', () => {
             });
 
             it('should call POST /articles/:id', async () => {
-                const id = 6;
-                await updateItem(id)(dispatch, getState);
-                expect(axios.get).toHaveBeenLastCalledWith(`${ROOT_API_URL}/articles/${id}`);
+                const data = {id: 6};
+                await updateItem(data)(dispatch, getState);
+                expect(axios.post).toHaveBeenLastCalledWith(`${ROOT_API_URL}/articles/${data.id}`, {}, defaultHeader);
             });
         });
 
@@ -121,9 +122,21 @@ describe('Actions', () => {
             });
 
             it('should call DELETE /articles/:id', async () => {
+                const data = {id: 6};
+                await removeItem(data)(dispatch, getState);
+                expect(axios.delete).toHaveBeenLastCalledWith(`${ROOT_API_URL}/articles/${data.id}`, defaultHeader);
+            });
+        });
+
+        describe('itemEditable', () => {
+            beforeEach(() => {
+                axios.get = jest.fn((url) => Promise.resolve({ data: { article: 'art1'} }));
+            });
+
+            it('should call GET /users_articles/verify/:id', async () => {
                 const id = 6;
-                await removeItem(id)(dispatch, getState);
-                expect(axios.get).toHaveBeenLastCalledWith(`${ROOT_API_URL}/articles/${id}`);
+                await itemEditable(id)(dispatch, getState);
+                expect(axios.get).toHaveBeenLastCalledWith(`${ROOT_API_URL}/users_articles/verify/${id}`, defaultHeader);
             });
         });
 

@@ -112,7 +112,7 @@ export class ArticleItemPage extends Component {
     }
 
     onDeleteArticle = async () => {
-        const toastID = toastInProgress("deleting in progress...");
+        const toastID = toastInProgress("Deleting in progress...");
         try{
             this.setState({ deleting: true, errorMsg: "" });
             await this.props.removeItem({id: this.props.match.params.id });

@@ -71,10 +71,10 @@ describe('Reducers', () => {
            });
         });
 
-        describe('ARTICLES_ARCHIVE_LIST', () => {
+        describe('ARCHIVE_ARTICLES_LIST', () => {
             it('returns index', () => {
                 const action = {
-                    type: "ARTICLES_ARCHIVE_LIST",
+                    type: "ARCHIVE_ARTICLES_LIST",
                     data: {
                         archives: {
                             buckets: [
@@ -151,6 +151,25 @@ describe('Reducers', () => {
                 const state = articleReducer({"hi": "bye"}, action);
                 expect(state).toEqual({
                     "hi": "bye"
+                });
+            });
+        });
+
+        describe('ARTICLE_EDITABLE', () => {
+            it('returns state', () => {
+                const action = {
+                    type: "ARTICLE_EDITABLE",
+                    data: {
+                        editable_id: "art"
+                    }
+                };
+
+                const state = articleReducer({"hi": "bye"}, action);
+                expect(state).toEqual({
+                    "hi": "bye",
+                    "show": {
+                        "editable_id": "art"
+                    }
                 });
             });
         });
