@@ -1,10 +1,42 @@
+.hljs {
+    line-height: 2rem;
+    padding: 1rem !important;
+}
+
+.art-image {
+    height: 450px;
+    position: relative;
+    color: white;
+    transition: all 450ms;
+}
+
+.article-item-subtitle {
+    font-size: 1.5rem;
+}
+
 .body-markdown img {
     max-width: 100%;
 }
 
 .body-markdown.spacing {
-    line-height: 2rem;
+    line-height: 4.5rem;
 }
+
+.body-markdown h1 {
+    margin-top: 6rem;
+    margin-bottom: 1.5rem;
+}
+
+.body-markdown h2 {
+    margin-top: 8rem;
+    margin-bottom: 1.5rem;
+}
+
+.body-markdown h3 {
+    margin-top: 6rem;
+    margin-bottom: 1.5rem;
+}
+
 
 .nav-title {
     font-weight: bolder;

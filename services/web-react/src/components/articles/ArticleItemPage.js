@@ -8,9 +8,12 @@ import { Button } from 'reactstrap';
 import { Modal } from 'reactstrap';
 import Spinner from '../shared/Spinner';
 import {Helmet} from "react-helmet";
+import {random} from 'lodash';
+import Highlight from 'react-highlight'
 
 import { fetchItem, removeItem, itemEditable } from '../../actions/articles';
 import './css/ArticleItemPage.css';
+import './css/darcula.css';
 
 import faUser from "@fortawesome/fontawesome-free-solid/faUser";
 import faCalendarAlt from "@fortawesome/fontawesome-free-solid/faCalendarAlt";
@@ -65,25 +68,25 @@ export class ArticleItemPage extends Component {
 
     displayInfo = () => {
         return (
-            <div className="pt-3 pb-5">
+            <div className="pt-3 article-item-subtitle">
                 <FontAwesomeIcon className="mr-2" icon="user"/>
                 <span className="mr-5">{this.state.article.author}</span>
 
                 <FontAwesomeIcon className="mr-2" icon="calendar-alt"/>
-                <span className="mr-5">{ moment(this.state.article.created_at).format('MM-DD-YYYY HH:mm') }</span>
+                <span className="mr-5">{ moment(this.state.article.created_at).format('MM-DD-YYYY') }</span>
 
-                { this.state.article.tags && this.state.article.tags.length > 0 && (
-                    <Fragment>
-                        <FontAwesomeIcon className="mr-2" icon="tag"/>
-                        {
-                            this.state.article.tags.map((tag) => {
-                                return [
-                                    <Link key={tag} className="mr-2" to={`/?tag=${tag}`}>{tag}</Link>
-                                ]
-                            })
-                        }
-                    </Fragment>
-                )}
+                {/*{ this.state.article.tags && this.state.article.tags.length > 0 && (*/}
+                    {/*<Fragment>*/}
+                        {/*<FontAwesomeIcon className="mr-2" icon="tag"/>*/}
+                        {/*{*/}
+                            {/*this.state.article.tags.map((tag) => {*/}
+                                {/*return [*/}
+                                    {/*<Link key={tag} className="mr-2" to={`/?tag=${tag}`}>{tag}</Link>*/}
+                                {/*]*/}
+                            {/*})*/}
+                        {/*}*/}
+                    {/*</Fragment>*/}
+                {/*)}*/}
             </div>
         );
     };
@@ -103,10 +106,18 @@ export class ArticleItemPage extends Component {
         return <img className={"pointer"} onClick={this.imgModalToggle} alt={props.alt} src={props.src}>{props.children}</img>
     };
 
+    CodeRenderer = (props) => {
+        return (
+            <Highlight>
+                {props.value}
+            </Highlight>
+        )
+    };
+
     displayBody() {
         return (
-            <div className={`body-markdown spacing`}>
-                <ReactMarkdown source={ this.state.article.body } renderers={{link: this.LinkRenderer, image: this.ImgRenderer}}/>
+            <div className={`article-item-body body-markdown spacing`}>
+                <ReactMarkdown source={ this.state.article.body } renderers={{link: this.LinkRenderer, image: this.ImgRenderer, code: this.CodeRenderer}}/>
             </div>
         )
     }
@@ -127,6 +138,32 @@ export class ArticleItemPage extends Component {
             this.setState({ submitting: false, errorMsg: msg });
             toastFail(msg, toastID);
         }
+    };
+
+    displayArtwork = () => {
+        const art = this.artwork();
+        return (
+            <div className="art-image mt-5 mb-5" style={{
+                background: `linear-gradient(to bottom, rgba(0, 0, 0, 0),rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.8)), url('${art.url}')`
+            }}>
+                <div style={{lineHeight: '3rem', fontFamily: "'Alex Brush', cursive", position: 'absolute', left: '35px', bottom: '8px'}}>
+                    <p style={{fontSize: '3rem'}}>{art.title}</p>
+                    <p style={{fontSize: '3rem'}}>{art.artist}</p>
+                </div>
+            </div>
+        );
+    };
+
+    artwork = () => {
+        const art = [
+            { title: 'Mona Lisa', artist: 'Leonardo da Vinci', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/687px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg'},
+            { title: 'The Starry Night', artist: 'Vincent van Gogh', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg' },
+            { title: 'Starry Night Over the Rhône', artist: 'Vincent van Gogh', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Starry_Night_Over_the_Rhone.jpg/991px-Starry_Night_Over_the_Rhone.jpg' },
+            { title: 'A Sunday Afternoon on the Island of La Grande Jatte', artist: 'Georges Seurat', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/A_Sunday_on_La_Grande_Jatte%2C_Georges_Seurat%2C_1884.png/1024px-A_Sunday_on_La_Grande_Jatte%2C_Georges_Seurat%2C_1884.png' }
+        ];
+
+        const index = random(0, art.length-1);
+        return art[index];
     };
 
     render() {
@@ -153,6 +190,7 @@ export class ArticleItemPage extends Component {
                         <Fragment>
                             <h1>{this.state.article.title}</h1>
                             { this.displayInfo() }
+                            { this.displayArtwork() }
                             { this.displayBody() }
                         </Fragment>
                     ) }
@@ -166,6 +204,11 @@ export class ArticleItemPage extends Component {
                         )}
                     </Modal>
                 </div>
+
+                <footer className="split-footer pb-5">
+                    <Link to="/">FamousTitle.com</Link>
+                </footer>
+
             </div>
         );
     }

@@ -1,7 +1,6 @@
 import React, {Fragment} from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import { NavBar } from "../components/shared/headers/NavBar";
 
 export const PrivateRoute = ({
                                  isAuthenticatedWriter,
@@ -11,7 +10,6 @@ export const PrivateRoute = ({
     <Route {...rest} component={(props) => (
         isAuthenticatedWriter ? (
             <Fragment>
-                <NavBar />
                 <Component {...props} />
             </Fragment>
         ) : (
