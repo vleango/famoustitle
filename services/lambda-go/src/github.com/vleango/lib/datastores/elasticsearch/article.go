@@ -269,10 +269,12 @@ func matchStrDate(val string) string {
 
 func matchStrMatch(val string) string {
 	return `
+	{
 		"multi_match": {
 			"query": "` + val + `",
 			"fields": ["title", "body", "tags.keyword"]
-		}`
+		}
+	}`
 }
 
 func find(jsonStr []byte) ([]models.Article, Aggregations, error) {
