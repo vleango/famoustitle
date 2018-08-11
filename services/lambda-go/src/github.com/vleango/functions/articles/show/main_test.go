@@ -72,3 +72,20 @@ func (suite *Suite) TestShowRecordNotFound() {
 	json.Unmarshal([]byte(response.Body), &responseBody)
 	suite.Equal("record not found", responseBody["message"])
 }
+
+func (suite *Suite) TestShowRecordNotPublished() {
+	defaultArticle := test.DefaultArticleModel()
+	defaultArticle.Published = false
+	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
+	elasticsearch.ArticleCreate(*article)
+	time.Sleep(2 * time.Second)
+
+	request := events.APIGatewayProxyRequest{
+		PathParameters: map[string]string{
+			"id": article.ID,
+		},
+	}
+	response, err := Handler(context.Background(), request)
+	suite.Equal(401, response.StatusCode)
+	suite.IsType(nil, err)
+}

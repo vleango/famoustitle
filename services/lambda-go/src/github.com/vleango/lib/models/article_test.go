@@ -14,6 +14,7 @@ func (suite *Suite) TestArticle() {
 	suite.IsType([]string{"tag1", "tag2"}, article.Tags)
 	suite.IsType(&text, article.Subtitle)
 	suite.IsType(&text, article.ImgUrl)
+	suite.IsType(true, article.Published)
 	suite.IsType(time.Now(), article.CreatedAt)
 	suite.IsType(time.Now(), article.UpdatedAt)
 }
