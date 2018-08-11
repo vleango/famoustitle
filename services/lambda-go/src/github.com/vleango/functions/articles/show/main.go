@@ -21,6 +21,10 @@ func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events
 		return response.NotFound(utils.JSONStringWithKey(err.Error()), err.Error()), nil
 	}
 
+	if !article.Published {
+		return response.Unauthorized(utils.JSONStringWithKey("unauthorized"), "unauthorized"), nil
+	}
+
 	b, err := json.Marshal(article)
 	if err != nil {
 		return response.ServerError(utils.JSONStringWithKey(responses.StatusMsgServerError), err.Error()), nil

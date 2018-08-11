@@ -194,6 +194,7 @@ func (suite *ArticleSuite) TestArticleUpdateSuccess() {
 	suite.Equal("new body", updatedArticle.Body)
 	suite.Equal("new subtitle", *updatedArticle.Subtitle)
 	suite.Equal(article.CreatedAt.Unix(), updatedArticle.CreatedAt.Unix())
+	suite.Equal(article.Published, updatedArticle.Published)
 }
 
 func (suite *ArticleSuite) TestArticleUpdateSuccessUpdatedAt() {
@@ -333,4 +334,14 @@ func (suite *ArticleSuite) TestArticleUpdateTagsWhitespace() {
 	suite.Equal(article.Body, updatedArticle.Body)
 	suite.Equal(1, len(updatedArticle.Tags))
 	suite.Contains(updatedArticle.Tags, "tag1")
+}
+
+func (suite *ArticleSuite) TestArticleUpdateNotPublished() {
+	defaultArticle := test.DefaultArticleModel()
+	defaultArticle.Published = false
+	article, _ := dynamodb.ArticleCreate(&defaultArticle, "Tha Leang")
+
+	updatedArticle, err := dynamodb.ArticleUpdate(*article)
+	suite.IsType(nil, err)
+	suite.Equal(false, updatedArticle.Published)
 }

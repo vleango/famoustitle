@@ -148,6 +148,10 @@ func ArticleUpdate(item models.Article) (*models.Article, error) {
 		updateExpression = append(updateExpression, "body = :body")
 	}
 
+	// published
+	attributeValue[":published"] = &dynamodb.AttributeValue{BOOL: aws.Bool(item.Published)}
+	updateExpression = append(updateExpression, "published = :published")
+
 	// tags
 	if len(item.Tags) > 0 {
 		for _, tag := range item.Tags {

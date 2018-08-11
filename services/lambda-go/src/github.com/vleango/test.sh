@@ -2,7 +2,7 @@
 
 if [ "$1" != "" ] && [ $1 = "--single" ] || [ "$1" != "" ] && [ $1 = "-s" ]; then
     # sample: testing individual
-    go test -v -p 1 -cover github.com/vleango/functions/tokens/create && echo "All passed"
+    go test -v -p 1 -cover github.com/vleango/lib/datastores/elasticsearch && echo "All passed"
 else
     if [ "$APP_ENV" = "ci" ]; then
         # CI Parallel Tests

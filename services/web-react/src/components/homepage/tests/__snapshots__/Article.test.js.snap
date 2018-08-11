@@ -36,125 +36,90 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "children": Array [
-        <h2
-          className="article__title"
+      "children": <Link
+        replace={false}
+        to="/articles/123"
 >
-          <Link
-                    replace={false}
-                    to="/articles/123"
-          >
-                    Hunting for great names in programming
-          </Link>
-</h2>,
-        <ul
-          className="article__subtitle mb-2"
->
-          <li>
-                    <FontAwesomeIcon$1
-                              border={false}
-                              className="mr-2"
-                              fixedWidth={false}
-                              flip={null}
-                              icon="calendar-alt"
-                              listItem={false}
-                              mask={null}
-                              name=""
-                              pull={null}
-                              pulse={false}
-                              rotation={null}
-                              size={null}
-                              spin={false}
-                              symbol={false}
-                              transform={null}
-                    />
-                    <button
-                              className="btn btn-link article__subtitle--date"
-                              onClick={[Function]}
-                    >
-                              February 28th, 2018
-                    </button>
-          </li>
-</ul>,
-        <Link
-          replace={false}
-          to="/articles/123"
->
-          <div
-                    className="article__contents"
-          >
-                    <p
-                              className="text-muted"
-                    />
-          </div>
+        <div
+                className="post-preview col-12  no-gutter"
+        >
+                <h2>
+                        Hunting for great names in programming
+                </h2>
+                <p
+                        className="mt-4"
+                />
+                <p
+                        className="meta"
+                >
+                        dhh
+                         
+                        <i
+                                className="link-spacer"
+                        />
+                         
+                        February 28th, 2018
+                </p>
+        </div>
 </Link>,
-      ],
+      "className": "post",
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": <Link
-            replace={false}
-            to="/articles/123"
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <div
+          className="post-preview col-12  no-gutter"
 >
-            Hunting for great names in programming
-</Link>,
-          "className": "article__title",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": "Hunting for great names in programming",
-            "replace": false,
-            "to": "/articles/123",
-          },
-          "ref": null,
-          "rendered": "Hunting for great names in programming",
-          "type": [Function],
-        },
-        "type": "h2",
+          <h2>
+                    Hunting for great names in programming
+          </h2>
+          <p
+                    className="mt-4"
+          />
+          <p
+                    className="meta"
+          >
+                    dhh
+                     
+                    <i
+                              className="link-spacer"
+                    />
+                     
+                    February 28th, 2018
+          </p>
+</div>,
+        "replace": false,
+        "to": "/articles/123",
       },
-      Object {
+      "ref": null,
+      "rendered": Object {
         "instance": null,
         "key": undefined,
         "nodeType": "host",
         "props": Object {
           "children": Array [
-            <li>
-              <FontAwesomeIcon$1
-                            border={false}
-                            className="mr-2"
-                            fixedWidth={false}
-                            flip={null}
-                            icon="calendar-alt"
-                            listItem={false}
-                            mask={null}
-                            name=""
-                            pull={null}
-                            pulse={false}
-                            rotation={null}
-                            size={null}
-                            spin={false}
-                            symbol={false}
-                            transform={null}
+            <h2>
+              Hunting for great names in programming
+</h2>,
+            <p
+              className="mt-4"
+/>,
+            <p
+              className="meta"
+>
+              dhh
+               
+              <i
+                            className="link-spacer"
               />
-              <button
-                            className="btn btn-link article__subtitle--date"
-                            onClick={[Function]}
-              >
-                            February 28th, 2018
-              </button>
-</li>,
-            null,
+               
+              February 28th, 2018
+</p>,
           ],
-          "className": "article__subtitle mb-2",
+          "className": "post-preview col-12  no-gutter",
         },
         "ref": null,
         "rendered": Array [
@@ -163,90 +128,127 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
+              "children": "Hunting for great names in programming",
+            },
+            "ref": null,
+            "rendered": "Hunting for great names in programming",
+            "type": "h2",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "",
+              "className": "mt-4",
+            },
+            "ref": null,
+            "rendered": "",
+            "type": "p",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
               "children": Array [
-                <FontAwesomeIcon$1
-                  border={false}
-                  className="mr-2"
-                  fixedWidth={false}
-                  flip={null}
-                  icon="calendar-alt"
-                  listItem={false}
-                  mask={null}
-                  name=""
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  symbol={false}
-                  transform={null}
+                "dhh",
+                " ",
+                <i
+                  className="link-spacer"
 />,
-                <button
-                  className="btn btn-link article__subtitle--date"
-                  onClick={[Function]}
->
-                  February 28th, 2018
-</button>,
+                " ",
+                "February 28th, 2018",
               ],
+              "className": "meta",
             },
             "ref": null,
             "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "border": false,
-                  "className": "mr-2",
-                  "fixedWidth": false,
-                  "flip": null,
-                  "icon": "calendar-alt",
-                  "listItem": false,
-                  "mask": null,
-                  "name": "",
-                  "pull": null,
-                  "pulse": false,
-                  "rotation": null,
-                  "size": null,
-                  "spin": false,
-                  "symbol": false,
-                  "transform": null,
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
+              "dhh",
+              " ",
               Object {
                 "instance": null,
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "February 28th, 2018",
-                  "className": "btn btn-link article__subtitle--date",
-                  "onClick": [Function],
+                  "className": "link-spacer",
                 },
                 "ref": null,
-                "rendered": "February 28th, 2018",
-                "type": "button",
+                "rendered": null,
+                "type": "i",
               },
+              " ",
+              "February 28th, 2018",
             ],
-            "type": "li",
+            "type": "p",
           },
-          null,
         ],
-        "type": "ul",
+        "type": "div",
       },
-      Object {
+      "type": [Function],
+    },
+    "type": "article",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <Link
+          replace={false}
+          to="/articles/123"
+>
+          <div
+                    className="post-preview col-12  no-gutter"
+          >
+                    <h2>
+                              Hunting for great names in programming
+                    </h2>
+                    <p
+                              className="mt-4"
+                    />
+                    <p
+                              className="meta"
+                    >
+                              dhh
+                               
+                              <i
+                                        className="link-spacer"
+                              />
+                               
+                              February 28th, 2018
+                    </p>
+          </div>
+</Link>,
+        "className": "post",
+      },
+      "ref": null,
+      "rendered": Object {
         "instance": null,
         "key": undefined,
         "nodeType": "class",
         "props": Object {
           "children": <div
-            className="article__contents"
+            className="post-preview col-12  no-gutter"
 >
+            <h2>
+                        Hunting for great names in programming
+            </h2>
             <p
-                        className="text-muted"
+                        className="mt-4"
             />
+            <p
+                        className="meta"
+            >
+                        dhh
+                         
+                        <i
+                                    className="link-spacer"
+                        />
+                         
+                        February 28th, 2018
+            </p>
 </div>,
           "replace": false,
           "to": "/articles/123",
@@ -258,26 +260,85 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              undefined,
+              <h2>
+                Hunting for great names in programming
+</h2>,
               <p
-                className="text-muted"
+                className="mt-4"
 />,
+              <p
+                className="meta"
+>
+                dhh
+                 
+                <i
+                                className="link-spacer"
+                />
+                 
+                February 28th, 2018
+</p>,
             ],
-            "className": "article__contents",
+            "className": "post-preview col-12  no-gutter",
           },
           "ref": null,
           "rendered": Array [
-            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Hunting for great names in programming",
+              },
+              "ref": null,
+              "rendered": "Hunting for great names in programming",
+              "type": "h2",
+            },
             Object {
               "instance": null,
               "key": undefined,
               "nodeType": "host",
               "props": Object {
                 "children": "",
-                "className": "text-muted",
+                "className": "mt-4",
               },
               "ref": null,
               "rendered": "",
+              "type": "p",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  "dhh",
+                  " ",
+                  <i
+                    className="link-spacer"
+/>,
+                  " ",
+                  "February 28th, 2018",
+                ],
+                "className": "meta",
+              },
+              "ref": null,
+              "rendered": Array [
+                "dhh",
+                " ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "className": "link-spacer",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "i",
+                },
+                " ",
+                "February 28th, 2018",
+              ],
               "type": "p",
             },
           ],
@@ -285,265 +346,6 @@ ShallowWrapper {
         },
         "type": [Function],
       },
-    ],
-    "type": "article",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <h2
-            className="article__title"
->
-            <Link
-                        replace={false}
-                        to="/articles/123"
-            >
-                        Hunting for great names in programming
-            </Link>
-</h2>,
-          <ul
-            className="article__subtitle mb-2"
->
-            <li>
-                        <FontAwesomeIcon$1
-                                    border={false}
-                                    className="mr-2"
-                                    fixedWidth={false}
-                                    flip={null}
-                                    icon="calendar-alt"
-                                    listItem={false}
-                                    mask={null}
-                                    name=""
-                                    pull={null}
-                                    pulse={false}
-                                    rotation={null}
-                                    size={null}
-                                    spin={false}
-                                    symbol={false}
-                                    transform={null}
-                        />
-                        <button
-                                    className="btn btn-link article__subtitle--date"
-                                    onClick={[Function]}
-                        >
-                                    February 28th, 2018
-                        </button>
-            </li>
-</ul>,
-          <Link
-            replace={false}
-            to="/articles/123"
->
-            <div
-                        className="article__contents"
-            >
-                        <p
-                                    className="text-muted"
-                        />
-            </div>
-</Link>,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": <Link
-              replace={false}
-              to="/articles/123"
->
-              Hunting for great names in programming
-</Link>,
-            "className": "article__title",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": "Hunting for great names in programming",
-              "replace": false,
-              "to": "/articles/123",
-            },
-            "ref": null,
-            "rendered": "Hunting for great names in programming",
-            "type": [Function],
-          },
-          "type": "h2",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              <li>
-                <FontAwesomeIcon$1
-                                border={false}
-                                className="mr-2"
-                                fixedWidth={false}
-                                flip={null}
-                                icon="calendar-alt"
-                                listItem={false}
-                                mask={null}
-                                name=""
-                                pull={null}
-                                pulse={false}
-                                rotation={null}
-                                size={null}
-                                spin={false}
-                                symbol={false}
-                                transform={null}
-                />
-                <button
-                                className="btn btn-link article__subtitle--date"
-                                onClick={[Function]}
-                >
-                                February 28th, 2018
-                </button>
-</li>,
-              null,
-            ],
-            "className": "article__subtitle mb-2",
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": Array [
-                  <FontAwesomeIcon$1
-                    border={false}
-                    className="mr-2"
-                    fixedWidth={false}
-                    flip={null}
-                    icon="calendar-alt"
-                    listItem={false}
-                    mask={null}
-                    name=""
-                    pull={null}
-                    pulse={false}
-                    rotation={null}
-                    size={null}
-                    spin={false}
-                    symbol={false}
-                    transform={null}
-/>,
-                  <button
-                    className="btn btn-link article__subtitle--date"
-                    onClick={[Function]}
->
-                    February 28th, 2018
-</button>,
-                ],
-              },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "border": false,
-                    "className": "mr-2",
-                    "fixedWidth": false,
-                    "flip": null,
-                    "icon": "calendar-alt",
-                    "listItem": false,
-                    "mask": null,
-                    "name": "",
-                    "pull": null,
-                    "pulse": false,
-                    "rotation": null,
-                    "size": null,
-                    "spin": false,
-                    "symbol": false,
-                    "transform": null,
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "February 28th, 2018",
-                    "className": "btn btn-link article__subtitle--date",
-                    "onClick": [Function],
-                  },
-                  "ref": null,
-                  "rendered": "February 28th, 2018",
-                  "type": "button",
-                },
-              ],
-              "type": "li",
-            },
-            null,
-          ],
-          "type": "ul",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <div
-              className="article__contents"
->
-              <p
-                            className="text-muted"
-              />
-</div>,
-            "replace": false,
-            "to": "/articles/123",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                undefined,
-                <p
-                  className="text-muted"
-/>,
-              ],
-              "className": "article__contents",
-            },
-            "ref": null,
-            "rendered": Array [
-              undefined,
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "",
-                  "className": "text-muted",
-                },
-                "ref": null,
-                "rendered": "",
-                "type": "p",
-              },
-            ],
-            "type": "div",
-          },
-          "type": [Function],
-        },
-      ],
       "type": "article",
     },
   ],
@@ -593,214 +395,90 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "children": Array [
-        <h2
-          className="article__title"
+      "children": <Link
+        replace={false}
+        to="/articles/123"
 >
-          <Link
-                    replace={false}
-                    to="/articles/123"
-          >
-                    Hunting for great names in programming
-          </Link>
-</h2>,
-        <ul
-          className="article__subtitle mb-2"
->
-          <li>
-                    <FontAwesomeIcon$1
-                              border={false}
-                              className="mr-2"
-                              fixedWidth={false}
-                              flip={null}
-                              icon="calendar-alt"
-                              listItem={false}
-                              mask={null}
-                              name=""
-                              pull={null}
-                              pulse={false}
-                              rotation={null}
-                              size={null}
-                              spin={false}
-                              symbol={false}
-                              transform={null}
-                    />
-                    <button
-                              className="btn btn-link article__subtitle--date"
-                              onClick={[Function]}
-                    >
-                              February 28th, 2018
-                    </button>
-          </li>
-          <li
-                    className="article__subtitle--tags"
-          >
-                    <FontAwesomeIcon$1
-                              border={false}
-                              className="mr-2"
-                              fixedWidth={false}
-                              flip={null}
-                              icon="tag"
-                              listItem={false}
-                              mask={null}
-                              name=""
-                              pull={null}
-                              pulse={false}
-                              rotation={null}
-                              size={null}
-                              spin={false}
-                              symbol={false}
-                              transform={null}
-                    />
-                    <button
-                              className="article__subtitle--tag btn btn-link"
-                              onClick={[Function]}
-                    >
-                              ruby
-                    </button>
-                    <button
-                              className="article__subtitle--tag btn btn-link"
-                              onClick={[Function]}
-                    >
-                              rails
-                    </button>
-                    <button
-                              className="article__subtitle--tag btn btn-link"
-                              onClick={[Function]}
-                    >
-                              naming
-                    </button>
-                    <button
-                              className="article__subtitle--tag btn btn-link"
-                              onClick={[Function]}
-                    >
-                              web
-                    </button>
-          </li>
-</ul>,
-        <Link
-          replace={false}
-          to="/articles/123"
->
-          <div
-                    className="article__contents"
-          >
-                    <p
-                              className="text-muted"
-                    />
-          </div>
+        <div
+                className="post-preview col-12  no-gutter"
+        >
+                <h2>
+                        Hunting for great names in programming
+                </h2>
+                <p
+                        className="mt-4"
+                />
+                <p
+                        className="meta"
+                >
+                        dhh
+                         
+                        <i
+                                className="link-spacer"
+                        />
+                         
+                        February 28th, 2018
+                </p>
+        </div>
 </Link>,
-      ],
+      "className": "post",
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": <Link
-            replace={false}
-            to="/articles/123"
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <div
+          className="post-preview col-12  no-gutter"
 >
-            Hunting for great names in programming
-</Link>,
-          "className": "article__title",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": "Hunting for great names in programming",
-            "replace": false,
-            "to": "/articles/123",
-          },
-          "ref": null,
-          "rendered": "Hunting for great names in programming",
-          "type": [Function],
-        },
-        "type": "h2",
+          <h2>
+                    Hunting for great names in programming
+          </h2>
+          <p
+                    className="mt-4"
+          />
+          <p
+                    className="meta"
+          >
+                    dhh
+                     
+                    <i
+                              className="link-spacer"
+                    />
+                     
+                    February 28th, 2018
+          </p>
+</div>,
+        "replace": false,
+        "to": "/articles/123",
       },
-      Object {
+      "ref": null,
+      "rendered": Object {
         "instance": null,
         "key": undefined,
         "nodeType": "host",
         "props": Object {
           "children": Array [
-            <li>
-              <FontAwesomeIcon$1
-                            border={false}
-                            className="mr-2"
-                            fixedWidth={false}
-                            flip={null}
-                            icon="calendar-alt"
-                            listItem={false}
-                            mask={null}
-                            name=""
-                            pull={null}
-                            pulse={false}
-                            rotation={null}
-                            size={null}
-                            spin={false}
-                            symbol={false}
-                            transform={null}
-              />
-              <button
-                            className="btn btn-link article__subtitle--date"
-                            onClick={[Function]}
-              >
-                            February 28th, 2018
-              </button>
-</li>,
-            <li
-              className="article__subtitle--tags"
+            <h2>
+              Hunting for great names in programming
+</h2>,
+            <p
+              className="mt-4"
+/>,
+            <p
+              className="meta"
 >
-              <FontAwesomeIcon$1
-                            border={false}
-                            className="mr-2"
-                            fixedWidth={false}
-                            flip={null}
-                            icon="tag"
-                            listItem={false}
-                            mask={null}
-                            name=""
-                            pull={null}
-                            pulse={false}
-                            rotation={null}
-                            size={null}
-                            spin={false}
-                            symbol={false}
-                            transform={null}
+              dhh
+               
+              <i
+                            className="link-spacer"
               />
-              <button
-                            className="article__subtitle--tag btn btn-link"
-                            onClick={[Function]}
-              >
-                            ruby
-              </button>
-              <button
-                            className="article__subtitle--tag btn btn-link"
-                            onClick={[Function]}
-              >
-                            rails
-              </button>
-              <button
-                            className="article__subtitle--tag btn btn-link"
-                            onClick={[Function]}
-              >
-                            naming
-              </button>
-              <button
-                            className="article__subtitle--tag btn btn-link"
-                            onClick={[Function]}
-              >
-                            web
-              </button>
-</li>,
+               
+              February 28th, 2018
+</p>,
           ],
-          "className": "article__subtitle mb-2",
+          "className": "post-preview col-12  no-gutter",
         },
         "ref": null,
         "rendered": Array [
@@ -809,74 +487,23 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": Array [
-                <FontAwesomeIcon$1
-                  border={false}
-                  className="mr-2"
-                  fixedWidth={false}
-                  flip={null}
-                  icon="calendar-alt"
-                  listItem={false}
-                  mask={null}
-                  name=""
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  symbol={false}
-                  transform={null}
-/>,
-                <button
-                  className="btn btn-link article__subtitle--date"
-                  onClick={[Function]}
->
-                  February 28th, 2018
-</button>,
-              ],
+              "children": "Hunting for great names in programming",
             },
             "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "border": false,
-                  "className": "mr-2",
-                  "fixedWidth": false,
-                  "flip": null,
-                  "icon": "calendar-alt",
-                  "listItem": false,
-                  "mask": null,
-                  "name": "",
-                  "pull": null,
-                  "pulse": false,
-                  "rotation": null,
-                  "size": null,
-                  "spin": false,
-                  "symbol": false,
-                  "transform": null,
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "February 28th, 2018",
-                  "className": "btn btn-link article__subtitle--date",
-                  "onClick": [Function],
-                },
-                "ref": null,
-                "rendered": "February 28th, 2018",
-                "type": "button",
-              },
-            ],
-            "type": "li",
+            "rendered": "Hunting for great names in programming",
+            "type": "h2",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "",
+              "className": "mt-4",
+            },
+            "ref": null,
+            "rendered": "",
+            "type": "p",
           },
           Object {
             "instance": null,
@@ -884,156 +511,103 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <FontAwesomeIcon$1
-                  border={false}
-                  className="mr-2"
-                  fixedWidth={false}
-                  flip={null}
-                  icon="tag"
-                  listItem={false}
-                  mask={null}
-                  name=""
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  symbol={false}
-                  transform={null}
+                "dhh",
+                " ",
+                <i
+                  className="link-spacer"
 />,
-                Array [
-                  Array [
-                    <button
-                      className="article__subtitle--tag btn btn-link"
-                      onClick={[Function]}
->
-                      ruby
-</button>,
-                  ],
-                  Array [
-                    <button
-                      className="article__subtitle--tag btn btn-link"
-                      onClick={[Function]}
->
-                      rails
-</button>,
-                  ],
-                  Array [
-                    <button
-                      className="article__subtitle--tag btn btn-link"
-                      onClick={[Function]}
->
-                      naming
-</button>,
-                  ],
-                  Array [
-                    <button
-                      className="article__subtitle--tag btn btn-link"
-                      onClick={[Function]}
->
-                      web
-</button>,
-                  ],
-                ],
+                " ",
+                "February 28th, 2018",
               ],
-              "className": "article__subtitle--tags",
+              "className": "meta",
             },
             "ref": null,
             "rendered": Array [
+              "dhh",
+              " ",
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "function",
+                "nodeType": "host",
                 "props": Object {
-                  "border": false,
-                  "className": "mr-2",
-                  "fixedWidth": false,
-                  "flip": null,
-                  "icon": "tag",
-                  "listItem": false,
-                  "mask": null,
-                  "name": "",
-                  "pull": null,
-                  "pulse": false,
-                  "rotation": null,
-                  "size": null,
-                  "spin": false,
-                  "symbol": false,
-                  "transform": null,
+                  "className": "link-spacer",
                 },
                 "ref": null,
                 "rendered": null,
-                "type": [Function],
+                "type": "i",
               },
-              Object {
-                "instance": null,
-                "key": "ruby",
-                "nodeType": "host",
-                "props": Object {
-                  "children": "ruby",
-                  "className": "article__subtitle--tag btn btn-link",
-                  "onClick": [Function],
-                },
-                "ref": null,
-                "rendered": "ruby",
-                "type": "button",
-              },
-              Object {
-                "instance": null,
-                "key": "rails",
-                "nodeType": "host",
-                "props": Object {
-                  "children": "rails",
-                  "className": "article__subtitle--tag btn btn-link",
-                  "onClick": [Function],
-                },
-                "ref": null,
-                "rendered": "rails",
-                "type": "button",
-              },
-              Object {
-                "instance": null,
-                "key": "naming",
-                "nodeType": "host",
-                "props": Object {
-                  "children": "naming",
-                  "className": "article__subtitle--tag btn btn-link",
-                  "onClick": [Function],
-                },
-                "ref": null,
-                "rendered": "naming",
-                "type": "button",
-              },
-              Object {
-                "instance": null,
-                "key": "web",
-                "nodeType": "host",
-                "props": Object {
-                  "children": "web",
-                  "className": "article__subtitle--tag btn btn-link",
-                  "onClick": [Function],
-                },
-                "ref": null,
-                "rendered": "web",
-                "type": "button",
-              },
+              " ",
+              "February 28th, 2018",
             ],
-            "type": "li",
+            "type": "p",
           },
         ],
-        "type": "ul",
+        "type": "div",
       },
-      Object {
+      "type": [Function],
+    },
+    "type": "article",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <Link
+          replace={false}
+          to="/articles/123"
+>
+          <div
+                    className="post-preview col-12  no-gutter"
+          >
+                    <h2>
+                              Hunting for great names in programming
+                    </h2>
+                    <p
+                              className="mt-4"
+                    />
+                    <p
+                              className="meta"
+                    >
+                              dhh
+                               
+                              <i
+                                        className="link-spacer"
+                              />
+                               
+                              February 28th, 2018
+                    </p>
+          </div>
+</Link>,
+        "className": "post",
+      },
+      "ref": null,
+      "rendered": Object {
         "instance": null,
         "key": undefined,
         "nodeType": "class",
         "props": Object {
           "children": <div
-            className="article__contents"
+            className="post-preview col-12  no-gutter"
 >
+            <h2>
+                        Hunting for great names in programming
+            </h2>
             <p
-                        className="text-muted"
+                        className="mt-4"
             />
+            <p
+                        className="meta"
+            >
+                        dhh
+                         
+                        <i
+                                    className="link-spacer"
+                        />
+                         
+                        February 28th, 2018
+            </p>
 </div>,
           "replace": false,
           "to": "/articles/123",
@@ -1045,26 +619,85 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              undefined,
+              <h2>
+                Hunting for great names in programming
+</h2>,
               <p
-                className="text-muted"
+                className="mt-4"
 />,
+              <p
+                className="meta"
+>
+                dhh
+                 
+                <i
+                                className="link-spacer"
+                />
+                 
+                February 28th, 2018
+</p>,
             ],
-            "className": "article__contents",
+            "className": "post-preview col-12  no-gutter",
           },
           "ref": null,
           "rendered": Array [
-            undefined,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Hunting for great names in programming",
+              },
+              "ref": null,
+              "rendered": "Hunting for great names in programming",
+              "type": "h2",
+            },
             Object {
               "instance": null,
               "key": undefined,
               "nodeType": "host",
               "props": Object {
                 "children": "",
-                "className": "text-muted",
+                "className": "mt-4",
               },
               "ref": null,
               "rendered": "",
+              "type": "p",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  "dhh",
+                  " ",
+                  <i
+                    className="link-spacer"
+/>,
+                  " ",
+                  "February 28th, 2018",
+                ],
+                "className": "meta",
+              },
+              "ref": null,
+              "rendered": Array [
+                "dhh",
+                " ",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "className": "link-spacer",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "i",
+                },
+                " ",
+                "February 28th, 2018",
+              ],
               "type": "p",
             },
           ],
@@ -1072,495 +705,6 @@ ShallowWrapper {
         },
         "type": [Function],
       },
-    ],
-    "type": "article",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <h2
-            className="article__title"
->
-            <Link
-                        replace={false}
-                        to="/articles/123"
-            >
-                        Hunting for great names in programming
-            </Link>
-</h2>,
-          <ul
-            className="article__subtitle mb-2"
->
-            <li>
-                        <FontAwesomeIcon$1
-                                    border={false}
-                                    className="mr-2"
-                                    fixedWidth={false}
-                                    flip={null}
-                                    icon="calendar-alt"
-                                    listItem={false}
-                                    mask={null}
-                                    name=""
-                                    pull={null}
-                                    pulse={false}
-                                    rotation={null}
-                                    size={null}
-                                    spin={false}
-                                    symbol={false}
-                                    transform={null}
-                        />
-                        <button
-                                    className="btn btn-link article__subtitle--date"
-                                    onClick={[Function]}
-                        >
-                                    February 28th, 2018
-                        </button>
-            </li>
-            <li
-                        className="article__subtitle--tags"
-            >
-                        <FontAwesomeIcon$1
-                                    border={false}
-                                    className="mr-2"
-                                    fixedWidth={false}
-                                    flip={null}
-                                    icon="tag"
-                                    listItem={false}
-                                    mask={null}
-                                    name=""
-                                    pull={null}
-                                    pulse={false}
-                                    rotation={null}
-                                    size={null}
-                                    spin={false}
-                                    symbol={false}
-                                    transform={null}
-                        />
-                        <button
-                                    className="article__subtitle--tag btn btn-link"
-                                    onClick={[Function]}
-                        >
-                                    ruby
-                        </button>
-                        <button
-                                    className="article__subtitle--tag btn btn-link"
-                                    onClick={[Function]}
-                        >
-                                    rails
-                        </button>
-                        <button
-                                    className="article__subtitle--tag btn btn-link"
-                                    onClick={[Function]}
-                        >
-                                    naming
-                        </button>
-                        <button
-                                    className="article__subtitle--tag btn btn-link"
-                                    onClick={[Function]}
-                        >
-                                    web
-                        </button>
-            </li>
-</ul>,
-          <Link
-            replace={false}
-            to="/articles/123"
->
-            <div
-                        className="article__contents"
-            >
-                        <p
-                                    className="text-muted"
-                        />
-            </div>
-</Link>,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": <Link
-              replace={false}
-              to="/articles/123"
->
-              Hunting for great names in programming
-</Link>,
-            "className": "article__title",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": "Hunting for great names in programming",
-              "replace": false,
-              "to": "/articles/123",
-            },
-            "ref": null,
-            "rendered": "Hunting for great names in programming",
-            "type": [Function],
-          },
-          "type": "h2",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              <li>
-                <FontAwesomeIcon$1
-                                border={false}
-                                className="mr-2"
-                                fixedWidth={false}
-                                flip={null}
-                                icon="calendar-alt"
-                                listItem={false}
-                                mask={null}
-                                name=""
-                                pull={null}
-                                pulse={false}
-                                rotation={null}
-                                size={null}
-                                spin={false}
-                                symbol={false}
-                                transform={null}
-                />
-                <button
-                                className="btn btn-link article__subtitle--date"
-                                onClick={[Function]}
-                >
-                                February 28th, 2018
-                </button>
-</li>,
-              <li
-                className="article__subtitle--tags"
->
-                <FontAwesomeIcon$1
-                                border={false}
-                                className="mr-2"
-                                fixedWidth={false}
-                                flip={null}
-                                icon="tag"
-                                listItem={false}
-                                mask={null}
-                                name=""
-                                pull={null}
-                                pulse={false}
-                                rotation={null}
-                                size={null}
-                                spin={false}
-                                symbol={false}
-                                transform={null}
-                />
-                <button
-                                className="article__subtitle--tag btn btn-link"
-                                onClick={[Function]}
-                >
-                                ruby
-                </button>
-                <button
-                                className="article__subtitle--tag btn btn-link"
-                                onClick={[Function]}
-                >
-                                rails
-                </button>
-                <button
-                                className="article__subtitle--tag btn btn-link"
-                                onClick={[Function]}
-                >
-                                naming
-                </button>
-                <button
-                                className="article__subtitle--tag btn btn-link"
-                                onClick={[Function]}
-                >
-                                web
-                </button>
-</li>,
-            ],
-            "className": "article__subtitle mb-2",
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": Array [
-                  <FontAwesomeIcon$1
-                    border={false}
-                    className="mr-2"
-                    fixedWidth={false}
-                    flip={null}
-                    icon="calendar-alt"
-                    listItem={false}
-                    mask={null}
-                    name=""
-                    pull={null}
-                    pulse={false}
-                    rotation={null}
-                    size={null}
-                    spin={false}
-                    symbol={false}
-                    transform={null}
-/>,
-                  <button
-                    className="btn btn-link article__subtitle--date"
-                    onClick={[Function]}
->
-                    February 28th, 2018
-</button>,
-                ],
-              },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "border": false,
-                    "className": "mr-2",
-                    "fixedWidth": false,
-                    "flip": null,
-                    "icon": "calendar-alt",
-                    "listItem": false,
-                    "mask": null,
-                    "name": "",
-                    "pull": null,
-                    "pulse": false,
-                    "rotation": null,
-                    "size": null,
-                    "spin": false,
-                    "symbol": false,
-                    "transform": null,
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "February 28th, 2018",
-                    "className": "btn btn-link article__subtitle--date",
-                    "onClick": [Function],
-                  },
-                  "ref": null,
-                  "rendered": "February 28th, 2018",
-                  "type": "button",
-                },
-              ],
-              "type": "li",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": Array [
-                  <FontAwesomeIcon$1
-                    border={false}
-                    className="mr-2"
-                    fixedWidth={false}
-                    flip={null}
-                    icon="tag"
-                    listItem={false}
-                    mask={null}
-                    name=""
-                    pull={null}
-                    pulse={false}
-                    rotation={null}
-                    size={null}
-                    spin={false}
-                    symbol={false}
-                    transform={null}
-/>,
-                  Array [
-                    Array [
-                      <button
-                        className="article__subtitle--tag btn btn-link"
-                        onClick={[Function]}
->
-                        ruby
-</button>,
-                    ],
-                    Array [
-                      <button
-                        className="article__subtitle--tag btn btn-link"
-                        onClick={[Function]}
->
-                        rails
-</button>,
-                    ],
-                    Array [
-                      <button
-                        className="article__subtitle--tag btn btn-link"
-                        onClick={[Function]}
->
-                        naming
-</button>,
-                    ],
-                    Array [
-                      <button
-                        className="article__subtitle--tag btn btn-link"
-                        onClick={[Function]}
->
-                        web
-</button>,
-                    ],
-                  ],
-                ],
-                "className": "article__subtitle--tags",
-              },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "function",
-                  "props": Object {
-                    "border": false,
-                    "className": "mr-2",
-                    "fixedWidth": false,
-                    "flip": null,
-                    "icon": "tag",
-                    "listItem": false,
-                    "mask": null,
-                    "name": "",
-                    "pull": null,
-                    "pulse": false,
-                    "rotation": null,
-                    "size": null,
-                    "spin": false,
-                    "symbol": false,
-                    "transform": null,
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": [Function],
-                },
-                Object {
-                  "instance": null,
-                  "key": "ruby",
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "ruby",
-                    "className": "article__subtitle--tag btn btn-link",
-                    "onClick": [Function],
-                  },
-                  "ref": null,
-                  "rendered": "ruby",
-                  "type": "button",
-                },
-                Object {
-                  "instance": null,
-                  "key": "rails",
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "rails",
-                    "className": "article__subtitle--tag btn btn-link",
-                    "onClick": [Function],
-                  },
-                  "ref": null,
-                  "rendered": "rails",
-                  "type": "button",
-                },
-                Object {
-                  "instance": null,
-                  "key": "naming",
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "naming",
-                    "className": "article__subtitle--tag btn btn-link",
-                    "onClick": [Function],
-                  },
-                  "ref": null,
-                  "rendered": "naming",
-                  "type": "button",
-                },
-                Object {
-                  "instance": null,
-                  "key": "web",
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "web",
-                    "className": "article__subtitle--tag btn btn-link",
-                    "onClick": [Function],
-                  },
-                  "ref": null,
-                  "rendered": "web",
-                  "type": "button",
-                },
-              ],
-              "type": "li",
-            },
-          ],
-          "type": "ul",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <div
-              className="article__contents"
->
-              <p
-                            className="text-muted"
-              />
-</div>,
-            "replace": false,
-            "to": "/articles/123",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                undefined,
-                <p
-                  className="text-muted"
-/>,
-              ],
-              "className": "article__contents",
-            },
-            "ref": null,
-            "rendered": Array [
-              undefined,
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "",
-                  "className": "text-muted",
-                },
-                "ref": null,
-                "rendered": "",
-                "type": "p",
-              },
-            ],
-            "type": "div",
-          },
-          "type": [Function],
-        },
-      ],
       "type": "article",
     },
   ],

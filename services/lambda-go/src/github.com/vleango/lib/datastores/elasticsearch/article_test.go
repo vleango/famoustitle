@@ -29,6 +29,7 @@ func (suite *Suite) TestArticleCreate() {
 	suite.Equal(item.Author, article.Author)
 	suite.Equal(len(item.Tags), len(article.Tags))
 	suite.Equal(item.ImgUrl, article.ImgUrl)
+	suite.Equal(item.Published, article.Published)
 	suite.Contains(article.Tags, "rails")
 	suite.Contains(article.Tags, "ruby")
 }
@@ -83,6 +84,30 @@ func (suite *Suite) TestArticleFindAll() {
 	}
 }
 
+func (suite *Suite) TestArticleFindAllNotPublished() {
+	item1 := test.DefaultArticleModel()
+	item1.ID = "1234"
+	item2 := test.DefaultArticleModel()
+	item2.Published = false
+	item2.ID = "abcd"
+
+	ArticleCreate(item1)
+	ArticleCreate(item2)
+	time.Sleep(2 * time.Second)
+
+	articles, _, _ := ArticleFindAll()
+	suite.Equal(1, len(articles))
+
+	for _, article := range articles {
+		suite.Equal(item1.Title, article.Title)
+		suite.Equal(item1.Body, article.Body)
+		suite.Equal(len(item1.Tags), len(article.Tags))
+		suite.Contains(article.Tags, "rails")
+		suite.Contains(article.Tags, "ruby")
+		suite.Equal(item1.ID, article.ID)
+	}
+}
+
 func (suite *Suite) TestArticleFindAllByTag() {
 	item1 := test.DefaultArticleModel()
 	item1.ID = "1234"
@@ -97,6 +122,23 @@ func (suite *Suite) TestArticleFindAllByTag() {
 		"tag": "rails",
 	})
 	suite.Equal(2, len(articles))
+}
+
+func (suite *Suite) TestArticleFindAllByTagNotPublished() {
+	item1 := test.DefaultArticleModel()
+	item1.ID = "1234"
+	item2 := test.DefaultArticleModel()
+	item2.Published = false
+	item2.ID = "abcd"
+
+	ArticleCreate(item1)
+	ArticleCreate(item2)
+	time.Sleep(2 * time.Second)
+
+	articles, _, _ := ArticleFindAll(map[string]string{
+		"tag": "rails",
+	})
+	suite.Equal(1, len(articles))
 }
 
 func (suite *Suite) TestArticleFindAllByTagNotFound() {
@@ -131,6 +173,23 @@ func (suite *Suite) TestArticleFindAllByDate() {
 	suite.Equal(2, len(articles))
 }
 
+func (suite *Suite) TestArticleFindAllByDateNotPublished() {
+	item1 := test.DefaultArticleModel()
+	item1.ID = "1234"
+	item2 := test.DefaultArticleModel()
+	item2.Published = false
+	item2.ID = "abcd"
+
+	ArticleCreate(item1)
+	ArticleCreate(item2)
+	time.Sleep(2 * time.Second)
+
+	articles, _, _ := ArticleFindAll(map[string]string{
+		"date": time.Now().Format("2006-01-") + "01",
+	})
+	suite.Equal(1, len(articles))
+}
+
 func (suite *Suite) TestArticleFindAllByDateNotFound() {
 	item1 := test.DefaultArticleModel()
 	item1.ID = "1234"
@@ -161,6 +220,23 @@ func (suite *Suite) TestArticleFindAllByMatch() {
 		"match": "title",
 	})
 	suite.Equal(2, len(articles))
+}
+
+func (suite *Suite) TestArticleFindAllByMatchNotPublished() {
+	item1 := test.DefaultArticleModel()
+	item1.ID = "1234"
+	item2 := test.DefaultArticleModel()
+	item2.Published = false
+	item2.ID = "abcd"
+
+	ArticleCreate(item1)
+	ArticleCreate(item2)
+	time.Sleep(2 * time.Second)
+
+	articles, _, _ := ArticleFindAll(map[string]string{
+		"match": "title",
+	})
+	suite.Equal(1, len(articles))
 }
 
 func (suite *Suite) TestArticleFindAllByMatchNotFound() {

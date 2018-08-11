@@ -60,6 +60,7 @@ type Source struct {
 	Body      string    `json:"body"`
 	Tags      []string  `json:"tags"`
 	ImgUrl    *string   `json:"img_url"`
+	Published bool      `json:"published"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
@@ -125,15 +126,24 @@ func ArticleDestroy(item models.Article) (*models.Article, error) {
 }
 
 func ArticleFindAll(params ...map[string]string) ([]models.Article, Aggregations, error) {
-	str := `"match_all": {}`
+	str := ``
 	if len(params) > 0 {
 		str = matchStr(params[0])
 	}
 
 	var jsonStr = []byte(`
 {
-  "query": {` +
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "published": true
+          }
+        }` +
 		str + `
+      ]
+    }
   }, 
   "sort": {
     "created_at": {
@@ -151,7 +161,6 @@ func ArticleFindAll(params ...map[string]string) ([]models.Article, Aggregations
   }
 }
 `)
-
 	return find(jsonStr)
 }
 
@@ -225,40 +234,47 @@ func ArticleUpdate(item models.Article) (*models.Article, error) {
 }
 
 func matchStr(params map[string]string) string {
-	str := `"match_all": {}`
+	str := ``
 	if val, ok := params["tag"]; ok {
-		str = matchStrTag(val)
+		str = "," + matchStrTag(val)
 	} else if val, ok := params["date"]; ok {
-		str = matchStrDate(val)
+		str = "," + matchStrDate(val)
 	} else if val, ok := params["match"]; ok {
-		str = matchStrMatch(val)
+		str = "," + matchStrMatch(val)
 	}
+
 	return str
 }
 
 func matchStrTag(val string) string {
 	return `
+	{
 		"term": {
 			"tags.keyword": "` + val + `"
-		}`
+  		}
+	}`
 }
 
 func matchStrDate(val string) string {
 	return `
+	{
 		"range": {
 			"created_at": {
 				"gte" : "` + val + `||/M",
 				"lt" :  "` + val + `||+1M/M"
 			}
-		}`
+		}
+	}`
 }
 
 func matchStrMatch(val string) string {
 	return `
+	{
 		"multi_match": {
 			"query": "` + val + `",
 			"fields": ["title", "body", "tags.keyword"]
-		}`
+		}
+	}`
 }
 
 func find(jsonStr []byte) ([]models.Article, Aggregations, error) {

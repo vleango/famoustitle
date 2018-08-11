@@ -89,6 +89,7 @@ func DefaultArticleModel() models.Article {
 		Subtitle:  &subtitle,
 		Body:      "this is my body",
 		Tags:      []string{"ruby", "rails"},
+		Published: true,
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 	}

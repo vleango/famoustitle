@@ -1,3 +1,14 @@
+.menu-container-1 {
+    position: relative;
+    left: 0;
+}
+
+.menu-container-2 {
+    width: 250px;
+    z-index: -1;
+    display: none;
+}
+
 .canvas {
     margin: 2rem;
     padding: 0 5rem;
@@ -7,6 +18,10 @@
 
 .canvas a {
     text-decoration: none;
+}
+
+.secondary-text {
+    font-size: 2rem !important;
 }
 
 footer {
