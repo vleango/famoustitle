@@ -4,6 +4,10 @@ body {
     line-height: 1.65;
 }
 
+a {
+    border-bottom: none !important;
+}
+
 body,
 button,
 input,
