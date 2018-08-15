@@ -34,14 +34,14 @@ custom:
           value: max-age=0
 
 functions:
-  archives_articles:
+  archivesArticles:
     handler: bin/archives_articles_index
     events:
       - http:
           path: /archives/articles
           method: get
           cors: true
-  articles_index:
+  articlesIndex:
     handler: bin/articles_index
     iamRoleStatements:
       - Effect: "Allow"
@@ -53,7 +53,7 @@ functions:
           path: /articles
           method: get
           cors: true
-  articles_create:
+  articlesCreate:
     handler: bin/articles_create
     iamRoleStatements:
       - Effect: "Allow"
@@ -70,14 +70,14 @@ functions:
           path: /articles
           method: post
           cors: true
-  articles_show:
+  articlesShow:
     handler: bin/articles_show
     events:
       - http:
           path: /articles/{id}
           method: get
           cors: true
-  articles_update:
+  articlesUpdate:
     handler: bin/articles_update
     iamRoleStatements:
       - Effect: "Allow"
@@ -95,7 +95,7 @@ functions:
           path: /articles/{id}
           method: post
           cors: true
-  articles_destroy:
+  articlesDestroy:
     handler: bin/articles_destroy
     iamRoleStatements:
       - Effect: "Allow"
@@ -113,7 +113,7 @@ functions:
           path: /articles/{id}
           method: delete
           cors: true
-  tokens_create:
+  tokensCreate:
     handler: bin/tokens_create
     iamRoleStatements:
       - Effect: "Allow"
@@ -125,7 +125,7 @@ functions:
           path: /tokens
           method: post
           cors: true
-  user_articles_verify:
+  userArticlesVerify:
     handler: bin/user_articles_verify_show
     iamRoleStatements:
       - Effect: "Allow"
@@ -141,7 +141,7 @@ functions:
           path: /users_articles/verify/{id}
           method: get
           cors: true
-  users_create:
+  usersCreate:
     handler: bin/users_create
     iamRoleStatements:
       - Effect: "Allow"

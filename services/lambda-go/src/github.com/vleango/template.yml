@@ -2,12 +2,12 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Description: 'SAM template for Serverless framework service: '
 Resources:
-  Archives_articles:
+  ArchivesArticles:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: bin/archives_articles_index
+      Handler: archives_articles_index
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
+      CodeUri: bin/
       MemorySize: 128
       Timeout: 10
       Environment:
@@ -73,7 +73,7 @@ Resources:
                 type: aws_proxy
                 uri:
                   'Fn::Sub': >-
-                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Archives_articles.Arn}/invocations
+                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ArchivesArticles.Arn}/invocations
                 responses:
                   default:
                     statusCode: 200
@@ -122,7 +122,7 @@ Resources:
                 type: aws_proxy
                 uri:
                   'Fn::Sub': >-
-                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Articles_index.Arn}/invocations
+                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ArticlesIndex.Arn}/invocations
                 responses:
                   default:
                     statusCode: 200
@@ -147,7 +147,7 @@ Resources:
                 type: aws_proxy
                 uri:
                   'Fn::Sub': >-
-                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Articles_create.Arn}/invocations
+                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ArticlesCreate.Arn}/invocations
                 responses:
                   default:
                     statusCode: 200
@@ -196,7 +196,7 @@ Resources:
                 type: aws_proxy
                 uri:
                   'Fn::Sub': >-
-                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Articles_show.Arn}/invocations
+                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ArticlesShow.Arn}/invocations
                 responses:
                   default:
                     statusCode: 200
@@ -221,7 +221,7 @@ Resources:
                 type: aws_proxy
                 uri:
                   'Fn::Sub': >-
-                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Articles_update.Arn}/invocations
+                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ArticlesUpdate.Arn}/invocations
                 responses:
                   default:
                     statusCode: 200
@@ -246,7 +246,7 @@ Resources:
                 type: aws_proxy
                 uri:
                   'Fn::Sub': >-
-                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Articles_destroy.Arn}/invocations
+                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ArticlesDestroy.Arn}/invocations
                 responses:
                   default:
                     statusCode: 200
@@ -295,7 +295,7 @@ Resources:
                 type: aws_proxy
                 uri:
                   'Fn::Sub': >-
-                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Tokens_create.Arn}/invocations
+                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${TokensCreate.Arn}/invocations
                 responses:
                   default:
                     statusCode: 200
@@ -344,7 +344,7 @@ Resources:
                 type: aws_proxy
                 uri:
                   'Fn::Sub': >-
-                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${User_articles_verify.Arn}/invocations
+                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${UserArticlesVerify.Arn}/invocations
                 responses:
                   default:
                     statusCode: 200
@@ -393,7 +393,7 @@ Resources:
                 type: aws_proxy
                 uri:
                   'Fn::Sub': >-
-                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Users_create.Arn}/invocations
+                    arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${UsersCreate.Arn}/invocations
                 responses:
                   default:
                     statusCode: 200
@@ -412,21 +412,21 @@ Resources:
                       type: string
                     Access-Control-Allow-Origin:
                       type: string
-  Archives_articlesLambdaPermission:
+  ArchivesArticlesLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
-      - Archives_articles
+      - ArchivesArticles
     Properties:
       Action: 'lambda:InvokeFunction'
       FunctionName:
-        Ref: Archives_articles
+        Ref: ArchivesArticles
       Principal: apigateway.amazonaws.com
-  Articles_index:
+  ArticlesIndex:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: bin/articles_index
+      Handler: articles_index
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
+      CodeUri: bin/
       MemorySize: 128
       Timeout: 10
       Environment:
@@ -452,21 +452,21 @@ Resources:
             Method: options
             RestApiId:
               Ref: Famoustitle
-  Articles_indexLambdaPermission:
+  ArticlesIndexLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
-      - Articles_index
+      - ArticlesIndex
     Properties:
       Action: 'lambda:InvokeFunction'
       FunctionName:
-        Ref: Articles_index
+        Ref: ArticlesIndex
       Principal: apigateway.amazonaws.com
-  Articles_create:
+  ArticlesCreate:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: bin/articles_create
+      Handler: articles_create
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
+      CodeUri: bin/
       MemorySize: 128
       Timeout: 10
       Environment:
@@ -492,21 +492,21 @@ Resources:
             Method: options
             RestApiId:
               Ref: Famoustitle
-  Articles_createLambdaPermission:
+  ArticlesCreateLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
-      - Articles_create
+      - ArticlesCreate
     Properties:
       Action: 'lambda:InvokeFunction'
       FunctionName:
-        Ref: Articles_create
+        Ref: ArticlesCreate
       Principal: apigateway.amazonaws.com
-  Articles_show:
+  ArticlesShow:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: bin/articles_show
+      Handler: articles_show
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
+      CodeUri: bin/
       MemorySize: 128
       Timeout: 10
       Environment:
@@ -532,21 +532,21 @@ Resources:
             Method: options
             RestApiId:
               Ref: Famoustitle
-  Articles_showLambdaPermission:
+  ArticlesShowLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
-      - Articles_show
+      - ArticlesShow
     Properties:
       Action: 'lambda:InvokeFunction'
       FunctionName:
-        Ref: Articles_show
+        Ref: ArticlesShow
       Principal: apigateway.amazonaws.com
-  Articles_update:
+  ArticlesUpdate:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: bin/articles_update
+      Handler: articles_update
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
+      CodeUri: bin/
       MemorySize: 128
       Timeout: 10
       Environment:
@@ -572,21 +572,21 @@ Resources:
             Method: options
             RestApiId:
               Ref: Famoustitle
-  Articles_updateLambdaPermission:
+  ArticlesUpdateLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
-      - Articles_update
+      - ArticlesUpdate
     Properties:
       Action: 'lambda:InvokeFunction'
       FunctionName:
-        Ref: Articles_update
+        Ref: ArticlesUpdate
       Principal: apigateway.amazonaws.com
-  Articles_destroy:
+  ArticlesDestroy:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: bin/articles_destroy
+      Handler: articles_destroy
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
+      CodeUri: bin/
       MemorySize: 128
       Timeout: 10
       Environment:
@@ -612,21 +612,21 @@ Resources:
             Method: options
             RestApiId:
               Ref: Famoustitle
-  Articles_destroyLambdaPermission:
+  ArticlesDestroyLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
-      - Articles_destroy
+      - ArticlesDestroy
     Properties:
       Action: 'lambda:InvokeFunction'
       FunctionName:
-        Ref: Articles_destroy
+        Ref: ArticlesDestroy
       Principal: apigateway.amazonaws.com
-  Tokens_create:
+  TokensCreate:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: bin/tokens_create
+      Handler: tokens_create
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
+      CodeUri: bin/
       MemorySize: 128
       Timeout: 10
       Environment:
@@ -652,21 +652,21 @@ Resources:
             Method: options
             RestApiId:
               Ref: Famoustitle
-  Tokens_createLambdaPermission:
+  TokensCreateLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
-      - Tokens_create
+      - TokensCreate
     Properties:
       Action: 'lambda:InvokeFunction'
       FunctionName:
-        Ref: Tokens_create
+        Ref: TokensCreate
       Principal: apigateway.amazonaws.com
-  User_articles_verify:
+  UserArticlesVerify:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: bin/user_articles_verify_show
+      Handler: user_articles_verify_show
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
+      CodeUri: bin/
       MemorySize: 128
       Timeout: 10
       Environment:
@@ -692,21 +692,21 @@ Resources:
             Method: options
             RestApiId:
               Ref: Famoustitle
-  User_articles_verifyLambdaPermission:
+  UserArticlesVerifyLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
-      - User_articles_verify
+      - UserArticlesVerify
     Properties:
       Action: 'lambda:InvokeFunction'
       FunctionName:
-        Ref: User_articles_verify
+        Ref: UserArticlesVerify
       Principal: apigateway.amazonaws.com
-  Users_create:
+  UsersCreate:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: bin/users_create
+      Handler: users_create
       Runtime: go1.x
-      CodeUri: /go/src/github.com/vleango/.serverless/famoustitle.zip
+      CodeUri: bin/
       MemorySize: 128
       Timeout: 10
       Environment:
@@ -732,12 +732,12 @@ Resources:
             Method: options
             RestApiId:
               Ref: Famoustitle
-  Users_createLambdaPermission:
+  UsersCreateLambdaPermission:
     Type: 'AWS::Lambda::Permission'
     DependsOn:
-      - Users_create
+      - UsersCreate
     Properties:
       Action: 'lambda:InvokeFunction'
       FunctionName:
-        Ref: Users_create
+        Ref: UsersCreate
       Principal: apigateway.amazonaws.com

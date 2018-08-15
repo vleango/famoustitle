@@ -2,17 +2,20 @@
 
 
 [[projects]]
+  digest = "1:b563dc18255a9e7556a5c53ba9ba8aeaff5bfb54247a915a986714a3f1748551"
   name = "github.com/aws/aws-lambda-go"
   packages = [
     "events",
     "lambda",
     "lambda/messages",
-    "lambdacontext"
+    "lambdacontext",
   ]
+  pruneopts = "UT"
   revision = "fafa7e49388b8991caf99308e80655ba91816b72"
   version = "v1.1.0"
 
 [[projects]]
+  digest = "1:76f62b1d1e8f69dd58c4ecb9e45c2f17db0a3e43f884adf116f69a499896a573"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -43,80 +46,117 @@
     "private/protocol/xml/xmlutil",
     "service/dynamodb",
     "service/dynamodb/dynamodbattribute",
-    "service/sts"
+    "service/sts",
   ]
+  pruneopts = "UT"
   revision = "851c8ce700ee981b0ce28634721c2a925c6f3d0b"
   version = "v1.13.22"
 
 [[projects]]
+  digest = "1:a2c1d0e43bd3baaa071d1b9ed72c27d78169b2b269f71c105ac4ba34b1be4a39"
   name = "github.com/davecgh/go-spew"
   packages = ["spew"]
+  pruneopts = "UT"
   revision = "346938d642f2ec3594ed81d874461961cd0faa76"
   version = "v1.1.0"
 
 [[projects]]
+  digest = "1:76dc72490af7174349349838f2fe118996381b31ea83243812a97e5a0fd5ed55"
   name = "github.com/dgrijalva/jwt-go"
   packages = ["."]
+  pruneopts = "UT"
   revision = "06ea1031745cb8b3dab3f6a236daf2b0aa468b7e"
   version = "v3.2.0"
 
 [[projects]]
+  digest = "1:db18b69d50d54aadb436b8639e2b55b5ece5f595a601d9eb461fabd998ebb288"
   name = "github.com/go-ini/ini"
   packages = ["."]
+  pruneopts = "UT"
   revision = "6333e38ac20b8949a8dd68baa3650f4dee8f39f0"
   version = "v1.33.0"
 
 [[projects]]
   branch = "master"
+  digest = "1:55011902fbefd825fd286f47e1783e2f5e0316eac7be414d28f8f5dd82156b0f"
   name = "github.com/jinzhu/now"
   packages = ["."]
+  pruneopts = "UT"
   revision = "ed742868f2aebdb1c0c437bf4f7257f88834b66f"
 
 [[projects]]
+  digest = "1:e22af8c7518e1eab6f2eab2b7d7558927f816262586cd6ed9f349c97a6c285c4"
   name = "github.com/jmespath/go-jmespath"
   packages = ["."]
+  pruneopts = "UT"
   revision = "0b12d6b5"
 
 [[projects]]
+  digest = "1:0028cb19b2e4c3112225cd871870f2d9cf49b9b4276531f03438a88e94be86fe"
   name = "github.com/pmezard/go-difflib"
   packages = ["difflib"]
+  pruneopts = "UT"
   revision = "792786c7400a136282c1664665ae0a8db921c6c2"
   version = "v1.0.0"
 
 [[projects]]
+  digest = "1:274f67cb6fed9588ea2521ecdac05a6d62a8c51c074c1fccc6a49a40ba80e925"
   name = "github.com/satori/go.uuid"
   packages = ["."]
+  pruneopts = "UT"
   revision = "f58768cc1a7a7e77a3bd49e98cdd21419399b6a3"
   version = "v1.2.0"
 
 [[projects]]
   branch = "master"
+  digest = "1:429584ad9de437f42e453ee5e4940d640c7a666e699df30be2a6a093f031d050"
   name = "github.com/sha1sum/aws_signing_client"
   packages = ["."]
+  pruneopts = "UT"
   revision = "9088e4c7b34b3174ae879fc975deb18ac62ac8d3"
 
 [[projects]]
+  digest = "1:c52d48fe752736ae45b72959e1e4fc1a5b60d5b56f8fad42c58414daab5f309d"
   name = "github.com/stretchr/testify"
   packages = [
     "assert",
     "require",
-    "suite"
+    "suite",
   ]
+  pruneopts = "UT"
   revision = "12b6f73e6084dad08a7c6e575284b177ecafbc71"
   version = "v1.2.1"
 
 [[projects]]
   branch = "master"
+  digest = "1:1ecf2a49df33be51e757d0033d5d51d5f784f35f68e5a38f797b2d3f03357d71"
   name = "golang.org/x/crypto"
   packages = [
     "bcrypt",
-    "blowfish"
+    "blowfish",
   ]
+  pruneopts = "UT"
   revision = "5ba7f63082460102a45837dbd1827e10f9479ac0"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "fd81352d3735b9746aa2feaeb6ab97aab6a14642ea9d89c41c853e34e324dc08"
+  input-imports = [
+    "github.com/aws/aws-lambda-go/events",
+    "github.com/aws/aws-lambda-go/lambda",
+    "github.com/aws/aws-sdk-go/aws",
+    "github.com/aws/aws-sdk-go/aws/credentials",
+    "github.com/aws/aws-sdk-go/aws/session",
+    "github.com/aws/aws-sdk-go/aws/signer/v4",
+    "github.com/aws/aws-sdk-go/service/dynamodb",
+    "github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute",
+    "github.com/dgrijalva/jwt-go",
+    "github.com/jinzhu/now",
+    "github.com/satori/go.uuid",
+    "github.com/sha1sum/aws_signing_client",
+    "github.com/stretchr/testify/assert",
+    "github.com/stretchr/testify/suite",
+    "golang.org/x/crypto/bcrypt",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1

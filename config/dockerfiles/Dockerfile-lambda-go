@@ -6,17 +6,20 @@ ARG SERVICE_PATH
 ARG APP_PATH
 ARG INSTALL_PATH=/go
 ARG LOCAL_USER=go
-ENV SAM_VERSION=0.2.11
 
 # Install Nodejs
 RUN curl -sL https://deb.nodesource.com/setup_9.x | bash -
 RUN apt-get install -y nodejs
 
-RUN apt-get install -y -qq curl && \
-    curl -sSLO https://github.com/awslabs/aws-sam-local/releases/download/v${SAM_VERSION}/sam_${SAM_VERSION}_linux_386.tar.gz && \
-    tar -C /usr/local/bin -zxvf ./sam_${SAM_VERSION}_linux_386.tar.gz
-
+# Install Serverless
 RUN npm i -g serverless
+
+# Install python
+RUN apt-get install -y -qq python-pip
+
+# Install AWS SAM CLI
+ENV PATH=$PATH:/root/.local/bin
+RUN pip install --user aws-sam-cli
 
 COPY $SERVICE_PATH/$APP_PATH/package.json /go/$APP_PATH/package.json
 COPY $SERVICE_PATH/$APP_PATH/package-lock.json /go/$APP_PATH/package-lock.json
