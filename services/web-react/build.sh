@@ -19,7 +19,7 @@ else
     yarn build
     echo "build complete"
   else
-    echo "Error: please supply --stage:staging or --stage:production option"
+    echo "Error: please supply --stage=staging or --stage=production option"
     exit 1
   fi
 fi
