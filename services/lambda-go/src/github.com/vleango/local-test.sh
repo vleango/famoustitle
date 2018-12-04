@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#docker-compose -f docker-compose.test.yml run --rm lambda-go ./local-test.sh
+
 export APP_ENV=test
 echo "Setting APP_ENV: $APP_ENV"
 

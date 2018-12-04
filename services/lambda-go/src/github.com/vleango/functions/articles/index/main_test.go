@@ -80,7 +80,7 @@ func (suite *Suite) TestArticles() {
 			if createdArticle.ID == responseArticle.ID {
 				suite.Equal(createdArticle.ID, responseArticle.ID)
 				suite.Equal(createdArticle.Title, responseArticle.Title)
-				suite.Equal(createdArticle.Body, responseArticle.Body)
+				suite.Nil(responseArticle.Body)
 				suite.Equal(createdArticle.Tags, responseArticle.Tags)
 
 				// convert these to unix epoch to check for matching

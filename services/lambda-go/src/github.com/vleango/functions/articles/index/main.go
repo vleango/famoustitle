@@ -12,8 +12,13 @@ import (
 )
 
 type Response struct {
-	Articles []models.Article   `json:"articles"`
+	Articles []IndexArticle     `json:"articles"`
 	Tags     elasticsearch.Tags `json:"tags"`
+}
+
+type IndexArticle struct {
+	models.Article
+	Body *string `json:"body,omitempty"`
 }
 
 func main() {
@@ -31,8 +36,13 @@ func Handler(ctx context.Context, request events.APIGatewayProxyRequest) (events
 		return response.ServerError(utils.JSONStringWithKey(responses.StatusMsgServerError), err.Error()), nil
 	}
 
+	indexedArticles := make([]IndexArticle, 0)
+	for _, article := range articles {
+		indexedArticles = append(indexedArticles, IndexArticle{article, nil})
+	}
+
 	data := Response{
-		Articles: articles,
+		Articles: indexedArticles,
 		Tags:     aggregations.Tags,
 	}
 
