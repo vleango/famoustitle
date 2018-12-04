@@ -31,7 +31,7 @@ ShallowWrapper {
                     replace={false}
                     to="/"
           >
-                    FT
+                    FamousTitle
           </Link>
 </nav>,
         <div
@@ -75,12 +75,15 @@ ShallowWrapper {
           <footer
                     className="split-footer pb-5"
           >
-                    <Link
-                              replace={false}
-                              to="/"
+                    <span
+                              style={
+                                        Object {
+                                                  "color": "#999",
+                                                }
+                              }
                     >
-                              FamousTitle.com
-                    </Link>
+                              tha@famoustitle.com
+                    </span>
           </footer>
 </div>,
       ],
@@ -97,7 +100,7 @@ ShallowWrapper {
             replace={false}
             to="/"
 >
-            FT
+            FamousTitle
 </Link>,
           "className": "navbar sticky-top navbar-light bg-light",
           "style": Object {
@@ -110,13 +113,13 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "FT",
+            "children": "FamousTitle",
             "className": "navbar-brand nav-brand-text",
             "replace": false,
             "to": "/",
           },
           "ref": null,
-          "rendered": "FT",
+          "rendered": "FamousTitle",
           "type": [Function],
         },
         "type": "nav",
@@ -165,12 +168,15 @@ ShallowWrapper {
             <footer
               className="split-footer pb-5"
 >
-              <Link
-                            replace={false}
-                            to="/"
+              <span
+                            style={
+                                          Object {
+                                                        "color": "#999",
+                                                      }
+                            }
               >
-                            FamousTitle.com
-              </Link>
+                            tha@famoustitle.com
+              </span>
 </footer>,
           ],
           "className": "canvas",
@@ -280,27 +286,31 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": <Link
-                replace={false}
-                to="/"
+              "children": <span
+                style={
+                                Object {
+                                                "color": "#999",
+                                              }
+                }
 >
-                FamousTitle.com
-</Link>,
+                tha@famoustitle.com
+</span>,
               "className": "split-footer pb-5",
             },
             "ref": null,
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "host",
               "props": Object {
-                "children": "FamousTitle.com",
-                "replace": false,
-                "to": "/",
+                "children": "tha@famoustitle.com",
+                "style": Object {
+                  "color": "#999",
+                },
               },
               "ref": null,
-              "rendered": "FamousTitle.com",
-              "type": [Function],
+              "rendered": "tha@famoustitle.com",
+              "type": "span",
             },
             "type": "footer",
           },
@@ -330,7 +340,7 @@ ShallowWrapper {
                         replace={false}
                         to="/"
             >
-                        FT
+                        FamousTitle
             </Link>
 </nav>,
           <div
@@ -374,12 +384,15 @@ ShallowWrapper {
             <footer
                         className="split-footer pb-5"
             >
-                        <Link
-                                    replace={false}
-                                    to="/"
+                        <span
+                                    style={
+                                                Object {
+                                                            "color": "#999",
+                                                          }
+                                    }
                         >
-                                    FamousTitle.com
-                        </Link>
+                                    tha@famoustitle.com
+                        </span>
             </footer>
 </div>,
         ],
@@ -396,7 +409,7 @@ ShallowWrapper {
               replace={false}
               to="/"
 >
-              FT
+              FamousTitle
 </Link>,
             "className": "navbar sticky-top navbar-light bg-light",
             "style": Object {
@@ -409,13 +422,13 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "FT",
+              "children": "FamousTitle",
               "className": "navbar-brand nav-brand-text",
               "replace": false,
               "to": "/",
             },
             "ref": null,
-            "rendered": "FT",
+            "rendered": "FamousTitle",
             "type": [Function],
           },
           "type": "nav",
@@ -464,12 +477,15 @@ ShallowWrapper {
               <footer
                 className="split-footer pb-5"
 >
-                <Link
-                                replace={false}
-                                to="/"
+                <span
+                                style={
+                                                Object {
+                                                                "color": "#999",
+                                                              }
+                                }
                 >
-                                FamousTitle.com
-                </Link>
+                                tha@famoustitle.com
+                </span>
 </footer>,
             ],
             "className": "canvas",
@@ -579,27 +595,31 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <Link
-                  replace={false}
-                  to="/"
+                "children": <span
+                  style={
+                                    Object {
+                                                      "color": "#999",
+                                                    }
+                  }
 >
-                  FamousTitle.com
-</Link>,
+                  tha@famoustitle.com
+</span>,
                 "className": "split-footer pb-5",
               },
               "ref": null,
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "class",
+                "nodeType": "host",
                 "props": Object {
-                  "children": "FamousTitle.com",
-                  "replace": false,
-                  "to": "/",
+                  "children": "tha@famoustitle.com",
+                  "style": Object {
+                    "color": "#999",
+                  },
                 },
                 "ref": null,
-                "rendered": "FamousTitle.com",
-                "type": [Function],
+                "rendered": "tha@famoustitle.com",
+                "type": "span",
               },
               "type": "footer",
             },

@@ -128,7 +128,7 @@ export class HomePage extends Component {
                                 </div>
 
                                 <footer className="split-footer">
-                                    <Link to="/">FamousTitle.com</Link>
+                                    <span style={{color: '#999'}}>tha@famoustitle.com</span>
                                 </footer>
 
                             </section>

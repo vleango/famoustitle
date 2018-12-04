@@ -179,7 +179,7 @@ export class ArticleItemPage extends Component {
         return (
             <Fragment>
                 <nav className="navbar sticky-top navbar-light bg-light" style={{padding: 0}}>
-                    <Link to="/" className="navbar-brand nav-brand-text">FT</Link>
+                    <Link to="/" className="navbar-brand nav-brand-text">FamousTitle</Link>
                 </nav>
                 <div className="canvas">
                     <Helmet>
@@ -219,7 +219,7 @@ export class ArticleItemPage extends Component {
                     </div>
 
                     <footer className="split-footer pb-5">
-                        <Link to="/">FamousTitle.com</Link>
+                        <span style={{color: '#999'}}>tha@famoustitle.com</span>
                     </footer>
                 </div>
             </Fragment>
