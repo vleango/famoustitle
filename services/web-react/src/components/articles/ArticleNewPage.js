@@ -42,7 +42,8 @@ export class ArticleNewPage extends Component {
             const trimmedTags = map(rawTags, (tag) => { return trim(tag).toLowerCase() });
             const tags = uniq(trimmedTags);
             const { title, body } = this.state;
-            const article = { title, subtitle, body, tags };
+            const published = true;
+            const article = { title, subtitle, body, published, tags };
             await this.props.createItem({ article });
             toastSuccess("Success!", toastID);
             this.props.history.push('/');

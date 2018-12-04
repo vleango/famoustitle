@@ -174,7 +174,18 @@ export class ArticleEditPage extends Component {
                                                    placeholder="Add your article"
                                                    onChange={this.onInputChange} />
                                         </FormGroup>
-
+                                        <div className="clearfix">
+                                            <FormGroup check>
+                                                <Label check>
+                                                    <Input type="checkbox"
+                                                           name="published"
+                                                           checked={this.state.published}
+                                                           onChange={this.onCheckChange} />
+                                                    <span className="ml-3" style={{fontSize: '1.5rem'}}>published?</span>
+                                                </Label>
+                                            </FormGroup>
+                                            <Button color="primary float-right" disabled={this.state.submitting} size="lg">Save</Button>
+                                        </div>
                                         { this.state.errorMsg && <p>{this.state.errorMsg}</p> }
 
                                     </div>
@@ -186,19 +197,6 @@ export class ArticleEditPage extends Component {
                                             <p>{this.state.subtitle}</p>
                                             { this.displayInfo(false) }
                                             { this.displayBody() }
-                                            <div className="clearfix">
-                                                <FormGroup check>
-                                                    <Label check>
-                                                        <Input type="checkbox"
-                                                               name="published"
-                                                               checked={this.state.published}
-                                                               onChange={this.onCheckChange} />
-                                                        <span className="ml-3" style={{fontSize: '1.5rem'}}>published?</span>
-                                                    </Label>
-                                                </FormGroup>
-
-                                                <Button color="primary float-right" disabled={this.state.submitting} size="lg">Save</Button>
-                                            </div>
                                         </Fragment>
                                         { this.state.errorMsg && <p>{this.state.errorMsg}</p> }
                                     </div>
