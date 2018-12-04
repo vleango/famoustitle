@@ -15,169 +15,94 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
-        <HelmetWrapper
-          defer={true}
-          encodeSpecialCharacters={true}
-/>,
-        <div
-          className="container article-show-container pt-5 pb-5"
->
-          <Unknown />
-          
-          <Modal
-                    autoFocus={true}
-                    backdrop={true}
-                    backdropTransition={
-                              Object {
-                                        "mountOnEnter": true,
-                                        "timeout": 150,
-                                      }
-                    }
-                    centered={true}
-                    fade={true}
-                    isOpen={false}
-                    keyboard={true}
-                    modalTransition={
-                              Object {
-                                        "timeout": 300,
-                                      }
-                    }
-                    onClosed={[Function]}
-                    onOpened={[Function]}
-                    role="dialog"
-                    size="article-img-dialog"
-                    toggle={[Function]}
-                    zIndex={1050}
-          />
-</div>,
-        <footer
-          className="split-footer pb-5"
+        <nav
+          className="navbar sticky-top navbar-light bg-light"
+          style={
+                    Object {
+                              "padding": 0,
+                            }
+          }
 >
           <Link
+                    className="navbar-brand nav-brand-text"
                     replace={false}
                     to="/"
           >
-                    FamousTitle.com
+                    FT
           </Link>
-</footer>,
+</nav>,
+        <div
+          className="canvas"
+>
+          <HelmetWrapper
+                    defer={true}
+                    encodeSpecialCharacters={true}
+          />
+          <div
+                    className="container article-show-container pt-5 pb-5"
+          >
+                    <Unknown />
+                    
+                    <Modal
+                              autoFocus={true}
+                              backdrop={true}
+                              backdropTransition={
+                                        Object {
+                                                  "mountOnEnter": true,
+                                                  "timeout": 150,
+                                                }
+                              }
+                              centered={true}
+                              fade={true}
+                              isOpen={false}
+                              keyboard={true}
+                              modalTransition={
+                                        Object {
+                                                  "timeout": 300,
+                                                }
+                              }
+                              onClosed={[Function]}
+                              onOpened={[Function]}
+                              role="dialog"
+                              size="article-img-dialog"
+                              toggle={[Function]}
+                              zIndex={1050}
+                    />
+          </div>
+          <footer
+                    className="split-footer pb-5"
+          >
+                    <Link
+                              replace={false}
+                              to="/"
+                    >
+                              FamousTitle.com
+                    </Link>
+          </footer>
+</div>,
       ],
-      "className": "canvas",
     },
     "ref": null,
     "rendered": Array [
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": null,
-          "defer": true,
-          "encodeSpecialCharacters": true,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            null,
-            <Unknown />,
-            "",
-            null,
-            <Modal
-              autoFocus={true}
-              backdrop={true}
-              backdropTransition={
-                            Object {
-                                          "mountOnEnter": true,
-                                          "timeout": 150,
-                                        }
-              }
-              centered={true}
-              fade={true}
-              isOpen={false}
-              keyboard={true}
-              modalTransition={
-                            Object {
-                                          "timeout": 300,
-                                        }
-              }
-              onClosed={[Function]}
-              onOpened={[Function]}
-              role="dialog"
-              size="article-img-dialog"
-              toggle={[Function]}
-              zIndex={1050}
-/>,
-          ],
-          "className": "container article-show-container pt-5 pb-5",
-        },
-        "ref": null,
-        "rendered": Array [
-          null,
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          "",
-          null,
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "autoFocus": true,
-              "backdrop": true,
-              "backdropTransition": Object {
-                "mountOnEnter": true,
-                "timeout": 150,
-              },
-              "centered": true,
-              "children": undefined,
-              "fade": true,
-              "isOpen": false,
-              "keyboard": true,
-              "modalTransition": Object {
-                "timeout": 300,
-              },
-              "onClosed": [Function],
-              "onOpened": [Function],
-              "role": "dialog",
-              "size": "article-img-dialog",
-              "toggle": [Function],
-              "zIndex": 1050,
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
-        "type": "div",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
         "nodeType": "host",
         "props": Object {
           "children": <Link
+            className="navbar-brand nav-brand-text"
             replace={false}
             to="/"
 >
-            FamousTitle.com
+            FT
 </Link>,
-          "className": "split-footer pb-5",
+          "className": "navbar sticky-top navbar-light bg-light",
+          "style": Object {
+            "padding": 0,
+          },
         },
         "ref": null,
         "rendered": Object {
@@ -185,186 +110,298 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "FamousTitle.com",
+            "children": "FT",
+            "className": "navbar-brand nav-brand-text",
             "replace": false,
             "to": "/",
           },
           "ref": null,
-          "rendered": "FamousTitle.com",
+          "rendered": "FT",
           "type": [Function],
         },
-        "type": "footer",
+        "type": "nav",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <HelmetWrapper
+              defer={true}
+              encodeSpecialCharacters={true}
+/>,
+            <div
+              className="container article-show-container pt-5 pb-5"
+>
+              <Unknown />
+              
+              <Modal
+                            autoFocus={true}
+                            backdrop={true}
+                            backdropTransition={
+                                          Object {
+                                                        "mountOnEnter": true,
+                                                        "timeout": 150,
+                                                      }
+                            }
+                            centered={true}
+                            fade={true}
+                            isOpen={false}
+                            keyboard={true}
+                            modalTransition={
+                                          Object {
+                                                        "timeout": 300,
+                                                      }
+                            }
+                            onClosed={[Function]}
+                            onOpened={[Function]}
+                            role="dialog"
+                            size="article-img-dialog"
+                            toggle={[Function]}
+                            zIndex={1050}
+              />
+</div>,
+            <footer
+              className="split-footer pb-5"
+>
+              <Link
+                            replace={false}
+                            to="/"
+              >
+                            FamousTitle.com
+              </Link>
+</footer>,
+          ],
+          "className": "canvas",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": null,
+              "defer": true,
+              "encodeSpecialCharacters": true,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                null,
+                <Unknown />,
+                "",
+                null,
+                <Modal
+                  autoFocus={true}
+                  backdrop={true}
+                  backdropTransition={
+                                    Object {
+                                                      "mountOnEnter": true,
+                                                      "timeout": 150,
+                                                    }
+                  }
+                  centered={true}
+                  fade={true}
+                  isOpen={false}
+                  keyboard={true}
+                  modalTransition={
+                                    Object {
+                                                      "timeout": 300,
+                                                    }
+                  }
+                  onClosed={[Function]}
+                  onOpened={[Function]}
+                  role="dialog"
+                  size="article-img-dialog"
+                  toggle={[Function]}
+                  zIndex={1050}
+/>,
+              ],
+              "className": "container article-show-container pt-5 pb-5",
+            },
+            "ref": null,
+            "rendered": Array [
+              null,
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "",
+              null,
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "autoFocus": true,
+                  "backdrop": true,
+                  "backdropTransition": Object {
+                    "mountOnEnter": true,
+                    "timeout": 150,
+                  },
+                  "centered": true,
+                  "children": undefined,
+                  "fade": true,
+                  "isOpen": false,
+                  "keyboard": true,
+                  "modalTransition": Object {
+                    "timeout": 300,
+                  },
+                  "onClosed": [Function],
+                  "onOpened": [Function],
+                  "role": "dialog",
+                  "size": "article-img-dialog",
+                  "toggle": [Function],
+                  "zIndex": 1050,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <Link
+                replace={false}
+                to="/"
+>
+                FamousTitle.com
+</Link>,
+              "className": "split-footer pb-5",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "FamousTitle.com",
+                "replace": false,
+                "to": "/",
+              },
+              "ref": null,
+              "rendered": "FamousTitle.com",
+              "type": [Function],
+            },
+            "type": "footer",
+          },
+        ],
+        "type": "div",
       },
     ],
-    "type": "div",
+    "type": Symbol(react.fragment),
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
-          <HelmetWrapper
-            defer={true}
-            encodeSpecialCharacters={true}
-/>,
-          <div
-            className="container article-show-container pt-5 pb-5"
->
-            <Unknown />
-            
-            <Modal
-                        autoFocus={true}
-                        backdrop={true}
-                        backdropTransition={
-                                    Object {
-                                                "mountOnEnter": true,
-                                                "timeout": 150,
-                                              }
-                        }
-                        centered={true}
-                        fade={true}
-                        isOpen={false}
-                        keyboard={true}
-                        modalTransition={
-                                    Object {
-                                                "timeout": 300,
-                                              }
-                        }
-                        onClosed={[Function]}
-                        onOpened={[Function]}
-                        role="dialog"
-                        size="article-img-dialog"
-                        toggle={[Function]}
-                        zIndex={1050}
-            />
-</div>,
-          <footer
-            className="split-footer pb-5"
+          <nav
+            className="navbar sticky-top navbar-light bg-light"
+            style={
+                        Object {
+                                    "padding": 0,
+                                  }
+            }
 >
             <Link
+                        className="navbar-brand nav-brand-text"
                         replace={false}
                         to="/"
             >
-                        FamousTitle.com
+                        FT
             </Link>
-</footer>,
+</nav>,
+          <div
+            className="canvas"
+>
+            <HelmetWrapper
+                        defer={true}
+                        encodeSpecialCharacters={true}
+            />
+            <div
+                        className="container article-show-container pt-5 pb-5"
+            >
+                        <Unknown />
+                        
+                        <Modal
+                                    autoFocus={true}
+                                    backdrop={true}
+                                    backdropTransition={
+                                                Object {
+                                                            "mountOnEnter": true,
+                                                            "timeout": 150,
+                                                          }
+                                    }
+                                    centered={true}
+                                    fade={true}
+                                    isOpen={false}
+                                    keyboard={true}
+                                    modalTransition={
+                                                Object {
+                                                            "timeout": 300,
+                                                          }
+                                    }
+                                    onClosed={[Function]}
+                                    onOpened={[Function]}
+                                    role="dialog"
+                                    size="article-img-dialog"
+                                    toggle={[Function]}
+                                    zIndex={1050}
+                        />
+            </div>
+            <footer
+                        className="split-footer pb-5"
+            >
+                        <Link
+                                    replace={false}
+                                    to="/"
+                        >
+                                    FamousTitle.com
+                        </Link>
+            </footer>
+</div>,
         ],
-        "className": "canvas",
       },
       "ref": null,
       "rendered": Array [
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": null,
-            "defer": true,
-            "encodeSpecialCharacters": true,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              null,
-              <Unknown />,
-              "",
-              null,
-              <Modal
-                autoFocus={true}
-                backdrop={true}
-                backdropTransition={
-                                Object {
-                                                "mountOnEnter": true,
-                                                "timeout": 150,
-                                              }
-                }
-                centered={true}
-                fade={true}
-                isOpen={false}
-                keyboard={true}
-                modalTransition={
-                                Object {
-                                                "timeout": 300,
-                                              }
-                }
-                onClosed={[Function]}
-                onOpened={[Function]}
-                role="dialog"
-                size="article-img-dialog"
-                toggle={[Function]}
-                zIndex={1050}
-/>,
-            ],
-            "className": "container article-show-container pt-5 pb-5",
-          },
-          "ref": null,
-          "rendered": Array [
-            null,
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "",
-            null,
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "autoFocus": true,
-                "backdrop": true,
-                "backdropTransition": Object {
-                  "mountOnEnter": true,
-                  "timeout": 150,
-                },
-                "centered": true,
-                "children": undefined,
-                "fade": true,
-                "isOpen": false,
-                "keyboard": true,
-                "modalTransition": Object {
-                  "timeout": 300,
-                },
-                "onClosed": [Function],
-                "onOpened": [Function],
-                "role": "dialog",
-                "size": "article-img-dialog",
-                "toggle": [Function],
-                "zIndex": 1050,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": "div",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
           "nodeType": "host",
           "props": Object {
             "children": <Link
+              className="navbar-brand nav-brand-text"
               replace={false}
               to="/"
 >
-              FamousTitle.com
+              FT
 </Link>,
-            "className": "split-footer pb-5",
+            "className": "navbar sticky-top navbar-light bg-light",
+            "style": Object {
+              "padding": 0,
+            },
           },
           "ref": null,
           "rendered": Object {
@@ -372,18 +409,205 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "FamousTitle.com",
+              "children": "FT",
+              "className": "navbar-brand nav-brand-text",
               "replace": false,
               "to": "/",
             },
             "ref": null,
-            "rendered": "FamousTitle.com",
+            "rendered": "FT",
             "type": [Function],
           },
-          "type": "footer",
+          "type": "nav",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <HelmetWrapper
+                defer={true}
+                encodeSpecialCharacters={true}
+/>,
+              <div
+                className="container article-show-container pt-5 pb-5"
+>
+                <Unknown />
+                
+                <Modal
+                                autoFocus={true}
+                                backdrop={true}
+                                backdropTransition={
+                                                Object {
+                                                                "mountOnEnter": true,
+                                                                "timeout": 150,
+                                                              }
+                                }
+                                centered={true}
+                                fade={true}
+                                isOpen={false}
+                                keyboard={true}
+                                modalTransition={
+                                                Object {
+                                                                "timeout": 300,
+                                                              }
+                                }
+                                onClosed={[Function]}
+                                onOpened={[Function]}
+                                role="dialog"
+                                size="article-img-dialog"
+                                toggle={[Function]}
+                                zIndex={1050}
+                />
+</div>,
+              <footer
+                className="split-footer pb-5"
+>
+                <Link
+                                replace={false}
+                                to="/"
+                >
+                                FamousTitle.com
+                </Link>
+</footer>,
+            ],
+            "className": "canvas",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": null,
+                "defer": true,
+                "encodeSpecialCharacters": true,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  null,
+                  <Unknown />,
+                  "",
+                  null,
+                  <Modal
+                    autoFocus={true}
+                    backdrop={true}
+                    backdropTransition={
+                                        Object {
+                                                            "mountOnEnter": true,
+                                                            "timeout": 150,
+                                                          }
+                    }
+                    centered={true}
+                    fade={true}
+                    isOpen={false}
+                    keyboard={true}
+                    modalTransition={
+                                        Object {
+                                                            "timeout": 300,
+                                                          }
+                    }
+                    onClosed={[Function]}
+                    onOpened={[Function]}
+                    role="dialog"
+                    size="article-img-dialog"
+                    toggle={[Function]}
+                    zIndex={1050}
+/>,
+                ],
+                "className": "container article-show-container pt-5 pb-5",
+              },
+              "ref": null,
+              "rendered": Array [
+                null,
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "",
+                null,
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "autoFocus": true,
+                    "backdrop": true,
+                    "backdropTransition": Object {
+                      "mountOnEnter": true,
+                      "timeout": 150,
+                    },
+                    "centered": true,
+                    "children": undefined,
+                    "fade": true,
+                    "isOpen": false,
+                    "keyboard": true,
+                    "modalTransition": Object {
+                      "timeout": 300,
+                    },
+                    "onClosed": [Function],
+                    "onOpened": [Function],
+                    "role": "dialog",
+                    "size": "article-img-dialog",
+                    "toggle": [Function],
+                    "zIndex": 1050,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <Link
+                  replace={false}
+                  to="/"
+>
+                  FamousTitle.com
+</Link>,
+                "className": "split-footer pb-5",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "FamousTitle.com",
+                  "replace": false,
+                  "to": "/",
+                },
+                "ref": null,
+                "rendered": "FamousTitle.com",
+                "type": [Function],
+              },
+              "type": "footer",
+            },
+          ],
+          "type": "div",
         },
       ],
-      "type": "div",
+      "type": Symbol(react.fragment),
     },
   ],
   Symbol(enzyme.__options__): Object {

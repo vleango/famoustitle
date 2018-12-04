@@ -42,6 +42,12 @@
     margin-bottom: 1.5rem;
 }
 
+.nav-brand-text {
+    font-weight: 700;
+    font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+    font-size: 3.8rem;
+    margin-left: 2rem;
+}
 
 .nav-title {
     font-weight: bolder;

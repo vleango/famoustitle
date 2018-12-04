@@ -108,7 +108,7 @@ export class ArticleItemPage extends Component {
 
     CodeRenderer = (props) => {
         return (
-            <Highlight>
+            <Highlight className={props.language}>
                 {props.value}
             </Highlight>
         )
@@ -117,7 +117,10 @@ export class ArticleItemPage extends Component {
     displayBody() {
         return (
             <div className={`article-item-body body-markdown spacing`}>
-                <ReactMarkdown source={ this.state.article.body } renderers={{link: this.LinkRenderer, image: this.ImgRenderer, code: this.CodeRenderer}}/>
+                <ReactMarkdown source={ this.state.article.body } renderers={{
+                    link: this.LinkRenderer,
+                    image: this.ImgRenderer,
+                    code: this.CodeRenderer}}/>
             </div>
         )
     }
@@ -168,48 +171,52 @@ export class ArticleItemPage extends Component {
 
     render() {
         return (
-            <div className="canvas">
-                <Helmet>
-                    {this.state.article && <title>{this.state.article.title} - FamousTitle.com</title>}
-                </Helmet>
+            <Fragment>
+                <nav className="navbar sticky-top navbar-light bg-light" style={{padding: 0}}>
+                    <Link to="/" className="navbar-brand nav-brand-text">FT</Link>
+                </nav>
+                <div className="canvas">
+                    <Helmet>
+                        {this.state.article && <title>{this.state.article.title} - FamousTitle.com</title>}
+                    </Helmet>
 
-                <div className="container article-show-container pt-5 pb-5">
-                    { this.state.editable_id && (
-                        <div className="clearfix">
-                            <Button disabled={this.state.deleting} onClick={this.onDeleteArticle} className="float-right" color="info">Delete</Button>
-                            <Button tag={Link} to={`/articles/${this.state.editable_id}/edit`} className="float-right mr-4" color="info">Edit</Button>
-                        </div>
-                    ) }
+                    <div className="container article-show-container pt-5 pb-5">
+                        { this.state.editable_id && (
+                            <div className="clearfix">
+                                <Button disabled={this.state.deleting} onClick={this.onDeleteArticle} className="float-right" color="info">Delete</Button>
+                                <Button tag={Link} to={`/articles/${this.state.editable_id}/edit`} className="float-right mr-4" color="info">Edit</Button>
+                            </div>
+                        ) }
 
-                    {/* message for when loading article */}
-                    { !this.state.article && <Spinner /> }
-                    { this.state.errorMsg }
+                        {/* message for when loading article */}
+                        { !this.state.article && <Spinner /> }
+                        { this.state.errorMsg }
 
-                    {/* after article loads */}
-                    { this.state.article && (
-                        <Fragment>
-                            <h1>{this.state.article.title}</h1>
-                            { this.displayInfo() }
-                            { this.displayArtwork() }
-                            { this.displayBody() }
-                        </Fragment>
-                    ) }
+                        {/* after article loads */}
+                        { this.state.article && (
+                            <Fragment>
+                                <h1>{this.state.article.title}</h1>
+                                { this.displayInfo() }
+                                { this.displayArtwork() }
+                                { this.displayBody() }
+                            </Fragment>
+                        ) }
 
-                    {/* Img Modal */}
-                    <Modal isOpen={this.state.imgModal} toggle={this.imgModalToggle} centered={true} size={'article-img-dialog'}>
-                        {this.state.modalData && (
-                            <a rel="noopener noreferrer" onClick={this.imgModalToggle} target="_blank" href={this.state.modalData.src}>
-                                <img className='modal-img' alt={this.state.modalData.alt} src={this.state.modalData.src} />
-                            </a>
-                        )}
-                    </Modal>
+                        {/* Img Modal */}
+                        <Modal isOpen={this.state.imgModal} toggle={this.imgModalToggle} centered={true} size={'article-img-dialog'}>
+                            {this.state.modalData && (
+                                <a rel="noopener noreferrer" onClick={this.imgModalToggle} target="_blank" href={this.state.modalData.src}>
+                                    <img className='modal-img' alt={this.state.modalData.alt} src={this.state.modalData.src} />
+                                </a>
+                            )}
+                        </Modal>
+                    </div>
+
+                    <footer className="split-footer pb-5">
+                        <Link to="/">FamousTitle.com</Link>
+                    </footer>
                 </div>
-
-                <footer className="split-footer pb-5">
-                    <Link to="/">FamousTitle.com</Link>
-                </footer>
-
-            </div>
+            </Fragment>
         );
     }
 }
